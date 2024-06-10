@@ -37,7 +37,9 @@ public class GameManager : Singleton<GameManager>
 
     public static void StartGame()
     {
-        // TODO: Load/generate new level...
+        LevelManager levelManager = FindFirstObjectByType<LevelManager>();
+        levelManager.CreateLevel();
+
         CurrentGameState = GameState.PLAYING;
         Time.timeScale = GAME_TIMESCALE;
         inGameTimer = 0.0f;

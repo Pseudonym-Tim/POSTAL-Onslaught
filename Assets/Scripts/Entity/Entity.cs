@@ -45,10 +45,9 @@ public class Entity : MonoBehaviour
 
     }
 
-    public virtual bool IsCollisionEnabled { get { return true; } }
-
     public virtual Vector3 CenterOfMass { get { return EntityPosition; } }
     public EntityAnimator EntityAnim { get; set; } = null;
+    public EntityData EntityData { get; set; } = null;
     public GameObject EntityObject { get { return gameObject; } }
     public Transform EntityTransform { get { return transform; } }
     public Vector3 EntityPosition { get { return EntityTransform.position; } set { EntityTransform.position = value; } }

@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,7 +100,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tile_sand_corner_tl
+      name: tile_sand_tl
       rect:
         serializedVersion: 2
         x: 0
@@ -121,7 +121,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile_sand_corner_tr
+      name: tile_sand_tr
       rect:
         serializedVersion: 2
         x: 16
@@ -163,7 +163,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile_grass_cliff_corner_tl
+      name: tile_grass_cliff_tl
       rect:
         serializedVersion: 2
         x: 48
@@ -184,7 +184,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile_grass_cliff_corner_t
+      name: tile_grass_cliff_t
       rect:
         serializedVersion: 2
         x: 64
@@ -205,7 +205,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile_grass_cliff_corner_tr
+      name: tile_grass_cliff_tr
       rect:
         serializedVersion: 2
         x: 80
@@ -268,7 +268,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile_sand_corner_bl
+      name: tile_sand_bl
       rect:
         serializedVersion: 2
         x: 0
@@ -289,7 +289,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile_sand_corner_br
+      name: tile_sand_br
       rect:
         serializedVersion: 2
         x: 16
@@ -310,7 +310,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile_grass_cliff_corner_l
+      name: tile_grass_cliff_l
       rect:
         serializedVersion: 2
         x: 48
@@ -331,7 +331,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile_grass_cliff_corner_r
+      name: tile_grass_cliff_r
       rect:
         serializedVersion: 2
         x: 80
@@ -373,7 +373,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile_grass_cliff_corner_bl
+      name: tile_grass_cliff_bl
       rect:
         serializedVersion: 2
         x: 48
@@ -394,7 +394,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile_grass_cliff_corner_b
+      name: tile_grass_cliff_b
       rect:
         serializedVersion: 2
         x: 64
@@ -415,7 +415,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: tile_grass_cliff_corner_br
+      name: tile_grass_cliff_br
       rect:
         serializedVersion: 2
         x: 80
@@ -449,19 +449,19 @@ TextureImporter:
       tile_grass_1: 524984663
       tile_grass_2: 186762194
       tile_grass_3: -519841532
-      tile_grass_cliff_corner_b: -776485529
-      tile_grass_cliff_corner_bl: 2028735437
-      tile_grass_cliff_corner_br: -1174464013
-      tile_grass_cliff_corner_l: 235627530
-      tile_grass_cliff_corner_r: 842450924
-      tile_grass_cliff_corner_t: 734986048
-      tile_grass_cliff_corner_tl: 2107846475
-      tile_grass_cliff_corner_tr: -117643338
+      tile_grass_cliff_b: -776485529
+      tile_grass_cliff_bl: 2028735437
+      tile_grass_cliff_br: -1174464013
+      tile_grass_cliff_l: 235627530
+      tile_grass_cliff_r: 842450924
+      tile_grass_cliff_t: 734986048
+      tile_grass_cliff_tl: 2107846475
+      tile_grass_cliff_tr: -117643338
       tile_sand_1: 1418256371
-      tile_sand_corner_bl: 594569462
-      tile_sand_corner_br: -1191152145
-      tile_sand_corner_tl: -1278857610
-      tile_sand_corner_tr: 376632537
+      tile_sand_bl: 594569462
+      tile_sand_br: -1191152145
+      tile_sand_tl: -1278857610
+      tile_sand_tr: 376632537
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

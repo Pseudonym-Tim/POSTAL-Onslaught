@@ -1,0 +1,31 @@
+VAR X 0
+VAR Y 0
+
+// Define level size and bounds distance...
+VAR LEVEL_SIZE_X 32
+VAR LEVEL_SIZE_Y 32
+VAR LEVEL_BOUNDS_DIST 4
+
+// Fill the entire area with grass...
+TILE_FILL grass 0 0 LEVEL_SIZE_X-1 LEVEL_SIZE_Y-1
+
+// Draw grass cliffs LEVEL_BOUNDS_DIST blocks away from the borders...
+FOR X LEVEL_BOUNDS_DIST LEVEL_SIZE_X-LEVEL_BOUNDS_DIST-1
+    TILE grass_cliff_b X LEVEL_BOUNDS_DIST
+    TILE grass_cliff_t X LEVEL_SIZE_Y-LEVEL_BOUNDS_DIST-1
+ENDFOR
+
+FOR Y LEVEL_BOUNDS_DIST LEVEL_SIZE_Y-LEVEL_BOUNDS_DIST-1
+    TILE grass_cliff_l LEVEL_BOUNDS_DIST Y
+    TILE grass_cliff_r LEVEL_SIZE_X-LEVEL_BOUNDS_DIST-1 Y
+ENDFOR
+
+// Add corner cliffs...
+TILE grass_cliff_tl LEVEL_BOUNDS_DIST LEVEL_SIZE_Y-LEVEL_BOUNDS_DIST-1
+TILE grass_cliff_tr LEVEL_SIZE_X-LEVEL_BOUNDS_DIST-1 LEVEL_SIZE_Y-LEVEL_BOUNDS_DIST-1
+TILE grass_cliff_bl LEVEL_BOUNDS_DIST LEVEL_BOUNDS_DIST
+TILE grass_cliff_br LEVEL_SIZE_X-LEVEL_BOUNDS_DIST-1 LEVEL_BOUNDS_DIST
+
+// Entity spawn tests...
+//ENTITY player_dude 15 15
+ENTITY_RANDOM player_dude grass 2
