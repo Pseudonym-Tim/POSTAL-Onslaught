@@ -12,5 +12,13 @@ public class TileData
     public int sortingOrder = 0;
     public List<Sprite> sprites;
     public bool isAnimated = false;
-    public bool addCollision = false;
+    public CollisionData collisionData;
+
+    [System.Serializable]
+    public struct CollisionData
+    {
+        public bool addCollision;
+        public Vector2 size;
+        public Vector2 offset;
+    }
 }

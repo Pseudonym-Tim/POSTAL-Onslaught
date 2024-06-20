@@ -90,11 +90,11 @@ public class LevelManager : Singleton<LevelManager>
         {
             if(entity.Key == entityID)
             {
-                GameObject prefab = prefabDatabase?.GetPrefab(entity.Value.name);
+                Entity entityPrefab = prefabDatabase?.GetPrefab<Entity>(entity.Value.name);
                 Transform parentTransform = LevelGenerator.EntityParent.transform;
-                Entity entitySpawned = Instantiate(prefab, addPos, Quaternion.identity).GetComponent<Entity>();
+                Entity entitySpawned = Instantiate(entityPrefab, addPos, Quaternion.identity);
                 entitySpawned.SetParent(parentTransform, false);
-                entitySpawned.name = prefab.name;
+                entitySpawned.name = entityPrefab.name;
                 entitySpawned.EntityData = entity.Value;
                 LevelEntities.Add(entitySpawned);
                 entitySpawned.OnEntitySpawn();

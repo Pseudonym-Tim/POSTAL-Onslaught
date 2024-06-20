@@ -14,10 +14,11 @@ public class LevelTile : MonoBehaviour
         int randomIndex = Random.Range(0, TileData.sprites.Count);
         tileGFX.sprite = TileData.sprites[randomIndex];
 
-        if(TileData.addCollision)
+        if(TileData.collisionData.addCollision)
         {
             BoxCollider2D boxCollider = gameObject.AddComponent<BoxCollider2D>();
-            boxCollider.size = tileGFX.bounds.size;
+            boxCollider.size = TileData.collisionData.size;
+            boxCollider.offset = TileData.collisionData.offset;
         }
     }
 

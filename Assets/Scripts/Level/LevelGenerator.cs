@@ -63,7 +63,6 @@ public class LevelGenerator : Singleton<LevelGenerator>
         SpawnEntity(entityID, spawnTile.TilePosition);
     }
 
-
     private void InitializeLevel()
     {
         if(LevelParent != null) { Destroy(LevelParent); }

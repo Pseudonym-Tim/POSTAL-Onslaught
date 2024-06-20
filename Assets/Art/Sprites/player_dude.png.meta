@@ -118,11 +118,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player_dude_1
+      name: player_dude_idle_1
       rect:
         serializedVersion: 2
-        x: 15
-        y: 4
+        x: 6
+        y: 3
         width: 12
         height: 28
       alignment: 7
@@ -139,11 +139,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_dude_2
+      name: player_dude_idle_2
       rect:
         serializedVersion: 2
-        x: 50
-        y: 4
+        x: 24
+        y: 3
         width: 12
         height: 28
       alignment: 7
@@ -160,11 +160,11 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player_dude_3
+      name: player_dude_idle_3
       rect:
         serializedVersion: 2
-        x: 85
-        y: 4
+        x: 42
+        y: 3
         width: 12
         height: 28
       alignment: 7
@@ -180,6 +180,90 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: player_dude_walk_1
+      rect:
+        serializedVersion: 2
+        x: 57
+        y: 3
+        width: 18
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7c2973e2155fc744b95912ae2a404ef
+      internalID: 1335056273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_dude_walk_2
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 3
+        width: 12
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa081132f1b8bb64482d21cece463e5c
+      internalID: -1063186795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_dude_walk_3
+      rect:
+        serializedVersion: 2
+        x: 93
+        y: 3
+        width: 18
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0adab00637d47a1408e54535bca61aa5
+      internalID: 341165440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_dude_walk_4
+      rect:
+        serializedVersion: 2
+        x: 114
+        y: 3
+        width: 12
+        height: 28
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 190a4f14ac0df6548b6aff304d9634d2
+      internalID: 510969763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -191,12 +275,16 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      player_dude_1: -2611919490825289116
-      player_dude_2: 5791083271633424021
-      player_dude_3: -7838006753660157819
       player_dude_4: 3306811980159851478
       player_dude_5: -654498268233689794
       player_dude_6: 8602691189884447335
+      player_dude_idle_1: -2611919490825289116
+      player_dude_idle_2: 5791083271633424021
+      player_dude_idle_3: -7838006753660157819
+      player_dude_walk_1: 1335056273
+      player_dude_walk_2: -1063186795
+      player_dude_walk_3: 341165440
+      player_dude_walk_4: 510969763
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

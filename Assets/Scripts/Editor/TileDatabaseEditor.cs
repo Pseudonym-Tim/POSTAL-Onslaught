@@ -23,6 +23,11 @@ public class TileDatabaseEditor : EditorWindow
         tileDatabase = TileDatabase.Load();
     }
 
+    private void OnDisable()
+    {
+        SaveTileChanges();
+    }
+
     private void OnGUI()
     {
         GUILayout.Space(10);
@@ -39,7 +44,15 @@ public class TileDatabaseEditor : EditorWindow
         newTileData.id = EditorGUILayout.TextField("ID", newTileData.id);
         newTileData.sortingOrder = EditorGUILayout.IntField("Sorting Order", newTileData.sortingOrder);
         newTileData.isAnimated = EditorGUILayout.Toggle("Is Animated", newTileData.isAnimated);
-        newTileData.addCollision = EditorGUILayout.Toggle("Add Collision", newTileData.addCollision);
+        newTileData.collisionData.addCollision = EditorGUILayout.Toggle("Add Collision", newTileData.collisionData.addCollision);
+
+        if(newTileData.collisionData.addCollision)
+        {
+            EditorGUI.indentLevel++;
+            newTileData.collisionData.size = EditorGUILayout.Vector2Field("Collision Size", newTileData.collisionData.size);
+            newTileData.collisionData.offset = EditorGUILayout.Vector2Field("Collision Offset", newTileData.collisionData.offset);
+            EditorGUI.indentLevel--;
+        }
 
         DrawSpriteList(newTileData);
 
@@ -98,17 +111,24 @@ public class TileDatabaseEditor : EditorWindow
         GUILayout.EndScrollView();
     }
 
-    private void DrawTile(TileData tile, int index)
+    private void DrawTile(TileData tileData, int index)
     {
         GUILayout.BeginVertical("box");
 
-        tile.name = EditorGUILayout.TextField("Name", tile.name);
-        tile.id = EditorGUILayout.TextField("ID", tile.id);
-        tile.sortingOrder = EditorGUILayout.IntField("Sorting Order", tile.sortingOrder);
-        tile.isAnimated = EditorGUILayout.Toggle("Is Animated", tile.isAnimated);
-        tile.addCollision = EditorGUILayout.Toggle("Add Collision", tile.addCollision);
+        tileData.name = EditorGUILayout.TextField("Name", tileData.name);
+        tileData.id = EditorGUILayout.TextField("ID", tileData.id);
+        tileData.sortingOrder = EditorGUILayout.IntField("Sorting Order", tileData.sortingOrder);
+        tileData.isAnimated = EditorGUILayout.Toggle("Is Animated", tileData.isAnimated);
+        tileData.collisionData.addCollision = EditorGUILayout.Toggle("Add Collision", tileData.collisionData.addCollision);
 
-        DrawSpriteList(tile);
+        if(tileData.collisionData.addCollision)
+        {
+            tileData.collisionData.size = EditorGUILayout.Vector2Field("Collision Size", tileData.collisionData.size);
+            tileData.collisionData.offset = EditorGUILayout.Vector2Field("Collision Offset", tileData.collisionData.offset);
+            GUILayout.Space(10);
+        }
+
+        DrawSpriteList(tileData);
 
         if(GUILayout.Button("Save Changes"))
         {
@@ -152,7 +172,8 @@ public class TileDatabaseEditor : EditorWindow
             return;
         }
 
-        EditorUtility.SetDirty(tileDatabase);
+        EditorUtility.SetDirty(tileDatabase); // Mark the tile database as dirty
+        AssetDatabase.SaveAssets(); // Save changes to disk
         Debug.Log("Tile changes saved!");
     }
 

@@ -17,6 +17,7 @@ public class TileDatabase : ScriptableObject
         return tileDatabase.FirstOrDefault(tileData => tileData.id == tileID);
     }
 
+#if UNITY_EDITOR
     [MenuItem("Assets/Create Tile Database")]
     private static void Create()
     {
@@ -37,4 +38,5 @@ public class TileDatabase : ScriptableObject
     {
         return AssetUtility.LoadAsset<TileDatabase>(ASSET_PATH);
     }
+#endif
 }

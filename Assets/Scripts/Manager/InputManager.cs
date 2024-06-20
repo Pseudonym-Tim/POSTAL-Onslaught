@@ -6,6 +6,8 @@ using UnityEngine;
 public class InputManager : Singleton<InputManager>
 {
     public static bool IsButtonPressed(string buttonName) => Input.GetButtonDown(buttonName);
+    public static float GetAxis(string axisName) => Input.GetAxis(axisName);
+    public static float GetAxisRaw(string axisName) => Input.GetAxisRaw(axisName);
     public static bool IsButtonHeld(string buttonName) => Input.GetButton(buttonName);
 
     private void Awake()
@@ -16,12 +18,12 @@ public class InputManager : Singleton<InputManager>
 
     public static void EnableInput()
     {
-
+        PlayerInput.InputEnabled = true;
     }
 
     public static void DisableInput()
     {
-        
+        PlayerInput.InputEnabled = false;
     }
 
     public static void ShowCursor(bool showCursor = true)

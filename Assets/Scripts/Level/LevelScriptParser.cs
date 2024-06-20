@@ -27,7 +27,7 @@ public class LevelScriptParser
 
     public void ParseScript()
     {
-        string filePath = Path.Combine(Application.streamingAssetsPath, FILE_NAME + FILE_EXTENSION);
+        string filePath = $"{ Application.streamingAssetsPath }/{ FILE_NAME }{ FILE_EXTENSION }";
 
         try
         {
@@ -42,21 +42,29 @@ public class LevelScriptParser
         }
         catch(Exception e)
         {
-            Debug.LogError($"Error parsing script file: {e.Message}");
+            Debug.LogError($"Error parsing script file: { e.Message }");
         }
     }
 
     public void ParseLine(string line)
     {
-        if(string.IsNullOrEmpty(line) || line.StartsWith("//")) return;
+        try
+        {
+            if(string.IsNullOrEmpty(line) || line.StartsWith("//")) return;
 
-        if(line.StartsWith("VAR")) ParseVariable(line);
-        else if(line.StartsWith("FOR")) ParseForLoop(line);
-        else if(line.StartsWith("IF")) ParseIfStatement(line);
-        else if(line.StartsWith("TILE ")) ParseTile(line);
-        else if(line.StartsWith("TILE_FILL")) ParseTileFill(line);
-        else if(line.StartsWith("ENTITY ")) ParseEntity(line);
-        else if(line.StartsWith("ENTITY_RANDOM ")) ParseEntityRandom(line);
+            if(line.StartsWith("VAR")) ParseVariable(line);
+            else if(line.StartsWith("FOR")) ParseForLoop(line);
+            else if(line.StartsWith("IF")) ParseIfStatement(line);
+            else if(line.StartsWith("TILE ")) ParseTile(line);
+            else if(line.StartsWith("TILE_FILL")) ParseTileFill(line);
+            else if(line.StartsWith("ENTITY ")) ParseEntity(line);
+            else if(line.StartsWith("ENTITY_RANDOM ")) ParseEntityRandom(line);
+            else throw new Exception($"Unknown command: {line}");
+        }
+        catch(Exception e)
+        {
+            Debug.LogError($"Error parsing line {currentLineIndex + 1}: {line}\n{e.Message}");
+        }
     }
 
     private void ParseVariable(string line)

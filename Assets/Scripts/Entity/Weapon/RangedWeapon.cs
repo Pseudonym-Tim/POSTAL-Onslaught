@@ -1,0 +1,126 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor.EditorTools;
+using UnityEngine;
+
+/// <summary>
+/// Ranged weapon...
+/// </summary>
+public class RangedWeapon : Weapon
+{
+    [SerializeField] private float fireRate = 0.4f;
+    [SerializeField] private bool isAutomatic = false;
+    [SerializeField] private int damageMin = 3, damageMax = 6;
+    [SerializeField] private int numOfShots = 1;
+    [SerializeField] private float bulletSpreadAmount = 0;
+    [SerializeField] private ShotTrail shotTrailPrefab;
+    [SerializeField] private Animator muzzleFlashAnimator;
+    private float shotDelayTimer = 0;
+
+    protected override void OnEntityUpdate()
+    {
+        UpdateShooting();
+    }
+
+    private void UpdateShooting()
+    {
+        bool canShoot = !IsShootOriginObstructed && weaponManager.IsAttackingAllowed;
+        bool gotAttackInput = isAutomatic ? PlayerInput.IsButtonHeld("Attack") : PlayerInput.IsButtonPressed("Attack");
+
+        if(shotDelayTimer > 0) { shotDelayTimer -= Time.deltaTime; }
+        else if(shotDelayTimer <= 0 && gotAttackInput && canShoot)
+        {
+            OnFireWeapon(); // Fire the weapon...
+            shotDelayTimer = fireRate; // Delay the next shot using the fire rate...
+        }
+    }
+
+    public virtual void OnFireWeapon()
+    {
+        for(int i = 0; i < numOfShots; i++)
+        {
+            bool hasBulletSpread = bulletSpreadAmount > 0;
+            float spreadAngle = Random.Range(-bulletSpreadAmount / 2, bulletSpreadAmount / 2);
+            Vector2 spreadShotDir = Quaternion.Euler(0, 0, spreadAngle) * ShootOriginTransform.right;
+            Vector2 shotDir = hasBulletSpread ? spreadShotDir : ShootOriginTransform.right;
+            RaycastHit2D shootHitInfo = ShootRaycast(default, shotDir);
+            CreateShotTrail(shotTrailPrefab, shootHitInfo, spreadShotDir);
+        }
+
+        EntityAnim.Play("Shoot");
+        muzzleFlashAnimator.Play("Blast");
+    }
+
+    protected virtual RaycastHit2D ShootRaycast(Vector2 origin, Vector2 direction)
+    {
+        // Set defaults if parameters are not provided...
+        origin = origin == Vector2.zero ? ShootOriginTransform.position : origin;
+        direction = direction == Vector2.zero ? ShootOriginTransform.right : direction;
+        LayerMask layerMask = LayerManager.Masks.SHOOTABLE;
+        RaycastHit2D hit = Physics2D.Raycast(origin, direction, Mathf.Infinity, layerMask);
+
+        if(hit && hit.collider)
+        {
+            Entity entityHit = hit.collider.GetComponentInParent<Entity>();
+            Enemy enemyHit = entityHit ? entityHit.GetComponent<Enemy>() : null;
+
+            DamageInfo damageInfo = new DamageInfo()
+            {
+                damageAmount = Random.Range(damageMin, damageMax),
+                attackerEntity = playerEntity,
+            };
+
+            // Deal damage to enemy if we hit them...
+            enemyHit?.TakeDamage(damageInfo);
+
+            // Hit visualization...
+            Debug.DrawLine(origin, hit.point, Color.red, 0.5f);
+        }
+
+        return hit;
+    }
+
+    protected void CreateShotTrail(ShotTrail shotTrailPrefab, RaycastHit2D shootHitInfo, Vector2 shotDir)
+    {
+        Vector2 spawnPos = ShootOriginTransform.position;
+        Quaternion spawnRot = ShootOriginTransform.rotation;
+        ShotTrail spawnedShotTrail = Instantiate(shotTrailPrefab, spawnPos, spawnRot);
+        spawnedShotTrail.name = shotTrailPrefab.name;
+
+        // If we don't hit anything, then the end position is just set to be pretty far off-screen!
+        const float OFFSCREEN_DIST = 69; // Ha-ha, funny number!
+        Vector2 offscreenEndPos = ShootOriginTransform.position + (Vector3)shotDir * OFFSCREEN_DIST;
+        spawnedShotTrail.EndPosition = shootHitInfo ? shootHitInfo.point : offscreenEndPos; // Set end point destination...
+    }
+
+    public bool IsShootOriginObstructed
+    {
+        get
+        {
+            Vector2 startPos = weaponManager.AimParent.position;
+            Vector2 endPos = ShootOriginTransform.position;
+            RaycastHit2D hit = Physics2D.Linecast(startPos, endPos, LayerManager.Masks.SHOOTABLE);
+            Debug.DrawLine(startPos, endPos, Color.yellow);
+            return hit;
+        }
+    }
+
+    protected Transform ShootOriginTransform
+    {
+        get
+        {
+            Transform originTransform = EntityTransform.Find("Root").Find("ShootOrigin");
+            if(!originTransform) { Debug.LogWarning($"ShootOrigin not found on: [{ weaponName }]!"); }
+            return originTransform;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        if(ShootOriginTransform)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawRay(ShootOriginTransform.position, ShootOriginTransform.right * 25);
+        }
+    }
+}

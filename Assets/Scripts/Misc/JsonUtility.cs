@@ -33,7 +33,7 @@ public static class JsonUtility
     /// <param name="fileName">The name of the json file to parse</param>
     public static JObject ParseJson(string fileName)
     {
-        string filePath = Path.Combine("Assets", "StreamingAssets", $"{ fileName }.json");
+        string filePath = $"{ Application.streamingAssetsPath }/{ fileName }.json";
 
         if(!File.Exists(filePath))
         {

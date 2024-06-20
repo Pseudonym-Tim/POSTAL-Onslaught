@@ -13,103 +13,145 @@ MonoBehaviour:
   m_Name: TileDatabase
   m_EditorClassIdentifier: 
   tileDatabase:
-  - name: Grass
-    id: grass
+  - name: Dirt
+    id: dirt
     sortingOrder: 0
     sprites:
     - {fileID: 524984663, guid: fd9302610a795404fb6da4b79f5414d4, type: 3}
     - {fileID: 186762194, guid: fd9302610a795404fb6da4b79f5414d4, type: 3}
     - {fileID: -519841532, guid: fd9302610a795404fb6da4b79f5414d4, type: 3}
     isAnimated: 0
-    addCollision: 0
-  - name: GrassCliffB
-    id: grass_cliff_b
+    collisionData:
+      addCollision: 0
+      size: {x: 0, y: 0}
+      offset: {x: 0, y: 0}
+  - name: DirtCliffB
+    id: dirt_cliff_b
     sortingOrder: 0
     sprites:
     - {fileID: -776485529, guid: fd9302610a795404fb6da4b79f5414d4, type: 3}
     isAnimated: 0
-    addCollision: 1
-  - name: GrassCliffBL
-    id: grass_cliff_bl
+    collisionData:
+      addCollision: 1
+      size: {x: 1, y: 1}
+      offset: {x: 0, y: 0}
+  - name: DirtCliffBL
+    id: dirt_cliff_bl
     sortingOrder: 0
     sprites:
     - {fileID: 2028735437, guid: fd9302610a795404fb6da4b79f5414d4, type: 3}
     isAnimated: 0
-    addCollision: 1
-  - name: GrassCliffBR
-    id: grass_cliff_br
+    collisionData:
+      addCollision: 1
+      size: {x: 1, y: 1}
+      offset: {x: 0, y: 0}
+  - name: DirtCliffBR
+    id: dirt_cliff_br
     sortingOrder: 0
     sprites:
     - {fileID: -1174464013, guid: fd9302610a795404fb6da4b79f5414d4, type: 3}
     isAnimated: 0
-    addCollision: 1
-  - name: GrassCliffL
-    id: grass_cliff_l
+    collisionData:
+      addCollision: 1
+      size: {x: 1, y: 1}
+      offset: {x: 0, y: 0}
+  - name: DirtCliffL
+    id: dirt_cliff_l
     sortingOrder: 0
     sprites:
     - {fileID: 235627530, guid: fd9302610a795404fb6da4b79f5414d4, type: 3}
     isAnimated: 0
-    addCollision: 1
-  - name: GrassCliffR
-    id: grass_cliff_r
+    collisionData:
+      addCollision: 1
+      size: {x: 1, y: 1}
+      offset: {x: -0.5, y: 0}
+  - name: DirtCliffR
+    id: dirt_cliff_r
     sortingOrder: 0
     sprites:
     - {fileID: 842450924, guid: fd9302610a795404fb6da4b79f5414d4, type: 3}
     isAnimated: 0
-    addCollision: 1
-  - name: GrassCliffT
-    id: grass_cliff_t
+    collisionData:
+      addCollision: 1
+      size: {x: 1, y: 1}
+      offset: {x: 0.5, y: 0}
+  - name: DirtCliffT
+    id: dirt_cliff_t
     sortingOrder: 0
     sprites:
     - {fileID: 734986048, guid: fd9302610a795404fb6da4b79f5414d4, type: 3}
     isAnimated: 0
-    addCollision: 1
-  - name: GrassCliffTL
-    id: grass_cliff_tl
+    collisionData:
+      addCollision: 1
+      size: {x: 1, y: 1}
+      offset: {x: 0, y: 0}
+  - name: DirtCliffTL
+    id: dirt_cliff_tl
     sortingOrder: 0
     sprites:
     - {fileID: 2107846475, guid: fd9302610a795404fb6da4b79f5414d4, type: 3}
     isAnimated: 0
-    addCollision: 1
-  - name: GrassCliffTR
-    id: grass_cliff_tr
+    collisionData:
+      addCollision: 1
+      size: {x: 1, y: 1}
+      offset: {x: 0, y: 0}
+  - name: DirtCliffTR
+    id: dirt_cliff_tr
     sortingOrder: 0
     sprites:
     - {fileID: -117643338, guid: fd9302610a795404fb6da4b79f5414d4, type: 3}
     isAnimated: 0
-    addCollision: 1
-  - name: Sand
-    id: sand
+    collisionData:
+      addCollision: 1
+      size: {x: 1, y: 1}
+      offset: {x: 0, y: 0}
+  - name: Grass
+    id: grass
     sortingOrder: 0
     sprites:
     - {fileID: 1418256371, guid: fd9302610a795404fb6da4b79f5414d4, type: 3}
     isAnimated: 0
-    addCollision: 0
-  - name: SandBL
-    id: sand_bl
+    collisionData:
+      addCollision: 0
+      size: {x: 0, y: 0}
+      offset: {x: 0, y: 0}
+  - name: GrassBL
+    id: grass_bl
     sortingOrder: 0
     sprites:
     - {fileID: 594569462, guid: fd9302610a795404fb6da4b79f5414d4, type: 3}
     isAnimated: 0
-    addCollision: 0
-  - name: SandBR
-    id: sand_br
+    collisionData:
+      addCollision: 0
+      size: {x: 0, y: 0}
+      offset: {x: 0, y: 0}
+  - name: GrassBR
+    id: grass_br
     sortingOrder: 0
     sprites:
     - {fileID: -1191152145, guid: fd9302610a795404fb6da4b79f5414d4, type: 3}
     isAnimated: 0
-    addCollision: 0
-  - name: SandTL
-    id: sand_tl
+    collisionData:
+      addCollision: 0
+      size: {x: 0, y: 0}
+      offset: {x: 0, y: 0}
+  - name: GrassTL
+    id: grass_tl
     sortingOrder: 0
     sprites:
     - {fileID: -1278857610, guid: fd9302610a795404fb6da4b79f5414d4, type: 3}
     isAnimated: 0
-    addCollision: 0
-  - name: SandTR
-    id: sand_tr
+    collisionData:
+      addCollision: 0
+      size: {x: 0, y: 0}
+      offset: {x: 0, y: 0}
+  - name: GrassTR
+    id: grass_tr
     sortingOrder: 0
     sprites:
     - {fileID: 376632537, guid: fd9302610a795404fb6da4b79f5414d4, type: 3}
     isAnimated: 0
-    addCollision: 0
+    collisionData:
+      addCollision: 0
+      size: {x: 0, y: 0}
+      offset: {x: 0, y: 0}
