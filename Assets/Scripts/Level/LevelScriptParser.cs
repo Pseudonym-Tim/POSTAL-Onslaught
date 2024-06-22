@@ -15,6 +15,7 @@ public class LevelScriptParser
     private string[] scriptLines;
     private int currentLineIndex;
 
+    // Global variables...
     public int LevelSizeX { get; private set; }
     public int LevelSizeY { get; private set; }
     public int LevelBoundsDist { get; private set; }

@@ -1,3 +1,4 @@
+using NavMeshPlus.Extensions;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,14 @@ public class TileData
     public List<Sprite> sprites;
     public bool isAnimated = false;
     public CollisionData collisionData;
+    public NavigationData navigationData = new NavigationData();
+
+    [System.Serializable]
+    public class NavigationData
+    {
+        public int area = 0;
+        public bool overrideArea = true;
+    }
 
     [System.Serializable]
     public struct CollisionData

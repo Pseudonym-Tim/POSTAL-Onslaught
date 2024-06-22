@@ -62,7 +62,7 @@ public class RangedWeapon : Weapon
         if(hit && hit.collider)
         {
             Entity entityHit = hit.collider.GetComponentInParent<Entity>();
-            Enemy enemyHit = entityHit ? entityHit.GetComponent<Enemy>() : null;
+            NPC npcHit = entityHit ? entityHit.GetComponent<NPC>() : null;
 
             DamageInfo damageInfo = new DamageInfo()
             {
@@ -70,8 +70,8 @@ public class RangedWeapon : Weapon
                 attackerEntity = playerEntity,
             };
 
-            // Deal damage to enemy if we hit them...
-            enemyHit?.TakeDamage(damageInfo);
+            // Deal damage to npc if we hit them...
+            npcHit?.TakeDamage(damageInfo);
 
             // Hit visualization...
             Debug.DrawLine(origin, hit.point, Color.red, 0.5f);

@@ -16,6 +16,7 @@ public class Entity : MonoBehaviour
     protected virtual void OnEntityUpdate() { }
     protected virtual void OnEntityDestroyed() { }
     public virtual void OnLevelGenerated() { }
+    public virtual void OnNavmeshBuilt() { }
 
     public void DestroyEntity(float destroyTime = 0)
     {

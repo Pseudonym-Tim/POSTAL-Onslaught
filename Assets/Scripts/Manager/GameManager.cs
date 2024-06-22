@@ -38,6 +38,8 @@ public class GameManager : Singleton<GameManager>
     public static void StartGame()
     {
         LevelManager levelManager = FindFirstObjectByType<LevelManager>();
+        LevelNavmesher levelNavmesher = FindFirstObjectByType<LevelNavmesher>();
+        levelNavmesher.Setup();
         levelManager.CreateLevel();
 
         CurrentGameState = GameState.PLAYING;

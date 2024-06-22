@@ -20,6 +20,36 @@ public class LevelGenerator : Singleton<LevelGenerator>
         // Create script parser and parse the level script...
         levelScriptParser = new LevelScriptParser(levelManager, this);
         levelScriptParser.ParseScript();
+
+        AddLevelCollision();
+        GenerateNavigationMesh();
+
+        // Notify all entities that the level has been generated...
+        foreach(Entity entity in levelManager.LevelEntities)
+        {
+            entity.OnLevelGenerated();
+        }
+    }
+
+    private void GenerateNavigationMesh()
+    {
+        int tileSize = TileManager.TILE_SIZE;
+        int levelBoundsDist = levelScriptParser.LevelBoundsDist;
+        int sizeX = levelScriptParser.LevelSizeX - (levelBoundsDist + tileSize * 2);
+        int sizeY = levelScriptParser.LevelSizeY - (levelBoundsDist + tileSize * 2);
+        Vector2 centerPos = new Vector2(levelScriptParser.LevelSizeX / 2, levelScriptParser.LevelSizeY / 2);
+        LevelNavmesher.SetNavmeshVolume(centerPos - (Vector2.one * tileSize) / 2, new Vector2(sizeX, sizeY));
+        LevelNavmesher.Build();
+    }
+
+    private void AddLevelCollision()
+    {
+        Rigidbody2D levelRigidbody2D = LevelParent.AddComponent<Rigidbody2D>();
+        levelRigidbody2D.bodyType = RigidbodyType2D.Static;
+
+        CompositeCollider2D levelCollider2D = LevelParent.AddComponent<CompositeCollider2D>();
+        levelCollider2D.geometryType = CompositeCollider2D.GeometryType.Outlines;
+        levelCollider2D.generationType = CompositeCollider2D.GenerationType.Synchronous;
     }
 
     public void SpawnEntity(string entityID, Vector2 spawnPos)

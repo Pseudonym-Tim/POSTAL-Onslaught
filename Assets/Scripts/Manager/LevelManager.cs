@@ -1,4 +1,5 @@
 using Newtonsoft.Json.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -43,6 +44,7 @@ public class LevelManager : Singleton<LevelManager>
     public void AddTile(string tileID, Vector2 addPos)
     {
         Vector2 tilePos = TileManager.SnapToGrid(addPos);
+        RemoveTile(tilePos);
         LevelTile levelTile = tileManager.AddTile(tileID, tilePos);
         LevelTiles[tilePos] = levelTile;
     }
@@ -50,8 +52,12 @@ public class LevelManager : Singleton<LevelManager>
     public void RemoveTile(Vector2 removePos)
     {
         Vector2 tilePos = TileManager.SnapToGrid(removePos);
-        tileManager.RemoveTile(tilePos);
-        LevelTiles.Remove(tilePos);
+
+        if(LevelTiles.ContainsKey(tilePos))
+        {
+            tileManager.RemoveTile(tilePos);
+            LevelTiles.Remove(tilePos);
+        }
     }
 
     public LevelTile GetTile(string tileID, Vector2 tilePos)
@@ -103,6 +109,31 @@ public class LevelManager : Singleton<LevelManager>
         }
 
         return null;
+    }
+
+    public T GetEntity<T>() where T : Entity
+    {
+        foreach(Entity entity in LevelEntities)
+        {
+            if(entity is T) { return (T)entity; }
+        }
+
+        return null;
+    }
+
+    public List<T> GetEntities<T>() where T : Entity
+    {
+        List<T> results = new List<T>();
+
+        foreach(Entity entity in LevelEntities)
+        {
+            if(entity is T)
+            {
+                results.Add(entity as T);
+            }
+        }
+
+        return results;
     }
 
     public static int CurrentLevel { get; set; } = 0;

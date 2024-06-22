@@ -1,5 +1,8 @@
 {
     "player_dude": {
         "name": "Player"
+    },
+    "protester_npc": {
+        "name": "ProtesterNPC"
     }
 }

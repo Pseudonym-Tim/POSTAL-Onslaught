@@ -11,7 +11,7 @@ public class Weapon : Entity
     public WeaponID weaponID = WeaponID.PISTOL;
     public string weaponName = "NewWeapon";
     protected WeaponManager weaponManager;
-    protected Player playerEntity;
+    protected Player playerEntity; // TODO: Change this to ownerEntity instead?
 
     public override void OnEntityAwake()
     {

@@ -5,7 +5,7 @@ using UnityEngine;
 /// </summary>
 public class TileManager : Singleton<TileManager>
 { 
-    public static readonly float TILE_SIZE = 1f;
+    public static readonly int TILE_SIZE = 1;
 
     [SerializeField] private TileDatabase tileDatabase;
     [SerializeField] private PrefabDatabase prefabDatabase;
@@ -21,7 +21,7 @@ public class TileManager : Singleton<TileManager>
     {
         LevelManager levelManager = FindFirstObjectByType<LevelManager>();
         LevelTile tileToDestroy = levelManager.LevelTiles[tilePos];
-        Destroy(tileToDestroy);
+        tileToDestroy.DestroyTile();
     }
 
     public static Vector2 SnapToGrid(Vector2 pos)
