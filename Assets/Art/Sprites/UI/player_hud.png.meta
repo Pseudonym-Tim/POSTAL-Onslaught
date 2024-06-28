@@ -1,0 +1,246 @@
+fileFormatVersion: 2
+guid: b57960623621cd547b3d4dc255164fe3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3814882604455696959
+    second: player_hud_0
+  - first:
+      213: -2374830507632868058
+    second: player_hud_1
+  - first:
+      213: 7833293776259453813
+    second: player_hud_2
+  - first:
+      213: 8102167759366254409
+    second: player_hud_3
+  - first:
+      213: 7853048380982531492
+    second: player_hud_4
+  - first:
+      213: -5579731154910077454
+    second: player_hud_5
+  - first:
+      213: 6976940727962327
+    second: player_hud_6
+  - first:
+      213: -8558949022986129563
+    second: player_hud_7
+  - first:
+      213: 3491058351204975632
+    second: player_hud_8
+  - first:
+      213: 5791885560507546868
+    second: player_hud_9
+  - first:
+      213: -68980849314080009
+    second: player_hud_10
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: player_hud_crosshair
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 190
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3a1662448f21f430800000000000000
+      internalID: 3814882604455696959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_hud_inventory_slot
+      rect:
+        serializedVersion: 2
+        x: 95
+        y: 170
+        width: 23
+        height: 35
+      alignment: 9
+      pivot: {x: 0.5, y: 0.6857143}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ee4b24a73f46ca489ef6906d9d88ecb
+      internalID: 1815541843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_hud_weapon_slot
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 169
+        width: 40
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40eb3f87a2b8c9546ba09d6e9c316bc3
+      internalID: 7853048380982531492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_hud_health_bar
+      rect:
+        serializedVersion: 2
+        x: 124
+        y: 176
+        width: 56
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a62049b067f49547961991552f080c6
+      internalID: 3491058351204975632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 4b00d7a97cc06cc44a66aa2252f211e3
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      player_hud_1: -2374830507632868058
+      player_hud_2: 7833293776259453813
+      player_hud_5: -5579731154910077454
+      player_hud_6: 6976940727962327
+      player_hud_blood_decoration: -357501074
+      player_hud_crosshair: 3814882604455696959
+      player_hud_health_bar: 3491058351204975632
+      player_hud_inventory_slot: 1815541843
+      player_hud_item_slot: 5791885560507546868
+      player_hud_panel_1: -414190444
+      player_hud_panel_2: 1822846453
+      player_hud_test: -607991785
+      player_hud_wanted_bar: -68980849314080009
+      player_hud_wanted_icon: -8558949022986129563
+      player_hud_weapon_slot: 7853048380982531492
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,5 +1,4 @@
-using Newtonsoft.Json.Linq;
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -11,34 +10,18 @@ public class LevelManager : Singleton<LevelManager>
 {
     private LevelGenerator levelGenerator;
     private TileManager tileManager;
-    private PrefabDatabase prefabDatabase = null;
 
     public void CreateLevel()
     {
         CurrentLevel++;
         levelGenerator = FindFirstObjectByType<LevelGenerator>();
         tileManager = FindFirstObjectByType<TileManager>();
-        prefabDatabase = FindFirstObjectByType<PrefabDatabase>();
         LevelTiles = new Dictionary<Vector2, LevelTile>();
         LevelEntities = new List<Entity>();
-        LoadEntityDatabase();
+        LevelObjects = new List<GameObject>();
+        ObjectManager.LoadDatabase();
+        EntityManager.LoadDatabase();
         levelGenerator.GenerateLevel();
-    }
-
-    private void LoadEntityDatabase()
-    {
-        EntityDatabase = JsonUtility.LoadJson<string, EntityData>("entity_database");
-
-        foreach(KeyValuePair<string, EntityData> entityData in EntityDatabase)
-        {
-            LoadEntityData(entityData.Key, entityData.Value);
-        }
-    }
-
-    private void LoadEntityData(string entityID, EntityData entityData)
-    {
-        entityData.id = entityID;
-        entityData.jsonData = (JObject)JsonUtility.ParseJson("entity_database")[entityID];
     }
 
     public void AddTile(string tileID, Vector2 addPos)
@@ -92,19 +75,30 @@ public class LevelManager : Singleton<LevelManager>
 
     public Entity AddEntity(string entityID, Vector2 addPos)
     {
-        foreach(KeyValuePair<string, EntityData> entity in EntityDatabase)
+        foreach(KeyValuePair<string, EntityData> entityData in EntityManager.RegisteredEntities)
         {
-            if(entity.Key == entityID)
+            if(entityData.Key == entityID)
             {
-                Entity entityPrefab = prefabDatabase?.GetPrefab<Entity>(entity.Value.name);
                 Transform parentTransform = LevelGenerator.EntityParent.transform;
-                Entity entitySpawned = Instantiate(entityPrefab, addPos, Quaternion.identity);
-                entitySpawned.SetParent(parentTransform, false);
-                entitySpawned.name = entityPrefab.name;
-                entitySpawned.EntityData = entity.Value;
+                Entity entitySpawned = EntityManager.CreateEntity(entityID, addPos, parentTransform, false);
                 LevelEntities.Add(entitySpawned);
-                entitySpawned.OnEntitySpawn();
                 return entitySpawned;
+            }
+        }
+
+        return null;
+    }
+
+    public GameObject AddObject(string objectID, Vector2 addPos)
+    {
+        foreach(KeyValuePair<string, ObjectData> objectData in ObjectManager.RegisteredObjects)
+        {
+            if(objectData.Key == objectID)
+            {
+                Transform parentTransform = LevelGenerator.ObjectParent.transform;
+                GameObject objectSpawned = ObjectManager.CreateObject(objectID, addPos, parentTransform, false);
+                LevelObjects.Add(objectSpawned);
+                return objectSpawned;
             }
         }
 
@@ -113,32 +107,23 @@ public class LevelManager : Singleton<LevelManager>
 
     public T GetEntity<T>() where T : Entity
     {
-        foreach(Entity entity in LevelEntities)
-        {
-            if(entity is T) { return (T)entity; }
-        }
-
-        return null;
+        return LevelEntities.OfType<T>().FirstOrDefault();
     }
 
     public List<T> GetEntities<T>() where T : Entity
     {
-        List<T> results = new List<T>();
+        return LevelEntities.OfType<T>().ToList();
+    }
 
-        foreach(Entity entity in LevelEntities)
-        {
-            if(entity is T)
-            {
-                results.Add(entity as T);
-            }
-        }
-
-        return results;
+    public List<T> GetEntities<T>(Vector2 origin, float range) where T : Entity
+    {
+        Func<Entity, bool> isWithinRange = entity => Vector2.Distance(origin, entity.EntityPosition) <= range;
+        return LevelEntities.OfType<T>().Where(entity => isWithinRange(entity)).ToList();
     }
 
     public static int CurrentLevel { get; set; } = 0;
-    public static Dictionary<string, EntityData> EntityDatabase { get; private set; } = null;
     public static Dictionary<string, TileData> TileDatabase { get; private set; } = null;
     public Dictionary<Vector2, LevelTile> LevelTiles { get; set; }
-    public List<Entity> LevelEntities { get; set; }
+    public List<Entity> LevelEntities { get; set; } = null;
+    public List<GameObject> LevelObjects { get; set; } = null;
 }

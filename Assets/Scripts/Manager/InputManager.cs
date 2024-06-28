@@ -12,8 +12,7 @@ public class InputManager : Singleton<InputManager>
 
     private void Awake()
     {
-        // TODO: Disable when UI based crosshair is implemented!
-        ShowCursor(true);
+        EnableCursor(false);
     }
 
     public static void EnableInput()
@@ -26,7 +25,7 @@ public class InputManager : Singleton<InputManager>
         PlayerInput.InputEnabled = false;
     }
 
-    public static void ShowCursor(bool showCursor = true)
+    public static void EnableCursor(bool showCursor = true)
     {
         Cursor.visible = showCursor;
         Cursor.lockState = showCursor ? CursorLockMode.Confined : CursorLockMode.Locked;

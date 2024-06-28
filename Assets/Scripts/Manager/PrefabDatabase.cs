@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine;
 
 /// <summary>
-/// Holds and manages a database of prefabs.
+/// Holds and manages a database of prefabs...
 /// </summary>
 public class PrefabDatabase : Singleton<PrefabDatabase>
 {

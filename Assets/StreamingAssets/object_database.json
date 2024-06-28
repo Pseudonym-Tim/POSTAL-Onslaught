@@ -1,0 +1,11 @@
+{
+    "level_cactus": {
+        "prefab": "Cactus"
+    },
+    "level_rock1": {
+        "prefab": "Rock1"
+    },
+    "level_rws_sign": {
+        "prefab": "RWSSign"
+    }
+}

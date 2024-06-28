@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 [System.Serializable]
 public class EntityData
 {
-    public string name;
+    public string prefab;
     public string id;
     public JObject jsonData;
 }

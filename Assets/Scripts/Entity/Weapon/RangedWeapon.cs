@@ -11,8 +11,9 @@ public class RangedWeapon : Weapon
     [SerializeField] private float fireRate = 0.4f;
     [SerializeField] private bool isAutomatic = false;
     [SerializeField] private int damageMin = 3, damageMax = 6;
-    [SerializeField] private int numOfShots = 1;
+    [SerializeField] private int numberOfShots = 1;
     [SerializeField] private float bulletSpreadAmount = 0;
+    [SerializeField] private CameraShakeInfo shootCameraShakeInfo;
     [SerializeField] private ShotTrail shotTrailPrefab;
     [SerializeField] private Animator muzzleFlashAnimator;
     private float shotDelayTimer = 0;
@@ -37,21 +38,22 @@ public class RangedWeapon : Weapon
 
     public virtual void OnFireWeapon()
     {
-        for(int i = 0; i < numOfShots; i++)
+        for(int i = 0; i < numberOfShots; i++)
         {
             bool hasBulletSpread = bulletSpreadAmount > 0;
             float spreadAngle = Random.Range(-bulletSpreadAmount / 2, bulletSpreadAmount / 2);
             Vector2 spreadShotDir = Quaternion.Euler(0, 0, spreadAngle) * ShootOriginTransform.right;
             Vector2 shotDir = hasBulletSpread ? spreadShotDir : ShootOriginTransform.right;
-            RaycastHit2D shootHitInfo = ShootRaycast(default, shotDir);
+            RaycastHit2D shootHitInfo = ShootRaycast(default, shotDir, numberOfShots);
             CreateShotTrail(shotTrailPrefab, shootHitInfo, spreadShotDir);
         }
 
         EntityAnim.Play("Shoot");
         muzzleFlashAnimator.Play("Blast");
+        CameraShaker.Shake(shootCameraShakeInfo);
     }
 
-    protected virtual RaycastHit2D ShootRaycast(Vector2 origin, Vector2 direction)
+    protected virtual RaycastHit2D ShootRaycast(Vector2 origin, Vector2 direction, int numberOfShots)
     {
         // Set defaults if parameters are not provided...
         origin = origin == Vector2.zero ? ShootOriginTransform.position : origin;
@@ -66,7 +68,7 @@ public class RangedWeapon : Weapon
 
             DamageInfo damageInfo = new DamageInfo()
             {
-                damageAmount = Random.Range(damageMin, damageMax),
+                damageAmount = Random.Range(damageMin, damageMax) / numberOfShots,
                 attackerEntity = playerEntity,
             };
 

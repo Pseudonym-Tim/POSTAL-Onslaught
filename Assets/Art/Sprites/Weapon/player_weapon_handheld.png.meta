@@ -113,7 +113,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 4
-        y: 21
+        y: 40
         width: 13
         height: 11
       alignment: 9
@@ -134,7 +134,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3
-        y: 8
+        y: 27
         width: 19
         height: 10
       alignment: 9
@@ -150,6 +150,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: weapon_handheld_jk74
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 11
+        width: 26
+        height: 10
+      alignment: 9
+      pivot: {x: 0.30769232, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bb36d612ebceb694ebe7eefe44059bfb
+      internalID: 206336019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon_handheld_revolver
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 5
+        width: 17
+        height: 11
+      alignment: 9
+      pivot: {x: 0.1764706, y: 0.36363637}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15e86a2c733ee394f9c617a8ff525531
+      internalID: -1881524122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -161,12 +203,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      player_weapon_handheld_0: -2054732768
       player_weapon_handheld_1: -3665993490749461982
       player_weapon_handheld_2: 6262115353604618317
       player_weapon_handheld_3: -7058153222307890182
       weapon_handheld_boomstick: -1777766370
+      weapon_handheld_jk74: 206336019
       weapon_handheld_pistol: 7979053764633992946
+      weapon_handheld_revolver: -1881524122
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

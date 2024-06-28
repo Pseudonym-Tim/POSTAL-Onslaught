@@ -14,6 +14,7 @@ public class LevelTile : MonoBehaviour
         tileGFX = TileObject.AddComponent<SpriteRenderer>();
         navMeshModifier = TileObject.AddComponent<NavMeshModifier>();
         tileGFX.sortingOrder = TileData.sortingOrder;
+        tileGFX.sortingLayerID = LayerManager.SortingLayers.DEFAULT;
         int randomIndex = Random.Range(0, TileData.sprites.Count);
         tileGFX.sprite = TileData.sprites[randomIndex];
 

@@ -15,14 +15,6 @@ public class ProtesterNPC : NPC
     [SerializeField] private float roamSpeedMax = 2.25f;
     private float roamTimer = 0;
 
-    public override void OnEntitySpawn()
-    {
-        npcGFX = GetComponentInChildren<SpriteRenderer>();
-        SetupEntityAnim();
-        EntityAnim.Play("Idle");
-        currentHealth = maxHealth;
-    }
-
     public override void OnNavmeshBuilt()
     {
         SetupNPCNavigation(0);
@@ -54,7 +46,8 @@ public class ProtesterNPC : NPC
             // Flip the sprite based on move direction...
             if(NPCNavigation.NavMeshAgentVelocity.x != 0)
             {
-                npcGFX.flipX = NPCNavigation.NavMeshAgentVelocity.x < 0;
+                Vector2 agentVelocity = NPCNavigation.NavMeshAgentVelocity;
+                npcGFX.flipX = agentVelocity.normalized.x < 0;
             }
         }
     }
@@ -74,7 +67,7 @@ public class ProtesterNPC : NPC
 
     protected override void OnTakeDamage(DamageInfo damageInfo)
     {
-        // TODO: Retreat from the player!
+        // TODO: Begin running away from player...
     }
 
     private bool IsReadyForNextRoam

@@ -52,14 +52,7 @@ public class LevelGenerator : Singleton<LevelGenerator>
         levelCollider2D.generationType = CompositeCollider2D.GenerationType.Synchronous;
     }
 
-    public void SpawnEntity(string entityID, Vector2 spawnPos)
-    {
-        levelManager.AddEntity(entityID, spawnPos);
-        Debug.Log($"Spawned: [{ entityID }] at position: [{ spawnPos }]");
-    }
-
-    // NOTE: The valid spawn position logic might be flawed...
-    public void SpawnEntity(string entityID, string spawnTileID, int minBoundsDist = 0)
+    private List<LevelTile> GetValidSpawnTiles(string spawnTileID, int minBoundsDist)
     {
         int levelBoundsDist = levelScriptParser.LevelBoundsDist;
         int levelSizeX = levelScriptParser.LevelSizeX;
@@ -71,7 +64,7 @@ public class LevelGenerator : Singleton<LevelGenerator>
         if(spawnTiles.Count == 0)
         {
             Debug.LogWarning($"No spawn tiles found for tile ID: {spawnTileID}!");
-            return;
+            return null;
         }
 
         List<LevelTile> validSpawnTiles = spawnTiles.FindAll(levelTile =>
@@ -80,17 +73,43 @@ public class LevelGenerator : Singleton<LevelGenerator>
             float tilePosY = levelTile.TilePosition.y;
             bool withinXBounds = tilePosX >= minBoundaryDist && tilePosX <= levelSizeX - minBoundaryDist;
             bool withinYBounds = tilePosY >= minBoundaryDist && tilePosY <= levelSizeY - minBoundaryDist;
-            return withinXBounds && withinYBounds;
+            return withinXBounds && withinYBounds && IsValidSpawnPosition(levelTile.TilePosition);
         });
 
         if(validSpawnTiles.Count == 0)
         {
             Debug.LogWarning($"No valid spawn tiles found for tile ID: {spawnTileID} within the specified boundaries!");
-            return;
         }
 
+        return validSpawnTiles;
+    }
+
+    public void SpawnEntity(string entityID, Vector2 spawnPos)
+    {
+        levelManager.AddEntity(entityID, spawnPos);
+        Debug.Log($"Spawned: [{entityID}] at position: [{spawnPos}]");
+    }
+
+    public void SpawnObject(string objectID, Vector2 spawnPos)
+    {
+        levelManager.AddObject(objectID, spawnPos);
+        Debug.Log($"Spawned: [{objectID}] at position: [{spawnPos}]");
+    }
+
+    public void SpawnEntity(string entityID, string spawnTileID, int minBoundsDist = 0)
+    {
+        List<LevelTile> validSpawnTiles = GetValidSpawnTiles(spawnTileID, minBoundsDist);
+        if(validSpawnTiles.Count == 0) { return; }
         LevelTile spawnTile = validSpawnTiles[Random.Range(0, validSpawnTiles.Count)];
         SpawnEntity(entityID, spawnTile.TilePosition);
+    }
+
+    public void SpawnObject(string objectID, string spawnTileID, int minBoundsDist = 0)
+    {
+        List<LevelTile> validSpawnTiles = GetValidSpawnTiles(spawnTileID, minBoundsDist);
+        if(validSpawnTiles.Count == 0) { return; }
+        LevelTile spawnTile = validSpawnTiles[Random.Range(0, validSpawnTiles.Count)];
+        SpawnObject(objectID, spawnTile.TilePosition);
     }
 
     private void InitializeLevel()
@@ -98,10 +117,33 @@ public class LevelGenerator : Singleton<LevelGenerator>
         if(LevelParent != null) { Destroy(LevelParent); }
         LevelParent = new GameObject("Level");
         TileParent = new GameObject("Tiles");
+        ObjectParent = new GameObject("Objects");
         EntityParent = new GameObject("Entities");
         LevelParent.transform.SetParent(transform, false);
         TileParent.transform.SetParent(LevelParent.transform, false);
+        ObjectParent.transform.SetParent(LevelParent.transform, false);
         EntityParent.transform.SetParent(LevelParent.transform, false);
+    }
+
+    private bool IsValidSpawnPosition(Vector2 spawnPos)
+    {
+        foreach(Entity entity in levelManager.LevelEntities)
+        {
+            if(entity.EntityPosition == (Vector3)spawnPos)
+            {
+                return false;
+            }
+        }
+
+        foreach(GameObject levelObject in levelManager.LevelObjects)
+        {
+            if(levelObject.transform.position == (Vector3)spawnPos)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     private static void SetRandomSeed()
@@ -113,6 +155,7 @@ public class LevelGenerator : Singleton<LevelGenerator>
 
     public static GameObject LevelParent { get; set; } = null;
     public static GameObject TileParent { get; set; } = null;
+    public static GameObject ObjectParent { get; set; } = null;
     public static GameObject EntityParent { get; set; } = null;
     private static int CurrentLevelSeed { get; set; } = 0;
 }

@@ -8,7 +8,9 @@ using UnityEngine;
 public class Weapon : Entity
 {
     public SpriteRenderer weaponGFX;
-    public WeaponID weaponID = WeaponID.PISTOL;
+    public Sprite weaponSprite;
+    public Sprite weaponHeldSprite;
+    public string weaponID = "new_weapon";
     public string weaponName = "NewWeapon";
     protected WeaponManager weaponManager;
     protected Player playerEntity; // TODO: Change this to ownerEntity instead?
@@ -16,6 +18,7 @@ public class Weapon : Entity
     public override void OnEntityAwake()
     {
         weaponManager = GetComponentInParent<WeaponManager>();
+        weaponGFX.sprite = weaponHeldSprite;
         playerEntity = GetComponentInParent<Player>();
         SetupEntityAnim();
         EntityAnim.Play("Idle");
@@ -23,10 +26,4 @@ public class Weapon : Entity
 
     public virtual void OnWeaponSelected() { }
     public virtual void OnWeaponHolster() { }
-}
-
-public enum WeaponID
-{
-    PISTOL,
-    BOOMSTICK
 }

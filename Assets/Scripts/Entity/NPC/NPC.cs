@@ -7,11 +7,20 @@ using UnityEngine;
 /// </summary>
 public class NPC : Entity
 {
+    private const float HURT_FLASH_TIME = 0.1f;
     [SerializeField] protected int maxHealth = 10;
     protected int currentHealth = 0;
     [SerializeField] protected float moveSpeed = 10;
     protected Player playerEntity;
     protected SpriteRenderer npcGFX;
+
+    public override void OnEntityAwake()
+    {
+        npcGFX = GetComponentInChildren<SpriteRenderer>();
+        SetupEntityAnim();
+        EntityAnim.Play("Idle");
+        currentHealth = maxHealth;
+    }
 
     public override void OnLevelGenerated()
     {
@@ -30,6 +39,8 @@ public class NPC : Entity
         {
             currentHealth -= damageInfo.damageAmount;
             OnTakeDamage(damageInfo);
+
+            HurtFlash.ApplyHurtFlash(this, HURT_FLASH_TIME);
 
             // We died from that hit?
             if(currentHealth <= 0)

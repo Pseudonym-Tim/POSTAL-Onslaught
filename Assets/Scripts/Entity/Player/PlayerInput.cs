@@ -16,9 +16,12 @@ public class PlayerInput : Singleton<PlayerInput>
     public static bool WeaponScrollRight { get { return GetAxis("Mouse ScrollWheel") > 0f; } }
     public static bool WeaponScrollLeft { get { return GetAxis("Mouse ScrollWheel") < 0f; } }
 
+    public static bool Interact { get { return IsButtonPressed("Interact"); } }
+
     // Weapon slot hotkeys...
     public static bool WeaponSlot1 { get { return IsButtonPressed("WeaponSlot1"); } }
     public static bool WeaponSlot2 { get { return IsButtonPressed("WeaponSlot2"); } }
+    public static bool WeaponSlot3 { get { return IsButtonPressed("WeaponSlot3"); } }
 
     public static bool InputEnabled { get; set; } = false;
 }

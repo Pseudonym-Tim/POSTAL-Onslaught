@@ -1,8 +1,29 @@
 {
     "player_dude": {
-        "name": "Player"
+        "prefab": "Player"
     },
     "protester_npc": {
-        "name": "ProtesterNPC"
+        "prefab": "ProtesterNPC"
+    },
+    "weapon_pickup": {
+        "prefab": "WeaponPickup",
+        "weaponPool": [
+            "weapon_boomstick",
+            "weapon_jk74",
+            "weapon_revolver",
+            "weapon_pistol"
+        ]
+    },
+    "weapon_boomstick": {
+        "prefab": "Boomstick"
+    },
+    "weapon_jk74": {
+        "prefab": "JK-74"
+    },
+    "weapon_revolver": {
+        "prefab": "Revolver"
+    },
+    "weapon_pistol": {
+        "prefab": "Pistol"
     }
 }

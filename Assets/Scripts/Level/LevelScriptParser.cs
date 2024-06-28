@@ -59,6 +59,8 @@ public class LevelScriptParser
             else if(line.StartsWith("TILE ")) ParseTile(line);
             else if(line.StartsWith("TILE_FILL")) ParseTileFill(line);
             else if(line.StartsWith("ENTITY ")) ParseEntity(line);
+            else if(line.StartsWith("OBJECT ")) ParseObject(line);
+            else if(line.StartsWith("OBJECT_RANDOM ")) ParseObjectRandom(line);
             else if(line.StartsWith("ENTITY_RANDOM ")) ParseEntityRandom(line);
             else throw new Exception($"Unknown command: {line}");
         }
@@ -196,6 +198,24 @@ public class LevelScriptParser
         string spawnTileID = parts[2];
         int minBoundsDist = GetValue(parts[3]);
         levelGenerator.SpawnEntity(entityID, spawnTileID, minBoundsDist);
+    }
+
+    private void ParseObject(string line)
+    {
+        var parts = line.Split(' ');
+        string objectID = parts[1];
+        int x = GetValue(parts[2]);
+        int y = GetValue(parts[3]);
+        levelGenerator.SpawnObject(objectID, new Vector2(x, y));
+    }
+
+    private void ParseObjectRandom(string line)
+    {
+        var parts = line.Split(' ');
+        string objectID = parts[1];
+        string spawnTileID = parts[2];
+        int minBoundsDist = GetValue(parts[3]);
+        levelGenerator.SpawnObject(objectID, spawnTileID, minBoundsDist);
     }
 
     private int GetValue(string token)

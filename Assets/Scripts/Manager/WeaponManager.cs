@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class WeaponManager : Singleton<WeaponManager>
 {
-    public const int MAX_SLOTS = 2;
+    public const int MAX_SLOTS = 3;
     private const float AIM_SPEED = 30f;
     private const float MAX_AIM_ANGLE = 40f;
     private const bool CLAMP_AIM_ANGLES = true;
@@ -16,19 +16,21 @@ public class WeaponManager : Singleton<WeaponManager>
     private PlayerCamera playerCamera;
     private PlayerMovement playerMovement;
     private int selectedSlotIndex = 0;
+    private PlayerHUD playerHUD;
 
     private void Awake()
     {
         playerMovement = GetComponentInParent<PlayerMovement>();
         playerCamera = FindFirstObjectByType<PlayerCamera>();
+        playerHUD = UIManager.GetUIComponent<PlayerHUD>();
         AimParent = transform.Find("AimOrigin");
         WeaponParent = AimParent.Find("WeaponParent"); 
-        SetWeaponSelected();
+        UpdateSelectedWeapon();
     }
 
     private void Update()
     {
-        if(HasAnyWeapon)
+        if(IsPlayerArmed)
         {
             UpdateWeaponSelection();
             UpdateWeaponAim();
@@ -54,13 +56,14 @@ public class WeaponManager : Singleton<WeaponManager>
         // Weapon hotkeys...
         if(PlayerInput.WeaponSlot1 && WeaponCount >= 1) { selectedSlotIndex = 0; }
         if(PlayerInput.WeaponSlot2 && WeaponCount >= 2) { selectedSlotIndex = 1; }
+        if(PlayerInput.WeaponSlot3 && WeaponCount >= 3) { selectedSlotIndex = 2; }
 
         // Set the selected weapon if it's not already selected...
         if(previousWeaponIndex != selectedSlotIndex)
         { 
             // Holster previous weapon...
             currentWeapons[previousWeaponIndex].OnWeaponHolster();
-            SetWeaponSelected();
+            UpdateSelectedWeapon();
         }
     }
 
@@ -75,7 +78,7 @@ public class WeaponManager : Singleton<WeaponManager>
         if(autoSelect)
         {
             selectedSlotIndex = currentWeapons.IndexOf(weaponEntity);
-            SetWeaponSelected();
+            UpdateSelectedWeapon();
         }
     }
 
@@ -92,10 +95,10 @@ public class WeaponManager : Singleton<WeaponManager>
     public void ReplaceWeapon(int slotIndex, Weapon weaponPrefab)
     {
         // Destroy weapon and remove entry from collected weapons...
-        Destroy(currentWeapons[slotIndex].gameObject);
+        currentWeapons[slotIndex].DestroyEntity();
         currentWeapons.RemoveAt(slotIndex);
 
-        // Spawn and add to collected weapons, automatically select it...
+        // Spawn new weapon entity, automatically select it...
         AddWeapon(weaponPrefab, true);
     }
 
@@ -115,7 +118,7 @@ public class WeaponManager : Singleton<WeaponManager>
         if(zRot >= 0)
         {
             float absZRot = Mathf.Abs(zRot);
-            int orderInLayer = absZRot > MAX_AIM_ANGLE - 10f && absZRot < 180f - (MAX_AIM_ANGLE - 10f) ? 0 : 2;
+            int orderInLayer = absZRot > MAX_AIM_ANGLE - 10f && absZRot < 180f - (MAX_AIM_ANGLE - 10f) ? 1 : 2;
             SelectedWeapon.weaponGFX.sortingOrder = orderInLayer;
         }
         else
@@ -128,9 +131,9 @@ public class WeaponManager : Singleton<WeaponManager>
         CheckFlipWeapon(zRot);
     }
 
-    private void SetWeaponSelected()
+    private void UpdateSelectedWeapon()
     {
-        if(HasAnyWeapon)
+        if(IsPlayerArmed)
         {
             // Only show the weapon that is currently selected...
             for(int i = 0; i < currentWeapons.Count; i++)
@@ -142,6 +145,7 @@ public class WeaponManager : Singleton<WeaponManager>
             // Set selected weapon...
             SelectedWeapon = currentWeapons[selectedSlotIndex];
             SelectedWeapon.OnWeaponSelected();
+            playerHUD.UpdateWeaponSelection(SelectedSlotIndex, WeaponCount, SelectedWeapon.weaponSprite);
         }
     }
 
@@ -151,7 +155,7 @@ public class WeaponManager : Singleton<WeaponManager>
         {
             int nextSlotIndex = (selectedSlotIndex + 1) % currentWeapons.Count;
             selectedSlotIndex = nextSlotIndex;
-            SetWeaponSelected();
+            UpdateSelectedWeapon();
         }
     }
 
@@ -216,15 +220,15 @@ public class WeaponManager : Singleton<WeaponManager>
         return currentWeapons.Count + 1 < MAX_SLOTS && !IsWeaponOwned(weaponToAdd.weaponID);
     }
 
-    public bool IsWeaponOwned(WeaponID weaponType)
+    public bool IsWeaponOwned(string weaponID)
     {
-        return currentWeapons.Exists(wep => wep.weaponID == weaponType);
+        return currentWeapons.Exists(weapon => weapon.weaponID == weaponID);
     }
 
     public int WeaponCount { get { return currentWeapons.Count; } }
     public Weapon SelectedWeapon { get; set; } = null;
     public int SelectedSlotIndex { get { return selectedSlotIndex; } }
-    public bool HasAnyWeapon { get { return currentWeapons.Count > 0; } }
+    public bool IsPlayerArmed { get { return currentWeapons.Count > 0; } }
     public bool IsAttackingAllowed { get; set; } = true;
     public Transform WeaponParent { get; set; } = null;
     public Transform AimParent { get; set; } = null;

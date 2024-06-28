@@ -48,6 +48,6 @@ public class CollisionHull2D : MonoBehaviour
     {
         public Vector2 center = Vector2.zero;
         public Vector2 size = Vector2.one;
-        public LayerMask collisionLayer = -1;
+        public LayerMask collisionLayer = LayerManager.Layers.DEFAULT;
     }
 }

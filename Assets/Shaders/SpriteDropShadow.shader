@@ -8,6 +8,8 @@ Shader "POSTAL: Onslaught/SpriteDropShadow"
 		[MaterialToggle] PixelSnap ("Pixel snap", Float) = 0
 		_ShadowColor ("Shadow", Color) = (0,0,0,1)
 		_ShadowOffset ("ShadowOffset", Vector) = (0,-0.1,0,0)
+		[MaterialToggle] _HurtFlash ("Hurt Flash", Float) = 0
+		_HurtFlashColor ("Hurt Flash Color", Color) = (1,1,1,1)
 	}
 
 	SubShader
@@ -163,6 +165,8 @@ Shader "POSTAL: Onslaught/SpriteDropShadow"
 			sampler2D _MainTex;
 			sampler2D _AlphaTex;
 			float _AlphaSplitEnabled;
+			float _HurtFlash;
+			fixed4 _HurtFlashColor;
 
 			fixed4 SampleSpriteTexture (float2 uv)
 			{
@@ -180,6 +184,12 @@ Shader "POSTAL: Onslaught/SpriteDropShadow"
 			{
 				fixed4 c = SampleSpriteTexture (IN.texcoord) * IN.color;
 				c.rgb *= c.a;
+
+				if (_HurtFlash > 0)
+                {
+                    c.rgb = lerp(c.rgb, _HurtFlashColor.rgb, c.a); // Blend hurt flash color based on alpha
+                }
+
 				return c;
 			}
 

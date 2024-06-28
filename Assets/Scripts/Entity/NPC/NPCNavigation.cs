@@ -36,7 +36,7 @@ public class NPCNavigation : MonoBehaviour
     public static NavMeshObstacle CreateNavmeshObstacle(Entity entity, Vector2 size, bool stationaryOnly = true)
     {
         // Setup navmesh obstacle for us...
-        NavMeshObstacle navMeshObstacle = entity.EntityObject.AddComponent<NavMeshObstacle>();
+        NavMeshObstacle navMeshObstacle = entity.AddComponent<NavMeshObstacle>();
         navMeshObstacle.carving = true;
         navMeshObstacle.carveOnlyStationary = stationaryOnly;
         navMeshObstacle.center = entity.CenterOfMass;
@@ -107,7 +107,13 @@ public class NPCNavigation : MonoBehaviour
 
     public bool IsMoving { get { return !IsDestinationReached; } }
     public float NavMeshAgentSpeed { get { return NavMeshAgent.speed; } set { NavMeshAgent.speed = value; } }
-    public Vector2 NavMeshAgentVelocity { get { return NavMeshAgent.velocity; } }
+
+    public Vector2 NavMeshAgentVelocity
+    {
+        get { return NavMeshAgent.velocity; }
+        set { NavMeshAgent.velocity = value; }
+    }
+
     public float NavMeshAgentMagnitude { get { return NavMeshAgentVelocity.magnitude; } }
     public NavMeshAgent NavMeshAgent { get; set; } = null;
 }

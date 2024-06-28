@@ -36,16 +36,23 @@ public class LevelNavmesher : Singleton<LevelNavmesher>
     {
         Vector2 randomPosition = Vector2.zero;
         const int MAX_ATTEMPTS = 100;
+        float margin = checkRadius * 0.1f; // 10% margin to keep positions away from edges...
 
         for(int i = 0; i < MAX_ATTEMPTS; i++)
         {
-            Vector2 randomDirection = origin + (Random.insideUnitCircle * checkRadius);
+            Vector2 randomDirection = origin + (Random.insideUnitCircle * (checkRadius - margin));
             NavMeshHit hit;
 
-            if(NavMesh.SamplePosition(randomDirection, out hit, checkRadius, areaMask))
+            if(NavMesh.SamplePosition(randomDirection, out hit, checkRadius - margin, areaMask))
             {
-                randomPosition = hit.position;
-                return randomPosition;
+                if(NavMesh.FindClosestEdge(hit.position, out NavMeshHit edgeHit, areaMask))
+                {
+                    if(Vector2.Distance(hit.position, edgeHit.position) > margin)
+                    {
+                        randomPosition = hit.position;
+                        return randomPosition;
+                    }
+                }
             }
         }
 

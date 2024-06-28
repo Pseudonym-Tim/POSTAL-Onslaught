@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float movementSpeed = 5;
     [SerializeField] private float acceleration = 10;
-    [SerializeField] private SpriteRenderer playerGFX;
     [SerializeField] private ObstacleCheck obstacleCheck;
     private Player playerEntity;
     private Rigidbody2D playerRigidbody;
@@ -40,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
         // Flip the sprite based on move direction...
         if(moveX != 0)
         {
-            playerGFX.flipX = moveX < 0;
+            playerEntity.playerGFX.flipX = moveX < 0;
         }
     }
 
@@ -104,9 +103,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void UpdateGFXFlip(bool flipX)
     {
-        playerGFX.flipX = flipX;
+        playerEntity.playerGFX.flipX = flipX;
     }
 
-    public bool IsPlayerFacingRight => !playerGFX.flipX;
+    public bool IsPlayerFacingRight => !playerEntity.playerGFX.flipX;
     public bool IsMoving => playerRigidbody.velocity.magnitude > 0.1f;
 }
