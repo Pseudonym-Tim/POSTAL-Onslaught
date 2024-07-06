@@ -10,4 +10,5 @@ public class InteractableEntity : Entity
     public virtual void OnInteract() { }
     public virtual bool IsInteractable => true;
     public virtual float InteractRange => 1.0f;
+    public virtual string InteractMessage => "";
 }

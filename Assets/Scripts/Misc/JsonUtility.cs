@@ -17,7 +17,7 @@ public static class JsonUtility
     /// <returns>A dictionary of type <typeparamref name="TKey"/> and <typeparamref name="TValue"/></returns>
     public static SerializedDictionary<TKey, TValue> LoadJson<TKey, TValue>(string fileName)
     {
-        var settings = new JsonSerializerSettings
+        JsonSerializerSettings settings = new JsonSerializerSettings
         {
             TypeNameHandling = TypeNameHandling.Auto
         };

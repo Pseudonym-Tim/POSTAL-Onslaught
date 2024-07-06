@@ -4,6 +4,9 @@ using System.IO;
 using System.Text.RegularExpressions;
 using UnityEngine;
 
+/// <summary>
+/// Handles everything related to parsing level scripts...
+/// </summary>
 public class LevelScriptParser
 {
     private static readonly string FILE_NAME = "level_generation";

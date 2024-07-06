@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -37,6 +38,8 @@ public class ProtesterNPC : NPC
                     }
 
                     break;
+                case AIState.KNOCKBACK:
+                    break;
                 case AIState.DEAD:
                     break;
             }
@@ -60,9 +63,19 @@ public class ProtesterNPC : NPC
         currentAIState = AIState.ROAMING;
     }
 
+    protected override void OnKnockbackStart()
+    {
+        currentAIState = AIState.KNOCKBACK;
+    }
+
+    protected override void OnKnockbackEnd()
+    {
+        BeginRoaming();
+    }
+
     protected override void OnDeath()
     {
-        DestroyEntity(0.1f);
+        
     }
 
     protected override void OnTakeDamage(DamageInfo damageInfo)
@@ -91,6 +104,7 @@ public class ProtesterNPC : NPC
     public enum AIState
     {
         ROAMING,
-        DEAD
+        DEAD,
+        KNOCKBACK
     }
 }

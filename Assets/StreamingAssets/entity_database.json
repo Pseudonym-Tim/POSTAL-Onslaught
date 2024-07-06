@@ -3,7 +3,14 @@
         "prefab": "Player"
     },
     "protester_npc": {
-        "prefab": "ProtesterNPC"
+        "prefab": "ProtesterNPC",
+        "dropItemChance": 0.10,
+        "score": 100,
+        "itemPool": [
+            "item_pizza",
+            "item_burger",
+            "item_donut"
+        ]
     },
     "weapon_pickup": {
         "prefab": "WeaponPickup",
@@ -12,6 +19,14 @@
             "weapon_jk74",
             "weapon_revolver",
             "weapon_pistol"
+        ]
+    },
+    "item_pickup": {
+        "prefab": "ItemPickup",
+        "itemPool": [
+            "item_pizza",
+            "item_burger",
+            "item_donut"
         ]
     },
     "weapon_boomstick": {

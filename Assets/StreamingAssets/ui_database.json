@@ -1,11 +1,13 @@
 {
     "player_hud": {
-        "healthLabel": "<color=#ffffff>HEALTH</color>",
-        "healthAmountText": "<color=#ffffff>%currentHealth%/%maxHealth%</color>",
         "weaponSlots": {
+            "maxSlots": 3,
             "activeColor": "#ffffff",
             "inactiveColor": "#b4b4b4",
             "unavailableColor": "#5d5d5d"
         }
+    },
+    "gameover_ui": {
+
     }
 }

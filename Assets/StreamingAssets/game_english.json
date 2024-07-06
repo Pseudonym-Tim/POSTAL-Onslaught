@@ -1,0 +1,18 @@
+{
+    "noItemMessage": "<color=#ffffff>NO ITEM!</color>",
+    "pickupMessage": "<color=#ffffff>%pickupName%!</color>",
+    "interactButton": "<color=#ffffff>[%interactButton%]</color>",
+    "pickupInteractMessage": "<color=#ffffff>PICK UP</color>",
+    "weaponOwnedMessage": "<color=#ffffff>%weaponName% ALREADY OWNED!</color>",
+    "pointsMessage": "<color=#ffffff>+%pointAmount% POINTS!</color>",
+    "healthLabel": "<color=#ffffff>HEALTH</color>",
+    "endLevelMessage": "<color=#ffffff>GO BACK HOME!</color>",
+    "restoreHPMessage": "<color=#ffffff>+%hpAmount% HP!</color>",
+    "scoreMultiplierMessage": "<color=#FFEB57>SCORE MULTIPLIER:\n+ %scorePool% x%kills%</color>",
+    "populationText": "<color=#ffffff>POPULATION:%current%/%total%</color>",
+    "healthAmountText": "<color=#ffffff>%currentHealth%/%maxHealth%</color>",
+    "itemText": "<color=#ffffff>%itemMessage%</color>",
+    "scoreText": "<color=#ffffff>SCORE:%currentScore%</color>",
+    "highscoreText": "<color=#ffffff>HIGHSCORE:%highscore%</color>",
+    "killsText": "<color=#ffffff>KILLS:%currentKills%</color>"
+}

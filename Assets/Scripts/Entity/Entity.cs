@@ -29,7 +29,7 @@ public class Entity : MonoBehaviour
         EntityObject.SetActive(showEntity);
     }
 
-    public void SetParent(Transform parentTransform, bool worldPositionStays = true)
+    public void SetParent(Transform parentTransform, bool worldPositionStays = false)
     {
         EntityTransform.SetParent(parentTransform, worldPositionStays);
     }
@@ -46,7 +46,7 @@ public class Entity : MonoBehaviour
 
     }
 
-    public virtual Vector3 CenterOfMass { get { return EntityPosition; } }
+    public virtual Vector2 CenterOfMass { get { return EntityPosition; } }
     public EntityAnimator EntityAnim { get; set; } = null;
     public EntityData EntityData { get; set; } = null;
     public GameObject EntityObject { get { return gameObject; } }

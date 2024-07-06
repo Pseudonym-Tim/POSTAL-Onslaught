@@ -27,13 +27,14 @@ public class EntityManager : Singleton<EntityManager>
         entityData.jsonData = (JObject)JsonUtility.ParseJson("entity_database")[entityID];
     }
 
-    public static Entity CreateEntity(string entityID, Vector3 spawnPos, Transform parentTransform = null, bool worldPositionStays = false)
+    public static Entity CreateEntity(string entityID, Vector3? spawnPos = null, Transform parentTransform = null, bool worldPositionStays = false)
     {
         EntityData entityData = RegisteredEntities[entityID];
         Entity entityPrefab = prefabDatabase?.GetPrefab<Entity>(entityData.prefab);
-        Entity entitySpawned = Instantiate(entityPrefab, spawnPos, Quaternion.identity);
+        Vector3 positionToSpawn = spawnPos ?? entityPrefab.EntityPosition;
+        Entity entitySpawned = Instantiate(entityPrefab, parentTransform, worldPositionStays);
+        entitySpawned.EntityPosition = positionToSpawn;
         entitySpawned.name = entityData.prefab;
-        entitySpawned.SetParent(parentTransform, worldPositionStays);
         entitySpawned.EntityData = entityData;
         entitySpawned.OnEntitySpawn();
         return entitySpawned;

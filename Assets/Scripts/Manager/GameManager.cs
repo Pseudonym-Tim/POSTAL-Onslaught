@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Handles core game related stuff and setup...
@@ -11,6 +12,10 @@ public class GameManager : Singleton<GameManager>
     public const string GAME_NAME = "POSTAL: Onslaught";
 
     public static GameState CurrentGameState { get; set; } = GameState.INACTIVE;
+    public static GameStatistics GameStats { get; private set; } = null;
+    public static ScoreManager scoreManager;
+    public static LevelManager levelManager;
+    public static LevelNavmesher levelNavmesher;
     public static float inGameTimer { get; private set; } = 0.0f;
     private static float previousTimeScale = 0;
 
@@ -24,6 +29,9 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+        scoreManager = FindFirstObjectByType<ScoreManager>();
+        levelManager = FindFirstObjectByType<LevelManager>();
+        levelNavmesher = FindFirstObjectByType<LevelNavmesher>();
         StartGame();
     }
 
@@ -37,11 +45,11 @@ public class GameManager : Singleton<GameManager>
 
     public static void StartGame()
     {
-        LevelManager levelManager = FindFirstObjectByType<LevelManager>();
-        LevelNavmesher levelNavmesher = FindFirstObjectByType<LevelNavmesher>();
+        GameStats = new GameStatistics();
+        scoreManager.Setup();
         levelNavmesher.Setup();
         levelManager.CreateLevel();
-
+        UIManager.SetupUI();
         CurrentGameState = GameState.PLAYING;
         Time.timeScale = GAME_TIMESCALE;
         inGameTimer = 0.0f;
@@ -74,7 +82,13 @@ public class GameManager : Singleton<GameManager>
 
     public static void GameOver()
     {
-        
+        CurrentGameState = GameState.GAME_OVER;
+        GameOverUI gameOverUI = UIManager.GetUIComponent<GameOverUI>();
+        gameOverUI.Show();
+
+        // Pause game...
+        /*previousTimeScale = Time.timeScale;
+        Time.timeScale = 0;*/
     }
 
     public static void BackToMenu()
@@ -85,5 +99,11 @@ public class GameManager : Singleton<GameManager>
     public static void QuitGame()
     {
         Application.Quit();
+    }
+
+    [System.Serializable]
+    public class GameStatistics
+    {
+        public int CurrentKills { get; set; } = 0;
     }
 }

@@ -10,11 +10,12 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float movementSpeed = 5;
-    [SerializeField] private float acceleration = 10;
     [SerializeField] private ObstacleCheck obstacleCheck;
     private Player playerEntity;
     private Rigidbody2D playerRigidbody;
-    private Vector2 targetVelocity;
+    private Vector2 moveVelocity;
+    private Vector2 knockbackVelocity = Vector2.zero;
+    private float knockbackTimer = 0;
 
     [System.Serializable]
     public class ObstacleCheck
@@ -34,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float moveX = PlayerInput.GetAxisRaw("Horizontal");
         float moveY = PlayerInput.GetAxisRaw("Vertical");
-        targetVelocity = new Vector2(moveX, moveY).normalized * movementSpeed;
+        moveVelocity = new Vector2(moveX, moveY).normalized * movementSpeed;
 
         // Flip the sprite based on move direction...
         if(moveX != 0)
@@ -43,9 +44,38 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public void ApplyKnockback(KnockbackInfo knockbackInfo, Vector2 origin = default)
+    {
+        if(!IsInKnockback && origin != default)
+        {
+            Vector2 knockbackDirection = playerEntity.CenterOfMass - origin;
+            knockbackVelocity = knockbackDirection.normalized * knockbackInfo.force;
+            knockbackTimer = knockbackInfo.duration;
+            IsInKnockback = true;
+        }
+    }
+
+    private void EndKnockback()
+    {
+        IsInKnockback = false;
+        knockbackVelocity = Vector2.zero;
+    }
+
     private void FixedUpdate()
     {
-        Vector2 adjustedVelocity = AdjustVelocityForObstacles(targetVelocity);
+        if(IsInKnockback)
+        {
+            knockbackTimer -= Time.fixedDeltaTime;
+
+            if(knockbackTimer <= 0)
+            {
+                EndKnockback();
+            }
+        }
+
+        // Combine knockback velocity with move velocity...
+        Vector2 velocityToApply = moveVelocity + knockbackVelocity;
+        Vector2 adjustedVelocity = AdjustVelocityForObstacles(velocityToApply);
         playerRigidbody.velocity = adjustedVelocity;
     }
 
@@ -92,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Gizmos.color = Color.red;
             Vector2 position = (Vector2)playerEntity.EntityPosition + obstacleCheck.offset;
-            Vector2 direction = targetVelocity.normalized * obstacleCheck.size * 0.5f;
+            Vector2 direction = moveVelocity.normalized * obstacleCheck.size * 0.5f;
 
             Gizmos.DrawWireCube(position, obstacleCheck.size);
 
@@ -106,6 +136,7 @@ public class PlayerMovement : MonoBehaviour
         playerEntity.playerGFX.flipX = flipX;
     }
 
+    public bool IsInKnockback { get; set; } = false;
     public bool IsPlayerFacingRight => !playerEntity.playerGFX.flipX;
     public bool IsMoving => playerRigidbody.velocity.magnitude > 0.1f;
 }

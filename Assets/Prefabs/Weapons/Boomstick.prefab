@@ -49,18 +49,21 @@ MonoBehaviour:
   weaponGFX: {fileID: 1180981573303304480}
   weaponSprite: {fileID: 5311101395578890638, guid: 81e08f46a970021468c93c7900d5c17a, type: 3}
   weaponHeldSprite: {fileID: -1777766370, guid: 9302dd102e9bc814cab7911d01fa6e58, type: 3}
-  weaponID: 1
+  weaponID: weapon_boomstick
   weaponName: Boomstick
   fireRate: 0.55
   isAutomatic: 1
-  damageMin: 8
-  damageMax: 15
+  damageMin: 7
+  damageMax: 10
   numberOfShots: 6
   bulletSpreadAmount: 15
   shootCameraShakeInfo:
     shakeIntensity: 0.5
     shakeSpeed: 25
     shakeDuration: 0.15
+  shootKnockbackInfo:
+    force: 2
+    duration: 0.15
   shotTrailPrefab: {fileID: 6913609094344146661, guid: 4dea6e0740ffada409ccb07e1a87a760, type: 3}
   muzzleFlashAnimator: {fileID: 2159552217994873618}
 --- !u!95 &7555258040802848968

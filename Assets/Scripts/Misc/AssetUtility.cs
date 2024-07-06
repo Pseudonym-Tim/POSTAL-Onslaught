@@ -33,7 +33,7 @@ public static class AssetUtility
     }
 
     /// <summary>
-    /// Load all assets at the specified path
+    /// Load all assets at the specified path...
     /// </summary>
     public static List<T> LoadAllAssets<T>(string assetPath) where T : Object
     {

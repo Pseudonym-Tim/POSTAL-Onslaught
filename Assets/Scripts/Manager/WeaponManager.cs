@@ -12,7 +12,7 @@ public class WeaponManager : Singleton<WeaponManager>
     private const float MAX_AIM_ANGLE = 40f;
     private const bool CLAMP_AIM_ANGLES = true;
 
-    [SerializeField] private List<Weapon> currentWeapons;
+    private List<Weapon> currentWeapons = new List<Weapon>();
     private PlayerCamera playerCamera;
     private PlayerMovement playerMovement;
     private int selectedSlotIndex = 0;
@@ -24,7 +24,11 @@ public class WeaponManager : Singleton<WeaponManager>
         playerCamera = FindFirstObjectByType<PlayerCamera>();
         playerHUD = UIManager.GetUIComponent<PlayerHUD>();
         AimParent = transform.Find("AimOrigin");
-        WeaponParent = AimParent.Find("WeaponParent"); 
+        WeaponParent = AimParent.Find("WeaponParent");
+
+        // Give the player the starting pistol by default...
+        Weapon pistolWeapon = (Weapon)EntityManager.CreateEntity("weapon_pistol", null, WeaponParent);
+        currentWeapons.Add(pistolWeapon);
         UpdateSelectedWeapon();
     }
 
@@ -67,19 +71,26 @@ public class WeaponManager : Singleton<WeaponManager>
         }
     }
 
-    public void AddWeapon(Weapon weaponPrefab, bool autoSelect = true)
+    public bool GiveWeapon(Weapon weaponPrefab, bool autoSelect = true)
     {
-        // Spawn and add to collected weapons...
-        Weapon weaponEntity = Instantiate(weaponPrefab, WeaponParent);
-        weaponEntity.name = weaponPrefab.name;
-        currentWeapons.Add(weaponEntity);
-
-        // Automatically select it...
-        if(autoSelect)
+        if(IsWeaponAddable(weaponPrefab))
         {
-            selectedSlotIndex = currentWeapons.IndexOf(weaponEntity);
-            UpdateSelectedWeapon();
+            // Spawn and add to collected weapons...
+            Weapon weaponEntity = Instantiate(weaponPrefab, WeaponParent);
+            weaponEntity.name = weaponPrefab.name;
+            currentWeapons.Add(weaponEntity);
+
+            // Automatically select it...
+            if(autoSelect)
+            {
+                selectedSlotIndex = currentWeapons.IndexOf(weaponEntity);
+                UpdateSelectedWeapon();
+            }
+
+            return true;
         }
+
+        return false;
     }
 
     public void RemoveWeapon(int slotIndex, bool selectNextSlot = true)
@@ -99,7 +110,7 @@ public class WeaponManager : Singleton<WeaponManager>
         currentWeapons.RemoveAt(slotIndex);
 
         // Spawn new weapon entity, automatically select it...
-        AddWeapon(weaponPrefab, true);
+        GiveWeapon(weaponPrefab, true);
     }
 
     private void UpdateWeaponAim()
@@ -217,7 +228,7 @@ public class WeaponManager : Singleton<WeaponManager>
 
     public bool IsWeaponAddable(Weapon weaponToAdd)
     {
-        return currentWeapons.Count + 1 < MAX_SLOTS && !IsWeaponOwned(weaponToAdd.weaponID);
+        return currentWeapons.Count < MAX_SLOTS && !IsWeaponOwned(weaponToAdd.weaponID);
     }
 
     public bool IsWeaponOwned(string weaponID)

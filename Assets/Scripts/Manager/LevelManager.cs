@@ -10,18 +10,21 @@ public class LevelManager : Singleton<LevelManager>
 {
     private LevelGenerator levelGenerator;
     private TileManager tileManager;
+    private TaskManager taskManager;
 
     public void CreateLevel()
     {
         CurrentLevel++;
         levelGenerator = FindFirstObjectByType<LevelGenerator>();
         tileManager = FindFirstObjectByType<TileManager>();
+        taskManager = FindFirstObjectByType<TaskManager>();
         LevelTiles = new Dictionary<Vector2, LevelTile>();
         LevelEntities = new List<Entity>();
         LevelObjects = new List<GameObject>();
         ObjectManager.LoadDatabase();
         EntityManager.LoadDatabase();
         levelGenerator.GenerateLevel();
+        taskManager.Setup();
     }
 
     public void AddTile(string tileID, Vector2 addPos)

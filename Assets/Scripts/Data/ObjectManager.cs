@@ -27,15 +27,17 @@ public class ObjectManager : Singleton<ObjectManager>
         objectData.jsonData = (JObject)JsonUtility.ParseJson("object_database")[objectID];
     }
 
-    public static GameObject CreateObject(string objectID, Vector3 spawnPos, Transform parentTransform = null, bool worldPositionStays = false)
+    public static GameObject CreateObject(string objectID, Vector3? spawnPos = null, Transform parentTransform = null, bool worldPositionStays = false)
     {
         ObjectData objectData = RegisteredObjects[objectID];
         GameObject objectPrefab = prefabDatabase?.GetPrefab(objectData.prefab);
-        GameObject objectSpawned = Instantiate(objectPrefab, spawnPos, Quaternion.identity);
+        Vector3 positionToSpawn = spawnPos ?? objectPrefab.transform.position;
+        GameObject objectSpawned = Instantiate(objectPrefab, parentTransform, worldPositionStays);
         objectSpawned.name = objectData.prefab;
-        objectSpawned.transform.SetParent(parentTransform, worldPositionStays);
+        objectSpawned.transform.position = positionToSpawn;
         LevelObject levelObject = objectSpawned.GetComponent<LevelObject>();
         if(levelObject) { levelObject.ObjectData = objectData; }
         return objectSpawned;
     }
+
 }

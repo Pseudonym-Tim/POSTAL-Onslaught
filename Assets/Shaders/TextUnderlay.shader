@@ -132,6 +132,9 @@ Shader "POSTAL: Onslaught/TextUnderlay"
                 fixed4 c = tex2D(_MainTex, i.texcoord0);
                 c = fixed4 (tex2D(_FaceTex, i.texcoord1).rgb * i.color.rgb, i.color.a * c.a);
  
+                //fixed4 faceColor = i.color;
+                c *= _FaceColor;
+
                 #if UNITY_VERSION < 530
                     if (_UseClipRect)
                     {

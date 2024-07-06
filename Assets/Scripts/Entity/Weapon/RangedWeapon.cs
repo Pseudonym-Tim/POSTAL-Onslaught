@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.EditorTools;
 using UnityEngine;
 
 /// <summary>
@@ -14,13 +13,17 @@ public class RangedWeapon : Weapon
     [SerializeField] private int numberOfShots = 1;
     [SerializeField] private float bulletSpreadAmount = 0;
     [SerializeField] private CameraShakeInfo shootCameraShakeInfo;
+    [SerializeField] private KnockbackInfo shootKnockbackInfo;
     [SerializeField] private ShotTrail shotTrailPrefab;
     [SerializeField] private Animator muzzleFlashAnimator;
     private float shotDelayTimer = 0;
 
     protected override void OnEntityUpdate()
     {
-        UpdateShooting();
+        if(weaponManager.IsPlayerArmed)
+        {
+            UpdateShooting();
+        }
     }
 
     private void UpdateShooting()
@@ -51,6 +54,11 @@ public class RangedWeapon : Weapon
         EntityAnim.Play("Shoot");
         muzzleFlashAnimator.Play("Blast");
         CameraShaker.Shake(shootCameraShakeInfo);
+
+        if(shootKnockbackInfo != null)
+        {
+            playerEntity.ApplyKnockback(shootKnockbackInfo, ShootOriginTransform.position);
+        }
     }
 
     protected virtual RaycastHit2D ShootRaycast(Vector2 origin, Vector2 direction, int numberOfShots)
@@ -68,6 +76,7 @@ public class RangedWeapon : Weapon
 
             DamageInfo damageInfo = new DamageInfo()
             {
+                damageOrigin = hit.point,
                 damageAmount = Random.Range(damageMin, damageMax) / numberOfShots,
                 attackerEntity = playerEntity,
             };

@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public class UIManager : Singleton<UIManager>
 {
-    private void Awake()
+    public static void SetupUI()
     {
         List<UIComponent> uiComponentList = GetUIComponents<UIComponent>();
 

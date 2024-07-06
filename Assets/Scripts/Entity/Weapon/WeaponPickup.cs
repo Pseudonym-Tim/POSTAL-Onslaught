@@ -1,4 +1,5 @@
 using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -9,28 +10,79 @@ public class WeaponPickup : PickupEntity
     private Weapon weaponToGive;
     private JArray weaponPool;
     private static LevelManager levelManager;
+    private WeaponManager weaponManager;
 
     public override void OnEntitySpawn()
     {
         levelManager = FindFirstObjectByType<LevelManager>();
+    }
+
+    public override void OnLevelGenerated()
+    {
+        weaponManager = levelManager.GetEntity<Player>().WeaponManager;
         weaponPool = (JArray)EntityData.jsonData["weaponPool"];
-        int randomIndex = Random.Range(0, weaponPool.Count);
-        string weaponID = (string)weaponPool[randomIndex];
+        List<string> filteredWeaponPool = FilterOwnedWeapons(weaponPool);
+
+        if(filteredWeaponPool.Count == 0)
+        {
+            Debug.LogWarning("All weapons are owned by the player!");
+            DestroyEntity();
+            return;
+        }
+
+        string weaponID = GetRandomWeaponID(filteredWeaponPool);
         SetWeapon(weaponID);
     }
 
-    public static void Create(string weaponID, Vector2 addPosition)
+    private List<string> FilterOwnedWeapons(JArray weaponPool)
     {
-        // Create weapon pickup...
+        List<string> filteredWeaponPool = new List<string>();
+
+        foreach(JToken weaponToken in weaponPool)
+        {
+            string weaponID = weaponToken.ToString();
+
+            if(!weaponManager.IsWeaponOwned(weaponID))
+            {
+                filteredWeaponPool.Add(weaponID);
+            }
+        }
+
+        return filteredWeaponPool;
+    }
+
+    private string GetRandomWeaponID(List<string> weaponPool)
+    {
+        int randomIndex = Random.Range(0, weaponPool.Count);
+        return weaponPool[randomIndex];
+    }
+
+    public static WeaponPickup Create(string weaponID, Vector2 addPosition)
+    {
         WeaponPickup weaponPickup = (WeaponPickup)levelManager.AddEntity("weapon_pickup", addPosition);
         weaponPickup.SetWeapon(weaponID);
+        return weaponPickup;
     }
 
     public override void OnInteract()
     {
-        Player playerEntity = levelManager.GetEntity<Player>();
-        WeaponManager weaponManager = playerEntity.WeaponManager;
-        weaponManager.AddWeapon(weaponToGive, true);
+        weaponManager = levelManager.GetEntity<Player>().WeaponManager;
+
+        if(!weaponManager.IsWeaponOwned(weaponToGive.weaponID))
+        {
+            bool weaponGiven = weaponManager.GiveWeapon(weaponToGive, true);
+            if(!weaponGiven) { return; }
+            if(weaponGiven) { SpawnPickupText(weaponToGive.weaponName); }
+        }
+        else
+        {
+            Vector3 spawnPos = EntityPosition + Vector3.up * pickupGFX.size.y;
+            string popupMessage = LocalizationManager.GetMessage("weaponOwnedMessage");
+            popupMessage = popupMessage.Replace("%weaponName%", weaponToGive.weaponName);
+            playerHUD.CreatePopupText(spawnPos, popupMessage);
+            return;
+        }
+
         DestroyEntity();
     }
 
@@ -43,7 +95,6 @@ public class WeaponPickup : PickupEntity
         pickupGFX.sprite = weaponPrefab.weaponSprite;
     }
 
-    public override Vector3 CenterOfMass => EntityPosition;
+    public override Vector2 CenterOfMass => EntityPosition;
     public override bool IsInteractable => true;
-    public override float InteractRange => pickupRange;
 }

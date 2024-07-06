@@ -10,12 +10,14 @@ public class PickupEntity : InteractableEntity
     public float pickupRange = 1f;
     public SpriteRenderer pickupGFX;
     [SerializeField] private Color outlineColor = Color.yellow;
+    protected PlayerHUD playerHUD;
 
     public override void OnEntityAwake()
     {
         SetupEntityAnim();
         EntityAnim.Play("Idle");
         pickupGFX.material.SetColor("_Color", outlineColor);
+        playerHUD = UIManager.GetUIComponent<PlayerHUD>();
     }
 
     public override void OnInteract()
@@ -23,11 +25,24 @@ public class PickupEntity : InteractableEntity
 
     }
 
-    protected override void OnDrawEntityGizmos()
+    protected void SpawnPickupText(string pickupName)
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(pickupGFX.transform.position, pickupRange);
+        Vector3 spawnPos = EntityPosition + Vector3.up * pickupGFX.size.y;
+        string popupMessage = LocalizationManager.GetMessage("pickupMessage");
+        popupMessage = popupMessage.Replace("%pickupName%", pickupName);
+        playerHUD.CreatePopupText(spawnPos, popupMessage);
     }
 
+    protected override void OnDrawEntityGizmos()
+    {
+        if(pickupGFX != null)
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(pickupGFX.transform.position, pickupRange);
+        }
+    }
+
+    public override string InteractMessage => LocalizationManager.GetMessage("pickupInteractMessage");
+    public override float InteractRange => pickupRange;
     public override bool IsInteractable => true;
 }

@@ -27,9 +27,16 @@ TILE dirt_cliff_br LEVEL_SIZE_X-LEVEL_BOUNDS_DIST LEVEL_BOUNDS_DIST-1
 //ENTITY player_dude 15 15
 ENTITY_RANDOM player_dude dirt 2
 //ENTITY_RANDOM protester_npc dirt 3
-ENTITY_RANDOM weapon_pickup dirt 5
+
+FOR INDEX 1 3
+    ENTITY_RANDOM weapon_pickup dirt 5
+ENDFOR
     
 FOR INDEX 1 3
+    ENTITY_RANDOM item_pickup dirt 3
+ENDFOR
+
+FOR INDEX 1 6
     ENTITY_RANDOM protester_npc dirt 3
 ENDFOR
 

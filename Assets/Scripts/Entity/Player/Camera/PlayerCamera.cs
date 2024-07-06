@@ -17,13 +17,14 @@ public class PlayerCamera : Entity
     private PixelPerfectCamera pixelPerfectCamera;
     private Vector3 currentVelocity = Vector3.zero;
 
-    public override void OnEntityAwake()
+    public void Setup()
     {
         pixelPerfectCamera = GetComponentInChildren<PixelPerfectCamera>();
         PlayerEntity = GetComponentInParent<Player>();
-        PlayerEntity.PlayerCamera = this;
         SetZoomLevel(DEFAULT_ZOOM);
         SetParent(null);
+        Vector2 targetPos = (Vector2)PlayerEntity.EntityPosition + followOffset;
+        EntityPosition = GetFollowPos(targetPos);
     }
 
     private void SetZoomLevel(int zoomLevel)

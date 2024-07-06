@@ -275,18 +275,21 @@ MonoBehaviour:
   weaponGFX: {fileID: 9141926146204763743}
   weaponSprite: {fileID: 7573391519266811866, guid: 81e08f46a970021468c93c7900d5c17a, type: 3}
   weaponHeldSprite: {fileID: 7979053764633992946, guid: 9302dd102e9bc814cab7911d01fa6e58, type: 3}
-  weaponID: 0
+  weaponID: weapon_pistol
   weaponName: Pistol
   fireRate: 0.3
   isAutomatic: 1
-  damageMin: 3
-  damageMax: 6
+  damageMin: 2
+  damageMax: 4
   numberOfShots: 1
   bulletSpreadAmount: 0
   shootCameraShakeInfo:
     shakeIntensity: 0.2
     shakeSpeed: 25
     shakeDuration: 0.15
+  shootKnockbackInfo:
+    force: 1.5
+    duration: 0.15
   shotTrailPrefab: {fileID: 6913609094344146661, guid: 4dea6e0740ffada409ccb07e1a87a760, type: 3}
   muzzleFlashAnimator: {fileID: 1017919949751254468}
 --- !u!95 &1299523621899404689

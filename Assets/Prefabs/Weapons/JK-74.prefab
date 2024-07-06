@@ -275,18 +275,21 @@ MonoBehaviour:
   weaponGFX: {fileID: 2339851382431359921}
   weaponSprite: {fileID: -4002801455887627280, guid: 81e08f46a970021468c93c7900d5c17a, type: 3}
   weaponHeldSprite: {fileID: 206336019, guid: 9302dd102e9bc814cab7911d01fa6e58, type: 3}
-  weaponID: 2
+  weaponID: weapon_jk74
   weaponName: JK-74
   fireRate: 0.1
   isAutomatic: 1
-  damageMin: 4
-  damageMax: 7
+  damageMin: 2
+  damageMax: 4
   numberOfShots: 1
   bulletSpreadAmount: 0
   shootCameraShakeInfo:
     shakeIntensity: 0.1
     shakeSpeed: 25
     shakeDuration: 0.1
+  shootKnockbackInfo:
+    force: 1.5
+    duration: 0.15
   shotTrailPrefab: {fileID: 6913609094344146661, guid: 4dea6e0740ffada409ccb07e1a87a760, type: 3}
   muzzleFlashAnimator: {fileID: 7694308941453331147}
 --- !u!95 &5092470355938374896

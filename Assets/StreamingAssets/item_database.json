@@ -1,0 +1,17 @@
+{
+    "item_pizza": {
+        "name": "Pizza",
+        "gfxPath": "Art/Sprites/Items/item_pizza.png",
+        "health": 4
+    },
+    "item_donut": {
+        "name": "Donut",
+        "gfxPath": "Art/Sprites/Items/item_donut.png",
+        "health": 2
+    },
+    "item_burger": {
+        "name": "Burger",
+        "gfxPath": "Art/Sprites/Items/item_burger.png",
+        "health": 6
+    }
+}
