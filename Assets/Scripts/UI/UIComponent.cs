@@ -8,7 +8,12 @@ using UnityEngine;
 /// </summary>
 public class UIComponent : MonoBehaviour
 {
-    public virtual void Setup()
+    public virtual void SetupUI()
+    {
+
+    }
+
+    public virtual void ResetUI()
     {
 
     }

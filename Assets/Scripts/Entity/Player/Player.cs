@@ -29,6 +29,7 @@ public class Player : Entity
         SetupEntityAnim();
         EntityAnim.Play("Idle");
         currentHealth = maxHealth;
+        LastDamageInfo = null;
     }
 
     protected override void OnEntityUpdate()
@@ -78,6 +79,7 @@ public class Player : Entity
     {
         if(currentHealth > 0 && !IsInvulnerable)
         {
+            LastDamageInfo = damageInfo;
             currentHealth -= damageInfo.damageAmount;
             OnTakeDamage(damageInfo);
             ApplyKnockback(hurtKnockbackInfo, damageInfo.damageOrigin);
@@ -120,6 +122,7 @@ public class Player : Entity
     public bool IsInvulnerable { get; set; } = false;
     public PlayerCamera PlayerCamera { get; set; } = null;
     public PlayerMovement PlayerMovement { get; set; } = null;
+    public DamageInfo LastDamageInfo { get; set; } = null;
     public WeaponManager WeaponManager { get; set; } = null;
     public InventoryManager InventoryManager { get; set; } = null;
     public bool IsMaxHealth { get { return currentHealth >= maxHealth; } }

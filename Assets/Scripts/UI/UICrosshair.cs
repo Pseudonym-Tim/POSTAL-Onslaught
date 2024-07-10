@@ -5,14 +5,14 @@ using UnityEngine;
 /// <summary>
 /// Handles everything related to the crosshair on the player hud...
 /// </summary>
-public class HUDCrosshair : UIComponent
+public class UICrosshair : UIComponent
 {
-    public override void Setup()
+    public override void SetupUI()
     {
-        
+
     }
 
-    public void UpdatePosition()
+    private void Update()
     {
         transform.position = Input.mousePosition;
     }

@@ -14,14 +14,17 @@ public class NPC : Entity
     [SerializeField] protected int maxHealth = 10;
     [SerializeField] protected float moveSpeed = 10;
     [SerializeField] protected KnockbackInfo hurtKnockbackInfo;
+    public AnimationClip killerAnimation;
     protected int currentHealth = 0;
     protected Player playerEntity;
     protected SpriteRenderer npcGFX;
     protected Vector2 knockbackVelocity = Vector2.zero;
+    protected LevelManager levelManager;
 
     public override void OnEntityAwake()
     {
         npcGFX = GetComponentInChildren<SpriteRenderer>();
+        levelManager = FindFirstObjectByType<LevelManager>();
         SetupEntityAnim();
         EntityAnim.Play("Idle");
         currentHealth = maxHealth;
@@ -56,7 +59,7 @@ public class NPC : Entity
                 UpdatePlayerKill();
                 OnNPCKilled?.Invoke();
                 OnDeath();
-                DestroyEntity(0.1f); // TODO: Add actual death animation or effect instead...
+                levelManager.RemoveEntity(this, 0.1f); // TODO: Add actual death animation or effect instead...
                 return;
             }
             else

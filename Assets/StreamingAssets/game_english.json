@@ -2,10 +2,21 @@
     "noItemMessage": "<color=#ffffff>NO ITEM!</color>",
     "pickupMessage": "<color=#ffffff>%pickupName%!</color>",
     "interactButton": "<color=#ffffff>[%interactButton%]</color>",
-    "pickupInteractMessage": "<color=#ffffff>PICK UP</color>",
+    "pickupInteractMessage": "<color=#ffffff>PICK UP</color>\n",
     "weaponOwnedMessage": "<color=#ffffff>%weaponName% ALREADY OWNED!</color>",
     "pointsMessage": "<color=#ffffff>+%pointAmount% POINTS!</color>",
     "healthLabel": "<color=#ffffff>HEALTH</color>",
+    "killerLabel": "<color=#ffffff>KILLED BY:</color>",
+    "tipMessages": [
+        "<color=#ffffff>TIP: Use your health items wisely!</color>",
+        "<color=#ffffff>TIP: Use melee attacks to conserve ammo!</color>",
+        "<color=#ffffff>TIP: Explore thoroughly to find helpful items!</color>"
+    ],
+    "gameover_ui": {
+        "timeText": "<color=#ffffff>TIME: %minutes%:%seconds%</color>",
+        "restartText": "<color=%color%>RESTART</color>",
+        "quitText": "<color=%color%>QUIT TO MENU</color>"
+    },
     "endLevelMessage": "<color=#ffffff>GO BACK HOME!</color>",
     "restoreHPMessage": "<color=#ffffff>+%hpAmount% HP!</color>",
     "scoreMultiplierMessage": "<color=#FFEB57>SCORE MULTIPLIER:\n+ %scorePool% x%kills%</color>",

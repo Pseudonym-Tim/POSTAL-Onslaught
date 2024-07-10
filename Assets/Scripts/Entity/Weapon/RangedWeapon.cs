@@ -126,7 +126,7 @@ public class RangedWeapon : Weapon
         }
     }
 
-    private void OnDrawGizmos()
+    protected override void OnDrawEntityGizmos()
     {
         if(ShootOriginTransform)
         {

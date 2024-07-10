@@ -11,21 +11,24 @@ using UnityEngine.UI;
 public class PlayerHUD : UIComponent
 {
     [Header("Health Indicator")]
+    [SerializeField] private GameObject healthIndicatorUI;
     [SerializeField] private Image healthBarImage;
     [SerializeField] private TextMeshProUGUI healthLabelText;
     [SerializeField] private TextMeshProUGUI healthText;
 
     [Header("Weapon selection")]
+    [SerializeField] private GameObject weaponSelectorUI;
     [SerializeField] private Image currentWeaponImage;
     [SerializeField] private TextMeshProUGUI weaponSlotText;
 
     [Header("Inventory")]
+    [SerializeField] private GameObject inventorySystemUI;
     [SerializeField] private Image itemImage;
     [SerializeField] private TextMeshProUGUI itemText;
 
     [Header("Other")]
     [SerializeField] private Canvas playerHUDCanvas;
-    [SerializeField] private HUDCrosshair hudCrosshair;
+    [SerializeField] private UICrosshair UICrosshair;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI highscoreText;
     [SerializeField] private TextMeshProUGUI scoreMultiplierText;
@@ -33,7 +36,7 @@ public class PlayerHUD : UIComponent
     [SerializeField] private TextMeshProUGUI taskText;
     [SerializeField] private TextMeshProUGUI interactText;
 
-    public override void Setup()
+    public override void SetupUI()
     {
         string healthLabel = LocalizationManager.GetMessage("healthLabel");
         healthLabelText.text = healthLabel;
@@ -41,6 +44,9 @@ public class PlayerHUD : UIComponent
         UpdateKilled(0);
         ShowScoreMultiplier(false); 
         UpdateInteractionText(Vector2.zero, null, false);
+        ShowHealthIndicator(true);
+        ShowInventory(true);
+        ShowWeaponSelection(true);
     }
 
     public void UpdateHealthIndicator(int healthAmount, int maxHealth)
@@ -50,14 +56,6 @@ public class PlayerHUD : UIComponent
         healthMessage = healthMessage.Replace("%currentHealth%", $"{ healthAmount }");
         healthMessage = healthMessage.Replace("%maxHealth%", $"{ maxHealth }");
         healthText.text = healthMessage;
-    }
-
-    private void Update()
-    {
-        if(PlayerInput.InputEnabled)
-        {
-            hudCrosshair.UpdatePosition();
-        }
     }
 
     public void UpdateCurrentItem(Sprite itemSprite, int itemQuantity)
@@ -124,6 +122,10 @@ public class PlayerHUD : UIComponent
         scoreMultiplierText.color = currentColor;
         scoreMultiplierText.enabled = showValue;
     }
+
+    public void ShowWeaponSelection(bool showValue = true) => weaponSelectorUI.SetActive(showValue);
+    public void ShowInventory(bool showValue = true) => inventorySystemUI.SetActive(showValue);
+    public void ShowHealthIndicator(bool showValue = true) => healthIndicatorUI.SetActive(showValue);
 
     public void UpdateScore(int currentScore)
     {

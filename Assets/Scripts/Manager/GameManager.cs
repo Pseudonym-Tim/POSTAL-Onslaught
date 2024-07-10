@@ -55,6 +55,13 @@ public class GameManager : Singleton<GameManager>
         inGameTimer = 0.0f;
     }
 
+    public static string GetFormattedTime()
+    {
+        int minutes = Mathf.FloorToInt(inGameTimer / 60F);
+        int seconds = Mathf.FloorToInt(inGameTimer % 60F);
+        return string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
     public static void RestartGame()
     {
         StartGame();

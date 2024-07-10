@@ -17,9 +17,11 @@ public class WeaponManager : Singleton<WeaponManager>
     private PlayerMovement playerMovement;
     private int selectedSlotIndex = 0;
     private PlayerHUD playerHUD;
+    private Player playerEntity;
 
     private void Awake()
     {
+        playerEntity = GetComponentInParent<Player>();
         playerMovement = GetComponentInParent<PlayerMovement>();
         playerCamera = FindFirstObjectByType<PlayerCamera>();
         playerHUD = UIManager.GetUIComponent<PlayerHUD>();
@@ -27,14 +29,21 @@ public class WeaponManager : Singleton<WeaponManager>
         WeaponParent = AimParent.Find("WeaponParent");
 
         // Give the player the starting pistol by default...
-        Weapon pistolWeapon = (Weapon)EntityManager.CreateEntity("weapon_pistol", null, WeaponParent);
-        currentWeapons.Add(pistolWeapon);
+        /*PrefabDatabase prefabDatabase = FindFirstObjectByType<PrefabDatabase>();
+        Weapon pistolWeapon = prefabDatabase.GetPrefab<Weapon>("Pistol");
+        GiveWeapon(pistolWeapon);*/
+
+        // Give the player the shovel by default...
+        PrefabDatabase prefabDatabase = FindFirstObjectByType<PrefabDatabase>();
+        Weapon shovelWeapon = prefabDatabase.GetPrefab<Weapon>("Shovel");
+        GiveWeapon(shovelWeapon);
+
         UpdateSelectedWeapon();
     }
 
     private void Update()
     {
-        if(IsPlayerArmed)
+        if(IsPlayerArmed && playerEntity.IsAlive)
         {
             UpdateWeaponSelection();
             UpdateWeaponAim();
@@ -125,16 +134,16 @@ public class WeaponManager : Singleton<WeaponManager>
             zRot = ClampAimAngle(zRot);
         }
 
-        // Calculate rendering layer based on aim angle (only for upwards aiming)...
+        // Calculate rendering layer based on aim angle and weapon type...
         if(zRot >= 0)
         {
             float absZRot = Mathf.Abs(zRot);
             int orderInLayer = absZRot > MAX_AIM_ANGLE - 10f && absZRot < 180f - (MAX_AIM_ANGLE - 10f) ? 1 : 2;
-            SelectedWeapon.weaponGFX.sortingOrder = orderInLayer;
+            if(!SelectedWeapon.IsMeleeWeapon) { SelectedWeapon.weaponGFX.sortingOrder = orderInLayer; } // TODO: Remove melee weapon check...
         }
         else
         {
-            SelectedWeapon.weaponGFX.sortingOrder = 2;
+            if(!SelectedWeapon.IsMeleeWeapon) { SelectedWeapon.weaponGFX.sortingOrder = 2; } // TODO: Remove melee weapon check...
         }
 
         RotateAimParent(zRot);

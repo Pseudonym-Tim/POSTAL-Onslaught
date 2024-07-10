@@ -92,6 +92,27 @@ public class LevelManager : Singleton<LevelManager>
         return null;
     }
 
+    public void RemoveEntities(bool removePlayer = false)
+    {
+        List<Entity> entitiesToRemove = new List<Entity>();
+        entitiesToRemove.AddRange(LevelEntities);
+
+        foreach(Entity entity in entitiesToRemove)
+        {
+            if(entity is Player && !removePlayer) { continue; }
+            RemoveEntity(entity);
+        }
+    }
+
+    public void RemoveEntity(Entity entityToRemove, float removeTime = 0)
+    {
+        if(LevelEntities.Contains(entityToRemove))
+        {
+            entityToRemove.DestroyEntity(removeTime);
+            LevelEntities.Remove(entityToRemove);
+        }
+    }
+
     public GameObject AddObject(string objectID, Vector2 addPos)
     {
         foreach(KeyValuePair<string, ObjectData> objectData in ObjectManager.RegisteredObjects)

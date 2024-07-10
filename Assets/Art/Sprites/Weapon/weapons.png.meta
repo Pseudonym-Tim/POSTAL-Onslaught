@@ -192,6 +192,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: weapon_shovel
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 25
+        width: 28
+        height: 11
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ad33c875dbb5a3d4ba59b1e5dde1cc19
+      internalID: -32322315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -207,6 +228,7 @@ TextureImporter:
       weapon_jk-74: -4002801455887627280
       weapon_pistol: 7573391519266811866
       weapon_revolver: 7317958412765431823
+      weapon_shovel: -32322315
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

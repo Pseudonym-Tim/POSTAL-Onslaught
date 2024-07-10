@@ -8,6 +8,10 @@
         }
     },
     "gameover_ui": {
-
+        "options": {
+            "activeColor": "#ffffff",
+            "inactiveColor": "#c7cfdd",
+            "hoverOffset": 3
+        }
     }
 }

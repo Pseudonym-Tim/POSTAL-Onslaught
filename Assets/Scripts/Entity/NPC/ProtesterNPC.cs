@@ -16,10 +16,34 @@ public class ProtesterNPC : NPC
     [SerializeField] private float roamSpeedMax = 2.25f;
     private float roamTimer = 0;
 
+    public override void OnEntitySpawn()
+    {
+        InvokeRepeating(nameof(CheckDamagePlayer), 1, 1f);
+    }
+
     public override void OnNavmeshBuilt()
     {
         SetupNPCNavigation(0);
         BeginRoaming();
+    }
+
+    private void CheckDamagePlayer()
+    {
+        // TODO: Remove later!
+        if(playerEntity.IsAlive)
+        {
+            if(Vector2.Distance(EntityPosition, playerEntity.EntityPosition) < 1.25f)
+            {
+                DamageInfo damageInfo = new DamageInfo()
+                {
+                    damageAmount = 2,
+                    damageOrigin = EntityPosition,
+                    attackerEntity = this
+                };
+
+                playerEntity.TakeDamage(damageInfo);
+            }
+        }
     }
 
     protected override void OnEntityUpdate()
@@ -36,6 +60,8 @@ public class ProtesterNPC : NPC
                         Vector3 destinationPos = LevelNavmesher.GetRandomPosition(EntityPosition, roamRadius);
                         NPCNavigation.SetDestination(destinationPos);
                     }
+
+                    
 
                     break;
                 case AIState.KNOCKBACK:

@@ -89,11 +89,14 @@ public class ScoreManager : Singleton<ScoreManager>
             yield return null;
         }
 
+        // Ensure the score is set to targetScore before fading...
+        playerHUD.UpdateScoreMultiplier(targetScore, KillstreakAmount, 1);
+
         while(fadeTimer < FADE_TIME)
         {
             fadeTimer += Time.deltaTime;
             float currentAlpha = Mathf.Lerp(1f, 0f, fadeTimer / FADE_TIME);
-            playerHUD.UpdateScoreMultiplier(targetScore, KillstreakAmount, currentAlpha);
+            playerHUD.UpdateScoreMultiplier(targetScore - initialScore, KillstreakAmount, currentAlpha);
             yield return null;
         }
 

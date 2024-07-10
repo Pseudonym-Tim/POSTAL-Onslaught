@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: 9302dd102e9bc814cab7911d01fa6e58
+guid: 14ba662a3fb526c45a7fec63ac53299d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7979053764633992946
-    second: player_weapon_handheld_0
-  - first:
-      213: -3665993490749461982
-    second: player_weapon_handheld_1
-  - first:
-      213: 6262115353604618317
-    second: player_weapon_handheld_2
-  - first:
-      213: -7058153222307890182
-    second: player_weapon_handheld_3
+      213: -2567866551801283231
+    second: weapon_slash_fx_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -81,7 +72,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 128
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -109,106 +100,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: weapon_handheld_pistol
+      name: weapon_slash_fx_1
       rect:
         serializedVersion: 2
         x: 4
-        y: 40
-        width: 13
-        height: 11
-      alignment: 9
-      pivot: {x: 0.30769232, y: 0.36363637}
+        y: 3
+        width: 14
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2fe90c4cf1b4bbe60800000000000000
-      internalID: 7979053764633992946
+      spriteID: 16df64de9fa1d5cd0800000000000000
+      internalID: -2567866551801283231
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapon_handheld_boomstick
+      name: weapon_slash_fx_2
       rect:
         serializedVersion: 2
-        x: 3
-        y: 27
-        width: 19
-        height: 10
-      alignment: 9
-      pivot: {x: 0.175, y: 0.4}
+        x: 25
+        y: 3
+        width: 14
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f9329ecc481cdb43aac15d1dbd75cac
-      internalID: -1777766370
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: weapon_handheld_jk74
-      rect:
-        serializedVersion: 2
-        x: 4
-        y: 11
-        width: 26
-        height: 10
-      alignment: 9
-      pivot: {x: 0.30769232, y: 0.4}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bb36d612ebceb694ebe7eefe44059bfb
-      internalID: 206336019
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: weapon_handheld_revolver
-      rect:
-        serializedVersion: 2
-        x: 35
-        y: 5
-        width: 17
-        height: 11
-      alignment: 9
-      pivot: {x: 0.1764706, y: 0.36363637}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 15e86a2c733ee394f9c617a8ff525531
-      internalID: -1881524122
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: weapon_handheld_shovel
-      rect:
-        serializedVersion: 2
-        x: 52
-        y: 27
-        width: 9
-        height: 27
-      alignment: 9
-      pivot: {x: 0.5, y: 0.32692307}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 13ce284b1267d1b44971ab8567bcce74
-      internalID: -1871915730
+      spriteID: 663749c5112171f4b9ef19479c2d6058
+      internalID: -843781439
       vertices: []
       indices: 
       edges: []
@@ -216,7 +144,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 020430c8bf05faf4ab1ba0705ac12166
+    spriteID: ba4231a706655e140a1198b53653b4b7
     internalID: 0
     vertices: []
     indices: 
@@ -224,14 +152,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      player_weapon_handheld_1: -3665993490749461982
-      player_weapon_handheld_2: 6262115353604618317
-      player_weapon_handheld_3: -7058153222307890182
-      weapon_handheld_boomstick: -1777766370
-      weapon_handheld_jk74: 206336019
-      weapon_handheld_pistol: 7979053764633992946
-      weapon_handheld_revolver: -1881524122
-      weapon_handheld_shovel: -1871915730
+      weapon_slash_fx_1: -2567866551801283231
+      weapon_slash_fx_2: -843781439
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

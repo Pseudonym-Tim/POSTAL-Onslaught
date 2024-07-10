@@ -171,6 +171,7 @@ MonoBehaviour:
   hurtKnockbackInfo:
     force: 2
     duration: 0.15
+  killerAnimation: {fileID: 7400000, guid: 9d54e9a3f60a8a8448b4f282dcc09ed0, type: 2}
   currentAIState: 0
   roamRadius: 5
   roamTimeMin: 0.75

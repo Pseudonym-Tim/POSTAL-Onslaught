@@ -18,7 +18,8 @@
             "weapon_boomstick",
             "weapon_jk74",
             "weapon_revolver",
-            "weapon_pistol"
+            "weapon_pistol",
+            "weapon_shovel"
         ]
     },
     "item_pickup": {
@@ -34,6 +35,9 @@
     },
     "weapon_jk74": {
         "prefab": "JK-74"
+    },
+    "weapon_shovel": {
+        "prefab": "Shovel"
     },
     "weapon_revolver": {
         "prefab": "Revolver"

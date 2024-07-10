@@ -14,7 +14,7 @@ public class UIManager : Singleton<UIManager>
 
         foreach(UIComponent uiComponent in uiComponentList)
         {
-            uiComponent.Setup();
+            uiComponent.SetupUI();
         }
     }
 

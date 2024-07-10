@@ -26,4 +26,6 @@ public class Weapon : Entity
 
     public virtual void OnWeaponSelected() { }
     public virtual void OnWeaponHolster() { }
+
+    public virtual bool IsMeleeWeapon { get; set; } = false;
 }

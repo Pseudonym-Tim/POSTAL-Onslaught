@@ -11,9 +11,9 @@ public class PopupTextUI : UIComponent
     private const float DESTROY_TIME = 5.0f;
     [SerializeField] private TextMeshProUGUI messageText;
 
-    private void Awake() => Setup();
+    private void Awake() => SetupUI();
 
-    public override void Setup()
+    public override void SetupUI()
     {
         Destroy(gameObject, DESTROY_TIME);
     }
