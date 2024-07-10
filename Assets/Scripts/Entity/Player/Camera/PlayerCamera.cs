@@ -36,7 +36,7 @@ public class PlayerCamera : Entity
 
     private void LateUpdate()
     {
-        if(PlayerEntity != null && PlayerEntity.IsAlive)
+        if(PlayerEntity != null && PlayerInput.InputEnabled)
         {
             // Follow the player's position smoothly...
             Vector2 mousePos = GetMousePos() * MAX_AIM_DIST;

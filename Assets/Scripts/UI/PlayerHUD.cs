@@ -27,8 +27,7 @@ public class PlayerHUD : UIComponent
     [SerializeField] private TextMeshProUGUI itemText;
 
     [Header("Other")]
-    [SerializeField] private Canvas playerHUDCanvas;
-    [SerializeField] private UICrosshair UICrosshair;
+    [SerializeField] private Canvas UICanvas;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI highscoreText;
     [SerializeField] private TextMeshProUGUI scoreMultiplierText;
@@ -111,7 +110,7 @@ public class PlayerHUD : UIComponent
     public void UpdateHighscoreText(int currentHighscore)
     {
         string highscoreMessage = LocalizationManager.GetMessage("highscoreText");
-        highscoreMessage = highscoreMessage.Replace("%highscore%", currentHighscore.ToString());
+        highscoreMessage = highscoreMessage.Replace("%highscore%", currentHighscore.ToString("N0"));
         highscoreText.text = highscoreMessage;
     }
 
@@ -130,20 +129,20 @@ public class PlayerHUD : UIComponent
     public void UpdateScore(int currentScore)
     {
         string scoreMessage = LocalizationManager.GetMessage("scoreText");
-        scoreMessage = scoreMessage.Replace("%currentScore%", currentScore.ToString());
+        scoreMessage = scoreMessage.Replace("%currentScore%", currentScore.ToString("N0"));
         scoreText.text = scoreMessage;
     }
 
     public void UpdateKilled(int killAmount)
     {
         string killsMessage = LocalizationManager.GetMessage("killsText");
-        killsMessage = killsMessage.Replace("%currentKills%", killAmount.ToString());
+        killsMessage = killsMessage.Replace("%currentKills%", killAmount.ToString("N0"));
         killText.text = killsMessage;
     }
 
     public void CreatePopupText(Vector2 spawnPos, string message, float scale = 1.0f)
     {
-        PopupTextUI.Create(spawnPos, message, playerHUDCanvas.transform, scale);
+        PopupTextUI.Create(spawnPos, message, UICanvas.transform, scale);
     }
 
     public void UpdateWeaponSelection(int slotIndex, int weaponCount, Sprite weaponSprite)

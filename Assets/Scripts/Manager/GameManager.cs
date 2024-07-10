@@ -24,7 +24,8 @@ public class GameManager : Singleton<GameManager>
         INACTIVE,
         PLAYING,
         PAUSED,
-        GAME_OVER
+        GAME_OVER,
+        LEVEL_CLEARED
     }
 
     private void Start()
@@ -92,10 +93,6 @@ public class GameManager : Singleton<GameManager>
         CurrentGameState = GameState.GAME_OVER;
         GameOverUI gameOverUI = UIManager.GetUIComponent<GameOverUI>();
         gameOverUI.Show();
-
-        // Pause game...
-        /*previousTimeScale = Time.timeScale;
-        Time.timeScale = 0;*/
     }
 
     public static void BackToMenu()
@@ -112,5 +109,8 @@ public class GameManager : Singleton<GameManager>
     public class GameStatistics
     {
         public int CurrentKills { get; set; } = 0;
+        public int UniqueWeaponsUsed { get; set; } = 0;
+        public int HighestKillstreak { get; set; } = 0;
+        public float DistanceCovered { get; set; } = 0;
     }
 }

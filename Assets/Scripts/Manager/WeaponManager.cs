@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,12 +17,14 @@ public class WeaponManager : Singleton<WeaponManager>
     private int selectedSlotIndex = 0;
     private PlayerHUD playerHUD;
     private Player playerEntity;
+    private KillCreativityManager killCreativityManager;
 
     private void Awake()
     {
         playerEntity = GetComponentInParent<Player>();
         playerMovement = GetComponentInParent<PlayerMovement>();
         playerCamera = FindFirstObjectByType<PlayerCamera>();
+        killCreativityManager = FindFirstObjectByType<KillCreativityManager>();
         playerHUD = UIManager.GetUIComponent<PlayerHUD>();
         AimParent = transform.Find("AimOrigin");
         WeaponParent = AimParent.Find("WeaponParent");
@@ -39,6 +40,13 @@ public class WeaponManager : Singleton<WeaponManager>
         GiveWeapon(shovelWeapon);
 
         UpdateSelectedWeapon();
+
+        NPC.OnNPCKilled += OnWeaponKill;
+    }
+
+    private void OnWeaponKill()
+    {
+        killCreativityManager.RegisterWeaponUse(SelectedWeapon.weaponID);
     }
 
     private void Update()

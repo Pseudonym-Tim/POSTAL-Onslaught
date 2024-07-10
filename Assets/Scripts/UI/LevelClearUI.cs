@@ -1,0 +1,166 @@
+using System.Collections;
+using TMPro;
+using UnityEngine;
+
+/// <summary>
+/// Handles everything related to the level clear screen...
+/// </summary>
+public class LevelClearUI : UIComponent
+{
+    [SerializeField] private Canvas UICanvas;
+    [SerializeField] private TextMeshProUGUI clearTimeText;
+    [SerializeField] private TextMeshProUGUI killstreakText;
+    [SerializeField] private TextMeshProUGUI areaCoveredText;
+    [SerializeField] private TextMeshProUGUI creativityText;
+    [SerializeField] private TextMeshProUGUI bonusText;
+    [SerializeField] private TextMeshProUGUI totalText;
+    [SerializeField] private TextMeshProUGUI continueText;
+    private ScoreManager scoreManager;
+    private string inactiveColor;
+    private string activeColor;
+    private float hoverOffset;
+
+    public override void SetupUI()
+    {
+        scoreManager = FindFirstObjectByType<ScoreManager>();
+        LoadJsonSettings();
+        Show(false);
+    }
+
+    private void Update()
+    {
+        // TODO: Remove later, just for debugging...
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            Show(true);
+        }
+    }
+
+    public void Show(bool showUI = true)
+    {
+        UICanvas.enabled = showUI;
+        if(!showUI) return;
+
+        PlayerInput.InputEnabled = false;
+        continueText.text = GetFormattedMessage("continueText", inactiveColor);
+        SetClearTime();
+        UpdateKillstreak();
+        UpdateAreaCovered();
+        UpdateCreativity();
+        StartCoroutine(AnimateScores());
+    }
+
+    private IEnumerator AnimateScores()
+    {
+        continueText.enabled = false;
+        yield return StartCoroutine(AnimateBonusText());
+        yield return StartCoroutine(AnimateTotalText());
+        continueText.enabled = true;
+    }
+
+    private IEnumerator AnimateBonusText()
+    {
+        string bonusMessage = LocalizationManager.GetMessage("bonusText", UIJsonIdentifier);
+        int bonusAmount = scoreManager.CalculateBonusScore();
+        int currentScore = 0;
+        float duration = 2.0f; // Duration of the count-up animation
+        float elapsed = 0;
+
+        while(elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            currentScore = Mathf.FloorToInt(Mathf.Lerp(0, bonusAmount, elapsed / duration));
+            bonusText.text = bonusMessage.Replace("%points%", currentScore.ToString("N0"));
+            yield return null;
+        }
+
+        bonusText.text = bonusMessage.Replace("%points%", bonusAmount.ToString("N0"));
+    }
+
+    private IEnumerator AnimateTotalText()
+    {
+        scoreManager.AwardBonusScore();
+        string totalMessage = LocalizationManager.GetMessage("totalText", UIJsonIdentifier);
+        int scoreAmount = scoreManager.CurrentScore;
+        int currentScore = 0;
+        float duration = 2.0f; // Duration of the count-up animation
+        float elapsed = 0;
+
+        while(elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            currentScore = Mathf.FloorToInt(Mathf.Lerp(0, scoreAmount, elapsed / duration));
+            totalText.text = totalMessage.Replace("%points%", currentScore.ToString("N0"));
+            yield return null;
+        }
+
+        totalText.text = totalMessage.Replace("%points%", scoreAmount.ToString("N0"));
+    }
+
+    public void ContinueGame()
+    {
+        Debug.Log("CONTINUE GAME!");
+    }
+
+    public void HoverContinueOption()
+    {
+        continueText.text = GetFormattedMessage("continueText", activeColor);
+        continueText.transform.localPosition += new Vector3(0, hoverOffset, 0);
+    }
+
+    public void UnhoverContinueOption()
+    {
+        continueText.text = GetFormattedMessage("continueText", inactiveColor);
+        continueText.transform.localPosition -= new Vector3(0, hoverOffset, 0);
+    }
+
+    private void UpdateCreativity()
+    {
+        string creativityMessage = LocalizationManager.GetMessage("creativityText", UIJsonIdentifier);
+        int uniqueWeaponCount = GameManager.GameStats.UniqueWeaponsUsed;
+        int maxCreativity = KillCreativityManager.MAX_CREATIVITY;
+        creativityMessage = creativityMessage.Replace("%rating%", uniqueWeaponCount.ToString());
+        creativityMessage = creativityMessage.Replace("%max%", maxCreativity.ToString());
+        creativityText.text = creativityMessage;
+    }
+
+    private void UpdateAreaCovered()
+    {
+        string areaConveredMessage = LocalizationManager.GetMessage("areaCoveredText", UIJsonIdentifier);
+        float distanceCovered = GameManager.GameStats.DistanceCovered;
+        areaConveredMessage = areaConveredMessage.Replace("%metersWalked%", distanceCovered.ToString("F2"));
+        areaCoveredText.text = areaConveredMessage;
+    }
+
+    private void UpdateKillstreak()
+    {
+        string killstreakMessage = LocalizationManager.GetMessage("killstreakText", UIJsonIdentifier);
+        int killstreakCount = GameManager.GameStats.HighestKillstreak;
+        killstreakMessage = killstreakMessage.Replace("%count%", killstreakCount.ToString());
+        killstreakText.text = killstreakMessage;
+    }
+
+    private void SetClearTime()
+    {
+        string timeMessage = LocalizationManager.GetMessage("timeText", UIJsonIdentifier);
+        string formattedTime = GameManager.GetFormattedTime();
+        timeMessage = timeMessage.Replace("%minutes%", formattedTime.Split(':')[0]);
+        timeMessage = timeMessage.Replace("%seconds%", formattedTime.Split(':')[1]);
+        clearTimeText.text = timeMessage;
+    }
+
+    private void LoadJsonSettings()
+    {
+        inactiveColor = (string)JsonData["options"]["inactiveColor"];
+        activeColor = (string)JsonData["options"]["activeColor"];
+        hoverOffset = (float)JsonData["options"]["hoverOffset"];
+    }
+
+    private string GetFormattedMessage(string messageKey, string color)
+    {
+        string message = LocalizationManager.GetMessage(messageKey, UIJsonIdentifier);
+        return message.Replace("%color%", color);
+    }
+
+    public override string UIJsonIdentifier => "level_clear_ui";
+}

@@ -135,12 +135,12 @@ public class NPC : Entity
         int scoreToAdd = (int)EntityData.jsonData["score"];
         ScoreManager scoreManager = FindFirstObjectByType<ScoreManager>();
         scoreManager.AddScore(scoreToAdd, true);
-        PlayerHUD playerHUD = UIManager.GetUIComponent<PlayerHUD>();
+        /*PlayerHUD playerHUD = UIManager.GetUIComponent<PlayerHUD>();
         Vector3 spawnPos = EntityPosition;
         spawnPos.y = EntityPosition.y + npcGFX.size.y;
         string pointsMessage = LocalizationManager.GetMessage("pointsMessage");
         pointsMessage = pointsMessage.Replace("%pointAmount%", scoreToAdd.ToString());
-        playerHUD.CreatePopupText(spawnPos, pointsMessage);
+        playerHUD.CreatePopupText(spawnPos, pointsMessage);*/
     }
 
     protected Player GetPlayer()

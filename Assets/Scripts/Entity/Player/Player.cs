@@ -15,6 +15,8 @@ public class Player : Entity
     protected int currentHealth = 0;
     private PlayerMovement playerMovement;
     private PlayerHUD playerHUD;
+    private PlayerDistanceTracker distanceTracker;
+    private KillCreativityManager killCreativityManager;
 
     public override void OnEntitySpawn()
     {
@@ -22,13 +24,21 @@ public class Player : Entity
         WeaponManager = GetComponentInChildren<WeaponManager>();
         InventoryManager = GetComponentInChildren<InventoryManager>();
         PlayerMovement = GetComponentInChildren<PlayerMovement>();
+        killCreativityManager = FindFirstObjectByType<KillCreativityManager>();
         playerHUD = UIManager.GetUIComponent<PlayerHUD>();
         PlayerCamera = GetComponentInChildren<PlayerCamera>();
+        distanceTracker = EntityObject.AddComponent<PlayerDistanceTracker>();
         PlayerCamera.Setup();
-        PlayerInput.InputEnabled = true;
         SetupEntityAnim();
-        EntityAnim.Play("Idle");
         currentHealth = maxHealth;
+    }
+
+    public override void OnLevelGenerated()
+    {
+        PlayerInput.InputEnabled = true;
+        killCreativityManager.Setup();
+        distanceTracker.Setup();
+        EntityAnim.Play("Idle");
         LastDamageInfo = null;
     }
 

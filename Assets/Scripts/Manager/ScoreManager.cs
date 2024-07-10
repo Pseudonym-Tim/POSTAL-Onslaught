@@ -29,6 +29,12 @@ public class ScoreManager : Singleton<ScoreManager>
             KillstreakAmount++;
             StopAllCoroutines();
             StartCoroutine(HandleScoreMultiplier(scoreToAdd * KillstreakAmount));
+
+            // Update highest killstreak...
+            if(KillstreakAmount > GameManager.GameStats.HighestKillstreak)
+            {
+                GameManager.GameStats.HighestKillstreak = KillstreakAmount;
+            }
         }
         else
         {
@@ -38,10 +44,9 @@ public class ScoreManager : Singleton<ScoreManager>
             {
                 CurrentScore = MAX_SCORE;
             }
-
-            playerHUD.UpdateScore(CurrentScore);
         }
 
+        playerHUD.UpdateScore(CurrentScore);
         CheckUpdateHighscore();
     }
 
@@ -112,5 +117,33 @@ public class ScoreManager : Singleton<ScoreManager>
         ResetKillstreak();
 
         CheckUpdateHighscore();
+    }
+
+    public void AwardBonusScore()
+    {
+        int bonusScore = CalculateBonusScore();
+        AddScore(bonusScore);
+        playerHUD.UpdateScore(CurrentScore);
+    }
+
+    public int CalculateBonusScore()
+    {
+        // Using GameStatistics and inGameTimer to calculate bonus score
+        GameManager.GameStatistics stats = GameManager.GameStats;
+        float gameTime = GameManager.inGameTimer;
+
+        // Formula for bonus score calculation...
+        int killBonus = stats.CurrentKills * 10; // 10 points per kill
+        int weaponBonus = stats.UniqueWeaponsUsed * 50; // 50 points per unique weapon used
+        int streakBonus = stats.HighestKillstreak * 100; // 100 points per highest kill streak
+        int distanceBonus = Mathf.FloorToInt(stats.DistanceCovered); // 1 point per unit distance
+
+        // Calculate time bonus (e.g., max bonus of 1000 points, reducing with time)...
+        const int maxTimeBonus = 1000;
+        const float maxTime = 600f / 2; // Optimal completion time (5 minutes)...
+        int timeBonus = Mathf.Clamp(Mathf.FloorToInt(maxTimeBonus * (1 - (gameTime / maxTime))), 0, maxTimeBonus);
+
+        int totalBonus = killBonus + weaponBonus + streakBonus + distanceBonus + timeBonus;
+        return totalBonus;
     }
 }

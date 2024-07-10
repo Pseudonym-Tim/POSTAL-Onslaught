@@ -6,16 +6,25 @@
     "weaponOwnedMessage": "<color=#ffffff>%weaponName% ALREADY OWNED!</color>",
     "pointsMessage": "<color=#ffffff>+%pointAmount% POINTS!</color>",
     "healthLabel": "<color=#ffffff>HEALTH</color>",
-    "killerLabel": "<color=#ffffff>KILLED BY:</color>",
     "tipMessages": [
         "<color=#ffffff>TIP: Use your health items wisely!</color>",
         "<color=#ffffff>TIP: Use melee attacks to conserve ammo!</color>",
         "<color=#ffffff>TIP: Explore thoroughly to find helpful items!</color>"
     ],
     "gameover_ui": {
+        "killerLabel": "<color=#ffffff>KILLED BY:</color>",
         "timeText": "<color=#ffffff>TIME: %minutes%:%seconds%</color>",
         "restartText": "<color=%color%>RESTART</color>",
         "quitText": "<color=%color%>QUIT TO MENU</color>"
+    },
+    "level_clear_ui": {
+        "timeText": "<color=#ffffff>TIME: %minutes%:%seconds%</color>",
+        "killstreakText": "<color=#ffffff>BEST KILLSTREAK: x%count%</color>",
+        "areaCoveredText": "<color=#ffffff>AREA COVERED: %metersWalked%M</color>",
+        "creativityText": "<color=#ffffff>CREATIVITY: %rating%/%max%</color>",
+        "bonusText": "<color=#ffffff>BONUS:\n+%points% POINTS</color>",
+        "totalText": "<color=#ffffff>TOTAL:\n%points% POINTS!</color>",
+        "continueText": "<color=%color%>CONTINUE!</color>"
     },
     "endLevelMessage": "<color=#ffffff>GO BACK HOME!</color>",
     "restoreHPMessage": "<color=#ffffff>+%hpAmount% HP!</color>",

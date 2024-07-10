@@ -9,7 +9,7 @@ using UnityEngine.UI;
 /// </summary>
 public class GameOverUI : UIComponent
 {
-    [SerializeField] private Canvas uiCanvas;
+    [SerializeField] private Canvas UICanvas;
     [SerializeField] private Animator killerAnimator;
     [SerializeField] private Image killerImage;
     [SerializeField] private List<TextMeshProUGUI> menuOptions;
@@ -24,31 +24,22 @@ public class GameOverUI : UIComponent
     public override void SetupUI()
     {
         playerHUD = UIManager.GetUIComponent<PlayerHUD>();
-        killerLabelText.text = LocalizationManager.GetMessage("killerLabel");
+        killerLabelText.text = LocalizationManager.GetMessage("killerLabel", UIJsonIdentifier);
         LoadJsonSettings();
         Show(false);
-        UpdateMenuOptions();
-    }
-
-    public override void ResetUI()
-    {
-        UpdateMenuOptions();
+        SetOptionsInactive();
     }
 
     public void Show(bool showUI = true)
     {
-        uiCanvas.enabled = showUI;
+        UICanvas.enabled = showUI;
         if(!showUI) return;
 
+        SetOptionsInactive();
         tipText.text = GetTipMessage();
         SetKillerAnimation();
         SetNativePivot(killerImage);
-
-        string timeMessage = LocalizationManager.GetMessage("timeText", UIJsonIdentifier);
-        string formattedTime = GameManager.GetFormattedTime();
-        timeMessage = timeMessage.Replace("%minutes%", formattedTime.Split(':')[0]);
-        timeMessage = timeMessage.Replace("%seconds%", formattedTime.Split(':')[1]);
-        timeText.text = timeMessage;
+        SetTime();
 
         playerHUD.ShowHealthIndicator(false);
         playerHUD.ShowInventory(false);
@@ -56,9 +47,18 @@ public class GameOverUI : UIComponent
         playerHUD.ShowScoreMultiplier(false);
     }
 
+    private void SetTime()
+    {
+        string timeMessage = LocalizationManager.GetMessage("timeText", UIJsonIdentifier);
+        string formattedTime = GameManager.GetFormattedTime();
+        timeMessage = timeMessage.Replace("%minutes%", formattedTime.Split(':')[0]);
+        timeMessage = timeMessage.Replace("%seconds%", formattedTime.Split(':')[1]);
+        timeText.text = timeMessage;
+    }
+
     private void LateUpdate()
     {
-        if(killerImage.sprite != null && uiCanvas.enabled)
+        if(killerImage.sprite != null && UICanvas.enabled)
         {
             SetNativePivot(killerImage);
         }
@@ -110,7 +110,7 @@ public class GameOverUI : UIComponent
         }
     }
 
-    private void UpdateMenuOptions()
+    private void SetOptionsInactive()
     {
         menuOptions[0].text = GetFormattedMessage("restartText", inactiveColor);
         menuOptions[1].text = GetFormattedMessage("quitText", inactiveColor);

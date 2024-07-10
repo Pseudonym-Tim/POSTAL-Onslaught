@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,7 +11,7 @@ public class HurtFlash : MonoBehaviour
 {
     private static readonly int HURT_FLASH_PROPERTY = Shader.PropertyToID("_HurtFlash");
     private const float DEFAULT_FLASH_TIME = 0.1f;
-    private SpriteRenderer[] spriteRenderers;
+    private List<SpriteRenderer> flashSpriteRenderers;
 
     public static void ApplyHurtFlash(Entity entity, float flashTime = DEFAULT_FLASH_TIME)
     {
@@ -20,9 +21,26 @@ public class HurtFlash : MonoBehaviour
 
     public void Setup(float flashTime = DEFAULT_FLASH_TIME)
     {
-        spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
-        StopAllCoroutines();
-        StartCoroutine(PerformFlash(flashTime));
+        flashSpriteRenderers = new List<SpriteRenderer>();
+        SpriteRenderer[] spriteRendererList = GetComponentsInChildren<SpriteRenderer>();
+
+        foreach(SpriteRenderer spriteRenderer in spriteRendererList)
+        {
+            if(spriteRenderer.material.HasProperty(HURT_FLASH_PROPERTY))
+            {
+                flashSpriteRenderers.Add(spriteRenderer);
+            }
+        }
+
+        if(flashSpriteRenderers.Count > 0)
+        {
+            StopAllCoroutines();
+            StartCoroutine(PerformFlash(flashTime));
+        }
+        else
+        {
+            Destroy(this);
+        }
     }
 
     private IEnumerator PerformFlash(float flashTime)
@@ -35,7 +53,7 @@ public class HurtFlash : MonoBehaviour
 
     private void SetHurtFlash(float value)
     {
-        foreach(SpriteRenderer spriteRenderer in spriteRenderers)
+        foreach(SpriteRenderer spriteRenderer in flashSpriteRenderers)
         {
             Material material = spriteRenderer.material;
             material.SetFloat(HURT_FLASH_PROPERTY, value);
