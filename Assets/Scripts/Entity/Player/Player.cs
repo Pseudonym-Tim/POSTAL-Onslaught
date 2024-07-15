@@ -35,6 +35,7 @@ public class Player : Entity
 
     public override void OnLevelGenerated()
     {
+        playerHUD.UpdateHealthIndicator(currentHealth, maxHealth);
         PlayerInput.InputEnabled = true;
         killCreativityManager.Setup();
         distanceTracker.Setup();

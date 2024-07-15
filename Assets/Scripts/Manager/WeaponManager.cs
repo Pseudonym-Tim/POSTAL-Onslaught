@@ -34,10 +34,10 @@ public class WeaponManager : Singleton<WeaponManager>
         Weapon pistolWeapon = prefabDatabase.GetPrefab<Weapon>("Pistol");
         GiveWeapon(pistolWeapon);*/
 
-        // Give the player the shovel by default...
+        // Give the player the protester sign by default...
         PrefabDatabase prefabDatabase = FindFirstObjectByType<PrefabDatabase>();
-        Weapon shovelWeapon = prefabDatabase.GetPrefab<Weapon>("Shovel");
-        GiveWeapon(shovelWeapon);
+        Weapon protesterSignWeapon = prefabDatabase.GetPrefab<Weapon>("ProtesterSign");
+        GiveWeapon(protesterSignWeapon);
 
         UpdateSelectedWeapon();
 
@@ -171,9 +171,12 @@ public class WeaponManager : Singleton<WeaponManager>
             }
 
             // Set selected weapon...
-            SelectedWeapon = currentWeapons[selectedSlotIndex];
-            SelectedWeapon.OnWeaponSelected();
-            playerHUD.UpdateWeaponSelection(SelectedSlotIndex, WeaponCount, SelectedWeapon.weaponSprite);
+            if(SelectedWeapon != currentWeapons[selectedSlotIndex])
+            {
+                SelectedWeapon = currentWeapons[selectedSlotIndex];
+                SelectedWeapon.OnWeaponSelected();
+                playerHUD.UpdateWeaponSelection(SelectedSlotIndex, WeaponCount, SelectedWeapon.weaponIconSprite);
+            }
         }
     }
 

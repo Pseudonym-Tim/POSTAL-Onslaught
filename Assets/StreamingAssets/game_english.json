@@ -3,7 +3,7 @@
     "pickupMessage": "<color=#ffffff>%pickupName%!</color>",
     "interactButton": "<color=#ffffff>[%interactButton%]</color>",
     "pickupInteractMessage": "<color=#ffffff>PICK UP</color>\n",
-    "weaponOwnedMessage": "<color=#ffffff>%weaponName% ALREADY OWNED!</color>",
+    "weaponOwnedMessage": "<color=#ffffff>ALREADY OWNED!</color>",
     "pointsMessage": "<color=#ffffff>+%pointAmount% POINTS!</color>",
     "healthLabel": "<color=#ffffff>HEALTH</color>",
     "tipMessages": [
@@ -11,6 +11,12 @@
         "<color=#ffffff>TIP: Use melee attacks to conserve ammo!</color>",
         "<color=#ffffff>TIP: Explore thoroughly to find helpful items!</color>"
     ],
+    "pause_ui": {
+        "pauseLabel": "<color=#ffffff>GAME PAUSED!</color>",
+        "resumeText": "<color=%color%>RESUME!</color>",
+        "quitText": "<color=%color%>QUIT TO MENU!</color>",
+        "timeText": "<color=#ffffff>TIME: %minutes%:%seconds%</color>"
+    },
     "gameover_ui": {
         "killerLabel": "<color=#ffffff>KILLED BY:</color>",
         "timeText": "<color=#ffffff>TIME: %minutes%:%seconds%</color>",
@@ -33,6 +39,5 @@
     "healthAmountText": "<color=#ffffff>%currentHealth%/%maxHealth%</color>",
     "itemText": "<color=#ffffff>%itemMessage%</color>",
     "scoreText": "<color=#ffffff>SCORE:%currentScore%</color>",
-    "highscoreText": "<color=#ffffff>HIGHSCORE:%highscore%</color>",
-    "killsText": "<color=#ffffff>KILLS:%currentKills%</color>"
+    "highscoreText": "<color=#ffffff>HIGHSCORE:%highscore%</color>"
 }

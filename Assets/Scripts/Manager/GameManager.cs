@@ -12,7 +12,6 @@ public class GameManager : Singleton<GameManager>
     public const string GAME_NAME = "POSTAL: Onslaught";
 
     public static GameState CurrentGameState { get; set; } = GameState.INACTIVE;
-    public static GameStatistics GameStats { get; private set; } = null;
     public static ScoreManager scoreManager;
     public static LevelManager levelManager;
     public static LevelNavmesher levelNavmesher;
@@ -33,6 +32,7 @@ public class GameManager : Singleton<GameManager>
         scoreManager = FindFirstObjectByType<ScoreManager>();
         levelManager = FindFirstObjectByType<LevelManager>();
         levelNavmesher = FindFirstObjectByType<LevelNavmesher>();
+        levelNavmesher.Setup();
         StartGame();
     }
 
@@ -46,11 +46,18 @@ public class GameManager : Singleton<GameManager>
 
     public static void StartGame()
     {
-        GameStats = new GameStatistics();
         scoreManager.Setup();
-        levelNavmesher.Setup();
+        LevelManager.CurrentLevel = 0;
+        levelManager.RemoveEntities(true);
+        PlayerCamera playerCamera = FindFirstObjectByType<PlayerCamera>();
+        playerCamera?.DestroyEntity();
         levelManager.CreateLevel();
         UIManager.SetupUI();
+        BeginPlaying();
+    }
+
+    public static void BeginPlaying()
+    {
         CurrentGameState = GameState.PLAYING;
         Time.timeScale = GAME_TIMESCALE;
         inGameTimer = 0.0f;
@@ -75,6 +82,7 @@ public class GameManager : Singleton<GameManager>
             previousTimeScale = Time.timeScale;
             Time.timeScale = 0;
             CurrentGameState = GameState.PAUSED;
+            PlayerInput.InputEnabled = false;
         }
     }
 
@@ -85,6 +93,7 @@ public class GameManager : Singleton<GameManager>
             Time.timeScale = previousTimeScale;
             previousTimeScale = 0;
             CurrentGameState = GameState.PLAYING;
+            PlayerInput.InputEnabled = true;
         }
     }
 
@@ -103,14 +112,5 @@ public class GameManager : Singleton<GameManager>
     public static void QuitGame()
     {
         Application.Quit();
-    }
-
-    [System.Serializable]
-    public class GameStatistics
-    {
-        public int CurrentKills { get; set; } = 0;
-        public int UniqueWeaponsUsed { get; set; } = 0;
-        public int HighestKillstreak { get; set; } = 0;
-        public float DistanceCovered { get; set; } = 0;
     }
 }

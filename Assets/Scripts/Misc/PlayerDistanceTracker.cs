@@ -29,6 +29,6 @@ public class PlayerDistanceTracker : MonoBehaviour
         float distanceCovered = Vector2.Distance(playerEntity.EntityPosition, lastPosition);
         totalDistance += distanceCovered;
         lastPosition = playerEntity.EntityPosition;
-        GameManager.GameStats.DistanceCovered = totalDistance;
+        LevelManager.LevelStats.DistanceCovered = totalDistance;
     }
 }

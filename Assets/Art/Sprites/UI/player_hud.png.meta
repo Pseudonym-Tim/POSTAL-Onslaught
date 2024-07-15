@@ -175,10 +175,10 @@ TextureImporter:
       name: player_hud_weapon_slot
       rect:
         serializedVersion: 2
-        x: 43
+        x: 42
         y: 169
-        width: 40
-        height: 36
+        width: 41
+        height: 37
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -18,6 +18,7 @@ public class ProtesterNPC : NPC
 
     public override void OnEntitySpawn()
     {
+        // TODO: Remove later, for debugging purposes only!
         InvokeRepeating(nameof(CheckDamagePlayer), 1, 1f);
     }
 
@@ -27,9 +28,9 @@ public class ProtesterNPC : NPC
         BeginRoaming();
     }
 
+    // TODO: Remove later, for debugging purposes only!
     private void CheckDamagePlayer()
     {
-        // TODO: Remove later!
         if(playerEntity.IsAlive)
         {
             if(Vector2.Distance(EntityPosition, playerEntity.EntityPosition) < 1.25f)
@@ -60,8 +61,6 @@ public class ProtesterNPC : NPC
                         Vector3 destinationPos = LevelNavmesher.GetRandomPosition(EntityPosition, roamRadius);
                         NPCNavigation.SetDestination(destinationPos);
                     }
-
-                    
 
                     break;
                 case AIState.KNOCKBACK:
@@ -101,7 +100,7 @@ public class ProtesterNPC : NPC
 
     protected override void OnDeath()
     {
-        
+        currentAIState = AIState.DEAD;
     }
 
     protected override void OnTakeDamage(DamageInfo damageInfo)

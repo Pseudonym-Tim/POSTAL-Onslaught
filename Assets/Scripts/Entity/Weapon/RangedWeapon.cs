@@ -20,9 +20,17 @@ public class RangedWeapon : Weapon
 
     protected override void OnEntityUpdate()
     {
-        if(weaponManager.IsPlayerArmed)
+        if(!PlayerInput.InputEnabled)
         {
-            UpdateShooting();
+            shotDelayTimer = INPUT_DELAY;
+        }
+
+        if(playerEntity.IsAlive && PlayerInput.InputEnabled)
+        {
+            if(weaponManager.IsPlayerArmed)
+            {
+                UpdateShooting();
+            }
         }
     }
 
@@ -81,8 +89,9 @@ public class RangedWeapon : Weapon
                 attackerEntity = playerEntity,
             };
 
-            // Deal damage to npc if we hit them...
+            // Hurt, knockback...
             npcHit?.TakeDamage(damageInfo);
+            npcHit?.ApplyKnockback(hurtKnockbackInfo, damageInfo.damageOrigin);
 
             // Hit visualization...
             Debug.DrawLine(origin, hit.point, Color.red, 0.5f);

@@ -31,7 +31,6 @@ public class PlayerHUD : UIComponent
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI highscoreText;
     [SerializeField] private TextMeshProUGUI scoreMultiplierText;
-    [SerializeField] private TextMeshProUGUI killText;
     [SerializeField] private TextMeshProUGUI taskText;
     [SerializeField] private TextMeshProUGUI interactText;
 
@@ -39,8 +38,6 @@ public class PlayerHUD : UIComponent
     {
         string healthLabel = LocalizationManager.GetMessage("healthLabel");
         healthLabelText.text = healthLabel;
-        UpdateScore(0);
-        UpdateKilled(0);
         ShowScoreMultiplier(false); 
         UpdateInteractionText(Vector2.zero, null, false);
         ShowHealthIndicator(true);
@@ -65,6 +62,8 @@ public class PlayerHUD : UIComponent
         itemMessage = itemMessage.Replace("%itemMessage%", itemQuantityMessage);
         itemText.text = itemMessage;
         itemImage.sprite = itemSprite;
+        ImageHelper.SetNativeSize(itemImage, 4);
+        ImageHelper.SetNativePivot(itemImage);
         itemImage.enabled = itemQuantity > 0 ? true : false;
     }
 
@@ -133,13 +132,6 @@ public class PlayerHUD : UIComponent
         scoreText.text = scoreMessage;
     }
 
-    public void UpdateKilled(int killAmount)
-    {
-        string killsMessage = LocalizationManager.GetMessage("killsText");
-        killsMessage = killsMessage.Replace("%currentKills%", killAmount.ToString("N0"));
-        killText.text = killsMessage;
-    }
-
     public void CreatePopupText(Vector2 spawnPos, string message, float scale = 1.0f)
     {
         PopupTextUI.Create(spawnPos, message, UICanvas.transform, scale);
@@ -150,6 +142,8 @@ public class PlayerHUD : UIComponent
         // Update weapon slots...
         UpdateWeaponSlots(slotIndex, weaponCount);
         currentWeaponImage.sprite = weaponSprite;
+        ImageHelper.SetNativeSize(currentWeaponImage, 4);
+        ImageHelper.SetNativePivot(currentWeaponImage);
     }
 
     private void UpdateWeaponSlots(int slotIndex, int weaponCount)

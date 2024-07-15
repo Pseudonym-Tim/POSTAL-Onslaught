@@ -70,20 +70,28 @@ public class WeaponPickup : PickupEntity
 
         if(!weaponManager.IsWeaponOwned(weaponToGive.weaponID))
         {
-            bool weaponGiven = weaponManager.GiveWeapon(weaponToGive, true);
-            if(!weaponGiven) { return; }
-            if(weaponGiven) { SpawnPickupText(weaponToGive.weaponName); }
+            if(weaponManager.WeaponCount < WeaponManager.MAX_SLOTS)
+            {
+                bool weaponGiven = weaponManager.GiveWeapon(weaponToGive, true);
+                if(weaponGiven) { SpawnPickupText(weaponToGive.weaponName); }
+            }
+            else
+            {
+                string selectedWeaponID = weaponManager.SelectedWeapon.weaponID;
+                int currentWeaponSlot = weaponManager.SelectedSlotIndex;
+                weaponManager.ReplaceWeapon(currentWeaponSlot, weaponToGive);
+                Create(selectedWeaponID, EntityPosition);
+            }
         }
         else
         {
             Vector3 spawnPos = EntityPosition + Vector3.up * pickupGFX.size.y;
             string popupMessage = LocalizationManager.GetMessage("weaponOwnedMessage");
-            popupMessage = popupMessage.Replace("%weaponName%", weaponToGive.weaponName);
             playerHUD.CreatePopupText(spawnPos, popupMessage);
             return;
         }
 
-        DestroyEntity();
+        levelManager.RemoveEntity(this);
     }
 
     public void SetWeapon(string weaponID)

@@ -7,6 +7,13 @@
             "unavailableColor": "#5d5d5d"
         }
     },
+    "pause_ui": {
+        "options": {
+            "activeColor": "#ffffff",
+            "inactiveColor": "#c7cfdd",
+            "hoverOffset": 3
+        }
+    },
     "gameover_ui": {
         "options": {
             "activeColor": "#ffffff",

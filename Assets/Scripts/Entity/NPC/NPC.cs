@@ -13,7 +13,6 @@ public class NPC : Entity
     private const float HURT_FLASH_TIME = 0.1f;
     [SerializeField] protected int maxHealth = 10;
     [SerializeField] protected float moveSpeed = 10;
-    [SerializeField] protected KnockbackInfo hurtKnockbackInfo;
     public AnimationClip killerAnimation;
     protected int currentHealth = 0;
     protected Player playerEntity;
@@ -47,7 +46,6 @@ public class NPC : Entity
         {
             currentHealth -= damageInfo.damageAmount;
             OnTakeDamage(damageInfo);
-            ApplyKnockback(hurtKnockbackInfo, damageInfo.damageOrigin);
             HurtFlash.ApplyHurtFlash(this, HURT_FLASH_TIME);
 
             // We died from that hit?
@@ -56,9 +54,10 @@ public class NPC : Entity
                 currentHealth = 0;
                 CheckDropItem();
                 AddPlayerScore();
-                UpdatePlayerKill();
                 OnNPCKilled?.Invoke();
                 OnDeath();
+                OnKnockbackEnd();
+                StopAllCoroutines();
                 levelManager.RemoveEntity(this, 0.1f); // TODO: Add actual death animation or effect instead...
                 return;
             }
@@ -67,13 +66,6 @@ public class NPC : Entity
                 Debug.Log($"[{ name }] took [{ damageInfo.damageAmount }] damage!");
             }
         }
-    }
-
-    private void UpdatePlayerKill()
-    {
-        int currentKills = ++GameManager.GameStats.CurrentKills;
-        PlayerHUD playerHUD = UIManager.GetUIComponent<PlayerHUD>();
-        playerHUD.UpdateKilled(currentKills);
     }
 
     public void CheckDropItem()
@@ -135,12 +127,6 @@ public class NPC : Entity
         int scoreToAdd = (int)EntityData.jsonData["score"];
         ScoreManager scoreManager = FindFirstObjectByType<ScoreManager>();
         scoreManager.AddScore(scoreToAdd, true);
-        /*PlayerHUD playerHUD = UIManager.GetUIComponent<PlayerHUD>();
-        Vector3 spawnPos = EntityPosition;
-        spawnPos.y = EntityPosition.y + npcGFX.size.y;
-        string pointsMessage = LocalizationManager.GetMessage("pointsMessage");
-        pointsMessage = pointsMessage.Replace("%pointAmount%", scoreToAdd.ToString());
-        playerHUD.CreatePopupText(spawnPos, pointsMessage);*/
     }
 
     protected Player GetPlayer()

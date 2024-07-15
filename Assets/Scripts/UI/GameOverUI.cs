@@ -9,7 +9,7 @@ using UnityEngine.UI;
 /// </summary>
 public class GameOverUI : UIComponent
 {
-    [SerializeField] private Canvas UICanvas;
+    public Canvas UICanvas;
     [SerializeField] private Animator killerAnimator;
     [SerializeField] private Image killerImage;
     [SerializeField] private List<TextMeshProUGUI> menuOptions;
@@ -38,7 +38,8 @@ public class GameOverUI : UIComponent
         SetOptionsInactive();
         tipText.text = GetTipMessage();
         SetKillerAnimation();
-        SetNativePivot(killerImage);
+        ImageHelper.SetNativeSize(killerImage, 4);
+        ImageHelper.SetNativePivot(killerImage, ImageHelper.PivotAxis.X);
         SetTime();
 
         playerHUD.ShowHealthIndicator(false);
@@ -60,7 +61,7 @@ public class GameOverUI : UIComponent
     {
         if(killerImage.sprite != null && UICanvas.enabled)
         {
-            SetNativePivot(killerImage);
+            ImageHelper.SetNativePivot(killerImage, ImageHelper.PivotAxis.X);
         }
     }
 
@@ -69,14 +70,6 @@ public class GameOverUI : UIComponent
         JArray tipMessages = (JArray)LocalizationManager.JsonData["tipMessages"];
         int randomIndex = Random.Range(0, tipMessages.Count);
         return (string)tipMessages[randomIndex];
-    }
-
-    public static void SetNativePivot(Image image)
-    {
-        Vector2 pivotPixel = image.sprite.pivot;
-        Rect spriteRect = image.sprite.rect;
-        Vector2 pivotNormalized = new Vector2(pivotPixel.x / spriteRect.width, pivotPixel.y / spriteRect.height);
-        image.rectTransform.pivot = new Vector2(pivotNormalized.x, image.rectTransform.pivot.y);
     }
 
     public void SetKillerAnimation()
@@ -121,8 +114,8 @@ public class GameOverUI : UIComponent
         switch(optionIndex)
         {
             case 0:
-                Debug.Log("RESTART GAME!");
-                // TODO: Restart the game...
+                GameManager.RestartGame();
+                Show(false);
                 break;
             case 1:
                 Debug.Log("QUIT TO MENU!");

@@ -1,19 +1,10 @@
 fileFormatVersion: 2
-guid: 9302dd102e9bc814cab7911d01fa6e58
+guid: 82f3b11e31400b543a1bff44bfe17bac
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7979053764633992946
-    second: player_weapon_handheld_0
-  - first:
-      213: -3665993490749461982
-    second: player_weapon_handheld_1
-  - first:
-      213: 6262115353604618317
-    second: player_weapon_handheld_2
-  - first:
-      213: -7058153222307890182
-    second: player_weapon_handheld_3
+      213: 2781533676904308770
+    second: weapon_icons_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,127 +100,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: weapon_handheld_pistol
+      name: weapon_icon_protester_sign
       rect:
         serializedVersion: 2
-        x: 4
+        x: 2
         y: 40
-        width: 13
-        height: 11
-      alignment: 9
-      pivot: {x: 0.30769232, y: 0.36363637}
+        width: 27
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2fe90c4cf1b4bbe60800000000000000
-      internalID: 7979053764633992946
+      spriteID: 220eaa6542ef99620800000000000000
+      internalID: 2781533676904308770
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapon_handheld_boomstick
-      rect:
-        serializedVersion: 2
-        x: 3
-        y: 27
-        width: 19
-        height: 10
-      alignment: 9
-      pivot: {x: 0.175, y: 0.4}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0f9329ecc481cdb43aac15d1dbd75cac
-      internalID: -1777766370
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: weapon_handheld_jk74
-      rect:
-        serializedVersion: 2
-        x: 4
-        y: 11
-        width: 26
-        height: 10
-      alignment: 9
-      pivot: {x: 0.30769232, y: 0.4}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: bb36d612ebceb694ebe7eefe44059bfb
-      internalID: 206336019
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: weapon_handheld_revolver
+      name: weapon_icon_shovel
       rect:
         serializedVersion: 2
         x: 35
-        y: 5
-        width: 17
+        y: 43
+        width: 28
         height: 11
-      alignment: 9
-      pivot: {x: 0.1764706, y: 0.36363637}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15e86a2c733ee394f9c617a8ff525531
-      internalID: -1881524122
+      spriteID: 1f6a7c7c9cae0c44081608a64e8340c5
+      internalID: -942184208
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapon_handheld_shovel
+      name: weapon_icon_jk-74
       rect:
         serializedVersion: 2
-        x: 52
-        y: 27
-        width: 9
-        height: 27
-      alignment: 9
-      pivot: {x: 0.5, y: 0.32692307}
+        x: 31
+        y: 23
+        width: 26
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 13ce284b1267d1b44971ab8567bcce74
-      internalID: -1871915730
+      spriteID: 0dd7e9d0d92587a4ca3135b7f67029a3
+      internalID: -734566610
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: weapon_handheld_protester_sign
+      name: weapon_icon_boomstick
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 22
+        width: 22
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c45f5015d539cf4394bfdab9d9e281d
+      internalID: -1096243812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon_icon_pistol
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 6
+        width: 14
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b941037a8bb8c344ac308917d58783a
+      internalID: 750061153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon_icon_revolver
       rect:
         serializedVersion: 2
         x: 32
-        y: 27
-        width: 16
-        height: 26
-      alignment: 9
-      pivot: {x: 0.59375, y: 0.23076923}
+        y: 5
+        width: 19
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a7490898f74850044aa556ba63d3d874
-      internalID: -2026353953
+      spriteID: 33d1e7d1b7df57a41b5f23a7267ffc3d
+      internalID: 305230219
       vertices: []
       indices: 
       edges: []
@@ -237,7 +228,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 020430c8bf05faf4ab1ba0705ac12166
+    spriteID: 7bc23c2d3b16416418276560d49ee5dd
     internalID: 0
     vertices: []
     indices: 
@@ -245,15 +236,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      player_weapon_handheld_1: -3665993490749461982
-      player_weapon_handheld_2: 6262115353604618317
-      player_weapon_handheld_3: -7058153222307890182
-      weapon_handheld_boomstick: -1777766370
-      weapon_handheld_jk74: 206336019
-      weapon_handheld_pistol: 7979053764633992946
-      weapon_handheld_protester_sign: -2026353953
-      weapon_handheld_revolver: -1881524122
-      weapon_handheld_shovel: -1871915730
+      weapon_icon_boomstick: -1096243812
+      weapon_icon_jk-74: -734566610
+      weapon_icon_pistol: 750061153
+      weapon_icon_protester_sign: 2781533676904308770
+      weapon_icon_revolver: 305230219
+      weapon_icon_shovel: -942184208
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

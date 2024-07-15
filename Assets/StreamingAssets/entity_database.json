@@ -19,7 +19,8 @@
             "weapon_jk74",
             "weapon_revolver",
             "weapon_pistol",
-            "weapon_shovel"
+            "weapon_shovel",
+            "weapon_protester_sign"
         ]
     },
     "item_pickup": {
@@ -38,6 +39,9 @@
     },
     "weapon_shovel": {
         "prefab": "Shovel"
+    },
+    "weapon_protester_sign": {
+        "prefab": "ProtesterSign"
     },
     "weapon_revolver": {
         "prefab": "Revolver"

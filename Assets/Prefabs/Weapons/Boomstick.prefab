@@ -49,6 +49,10 @@ MonoBehaviour:
   weaponGFX: {fileID: 1180981573303304480}
   weaponSprite: {fileID: 5311101395578890638, guid: 81e08f46a970021468c93c7900d5c17a, type: 3}
   weaponHeldSprite: {fileID: -1777766370, guid: 9302dd102e9bc814cab7911d01fa6e58, type: 3}
+  weaponIconSprite: {fileID: -1096243812, guid: 82f3b11e31400b543a1bff44bfe17bac, type: 3}
+  hurtKnockbackInfo:
+    force: 4
+    duration: 0.25
   weaponID: weapon_boomstick
   weaponName: Boomstick
   fireRate: 0.55

@@ -7,9 +7,12 @@ using UnityEngine;
 /// </summary>
 public class Weapon : Entity
 {
+    protected const float INPUT_DELAY = 0.5f;
     public SpriteRenderer weaponGFX;
     public Sprite weaponSprite;
     public Sprite weaponHeldSprite;
+    public Sprite weaponIconSprite;
+    public KnockbackInfo hurtKnockbackInfo;
     public string weaponID = "new_weapon";
     public string weaponName = "NewWeapon";
     protected WeaponManager weaponManager;

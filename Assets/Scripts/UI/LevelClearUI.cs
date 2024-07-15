@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class LevelClearUI : UIComponent
 {
-    [SerializeField] private Canvas UICanvas;
+    public Canvas UICanvas;
     [SerializeField] private TextMeshProUGUI clearTimeText;
     [SerializeField] private TextMeshProUGUI killstreakText;
     [SerializeField] private TextMeshProUGUI areaCoveredText;
@@ -41,6 +41,11 @@ public class LevelClearUI : UIComponent
         UICanvas.enabled = showUI;
         if(!showUI) return;
 
+        // Make sure pause menu is closed...
+        PauseUI pauseUI = UIManager.GetUIComponent<PauseUI>();
+        pauseUI.Show(false);
+
+        GameManager.CurrentGameState = GameManager.GameState.LEVEL_CLEARED;
         PlayerInput.InputEnabled = false;
         continueText.text = GetFormattedMessage("continueText", inactiveColor);
         SetClearTime();
@@ -99,7 +104,9 @@ public class LevelClearUI : UIComponent
 
     public void ContinueGame()
     {
-        Debug.Log("CONTINUE GAME!");
+        Show(false);
+        LevelManager levelManager = FindFirstObjectByType<LevelManager>();
+        levelManager.RestartLevel();
     }
 
     public void HoverContinueOption()
@@ -117,7 +124,7 @@ public class LevelClearUI : UIComponent
     private void UpdateCreativity()
     {
         string creativityMessage = LocalizationManager.GetMessage("creativityText", UIJsonIdentifier);
-        int uniqueWeaponCount = GameManager.GameStats.UniqueWeaponsUsed;
+        int uniqueWeaponCount = LevelManager.LevelStats.UniqueWeaponsUsed;
         int maxCreativity = KillCreativityManager.MAX_CREATIVITY;
         creativityMessage = creativityMessage.Replace("%rating%", uniqueWeaponCount.ToString());
         creativityMessage = creativityMessage.Replace("%max%", maxCreativity.ToString());
@@ -127,7 +134,7 @@ public class LevelClearUI : UIComponent
     private void UpdateAreaCovered()
     {
         string areaConveredMessage = LocalizationManager.GetMessage("areaCoveredText", UIJsonIdentifier);
-        float distanceCovered = GameManager.GameStats.DistanceCovered;
+        float distanceCovered = LevelManager.LevelStats.DistanceCovered;
         areaConveredMessage = areaConveredMessage.Replace("%metersWalked%", distanceCovered.ToString("F2"));
         areaCoveredText.text = areaConveredMessage;
     }
@@ -135,7 +142,7 @@ public class LevelClearUI : UIComponent
     private void UpdateKillstreak()
     {
         string killstreakMessage = LocalizationManager.GetMessage("killstreakText", UIJsonIdentifier);
-        int killstreakCount = GameManager.GameStats.HighestKillstreak;
+        int killstreakCount = LevelManager.LevelStats.HighestKillstreak;
         killstreakMessage = killstreakMessage.Replace("%count%", killstreakCount.ToString());
         killstreakText.text = killstreakMessage;
     }

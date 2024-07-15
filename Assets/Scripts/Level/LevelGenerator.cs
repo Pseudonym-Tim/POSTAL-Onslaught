@@ -101,6 +101,16 @@ public class LevelGenerator : Singleton<LevelGenerator>
         List<LevelTile> validSpawnTiles = GetValidSpawnTiles(spawnTileID, minBoundsDist);
         if(validSpawnTiles.Count == 0) { return; }
         LevelTile spawnTile = validSpawnTiles[Random.Range(0, validSpawnTiles.Count)];
+
+        // Just reposition and reparent the player entity if they already exist...
+        if(entityID == "player_dude" && levelManager.GetEntity<Player>())
+        {
+            Player playerEntity = levelManager.GetEntity<Player>();
+            playerEntity.EntityPosition = spawnTile.TilePosition;
+            playerEntity.SetParent(EntityParent.transform);
+            return;
+        }
+
         SpawnEntity(entityID, spawnTile.TilePosition);
     }
 

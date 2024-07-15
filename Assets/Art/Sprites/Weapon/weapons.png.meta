@@ -113,7 +113,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 7
-        y: 22
+        y: 31
         width: 22
         height: 12
       alignment: 0
@@ -134,7 +134,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 33
-        y: 23
+        y: 32
         width: 26
         height: 12
       alignment: 0
@@ -155,7 +155,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 10
-        y: 6
+        y: 15
         width: 14
         height: 12
       alignment: 0
@@ -176,7 +176,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 34
-        y: 5
+        y: 14
         width: 19
         height: 13
       alignment: 0
@@ -197,7 +197,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 65
-        y: 25
+        y: 34
         width: 28
         height: 11
       alignment: 0
@@ -209,6 +209,27 @@ TextureImporter:
       bones: []
       spriteID: ad33c875dbb5a3d4ba59b1e5dde1cc19
       internalID: -32322315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon_protester_sign
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 6
+        width: 18
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 985d84bae9fa1fa4a9d7f3e70ee0ac38
+      internalID: -497091567
       vertices: []
       indices: 
       edges: []
@@ -227,8 +248,10 @@ TextureImporter:
       weapon_boomstick: 5311101395578890638
       weapon_jk-74: -4002801455887627280
       weapon_pistol: 7573391519266811866
+      weapon_protester_sign: -497091567
       weapon_revolver: 7317958412765431823
       weapon_shovel: -32322315
+      weapons_1: -1493016089
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

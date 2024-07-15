@@ -44,7 +44,7 @@ public class ItemPickup : PickupEntity
         InventoryManager inventoryManager = playerEntity.InventoryManager;
         inventoryManager.AddItem(itemToGive.id, 1, true);
         SpawnPickupText(itemToGive.name);
-        DestroyEntity();
+        levelManager.RemoveEntity(this);
     }
 
     public void SetItem(string itemID)

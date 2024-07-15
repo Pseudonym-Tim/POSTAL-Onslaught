@@ -16,11 +16,25 @@ public class MeleeWeapon : Weapon
     private float attackDelayTimer = 0;
     private bool swingRight = false;
 
+    public override void OnWeaponSelected()
+    {
+        string swingAnimation = swingRight ? "SwingRight" : "SwingLeft";
+        EntityAnim.Play(swingAnimation, 1); // Play the animation, skip to the end...
+    }
+
     protected override void OnEntityUpdate()
     {
-        if(weaponManager.IsPlayerArmed)
+        if(!PlayerInput.InputEnabled)
         {
-            UpdateAttacking();
+            attackDelayTimer = INPUT_DELAY;
+        }
+
+        if(playerEntity.IsAlive && PlayerInput.InputEnabled)
+        {
+            if(weaponManager.IsPlayerArmed)
+            {
+                UpdateAttacking();
+            }
         }
     }
 
@@ -45,6 +59,30 @@ public class MeleeWeapon : Weapon
         string swingAnimation = swingRight ? "SwingRight" : "SwingLeft";
         EntityAnim.Play(swingAnimation);
         SpawnSplashFX();
+        ApplySwingPush();
+    }
+
+    private void ApplySwingPush()
+    {
+        // Apply knockback in the direction of the player's swing...
+        // In the future it would be better to not use the knockback function...
+        float localScaleX = weaponManager.AimParent.localScale.x;
+        float knockbackDirection = localScaleX > 0 ? -1 : 1;
+
+        // Define the knockback information...
+        KnockbackInfo knockbackInfo = new KnockbackInfo()
+        {
+            duration = 0.25f,
+            force = -(2.5f * knockbackDirection)
+        };
+
+        // Calculate the knockback origin based on the attack direction...
+        Vector3 aimParentOrigin = weaponManager.AimParent.position;
+        Vector3 knockbackDirectionVector = weaponManager.AimParent.right * knockbackDirection;
+        Vector2 knockbackOrigin = aimParentOrigin + knockbackDirectionVector;
+
+        // Apply the knockback to the player to move them into their melee attack...
+        playerEntity.ApplyKnockback(knockbackInfo, knockbackOrigin);
     }
 
     private void SpawnSplashFX()
@@ -75,8 +113,9 @@ public class MeleeWeapon : Weapon
                 attackerEntity = playerEntity,
             };
 
+            // Hurt, knockback, screenshake...
             closestNPC.TakeDamage(damageInfo);
-
+            closestNPC.ApplyKnockback(hurtKnockbackInfo, damageInfo.damageOrigin);
             CameraShaker.Shake(hitShakeInfo);
         }
     }

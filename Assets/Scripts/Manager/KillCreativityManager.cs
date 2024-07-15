@@ -24,7 +24,7 @@ public class KillCreativityManager : Singleton<KillCreativityManager>
         if(!uniqueWeaponsUsed.Contains(weaponName))
         {
             uniqueWeaponsUsed.Add(weaponName);
-            GameManager.GameStats.UniqueWeaponsUsed++;
+            LevelManager.LevelStats.UniqueWeaponsUsed++;
         }
     }
 

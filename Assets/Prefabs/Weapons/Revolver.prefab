@@ -275,6 +275,10 @@ MonoBehaviour:
   weaponGFX: {fileID: 6446034837845801525}
   weaponSprite: {fileID: 7317958412765431823, guid: 81e08f46a970021468c93c7900d5c17a, type: 3}
   weaponHeldSprite: {fileID: -1881524122, guid: 9302dd102e9bc814cab7911d01fa6e58, type: 3}
+  weaponIconSprite: {fileID: 305230219, guid: 82f3b11e31400b543a1bff44bfe17bac, type: 3}
+  hurtKnockbackInfo:
+    force: 4
+    duration: 0.25
   weaponID: weapon_revolver
   weaponName: Revolver
   fireRate: 0.7

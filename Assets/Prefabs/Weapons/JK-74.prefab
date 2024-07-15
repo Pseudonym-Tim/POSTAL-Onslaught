@@ -275,6 +275,10 @@ MonoBehaviour:
   weaponGFX: {fileID: 2339851382431359921}
   weaponSprite: {fileID: -4002801455887627280, guid: 81e08f46a970021468c93c7900d5c17a, type: 3}
   weaponHeldSprite: {fileID: 206336019, guid: 9302dd102e9bc814cab7911d01fa6e58, type: 3}
+  weaponIconSprite: {fileID: -734566610, guid: 82f3b11e31400b543a1bff44bfe17bac, type: 3}
+  hurtKnockbackInfo:
+    force: 2
+    duration: 0.15
   weaponID: weapon_jk74
   weaponName: JK-74
   fireRate: 0.1

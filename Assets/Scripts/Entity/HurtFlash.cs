@@ -55,8 +55,15 @@ public class HurtFlash : MonoBehaviour
     {
         foreach(SpriteRenderer spriteRenderer in flashSpriteRenderers)
         {
-            Material material = spriteRenderer.material;
-            material.SetFloat(HURT_FLASH_PROPERTY, value);
+            if(spriteRenderer != null)
+            {
+                Material material = spriteRenderer.material;
+
+                if(material != null)
+                {
+                    material.SetFloat(HURT_FLASH_PROPERTY, value);
+                }
+            }
         }
     }
 }
