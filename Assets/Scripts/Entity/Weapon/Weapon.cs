@@ -16,13 +16,13 @@ public class Weapon : Entity
     public string weaponID = "new_weapon";
     public string weaponName = "NewWeapon";
     protected WeaponManager weaponManager;
-    protected Player playerEntity; // TODO: Change this to ownerEntity instead?
+    protected Entity ownerEntity;
 
     public override void OnEntityAwake()
     {
         weaponManager = GetComponentInParent<WeaponManager>();
         weaponGFX.sprite = weaponHeldSprite;
-        playerEntity = GetComponentInParent<Player>();
+        ownerEntity = weaponManager.GetOwnerEntity();
         SetupEntityAnim();
         EntityAnim.Play("Idle");
     }
@@ -30,5 +30,17 @@ public class Weapon : Entity
     public virtual void OnWeaponSelected() { }
     public virtual void OnWeaponHolster() { }
 
-    public virtual bool IsMeleeWeapon { get; set; } = false;
+    public NPC NPC => ownerEntity as NPC;
+    public Player Player => ownerEntity as Player;
+    public bool IsOwnerNPC() => ownerEntity is NPC;
+    public bool IsOwnerPlayer() => ownerEntity is Player;
+
+    public bool IsOwnerAlive()
+    {
+        if(IsOwnerNPC()) { return NPC.IsAlive; }
+        else if(IsOwnerPlayer()) { return Player.IsAlive; }
+        return false;
+    }
+
+    public bool IsMeleeWeapon { get { return this is MeleeWeapon; } }
 }

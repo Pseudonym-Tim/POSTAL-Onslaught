@@ -22,10 +22,11 @@ public static class LayerManager
     {
         public static LayerMask DEFAULT = 1 << Layers.DEFAULT;
         public static LayerMask PLAYER = 1 << Layers.PLAYER;
-        public static LayerMask NPC = 1 << Layers.NPC | ENEMY;
         public static LayerMask ENEMY = 1 << Layers.ENEMY;
+        public static LayerMask NPC = 1 << Layers.NPC | ENEMY;
         public static LayerMask NAVIGABLE = DEFAULT;
-        public static LayerMask SHOOTABLE = DEFAULT | ENEMY | NPC;
+        public static LayerMask SHOOTABLE_PLAYER = DEFAULT | PLAYER;
+        public static LayerMask SHOOTABLE_NPC = DEFAULT | NPC;
     }
 
     public static int ToLayerID(LayerMask layerMask)

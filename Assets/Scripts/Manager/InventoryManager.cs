@@ -25,11 +25,14 @@ public class InventoryManager : Singleton<InventoryManager>
 
     private void Update()
     {
-        UpdateSelection();
-
-        if(InputManager.IsButtonPressed("ItemUse"))
+        if(PlayerInput.InputEnabled)
         {
-            UseCurrentItem();
+            UpdateSelection();
+
+            if(InputManager.IsButtonPressed("ItemUse"))
+            {
+                UseCurrentItem();
+            }
         }
     }
 

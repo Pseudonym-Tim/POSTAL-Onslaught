@@ -54,13 +54,13 @@ public class GameManager : Singleton<GameManager>
         levelManager.CreateLevel();
         UIManager.SetupUI();
         BeginPlaying();
+        inGameTimer = 0.0f;
     }
 
     public static void BeginPlaying()
     {
         CurrentGameState = GameState.PLAYING;
         Time.timeScale = GAME_TIMESCALE;
-        inGameTimer = 0.0f;
     }
 
     public static string GetFormattedTime()

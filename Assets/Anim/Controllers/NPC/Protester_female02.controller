@@ -46,7 +46,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 790b781e8a713fc4e9d31cea6dca32cb, type: 2}
+  m_Motion: {fileID: 7400000, guid: 95b710792ee28eb4da083918d2b7f3d3, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -73,7 +73,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: da89ef472a31bb94d867cb7c890555cb, type: 2}
+  m_Motion: {fileID: 7400000, guid: d7e61868c9349e44eb218aaffe15d9c8, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -135,7 +135,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Protester1
+  m_Name: Protester_female02
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: isMoving

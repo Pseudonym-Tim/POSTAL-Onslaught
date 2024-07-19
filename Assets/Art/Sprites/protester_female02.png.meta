@@ -1,0 +1,364 @@
+fileFormatVersion: 2
+guid: d27d4aa3e2b234143b15d217e309f10f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6958516259406157281
+    second: protester_female02_0
+  - first:
+      213: 3516188961033960483
+    second: protester_female02_1
+  - first:
+      213: 5108412471518866554
+    second: protester_female02_2
+  - first:
+      213: -3768322333715013664
+    second: protester_female02_3
+  - first:
+      213: 3927979442208685315
+    second: protester_female02_4
+  - first:
+      213: -4660321421630986337
+    second: protester_female02_5
+  - first:
+      213: 7918634986777364477
+    second: protester_female02_6
+  - first:
+      213: -5380677208041186063
+    second: protester_female02_7
+  - first:
+      213: -481208095288606175
+    second: protester_female02_8
+  - first:
+      213: 5428029016713298804
+    second: protester_female02_9
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 256
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: protester_female02_idle_1
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 37
+        width: 18
+        height: 30
+      alignment: 9
+      pivot: {x: 0.5555556, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e51fad8bad919060800000000000000
+      internalID: 6958516259406157281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protester_female02_idle_2
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 37
+        width: 18
+        height: 30
+      alignment: 9
+      pivot: {x: 0.5555556, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32c34910b330cc030800000000000000
+      internalID: 3516188961033960483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protester_female02_idle_3
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 37
+        width: 18
+        height: 30
+      alignment: 9
+      pivot: {x: 0.5555556, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7cae0bc31ab4e640800000000000000
+      internalID: 5108412471518866554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protester_female02_walk_1
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 37
+        width: 22
+        height: 30
+      alignment: 9
+      pivot: {x: 0.45454547, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0efdebb8dca34bbc0800000000000000
+      internalID: -3768322333715013664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protester_female02_walk_2
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 37
+        width: 19
+        height: 30
+      alignment: 9
+      pivot: {x: 0.5263158, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30db2e9cd7cf28630800000000000000
+      internalID: 3927979442208685315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protester_female02_walk_3
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 37
+        width: 21
+        height: 30
+      alignment: 9
+      pivot: {x: 0.47619048, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f97aa84cb56335fb0800000000000000
+      internalID: -4660321421630986337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protester_female02_walk_4
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 37
+        width: 19
+        height: 30
+      alignment: 9
+      pivot: {x: 0.5263158, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df748d4d094a4ed60800000000000000
+      internalID: 7918634986777364477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protester_female02_killer_1
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 3
+        width: 19
+        height: 29
+      alignment: 9
+      pivot: {x: 0.5263158, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fc1aab569ef355b0800000000000000
+      internalID: -5380677208041186063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protester_female02_killer_2
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 3
+        width: 19
+        height: 29
+      alignment: 9
+      pivot: {x: 0.5263158, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 122c74179c76259f0800000000000000
+      internalID: -481208095288606175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protester_female02_killer_3
+      rect:
+        serializedVersion: 2
+        x: 53
+        y: 3
+        width: 19
+        height: 29
+      alignment: 9
+      pivot: {x: 0.5263158, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47385bbb1ab345b40800000000000000
+      internalID: 5428029016713298804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 473ad8281ddb0ed4cb4482bc4bb3f4c3
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      protester_female02_idle_1: 6958516259406157281
+      protester_female02_idle_2: 3516188961033960483
+      protester_female02_idle_3: 5108412471518866554
+      protester_female02_killer_1: -5380677208041186063
+      protester_female02_killer_2: -481208095288606175
+      protester_female02_killer_3: 5428029016713298804
+      protester_female02_walk_1: -3768322333715013664
+      protester_female02_walk_2: 3927979442208685315
+      protester_female02_walk_3: -4660321421630986337
+      protester_female02_walk_4: 7918634986777364477
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

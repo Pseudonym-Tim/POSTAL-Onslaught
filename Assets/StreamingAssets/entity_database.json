@@ -4,8 +4,24 @@
     },
     "protester_npc": {
         "prefab": "ProtesterNPC",
-        "dropItemChance": 0.10,
+        "dropItemChance": 0.05,
         "score": 100,
+        "itemPool": [
+            "item_pizza",
+            "item_burger",
+            "item_donut"
+        ]
+    },
+    "protester_enemy_npc": {
+        "prefab": "ProtesterEnemyNPC",
+        "dropItemChance": 0.10,
+        "score": 250,
+        "weaponPool": [
+            "weapon_boomstick",
+            "weapon_pistol",
+            "weapon_shovel",
+            "weapon_protester_sign"
+        ],
         "itemPool": [
             "item_pizza",
             "item_burger",

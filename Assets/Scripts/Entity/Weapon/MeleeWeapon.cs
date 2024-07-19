@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 /// <summary>
@@ -8,8 +7,11 @@ using UnityEngine;
 /// </summary>
 public class MeleeWeapon : Weapon
 {
+    private const float SLASH_FX_LIFETIME = 1f;
+    private const float SLASH_FX_OFFSET = 1.25f;
+
+    public float attackRange = 1f;
     [SerializeField] private float attackRate = 0.2f;
-    [SerializeField] private float attackRange = 1f;
     [SerializeField] private float attackAngle = 45f;
     [SerializeField] private int damageMin = 3, damageMax = 6;
     [SerializeField] private CameraShakeInfo hitShakeInfo;
@@ -29,9 +31,9 @@ public class MeleeWeapon : Weapon
             attackDelayTimer = INPUT_DELAY;
         }
 
-        if(playerEntity.IsAlive && PlayerInput.InputEnabled)
+        if(IsOwnerAlive() && PlayerInput.InputEnabled)
         {
-            if(weaponManager.IsPlayerArmed)
+            if(weaponManager.WeaponCount > 0)
             {
                 UpdateAttacking();
             }
@@ -40,84 +42,110 @@ public class MeleeWeapon : Weapon
 
     private void UpdateAttacking()
     {
-        if(attackDelayTimer > 0)
+        if(IsOwnerPlayer())
         {
-            attackDelayTimer -= Time.deltaTime;
-            return;
+            bool canAttack = weaponManager.IsAttackingAllowed;
+            bool gotAttackInput = PlayerInput.IsButtonHeld("Attack");
+
+            if(attackDelayTimer > 0) { attackDelayTimer -= Time.deltaTime; }
+            else if(attackDelayTimer <= 0 && gotAttackInput && canAttack)
+            {
+                OnWeaponAttack();
+                attackDelayTimer = attackRate;
+            }
         }
 
-        if(weaponManager.IsAttackingAllowed && PlayerInput.IsButtonHeld("Attack"))
+        if(IsOwnerNPC() && weaponManager.IsAttackingAllowed)
         {
-            OnWeaponAttack();
-            attackDelayTimer = attackRate;
+            if(attackDelayTimer > 0) { attackDelayTimer -= Time.deltaTime; }
+            else if(attackDelayTimer <= 0)
+            {
+                OnWeaponAttack();
+                attackDelayTimer = attackRate;
+            }
         }
     }
 
     public virtual void OnWeaponAttack()
     {
         swingRight = !swingRight;
-        string swingAnimation = swingRight ? "SwingRight" : "SwingLeft";
-        EntityAnim.Play(swingAnimation);
-        SpawnSplashFX();
-        ApplySwingPush();
+        PlaySwingAnimation();
+        SpawnSlashFX();
     }
 
-    private void ApplySwingPush()
-    {
-        // Apply knockback in the direction of the player's swing...
-        // In the future it would be better to not use the knockback function...
-        float localScaleX = weaponManager.AimParent.localScale.x;
-        float knockbackDirection = localScaleX > 0 ? -1 : 1;
-
-        // Define the knockback information...
-        KnockbackInfo knockbackInfo = new KnockbackInfo()
-        {
-            duration = 0.25f,
-            force = -(2.5f * knockbackDirection)
-        };
-
-        // Calculate the knockback origin based on the attack direction...
-        Vector3 aimParentOrigin = weaponManager.AimParent.position;
-        Vector3 knockbackDirectionVector = weaponManager.AimParent.right * knockbackDirection;
-        Vector2 knockbackOrigin = aimParentOrigin + knockbackDirectionVector;
-
-        // Apply the knockback to the player to move them into their melee attack...
-        playerEntity.ApplyKnockback(knockbackInfo, knockbackOrigin);
-    }
-
-    private void SpawnSplashFX()
+    private void SpawnSlashFX()
     {
         PrefabDatabase prefabDatabase = FindFirstObjectByType<PrefabDatabase>();
         GameObject slashFX = Instantiate(prefabDatabase.GetPrefab("SlashFX"), weaponManager.AimParent);
         Vector2 slashPos = weaponManager.AimParent.localPosition;
         slashPos.y = 0;
-        slashFX.transform.localPosition = slashPos + Vector2.right * 1.25f;
+        slashFX.transform.localPosition = slashPos + Vector2.right * SLASH_FX_OFFSET;
         SpriteRenderer slashGFX = slashFX.GetComponentInChildren<SpriteRenderer>();
         slashGFX.flipY = !swingRight;
-        Destroy(slashFX, 0.5f);
+        Destroy(slashFX, SLASH_FX_LIFETIME);
     }
 
     // NOTE: Called via anim event...
     public void CheckWeaponHit()
     {
         LevelManager levelManager = FindFirstObjectByType<LevelManager>();
-        List<NPC> npcList = levelManager.GetEntities<NPC>(CenterOfMass, attackRange);
+
+        if(IsOwnerPlayer())
+        {
+            HandlePlayerHit(levelManager);
+        }
+        else if(IsOwnerNPC())
+        {
+            HandleNPCHit(levelManager);
+        }
+    }
+
+    private void HandlePlayerHit(LevelManager levelManager)
+    {
+        List<NPC> npcList = levelManager.GetEntities<NPC>(Player.CenterOfMass, attackRange);
         NPC closestNPC = GetClosestNPCWithinAngle(npcList);
 
         if(closestNPC != null)
         {
             DamageInfo damageInfo = new DamageInfo()
             {
-                damageOrigin = CenterOfMass,
+                damageOrigin = Player.CenterOfMass,
                 damageAmount = Random.Range(damageMin, damageMax),
-                attackerEntity = playerEntity,
+                attackerEntity = ownerEntity,
             };
 
-            // Hurt, knockback, screenshake...
             closestNPC.TakeDamage(damageInfo);
             closestNPC.ApplyKnockback(hurtKnockbackInfo, damageInfo.damageOrigin);
             CameraShaker.Shake(hitShakeInfo);
         }
+    }
+
+    private void HandleNPCHit(LevelManager levelManager)
+    {
+        Player playerEntity = levelManager.GetEntity<Player>();
+
+        if(playerEntity != null && IsPlayerWithinAttackAngle(playerEntity))
+        {
+            DamageInfo damageInfo = new DamageInfo()
+            {
+                damageOrigin = NPC.CenterOfMass,
+                damageAmount = Random.Range(damageMin, damageMax),
+                attackerEntity = ownerEntity,
+            };
+
+            playerEntity.TakeDamage(damageInfo);
+            playerEntity.ApplyKnockback(hurtKnockbackInfo, damageInfo.damageOrigin);
+        }
+    }
+
+    private bool IsPlayerWithinAttackAngle(Player playerEntity)
+    {
+        Vector2 currentPosition = NPC.CenterOfMass;
+        Vector2 forward = GetAttackDirection();
+        Vector2 directionToPlayer = playerEntity.CenterOfMass - currentPosition;
+        float angleToPlayer = Vector2.Angle(forward, directionToPlayer);
+
+        return angleToPlayer <= attackAngle && Vector2.Distance(playerEntity.CenterOfMass, NPC.CenterOfMass) < attackRange;
     }
 
     private NPC GetClosestNPCWithinAngle(List<NPC> npcList)
@@ -125,12 +153,12 @@ public class MeleeWeapon : Weapon
         NPC closestNPC = null;
         float closestDistanceSqr = float.MaxValue;
 
-        Vector2 currentPosition = playerEntity.CenterOfMass;
-        Vector2 forward = weaponManager.AimParent.localScale.y < 0 ? Vector2.left : Vector2.right;
+        Vector2 currentPosition = Player.CenterOfMass;
+        Vector2 forward = GetAttackDirection();
 
-        foreach(NPC npc in npcList)
+        foreach(NPC npcEntity in npcList)
         {
-            Vector2 directionToNPC = (Vector2)npc.CenterOfMass - currentPosition;
+            Vector2 directionToNPC = npcEntity.CenterOfMass - currentPosition;
             float angleToNPC = Vector2.Angle(forward, directionToNPC);
 
             if(angleToNPC <= attackAngle)
@@ -139,7 +167,7 @@ public class MeleeWeapon : Weapon
                 if(distanceSqr < closestDistanceSqr)
                 {
                     closestDistanceSqr = distanceSqr;
-                    closestNPC = npc;
+                    closestNPC = npcEntity;
                 }
             }
         }
@@ -147,21 +175,50 @@ public class MeleeWeapon : Weapon
         return closestNPC;
     }
 
+    private Vector2 GetAttackDirection()
+    {
+        return weaponManager.AimParent.localScale.y < 0 ? Vector2.left : Vector2.right;
+    }
+
+    private void PlaySwingAnimation()
+    {
+        string swingAnimation = swingRight ? "SwingRight" : "SwingLeft";
+        EntityAnim.Play(swingAnimation);
+    }
+
     protected override void OnDrawEntityGizmos()
     {
-        // Draw the attack range
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(playerEntity.CenterOfMass, attackRange);
+        DrawAttackRangeGizmo();
 
-        // Draw the melee angle
-        Gizmos.color = Color.yellow;
-        Vector2 forward = weaponManager.AimParent.localScale.y < 0 ? Vector2.left : Vector2.right;
+        Vector2 forward = GetAttackDirection();
         Vector3 rightBoundary = Quaternion.Euler(0, 0, attackAngle) * forward * attackRange;
         Vector3 leftBoundary = Quaternion.Euler(0, 0, -attackAngle) * forward * attackRange;
 
-        Gizmos.DrawLine(playerEntity.CenterOfMass, (Vector3)playerEntity.CenterOfMass + rightBoundary);
-        Gizmos.DrawLine(playerEntity.CenterOfMass, (Vector3)playerEntity.CenterOfMass + leftBoundary);
+        Gizmos.color = Color.yellow;
+
+        if(IsOwnerPlayer())
+        {
+            Gizmos.DrawLine(Player.CenterOfMass, (Vector3)Player.CenterOfMass + rightBoundary);
+            Gizmos.DrawLine(Player.CenterOfMass, (Vector3)Player.CenterOfMass + leftBoundary);
+        }
+        else if(IsOwnerNPC())
+        {
+            Gizmos.DrawLine(NPC.CenterOfMass, (Vector3)NPC.CenterOfMass + rightBoundary);
+            Gizmos.DrawLine(NPC.CenterOfMass, (Vector3)NPC.CenterOfMass + leftBoundary);
+        }
     }
 
-    public override bool IsMeleeWeapon => true;
+    private void DrawAttackRangeGizmo()
+    {
+        Gizmos.color = Color.red;
+
+        if(IsOwnerPlayer())
+        {
+            Gizmos.DrawWireSphere(Player.CenterOfMass, attackRange);
+        }
+        else if(IsOwnerNPC())
+        {
+            Gizmos.DrawWireSphere(NPC.CenterOfMass, attackRange);
+        }
+    }
 }

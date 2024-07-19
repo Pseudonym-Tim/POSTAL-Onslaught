@@ -131,11 +131,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void UpdateGFXFlip(bool flipX)
-    {
-        playerEntity.playerGFX.flipX = flipX;
-    }
-
     public bool IsInKnockback { get; set; } = false;
     public bool IsPlayerFacingRight => !playerEntity.playerGFX.flipX;
     public bool IsMoving => playerRigidbody.velocity.magnitude > 0.1f;

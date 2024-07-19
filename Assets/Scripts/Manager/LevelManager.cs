@@ -11,6 +11,7 @@ public class LevelManager : Singleton<LevelManager>
     private LevelGenerator levelGenerator;
     private TileManager tileManager;
     private TaskManager taskManager;
+    private KillCreativityManager killCreativityManager;
 
     public void CreateLevel()
     {
@@ -18,6 +19,7 @@ public class LevelManager : Singleton<LevelManager>
         levelGenerator = FindFirstObjectByType<LevelGenerator>();
         tileManager = FindFirstObjectByType<TileManager>();
         taskManager = FindFirstObjectByType<TaskManager>();
+        killCreativityManager = FindFirstObjectByType<KillCreativityManager>();
 
         RemoveTiles();
         RemoveObjects();
@@ -28,6 +30,20 @@ public class LevelManager : Singleton<LevelManager>
         EntityManager.LoadDatabase();
         levelGenerator.GenerateLevel();
         taskManager.Setup();
+        killCreativityManager.Setup();
+        LevelTimer = 0.0f;
+    }
+
+    private void Update()
+    {
+        LevelTimer += Time.deltaTime;
+    }
+
+    public static string GetFormattedTime()
+    {
+        int minutes = Mathf.FloorToInt(LevelTimer / 60F);
+        int seconds = Mathf.FloorToInt(LevelTimer % 60F);
+        return string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     public void AddTile(string tileID, Vector2 addPos)
@@ -221,6 +237,7 @@ public class LevelManager : Singleton<LevelManager>
         return entityList;
     }
 
+    public static float LevelTimer { get; private set; } = 0.0f;
     public static int CurrentLevel { get; set; } = 0;
     public static LevelStatistics LevelStats { get; private set; } = null;
     public static Dictionary<string, TileData> TileDatabase { get; private set; } = null;

@@ -174,7 +174,7 @@ MonoBehaviour:
   weaponID: weapon_protester_sign
   weaponName: Protester Sign
   attackRate: 0.25
-  attackRange: 2
+  attackRange: 3
   attackAngle: 90
   damageMin: 3
   damageMax: 6

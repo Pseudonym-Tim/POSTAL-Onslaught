@@ -45,6 +45,11 @@ public class LevelClearUI : UIComponent
         PauseUI pauseUI = UIManager.GetUIComponent<PauseUI>();
         pauseUI.Show(false);
 
+        string bonusMessage = LocalizationManager.GetMessage("bonusText", UIJsonIdentifier);
+        string totalMessage = LocalizationManager.GetMessage("totalText", UIJsonIdentifier);
+        bonusText.text = bonusMessage.Replace("%points%", "???");
+        totalText.text = totalMessage.Replace("%points%", "???");
+
         GameManager.CurrentGameState = GameManager.GameState.LEVEL_CLEARED;
         PlayerInput.InputEnabled = false;
         continueText.text = GetFormattedMessage("continueText", inactiveColor);
@@ -150,7 +155,7 @@ public class LevelClearUI : UIComponent
     private void SetClearTime()
     {
         string timeMessage = LocalizationManager.GetMessage("timeText", UIJsonIdentifier);
-        string formattedTime = GameManager.GetFormattedTime();
+        string formattedTime = LevelManager.GetFormattedTime();
         timeMessage = timeMessage.Replace("%minutes%", formattedTime.Split(':')[0]);
         timeMessage = timeMessage.Replace("%seconds%", formattedTime.Split(':')[1]);
         clearTimeText.text = timeMessage;

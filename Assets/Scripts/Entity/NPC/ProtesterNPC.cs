@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Protester NPC that runs around randomly...
+/// Harmless protester NPC that runs around randomly...
 /// </summary>
 public class ProtesterNPC : NPC
 {
@@ -18,8 +18,7 @@ public class ProtesterNPC : NPC
 
     public override void OnEntitySpawn()
     {
-        // TODO: Remove later, for debugging purposes only!
-        InvokeRepeating(nameof(CheckDamagePlayer), 1, 1f);
+        
     }
 
     public override void OnNavmeshBuilt()
@@ -28,55 +27,33 @@ public class ProtesterNPC : NPC
         BeginRoaming();
     }
 
-    // TODO: Remove later, for debugging purposes only!
-    private void CheckDamagePlayer()
-    {
-        if(playerEntity.IsAlive)
-        {
-            if(Vector2.Distance(EntityPosition, playerEntity.EntityPosition) < 1.25f)
-            {
-                DamageInfo damageInfo = new DamageInfo()
-                {
-                    damageAmount = 2,
-                    damageOrigin = EntityPosition,
-                    attackerEntity = this
-                };
-
-                playerEntity.TakeDamage(damageInfo);
-            }
-        }
-    }
-
     protected override void OnEntityUpdate()
     {
-        if(NPCNavigation != null)
+        switch(currentAIState)
         {
-            switch(currentAIState)
-            {
-                case AIState.ROAMING:
+            case AIState.ROAMING:
 
-                    if(IsReadyForNextRoam)
-                    {
-                        NPCNavigation.NavMeshAgentSpeed = Random.Range(roamSpeedMin, roamSpeedMax);
-                        Vector3 destinationPos = LevelNavmesher.GetRandomPosition(EntityPosition, roamRadius);
-                        NPCNavigation.SetDestination(destinationPos);
-                    }
+                if(IsReadyForNextRoam)
+                {
+                    NPCNavigation.NavMeshAgentSpeed = Random.Range(roamSpeedMin, roamSpeedMax);
+                    Vector3 destinationPos = LevelNavmesher.GetRandomPosition(EntityPosition, roamRadius);
+                    NPCNavigation.SetDestination(destinationPos);
+                }
 
-                    break;
-                case AIState.KNOCKBACK:
-                    break;
-                case AIState.DEAD:
-                    break;
-            }
+                break;
+            case AIState.KNOCKBACK:
+                break;
+            case AIState.DEAD:
+                break;
+        }
 
-            EntityAnim.SetBool("isMoving", NPCNavigation.IsMoving);
+        EntityAnim.SetBool("isMoving", NPCNavigation.IsMoving);
 
-            // Flip the sprite based on move direction...
-            if(NPCNavigation.NavMeshAgentVelocity.x != 0)
-            {
-                Vector2 agentVelocity = NPCNavigation.NavMeshAgentVelocity;
-                npcGFX.flipX = agentVelocity.normalized.x < 0;
-            }
+        // Flip the sprite based on move direction...
+        if(NPCNavigation.NavMeshAgentVelocity.x != 0)
+        {
+            Vector2 agentVelocity = NPCNavigation.NavMeshAgentVelocity;
+            npcGFX.flipX = agentVelocity.normalized.x < 0;
         }
     }
 
@@ -129,7 +106,7 @@ public class ProtesterNPC : NPC
     public enum AIState
     {
         ROAMING,
-        DEAD,
-        KNOCKBACK
+        KNOCKBACK,
+        DEAD
     }
 }

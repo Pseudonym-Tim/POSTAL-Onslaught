@@ -38,7 +38,7 @@ public class GameOverUI : UIComponent
         SetOptionsInactive();
         tipText.text = GetTipMessage();
         SetKillerAnimation();
-        ImageHelper.SetNativeSize(killerImage, 4);
+        ImageHelper.SetNativeSize(killerImage, 4f);
         ImageHelper.SetNativePivot(killerImage, ImageHelper.PivotAxis.X);
         SetTime();
 
@@ -80,13 +80,15 @@ public class GameOverUI : UIComponent
 
         if(attackerEntity is NPC killerNPC)
         {
-            AnimationClip killerClip = killerNPC.killerAnimation;
+            AnimationClip killerClip = killerNPC.NPCInfo.killerAnimation;
+
             AnimatorOverrideController overrideController = new AnimatorOverrideController(killerAnimator.runtimeAnimatorController)
             {
                 name = killerAnimator.runtimeAnimatorController.name
             };
 
-            List<KeyValuePair<AnimationClip, AnimationClip>> animOverrides = new List<KeyValuePair<AnimationClip, AnimationClip>>(overrideController.overridesCount);
+            List<KeyValuePair<AnimationClip, AnimationClip>> animOverrides; 
+            animOverrides = new List<KeyValuePair<AnimationClip, AnimationClip>>(overrideController.overridesCount);
             overrideController.GetOverrides(animOverrides);
 
             for(int i = 0; i < animOverrides.Count; i++)
@@ -100,6 +102,7 @@ public class GameOverUI : UIComponent
 
             overrideController.ApplyOverrides(animOverrides);
             killerAnimator.runtimeAnimatorController = overrideController;
+            killerAnimator.Play("KillerIdle");
         }
     }
 

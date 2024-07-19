@@ -166,12 +166,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61cb242e4431aed49986c74a942793fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcRandomizer:
+    npcInfo:
+    - npcID: male01
+      animatorController: {fileID: 9100000, guid: 74ee55b27f402fe4ea73c7842a702f83, type: 2}
+      killerAnimation: {fileID: 7400000, guid: 9d54e9a3f60a8a8448b4f282dcc09ed0, type: 2}
   maxHealth: 10
   moveSpeed: 10
-  hurtKnockbackInfo:
-    force: 2
-    duration: 0.15
-  killerAnimation: {fileID: 7400000, guid: 9d54e9a3f60a8a8448b4f282dcc09ed0, type: 2}
+  npcGFX: {fileID: 1219177491098801172}
   currentAIState: 0
   roamRadius: 5
   roamTimeMin: 0.75

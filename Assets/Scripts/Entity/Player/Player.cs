@@ -29,6 +29,7 @@ public class Player : Entity
         PlayerCamera = GetComponentInChildren<PlayerCamera>();
         distanceTracker = EntityObject.AddComponent<PlayerDistanceTracker>();
         PlayerCamera.Setup();
+        WeaponManager.Setup();
         SetupEntityAnim();
         currentHealth = maxHealth;
     }
@@ -106,6 +107,11 @@ public class Player : Entity
                 Debug.Log($"[{name}] took [{damageInfo.damageAmount}] damage!");
             }
         }
+    }
+
+    public void UpdateGFXFlip(bool flipX)
+    {
+        playerGFX.flipX = flipX;
     }
 
     private void OnTakeDamage(DamageInfo damageInfo)

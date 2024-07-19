@@ -1,57 +1,73 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
 /// Handles everything related to player weapons...
 /// </summary>
-public class WeaponManager : Singleton<WeaponManager>
+public class WeaponManager : MonoBehaviour
 {
     public const int MAX_SLOTS = 3;
     private const float AIM_SPEED = 30f;
-    private const float MAX_AIM_ANGLE = 40f;
-    private const bool CLAMP_AIM_ANGLES = true;
+    private const float MAX_AIM_ANGLE = 40f * 1.5f;
+    private const bool CLAMP_AIM_ANGLES = false;
+    private const float MIN_AIM_LAG = 5f;
+    private const float MAX_AIM_LAG = 7f;
 
     private List<Weapon> currentWeapons = new List<Weapon>();
     private PlayerCamera playerCamera;
-    private PlayerMovement playerMovement;
-    private int selectedSlotIndex = 0;
     private PlayerHUD playerHUD;
-    private Player playerEntity;
-    private KillCreativityManager killCreativityManager;
+    private Entity ownerEntity;
+    private int selectedSlotIndex = 0;
+    private float npcAimLag;
 
-    private void Awake()
+    public void Setup()
     {
-        playerEntity = GetComponentInParent<Player>();
-        playerMovement = GetComponentInParent<PlayerMovement>();
+        ownerEntity = GetOwnerEntity();
         playerCamera = FindFirstObjectByType<PlayerCamera>();
-        killCreativityManager = FindFirstObjectByType<KillCreativityManager>();
         playerHUD = UIManager.GetUIComponent<PlayerHUD>();
         AimParent = transform.Find("AimOrigin");
         WeaponParent = AimParent.Find("WeaponParent");
 
-        // Give the player the starting pistol by default...
-        /*PrefabDatabase prefabDatabase = FindFirstObjectByType<PrefabDatabase>();
-        Weapon pistolWeapon = prefabDatabase.GetPrefab<Weapon>("Pistol");
-        GiveWeapon(pistolWeapon);*/
+        if(IsOwnerPlayer())
+        {
+            // Give the player the starting pistol by default...
+            PrefabDatabase prefabDatabase = FindFirstObjectByType<PrefabDatabase>();
+            Weapon pistolWeapon = prefabDatabase.GetPrefab<Weapon>("Pistol");
+            GiveWeapon(pistolWeapon);
 
-        // Give the player the protester sign by default...
-        PrefabDatabase prefabDatabase = FindFirstObjectByType<PrefabDatabase>();
-        Weapon protesterSignWeapon = prefabDatabase.GetPrefab<Weapon>("ProtesterSign");
-        GiveWeapon(protesterSignWeapon);
+            NPC.OnNPCKilled -= OnWeaponKill;
+            NPC.OnNPCKilled += OnWeaponKill;
+        }
+
+        if(IsOwnerNPC())
+        {
+            StartCoroutine(UpdateNPCAimLag());
+        }
 
         UpdateSelectedWeapon();
 
-        NPC.OnNPCKilled += OnWeaponKill;
+        Debug.Log("Setup weapon!");
+    }
+
+    private IEnumerator UpdateNPCAimLag()
+    {
+        while(true)
+        {
+            npcAimLag = Random.Range(MIN_AIM_LAG, MAX_AIM_LAG);
+            yield return new WaitForSeconds(Random.Range(1f, 3f));
+        }
     }
 
     private void OnWeaponKill()
     {
+        KillCreativityManager killCreativityManager = FindFirstObjectByType<KillCreativityManager>();
         killCreativityManager.RegisterWeaponUse(SelectedWeapon.weaponID);
     }
 
     private void Update()
     {
-        if(IsPlayerArmed && playerEntity.IsAlive)
+        if(WeaponCount > 0 && IsOwnerAlive())
         {
             UpdateWeaponSelection();
             UpdateWeaponAim();
@@ -62,22 +78,26 @@ public class WeaponManager : Singleton<WeaponManager>
     {
         int previousWeaponIndex = selectedSlotIndex;
 
-        // Weapon scrolling...
-        if(PlayerInput.WeaponScrollRight)
+        // Player weapon selection controls...
+        if(IsOwnerPlayer())
         {
-            if(selectedSlotIndex >= WeaponCount - 1) { selectedSlotIndex = 0; }
-            else { selectedSlotIndex++; }
-        }
-        else if(PlayerInput.WeaponScrollLeft)
-        {
-            if(selectedSlotIndex <= 0) { selectedSlotIndex = WeaponCount - 1; }
-            else { selectedSlotIndex--; }
-        }
+            // Weapon scrolling...
+            if(PlayerInput.WeaponScrollRight)
+            {
+                if(selectedSlotIndex >= WeaponCount - 1) { selectedSlotIndex = 0; }
+                else { selectedSlotIndex++; }
+            }
+            else if(PlayerInput.WeaponScrollLeft)
+            {
+                if(selectedSlotIndex <= 0) { selectedSlotIndex = WeaponCount - 1; }
+                else { selectedSlotIndex--; }
+            }
 
-        // Weapon hotkeys...
-        if(PlayerInput.WeaponSlot1 && WeaponCount >= 1) { selectedSlotIndex = 0; }
-        if(PlayerInput.WeaponSlot2 && WeaponCount >= 2) { selectedSlotIndex = 1; }
-        if(PlayerInput.WeaponSlot3 && WeaponCount >= 3) { selectedSlotIndex = 2; }
+            // Weapon hotkeys...
+            if(PlayerInput.WeaponSlot1 && WeaponCount >= 1) { selectedSlotIndex = 0; }
+            if(PlayerInput.WeaponSlot2 && WeaponCount >= 2) { selectedSlotIndex = 1; }
+            if(PlayerInput.WeaponSlot3 && WeaponCount >= 3) { selectedSlotIndex = 2; }
+        }
 
         // Set the selected weapon if it's not already selected...
         if(previousWeaponIndex != selectedSlotIndex)
@@ -132,9 +152,10 @@ public class WeaponManager : Singleton<WeaponManager>
 
     private void UpdateWeaponAim()
     {
-        Vector2 mousePos = GetMousePos();
+        Vector2 targetOrigin = GetTargetOrigin();
         Vector2 aimOrigin = (Vector2)AimParent.position;
-        Vector2 aimDir = (mousePos - aimOrigin).normalized;
+
+        Vector2 aimDir = (targetOrigin - aimOrigin).normalized;
         float zRot = Mathf.Atan2(aimDir.y, aimDir.x) * Mathf.Rad2Deg;
 
         if(CLAMP_AIM_ANGLES)
@@ -147,11 +168,11 @@ public class WeaponManager : Singleton<WeaponManager>
         {
             float absZRot = Mathf.Abs(zRot);
             int orderInLayer = absZRot > MAX_AIM_ANGLE - 10f && absZRot < 180f - (MAX_AIM_ANGLE - 10f) ? 1 : 2;
-            if(!SelectedWeapon.IsMeleeWeapon) { SelectedWeapon.weaponGFX.sortingOrder = orderInLayer; } // TODO: Remove melee weapon check...
+            if(!SelectedWeapon.IsMeleeWeapon) { SelectedWeapon.weaponGFX.sortingOrder = orderInLayer; }
         }
         else
         {
-            if(!SelectedWeapon.IsMeleeWeapon) { SelectedWeapon.weaponGFX.sortingOrder = 2; } // TODO: Remove melee weapon check...
+            if(!SelectedWeapon.IsMeleeWeapon) { SelectedWeapon.weaponGFX.sortingOrder = 2; }
         }
 
         RotateAimParent(zRot);
@@ -161,7 +182,7 @@ public class WeaponManager : Singleton<WeaponManager>
 
     private void UpdateSelectedWeapon()
     {
-        if(IsPlayerArmed)
+        if(WeaponCount > 0)
         {
             // Only show the weapon that is currently selected...
             for(int i = 0; i < currentWeapons.Count; i++)
@@ -175,7 +196,11 @@ public class WeaponManager : Singleton<WeaponManager>
             {
                 SelectedWeapon = currentWeapons[selectedSlotIndex];
                 SelectedWeapon.OnWeaponSelected();
-                playerHUD.UpdateWeaponSelection(SelectedSlotIndex, WeaponCount, SelectedWeapon.weaponIconSprite);
+
+                if(IsOwnerPlayer())
+                {
+                    playerHUD.UpdateWeaponSelection(SelectedSlotIndex, WeaponCount, SelectedWeapon.weaponIconSprite);
+                }
             }
         }
     }
@@ -212,19 +237,20 @@ public class WeaponManager : Singleton<WeaponManager>
     private void RotateAimParent(float zRot)
     {
         Quaternion targetRotation = Quaternion.Euler(AimParent.rotation.eulerAngles.x, AimParent.rotation.eulerAngles.y, zRot);
-        AimParent.rotation = Quaternion.Lerp(AimParent.rotation, targetRotation, AIM_SPEED * Time.deltaTime);
+        float aimRate = IsOwnerNPC() ? npcAimLag : AIM_SPEED;
+        AimParent.rotation = Quaternion.Lerp(AimParent.rotation, targetRotation, aimRate * Time.deltaTime);
     }
 
     private void AdjustWeaponParentPosition(float zRot)
     {
         const float LERP_SPEED = 5;
         Vector3 weaponParentLocalPos = WeaponParent.localPosition;
-        float xOffset = 0.0f;  // Default offset...
+        float xOffset = 0.0f; // Default offset...
 
         // Check if the aim angle is closer to the extent of the ClampAimAngle...
         if(Mathf.Abs(zRot) > MAX_AIM_ANGLE - 10f && Mathf.Abs(zRot) < 180f - (MAX_AIM_ANGLE - 10f))
         {
-            xOffset = zRot > 0 ? 0.0f : -0.3f;  // Adjust x offset based on the aim direction...
+            xOffset = zRot > 0 ? 0.0f : -0.3f; // Adjust x offset based on the aim direction...
         }
 
         // Lerp towards the new x offset...
@@ -232,18 +258,28 @@ public class WeaponManager : Singleton<WeaponManager>
         WeaponParent.localPosition = weaponParentLocalPos;
     }
 
-    private Vector2 GetMousePos()
+    private Vector2 GetTargetOrigin()
     {
-        Vector3 mousePos = Input.mousePosition;
-        mousePos.z = playerCamera.Camera.nearClipPlane;
-        return playerCamera.Camera.ScreenToWorldPoint(mousePos);
+        if(IsOwnerPlayer())
+        {
+            Vector3 mousePos = Input.mousePosition;
+            mousePos.z = playerCamera.Camera.nearClipPlane;
+            return playerCamera.Camera.ScreenToWorldPoint(mousePos);
+        }
+        else if(IsOwnerNPC() && AimTarget != null)
+        {
+            return AimTarget.CenterOfMass;
+        }
+
+        return Vector2.zero; // Default to zero if no target...
     }
 
     private void CheckFlipWeapon(float zRot)
     {
         bool flipX = zRot > 90 || zRot < -90;
         AimParent.localScale = new Vector3(1f, flipX ? -1f : 1f, 1f);
-        playerMovement.UpdateGFXFlip(flipX);
+        if(IsOwnerNPC()) { NPC.UpdateGFXFlip(flipX); }
+        else if(IsOwnerPlayer()) { Player.UpdateGFXFlip(flipX); }
     }
 
     public bool IsWeaponAddable(Weapon weaponToAdd)
@@ -256,10 +292,31 @@ public class WeaponManager : Singleton<WeaponManager>
         return currentWeapons.Exists(weapon => weapon.weaponID == weaponID);
     }
 
+    public Entity GetOwnerEntity()
+    {
+        Player playerEntity = GetComponentInParent<Player>();
+        NPC npcEntity = GetComponentInParent<NPC>();
+        if(playerEntity) { return playerEntity; }
+        if(npcEntity) { return npcEntity; }
+        return null;
+    }
+
+    public bool IsOwnerAlive()
+    {
+        if(IsOwnerNPC()) { return NPC.IsAlive; }
+        else if(IsOwnerPlayer()) { return Player.IsAlive; }
+        return false;
+    }
+
+    public NPC NPC => ownerEntity as NPC;
+    public Player Player => ownerEntity as Player;
+    public bool IsOwnerNPC() => ownerEntity is NPC;
+    public bool IsOwnerPlayer() => ownerEntity is Player;
+
     public int WeaponCount { get { return currentWeapons.Count; } }
     public Weapon SelectedWeapon { get; set; } = null;
+    public Entity AimTarget { get; set; } = null;
     public int SelectedSlotIndex { get { return selectedSlotIndex; } }
-    public bool IsPlayerArmed { get { return currentWeapons.Count > 0; } }
     public bool IsAttackingAllowed { get; set; } = true;
     public Transform WeaponParent { get; set; } = null;
     public Transform AimParent { get; set; } = null;

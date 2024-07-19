@@ -25,9 +25,9 @@ public class RangedWeapon : Weapon
             shotDelayTimer = INPUT_DELAY;
         }
 
-        if(playerEntity.IsAlive && PlayerInput.InputEnabled)
+        if(IsOwnerAlive() && PlayerInput.InputEnabled)
         {
-            if(weaponManager.IsPlayerArmed)
+            if(weaponManager.WeaponCount > 0)
             {
                 UpdateShooting();
             }
@@ -36,14 +36,27 @@ public class RangedWeapon : Weapon
 
     private void UpdateShooting()
     {
-        bool canShoot = !IsShootOriginObstructed && weaponManager.IsAttackingAllowed;
-        bool gotAttackInput = isAutomatic ? PlayerInput.IsButtonHeld("Attack") : PlayerInput.IsButtonPressed("Attack");
-
-        if(shotDelayTimer > 0) { shotDelayTimer -= Time.deltaTime; }
-        else if(shotDelayTimer <= 0 && gotAttackInput && canShoot)
+        if(IsOwnerPlayer())
         {
-            OnFireWeapon(); // Fire the weapon...
-            shotDelayTimer = fireRate; // Delay the next shot using the fire rate...
+            bool canShoot = !IsShootOriginObstructed && weaponManager.IsAttackingAllowed;
+            bool gotAttackInput = isAutomatic ? PlayerInput.IsButtonHeld("Attack") : PlayerInput.IsButtonPressed("Attack");
+
+            if(shotDelayTimer > 0) { shotDelayTimer -= Time.deltaTime; }
+            else if(shotDelayTimer <= 0 && gotAttackInput && canShoot)
+            {
+                OnFireWeapon(); // Fire the weapon...
+                shotDelayTimer = fireRate; // Delay the next shot using the fire rate...
+            }
+        }
+
+        if(IsOwnerNPC() && weaponManager.IsAttackingAllowed)
+        {
+            if(shotDelayTimer > 0) { shotDelayTimer -= Time.deltaTime; }
+            else if(shotDelayTimer <= 0)
+            {
+                OnFireWeapon(); // Fire the weapon...
+                shotDelayTimer = fireRate; // Delay the next shot using the fire rate...
+            }
         }
     }
 
@@ -61,11 +74,11 @@ public class RangedWeapon : Weapon
 
         EntityAnim.Play("Shoot");
         muzzleFlashAnimator.Play("Blast");
-        CameraShaker.Shake(shootCameraShakeInfo);
 
-        if(shootKnockbackInfo != null)
+        if(IsOwnerPlayer())
         {
-            playerEntity.ApplyKnockback(shootKnockbackInfo, ShootOriginTransform.position);
+            Player.ApplyKnockback(shootKnockbackInfo, ShootOriginTransform.position);
+            CameraShaker.Shake(shootCameraShakeInfo);
         }
     }
 
@@ -74,27 +87,36 @@ public class RangedWeapon : Weapon
         // Set defaults if parameters are not provided...
         origin = origin == Vector2.zero ? ShootOriginTransform.position : origin;
         direction = direction == Vector2.zero ? ShootOriginTransform.right : direction;
-        LayerMask layerMask = LayerManager.Masks.SHOOTABLE;
+        LayerMask layerMask = IsOwnerPlayer() ? LayerManager.Masks.SHOOTABLE_NPC : LayerManager.Masks.SHOOTABLE_PLAYER;
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, Mathf.Infinity, layerMask);
 
         if(hit && hit.collider)
         {
             Entity entityHit = hit.collider.GetComponentInParent<Entity>();
-            NPC npcHit = entityHit ? entityHit.GetComponent<NPC>() : null;
 
-            DamageInfo damageInfo = new DamageInfo()
+            if(entityHit != ownerEntity)
             {
-                damageOrigin = hit.point,
-                damageAmount = Random.Range(damageMin, damageMax) / numberOfShots,
-                attackerEntity = playerEntity,
-            };
+                DamageInfo damageInfo = new DamageInfo()
+                {
+                    damageOrigin = hit.point,
+                    damageAmount = Random.Range(damageMin, damageMax) / numberOfShots,
+                    attackerEntity = ownerEntity,
+                };
 
-            // Hurt, knockback...
-            npcHit?.TakeDamage(damageInfo);
-            npcHit?.ApplyKnockback(hurtKnockbackInfo, damageInfo.damageOrigin);
+                if(IsOwnerNPC() && entityHit is Player playerHit)
+                {
+                    playerHit.TakeDamage(damageInfo);
+                    playerHit.ApplyKnockback(hurtKnockbackInfo, damageInfo.damageOrigin);
+                }
+                else if(IsOwnerPlayer() && entityHit is NPC npcHit)
+                {
+                    npcHit.TakeDamage(damageInfo);
+                    npcHit.ApplyKnockback(hurtKnockbackInfo, damageInfo.damageOrigin);
+                }
 
-            // Hit visualization...
-            Debug.DrawLine(origin, hit.point, Color.red, 0.5f);
+                // Hit visualization...
+                Debug.DrawLine(origin, hit.point, Color.red, 0.5f);
+            }
         }
 
         return hit;
@@ -119,7 +141,8 @@ public class RangedWeapon : Weapon
         {
             Vector2 startPos = weaponManager.AimParent.position;
             Vector2 endPos = ShootOriginTransform.position;
-            RaycastHit2D hit = Physics2D.Linecast(startPos, endPos, LayerManager.Masks.SHOOTABLE);
+            LayerMask layerMask = IsOwnerPlayer() ? LayerManager.Masks.SHOOTABLE_NPC : LayerManager.Masks.SHOOTABLE_PLAYER;
+            RaycastHit2D hit = Physics2D.Linecast(startPos, endPos, layerMask);
             Debug.DrawLine(startPos, endPos, Color.yellow);
             return hit;
         }

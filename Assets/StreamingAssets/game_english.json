@@ -24,7 +24,7 @@
         "quitText": "<color=%color%>QUIT TO MENU</color>"
     },
     "level_clear_ui": {
-        "timeText": "<color=#ffffff>TIME: %minutes%:%seconds%</color>",
+        "timeText": "<color=#ffffff>CLEAR TIME: %minutes%:%seconds%</color>",
         "killstreakText": "<color=#ffffff>BEST KILLSTREAK: x%count%</color>",
         "areaCoveredText": "<color=#ffffff>AREA COVERED: %metersWalked%M</color>",
         "creativityText": "<color=#ffffff>CREATIVITY: %rating%/%max%</color>",
