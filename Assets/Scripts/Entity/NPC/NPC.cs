@@ -54,6 +54,7 @@ public class NPC : Entity
             currentHealth -= damageInfo.damageAmount;
             OnTakeDamage(damageInfo);
             HurtFlash.ApplyHurtFlash(this, HURT_FLASH_TIME);
+            SplatManager.SpawnSplatter("blood_splat", CenterOfMass);
 
             // We died from that hit?
             if(currentHealth <= 0)

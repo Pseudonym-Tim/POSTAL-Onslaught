@@ -6,17 +6,16 @@ using UnityEngine;
 /// </summary>
 public class LevelTile : MonoBehaviour
 {
-    private SpriteRenderer tileGFX;
     private NavMeshModifier navMeshModifier;
 
     public void OnTileSpawn()
     {
-        tileGFX = TileObject.AddComponent<SpriteRenderer>();
+        TileGFX = TileObject.AddComponent<SpriteRenderer>();
         navMeshModifier = TileObject.AddComponent<NavMeshModifier>();
-        tileGFX.sortingOrder = TileData.sortingOrder;
-        tileGFX.sortingLayerID = LayerManager.SortingLayers.DEFAULT;
+        TileGFX.sortingOrder = TileData.sortingOrder;
+        TileGFX.sortingLayerID = LayerManager.SortingLayers.DEFAULT;
         int randomIndex = Random.Range(0, TileData.sprites.Count);
-        tileGFX.sprite = TileData.sprites[randomIndex];
+        TileGFX.sprite = TileData.sprites[randomIndex];
 
         if(TileData.collisionData.addCollision)
         {
@@ -56,6 +55,7 @@ public class LevelTile : MonoBehaviour
         Destroy(TileObject);
     }
 
+    public SpriteRenderer TileGFX { get; private set; } = null;
     public Vector3 TilePosition { get { return transform.position; } set { transform.position = value; } }
     public GameObject TileObject { get { return gameObject; } }
     public TileData TileData { get; set; } = null;

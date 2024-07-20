@@ -12,6 +12,7 @@ public class LevelManager : Singleton<LevelManager>
     private TileManager tileManager;
     private TaskManager taskManager;
     private KillCreativityManager killCreativityManager;
+    private SplatManager splatManager;
 
     public void CreateLevel()
     {
@@ -19,6 +20,7 @@ public class LevelManager : Singleton<LevelManager>
         levelGenerator = FindFirstObjectByType<LevelGenerator>();
         tileManager = FindFirstObjectByType<TileManager>();
         taskManager = FindFirstObjectByType<TaskManager>();
+        splatManager = FindFirstObjectByType<SplatManager>();
         killCreativityManager = FindFirstObjectByType<KillCreativityManager>();
 
         RemoveTiles();
@@ -31,6 +33,7 @@ public class LevelManager : Singleton<LevelManager>
         levelGenerator.GenerateLevel();
         taskManager.Setup();
         killCreativityManager.Setup();
+        splatManager.Setup();
         LevelTimer = 0.0f;
     }
 
