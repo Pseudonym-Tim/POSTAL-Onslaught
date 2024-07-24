@@ -6,9 +6,9 @@ using UnityEngine;
 /// Data for level tile splats...
 /// </summary>
 [System.Serializable]
-public class SplatData
+public class DecalData
 {
-    public string splatID = "new_splat";
+    public string decalID = "new_splat";
     public List<Sprite> sprites;
     public List<string> tilesToAffect;
     public int spawnIterations = 3;

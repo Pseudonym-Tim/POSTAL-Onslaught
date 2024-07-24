@@ -43,6 +43,14 @@ public class TaskManager : Singleton<TaskManager>
         }
     }
 
+    public void AddPopulation(NPC npcToAdd)
+    {
+        currentNPCList.Add(npcToAdd);
+        currentNPCAmount++;
+        totalNPCAmount = currentNPCList.Count;
+        playerHUD.UpdatePopulation(currentNPCAmount, totalNPCAmount);
+    }
+
     private void ShowLevelClearUI()
     {
         levelClearUI.Show(true);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Handles everything related to player weapons...
+/// Handles everything related to player/npc weapons...
 /// </summary>
 public class WeaponManager : MonoBehaviour
 {
@@ -46,8 +46,6 @@ public class WeaponManager : MonoBehaviour
         }
 
         UpdateSelectedWeapon();
-
-        Debug.Log("Setup weapon!");
     }
 
     private IEnumerator UpdateNPCAimLag()

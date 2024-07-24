@@ -19,6 +19,8 @@ MonoBehaviour:
         id: item_pizza
         name: Pizza
         gfxPath: Art/Sprites/Items/item_pizza.png
+        jsonDataString: "{\r\n  \"name\": \"Pizza\",\r\n  \"gfxPath\": \"Art/Sprites/Items/item_pizza.png\",\r\n 
+          \"health\": 4\r\n}"
         sprite: {fileID: 21300000, guid: 2cc31ff740841aa4993b2f3808541fb5, type: 3}
       index: 0
       isKeyDuplicated: 0
@@ -27,6 +29,8 @@ MonoBehaviour:
         id: item_donut
         name: Donut
         gfxPath: Art/Sprites/Items/item_donut.png
+        jsonDataString: "{\r\n  \"name\": \"Donut\",\r\n  \"gfxPath\": \"Art/Sprites/Items/item_donut.png\",\r\n 
+          \"health\": 2\r\n}"
         sprite: {fileID: 21300000, guid: 031b2d5c144bfec4f81b3a21b1518a90, type: 3}
       index: 1
       isKeyDuplicated: 0
@@ -35,6 +39,8 @@ MonoBehaviour:
         id: item_burger
         name: Burger
         gfxPath: Art/Sprites/Items/item_burger.png
+        jsonDataString: "{\r\n  \"name\": \"Burger\",\r\n  \"gfxPath\": \"Art/Sprites/Items/item_burger.png\",\r\n 
+          \"health\": 6\r\n}"
         sprite: {fileID: 21300000, guid: 77a7c2ff016e32345bf3af80904c2046, type: 3}
       index: 2
       isKeyDuplicated: 0

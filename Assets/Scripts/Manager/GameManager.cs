@@ -49,8 +49,11 @@ public class GameManager : Singleton<GameManager>
         scoreManager.Setup();
         LevelManager.CurrentLevel = 0;
         levelManager.RemoveEntities(true);
+
+        // Force destroy player camera so we don't get any duplicates... ugh...
         PlayerCamera playerCamera = FindFirstObjectByType<PlayerCamera>();
         playerCamera?.DestroyEntity();
+
         levelManager.CreateLevel();
         UIManager.SetupUI();
         BeginPlaying();
@@ -104,9 +107,10 @@ public class GameManager : Singleton<GameManager>
         gameOverUI.Show();
     }
 
-    public static void BackToMenu()
+    public static void QuitToMainMenu()
     {
-
+        // Load main menu scene...
+        SceneManager.LoadScene(0);
     }
 
     public static void QuitGame()

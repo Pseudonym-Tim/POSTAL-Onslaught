@@ -25,19 +25,35 @@ public class ProtesterEnemyNPC : EnemyNPC
     private Vector3 chaseDestination;
     private bool isNewDestination = false;
 
-    public override void OnEntitySpawn() { }
+    public override void OnEntitySpawn()
+    {
+        playerEntity = GetPlayer();
+
+        if(!weaponManager)
+        {
+            SetupWeapon();
+        }
+
+        if(LevelNavmesher.IsNavmeshBuilt && NPCNavigation == null)
+        {
+            SetupNPCNavigation(0);
+            BeginRoaming();
+        }
+    }
 
     public override void OnLevelGenerated()
     {
         base.OnLevelGenerated();
-        SetupWeaponManager();
-        EquipDefaultWeapon();
+        if(!weaponManager) { SetupWeapon(); }
     }
 
     public override void OnNavmeshBuilt()
     {
-        SetupNPCNavigation(0);
-        BeginRoaming();
+        if(NPCNavigation == null)
+        {
+            SetupNPCNavigation(0);
+            BeginRoaming();
+        }
     }
 
     protected override void OnEntityUpdate()
@@ -95,18 +111,6 @@ public class ProtesterEnemyNPC : EnemyNPC
         BeginChasing();
     }
 
-    private void EquipDefaultWeapon()
-    {
-        // Equip random weapon from weapon pool...
-        JArray weaponPool = (JArray)EntityData.jsonData["weaponPool"];
-        int randomIndex = Random.Range(0, weaponPool.Count);
-        string weaponID = weaponPool[randomIndex].ToString();
-        EntityData weaponEntityData = EntityManager.RegisteredEntities[weaponID];
-        PrefabDatabase prefabDatabase = FindFirstObjectByType<PrefabDatabase>();
-        Weapon defaultWeapon = prefabDatabase.GetPrefab<Weapon>(weaponEntityData.prefab);
-        weaponManager.GiveWeapon(defaultWeapon);
-    }
-
     private void BeginRoaming()
     {
         ResetNavigation();
@@ -151,7 +155,7 @@ public class ProtesterEnemyNPC : EnemyNPC
 
             if(chaseTimer <= 0 || !isNewDestination)
             {
-                SetNewChaseDestination();
+                UpdateChaseDestination();
             }
             else
             {
@@ -204,7 +208,6 @@ public class ProtesterEnemyNPC : EnemyNPC
         NPCNavigation.SetDestination(playerEntity.EntityPosition, 1);
         float distanceToPlayer = Vector2.Distance(playerEntity.CenterOfMass, EntityPosition);
         MeleeWeapon meleeWeapon = (MeleeWeapon)weaponManager.SelectedWeapon;
-
         weaponManager.IsAttackingAllowed = distanceToPlayer <= meleeWeapon.attackRange;
     }
 
@@ -228,10 +231,11 @@ public class ProtesterEnemyNPC : EnemyNPC
         isNewDestination = false;
     }
 
-    private void SetNewChaseDestination()
+    private void UpdateChaseDestination()
     {
         chaseDestination = LevelNavmesher.GetRandomPosition(playerEntity.EntityPosition, chaseRadius);
         float stoppingDistance = weaponManager.SelectedWeapon.IsMeleeWeapon ? 1 : 0;
+
         if(weaponManager.SelectedWeapon.IsMeleeWeapon)
         {
             chaseDestination = playerEntity.EntityPosition;

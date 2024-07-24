@@ -18,13 +18,22 @@ public class ProtesterNPC : NPC
 
     public override void OnEntitySpawn()
     {
-        
+        playerEntity = GetPlayer();
+
+        if(LevelNavmesher.IsNavmeshBuilt && NPCNavigation == null)
+        {
+            SetupNPCNavigation(0);
+            BeginRoaming();
+        }
     }
 
     public override void OnNavmeshBuilt()
     {
-        SetupNPCNavigation(0);
-        BeginRoaming();
+        if(NPCNavigation == null)
+        {
+            SetupNPCNavigation(0);
+            BeginRoaming();
+        }
     }
 
     protected override void OnEntityUpdate()

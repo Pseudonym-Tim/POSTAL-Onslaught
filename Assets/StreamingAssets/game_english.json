@@ -11,9 +11,13 @@
         "<color=#ffffff>TIP: Use melee attacks to conserve ammo!</color>",
         "<color=#ffffff>TIP: Explore thoroughly to find helpful items!</color>"
     ],
+    "main_menu_ui": {
+        
+    },
     "pause_ui": {
         "pauseLabel": "<color=#ffffff>GAME PAUSED!</color>",
         "resumeText": "<color=%color%>RESUME!</color>",
+        "restartText": "<color=%color%>RESTART!</color>",
         "quitText": "<color=%color%>QUIT TO MENU!</color>",
         "timeText": "<color=#ffffff>TIME: %minutes%:%seconds%</color>"
     },

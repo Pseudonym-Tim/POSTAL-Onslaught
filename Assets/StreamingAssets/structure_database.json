@@ -1,0 +1,32 @@
+{
+  "npc_housing": {
+    "structureBounds": {
+      "center": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "boundsX": 8.0,
+      "boundsY": 8.0
+    },
+    "entities": [
+      {
+        "npc_home": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0
+          }
+        }
+      }
+    ],
+    "level_objects": [
+      {
+        "level_rws_sign": {
+          "position": {
+            "x": -3.0,
+            "y": -3.0
+          }
+        }
+      }
+    ]
+  }
+}

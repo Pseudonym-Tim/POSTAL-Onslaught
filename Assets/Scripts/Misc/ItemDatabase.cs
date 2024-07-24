@@ -54,7 +54,7 @@ public class ItemDatabase : ScriptableObject
         itemData.id = itemID;
         string spritePath = itemData.gfxPath;
         itemData.sprite = AssetUtility.LoadAsset<Sprite>(spritePath);
-        itemData.jsonData = (JObject)JsonUtility.ParseJson("item_database")[itemID];
+        itemData.jsonDataString = JsonUtility.ParseJson("item_database")[itemID].ToString();
     }
 
     [PostProcessScene]
@@ -64,7 +64,6 @@ public class ItemDatabase : ScriptableObject
         ItemDatabase itemDatabase = AssetUtility.LoadAsset<ItemDatabase>(ASSET_PATH);
         EditorUtility.SetDirty(itemDatabase);
         itemDatabase.Load();
-        Debug.Log("Item database loaded!");
     }
 
     [MenuItem("Assets/Refresh Item Database", true)]

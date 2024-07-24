@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 /// <summary>
-/// Editor for the tile database.
+/// Editor for the tile database...
 /// </summary>
 public class TileDatabaseEditor : EditorWindow
 {

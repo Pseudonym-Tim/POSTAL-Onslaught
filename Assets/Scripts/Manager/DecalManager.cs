@@ -1,22 +1,21 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 /// <summary>
-/// Handles everything related to splatting level tiles...
+/// Handles everything related to applying decals to level tiles...
 /// </summary>
-public class SplatManager : Singleton<SplatManager>
+public class DecalManager : Singleton<DecalManager>
 {
-    public List<SplatData> splatterList;
+    public List<DecalData> decalList;
     private static LevelManager levelManager;
-    private static Dictionary<string, SplatData> splatDatabase;
+    private static Dictionary<string, DecalData> decalDatabase;
 
     public void Setup()
     {
         levelManager = FindFirstObjectByType<LevelManager>();
-        splatDatabase = new Dictionary<string, SplatData>();
-        splatDatabase = splatterList.ToDictionary(splat => splat.splatID);
+        decalDatabase = new Dictionary<string, DecalData>();
+        decalDatabase = decalList.ToDictionary(decal => decal.decalID);
     }
 
     private void Update()
@@ -26,36 +25,36 @@ public class SplatManager : Singleton<SplatManager>
         {
             //int randomIndex = Random.Range(0, levelManager.LevelTiles.Count);
             //Vector2 spawnPos = levelManager.LevelTiles.Values.ElementAt(randomIndex).TilePosition;
-            SpawnSplatter("blood_splat", levelManager.GetEntity<Player>().CenterOfMass);
+            SpawnDecal("blood", levelManager.GetEntity<Player>().CenterOfMass);
         }*/
     }
 
-    public static void SpawnSplatter(string splatID, Vector2 worldPos)
+    public static void SpawnDecal(string decalID, Vector2 worldPos)
     {
-        if(splatDatabase.TryGetValue(splatID, out SplatData splatData) && splatData.sprites != null && splatData.sprites.Count > 0)
+        if(decalDatabase.TryGetValue(decalID, out DecalData decalData) && decalData.sprites != null && decalData.sprites.Count > 0)
         {
-            for(int i = 0; i < splatData.spawnIterations; i++)
+            for(int i = 0; i < decalData.spawnIterations; i++)
             {
-                int randomIndex = Random.Range(0, splatData.sprites.Count);
-                Sprite randomSprite = splatData.sprites[randomIndex];
-                Texture2D splatTexture = ExtractTextureFromSprite(randomSprite);
+                int randomIndex = Random.Range(0, decalData.sprites.Count);
+                Sprite randomSprite = decalData.sprites[randomIndex];
+                Texture2D decalTexture = ExtractTextureFromSprite(randomSprite);
 
                 // Generate a random scale factor between min and max scale
-                float randomScale = Random.Range(splatData.minScale, splatData.maxScale);
+                float randomScale = Random.Range(decalData.minScale, decalData.maxScale);
 
                 foreach(var levelTile in levelManager.LevelTiles.Values)
                 {
-                    if(IsTileInSplatRange(levelTile, worldPos, splatData))
+                    if(IsTileInRange(levelTile, worldPos, decalData))
                     {
-                        if(Random.value > splatData.spawnChance || !splatData.tilesToAffect.Contains(levelTile.TileData.id))
+                        if(Random.value > decalData.spawnChance || !decalData.tilesToAffect.Contains(levelTile.TileData.id))
                         {
                             continue;
                         }
 
                         float randomRotation = Random.Range(0f, 360f);
-                        Vector2 offsetSplatPosition = ApplyRandomOffset(worldPos, splatData.maxSpawnOffset);
+                        Vector2 offsetPosition = ApplyRandomOffset(worldPos, decalData.maxSpawnOffset);
 
-                        BlendTextures(levelTile, splatTexture, offsetSplatPosition, randomRotation, randomScale);
+                        BlendTextures(levelTile, decalTexture, offsetPosition, randomRotation, randomScale);
                     }
                 }
             }
@@ -63,12 +62,12 @@ public class SplatManager : Singleton<SplatManager>
     }
 
 
-    private static bool IsTileInSplatRange(LevelTile levelTile, Vector2 splatPosition, SplatData splatData)
+    private static bool IsTileInRange(LevelTile levelTile, Vector2 decalPosition, DecalData decalData)
     {
-        return Vector2.Distance(splatPosition, levelTile.TilePosition) <= splatData.spawnRange;
+        return Vector2.Distance(decalPosition, levelTile.TilePosition) <= decalData.spawnRange;
     }
 
-    private static void BlendTextures(LevelTile levelTile, Texture2D splatTexture, Vector2 splatPosition, float rotationAngle, float scale)
+    private static void BlendTextures(LevelTile levelTile, Texture2D decalTexture, Vector2 decalPosition, float rotationAngle, float scale)
     {
         SpriteRenderer tileRenderer = levelTile.TileGFX;
         int width = (int)tileRenderer.sprite.textureRect.width;
@@ -78,30 +77,30 @@ public class SplatManager : Singleton<SplatManager>
         Color[] tilePixels = tileRenderer.sprite.texture.GetPixels((int)spriteRect.x, (int)spriteRect.y, (int)spriteRect.width, (int)spriteRect.height);
         tileTexture.SetPixels(tilePixels);
 
-        Texture2D scaledSplatTexture = ScaleTexture(splatTexture, scale);
-        Texture2D rotatedSplatTexture = RotateTexture(scaledSplatTexture, rotationAngle);
+        Texture2D scaledDecalTexture = ScaleTexture(decalTexture, scale);
+        Texture2D rotatedDecalTexture = RotateTexture(scaledDecalTexture, rotationAngle);
 
-        int splatWidth = rotatedSplatTexture.width;
-        int splatHeight = rotatedSplatTexture.height;
+        int decalWidth = rotatedDecalTexture.width;
+        int decalHeight = rotatedDecalTexture.height;
         Vector2 tilePosition = levelTile.TilePosition;
 
-        int startX = Mathf.Max(0, Mathf.FloorToInt(splatPosition.x - tilePosition.x));
-        int startY = Mathf.Max(0, Mathf.FloorToInt(splatPosition.y - tilePosition.y));
-        int endX = Mathf.Min(tileTexture.width, startX + splatWidth);
-        int endY = Mathf.Min(tileTexture.height, startY + splatHeight);
+        int startX = Mathf.Max(0, Mathf.FloorToInt(decalPosition.x - tilePosition.x));
+        int startY = Mathf.Max(0, Mathf.FloorToInt(decalPosition.y - tilePosition.y));
+        int endX = Mathf.Min(tileTexture.width, startX + decalWidth);
+        int endY = Mathf.Min(tileTexture.height, startY + decalHeight);
 
         for(int y = startY; y < endY; y++)
         {
             for(int x = startX; x < endX; x++)
             {
-                int splatX = x - startX;
-                int splatY = y - startY;
+                int decalX = x - startX;
+                int decalY = y - startY;
 
-                Color splatColor = rotatedSplatTexture.GetPixel(splatX, splatY);
+                Color decalColor = rotatedDecalTexture.GetPixel(decalX, decalY);
 
-                if(splatColor.a > 0)
+                if(decalColor.a > 0)
                 {
-                    tileTexture.SetPixel(x, y, splatColor);
+                    tileTexture.SetPixel(x, y, decalColor);
                 }
             }
         }
@@ -116,7 +115,6 @@ public class SplatManager : Singleton<SplatManager>
         float pixelsPerUnit = levelTile.TileGFX.sprite.pixelsPerUnit;
         levelTile.TileGFX.sprite = Sprite.Create(tileTexture, rect, pivot, pixelsPerUnit);
     }
-
 
     private static Vector2 ApplyRandomOffset(Vector2 position, float maxOffset)
     {

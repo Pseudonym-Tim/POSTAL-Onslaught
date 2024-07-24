@@ -20,6 +20,7 @@ public class PlayerInput : Singleton<PlayerInput>
     public static bool Interact { get { return IsButtonPressed("Interact"); } }
 
     // Inventory...
+    public static bool UseItem { get { return IsButtonPressed("ItemUse"); } }
     public static bool ItemNavigateLeft { get { return IsButtonPressed("ItemNavigateLeft"); } }
     public static bool ItemNavigateRight { get { return IsButtonPressed("ItemNavigateRight"); } }
 

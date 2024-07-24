@@ -60,20 +60,32 @@ public class LevelNavmesher : Singleton<LevelNavmesher>
         return randomPosition;
     }
 
+    public static void Clear()
+    {
+        if(navMeshSurfaces != null)
+        {
+            foreach(NavMeshSurface navMeshSurface in navMeshSurfaces)
+            {
+                navMeshSurface.RemoveData();
+            }
+        }
+
+        IsNavmeshBuilt = false;
+    }
+
     public static void Build()
     {
         foreach(NavMeshSurface navMeshSurface in navMeshSurfaces)
         {
+            navMeshSurface.BuildNavMeshAsync().completed -= OnNavMeshBuildComplete;
             navMeshSurface.BuildNavMeshAsync().completed += OnNavMeshBuildComplete;
         }
     }
 
     private static void OnNavMeshBuildComplete(AsyncOperation operation)
     {
-        if(IsNavmeshBuilt)
-        {
-            NotifyEntities();
-        }
+        IsNavmeshBuilt = true;
+        NotifyEntities();
     }
 
     private static void NotifyEntities()
@@ -94,19 +106,5 @@ public class LevelNavmesher : Singleton<LevelNavmesher>
         }
     }
 
-    public static bool IsNavmeshBuilt
-    {
-        get
-        {
-            foreach(NavMeshSurface navMeshSurface in navMeshSurfaces)
-            {
-                if(navMeshSurface.navMeshData == null)
-                {
-                    return false;
-                }
-            }
-
-            return true;
-        }
-    }
+    public static bool IsNavmeshBuilt { get; set; } = false;
 }

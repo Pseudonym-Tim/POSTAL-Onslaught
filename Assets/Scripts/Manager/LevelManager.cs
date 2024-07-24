@@ -12,7 +12,7 @@ public class LevelManager : Singleton<LevelManager>
     private TileManager tileManager;
     private TaskManager taskManager;
     private KillCreativityManager killCreativityManager;
-    private SplatManager splatManager;
+    private DecalManager splatManager;
 
     public void CreateLevel()
     {
@@ -20,7 +20,7 @@ public class LevelManager : Singleton<LevelManager>
         levelGenerator = FindFirstObjectByType<LevelGenerator>();
         tileManager = FindFirstObjectByType<TileManager>();
         taskManager = FindFirstObjectByType<TaskManager>();
-        splatManager = FindFirstObjectByType<SplatManager>();
+        splatManager = FindFirstObjectByType<DecalManager>();
         killCreativityManager = FindFirstObjectByType<KillCreativityManager>();
 
         RemoveTiles();
@@ -213,7 +213,7 @@ public class LevelManager : Singleton<LevelManager>
         return entityList;
     }
 
-    public void RestartLevel()
+    public void NextLevel()
     {
         // Unparent player entity so they will carry over to the next level, create new level...
         Player playerEntity = GetEntity<Player>();

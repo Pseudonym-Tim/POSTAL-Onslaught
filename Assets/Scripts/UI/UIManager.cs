@@ -8,6 +8,16 @@ using UnityEngine;
 /// </summary>
 public class UIManager : Singleton<UIManager>
 {
+    [SerializeField] private bool initializeByDefault = false;
+
+    private void Awake()
+    {
+        if(initializeByDefault)
+        {
+            SetupUI();
+        }
+    }
+
     public static void SetupUI()
     {
         List<UIComponent> uiComponentList = GetUIComponents<UIComponent>();

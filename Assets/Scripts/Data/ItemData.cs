@@ -1,6 +1,4 @@
 using Newtonsoft.Json.Linq;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -12,6 +10,7 @@ public class ItemData
     public string id;
     public string name;
     public string gfxPath;
+    public string jsonDataString;
     public Sprite sprite;
-    public JObject jsonData;
+    public JObject jsonData => JObject.Parse(jsonDataString);
 }

@@ -2,6 +2,13 @@
     "player_dude": {
         "prefab": "Player"
     },
+    "npc_home": {
+        "prefab": "NPCHome",
+        "npcPool": [
+            "protester_enemy_npc",
+            "protester_npc"
+        ]
+    },
     "protester_npc": {
         "prefab": "ProtesterNPC",
         "dropItemChance": 0.05,
@@ -35,8 +42,7 @@
             "weapon_jk74",
             "weapon_revolver",
             "weapon_pistol",
-            "weapon_shovel",
-            "weapon_protester_sign"
+            "weapon_shovel"
         ]
     },
     "item_pickup": {

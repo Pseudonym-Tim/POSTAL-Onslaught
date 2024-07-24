@@ -16,15 +16,30 @@ public class Weapon : Entity
     public string weaponID = "new_weapon";
     public string weaponName = "NewWeapon";
     protected WeaponManager weaponManager;
+    protected LevelManager levelManager;
     protected Entity ownerEntity;
 
     public override void OnEntityAwake()
     {
+        levelManager = FindFirstObjectByType<LevelManager>();
         weaponManager = GetComponentInParent<WeaponManager>();
         weaponGFX.sprite = weaponHeldSprite;
         ownerEntity = weaponManager.GetOwnerEntity();
         SetupEntityAnim();
         EntityAnim.Play("Idle");
+    }
+
+    public void CheckHouseDisturbance()
+    {
+        List<NPCHome> npcHomes = new List<NPCHome>();
+        Vector2 checkOrigin = ownerEntity.CenterOfMass;
+        float checkRange = NPCHome.DISTURB_RANGE;
+        npcHomes.AddRange(levelManager.GetEntities<NPCHome>(checkOrigin, checkRange));
+
+        for(int i = 0; i < npcHomes.Count; i++)
+        {
+            npcHomes[i].TriggerNPCSpawn();
+        }
     }
 
     public virtual void OnWeaponSelected() { }

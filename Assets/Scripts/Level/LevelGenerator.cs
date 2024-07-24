@@ -8,14 +8,16 @@ using UnityEngine;
 public class LevelGenerator : Singleton<LevelGenerator>
 {
     private LevelManager levelManager = null;
-    private LevelScriptParser levelScriptParser;
+    public LevelScriptParser levelScriptParser;
 
     public void GenerateLevel()
     {
         levelManager = FindFirstObjectByType<LevelManager>();
 
+        LevelNavmesher.Clear();
         InitializeLevel();
         SetRandomSeed();
+        StructureGenerator.Initialize(levelManager, this);
 
         // Create script parser and parse the level script...
         levelScriptParser = new LevelScriptParser(levelManager, this);
@@ -52,7 +54,7 @@ public class LevelGenerator : Singleton<LevelGenerator>
         levelCollider2D.generationType = CompositeCollider2D.GenerationType.Synchronous;
     }
 
-    private List<LevelTile> GetValidSpawnTiles(string spawnTileID, int minBoundsDist)
+    private List<LevelTile> GetValidSpawnTiles(string spawnTileID, int minBoundsDist, float minSpawnDistance, float minPlayerDist)
     {
         int levelBoundsDist = levelScriptParser.LevelBoundsDist;
         int levelSizeX = levelScriptParser.LevelSizeX;
@@ -73,7 +75,7 @@ public class LevelGenerator : Singleton<LevelGenerator>
             float tilePosY = levelTile.TilePosition.y;
             bool withinXBounds = tilePosX >= minBoundaryDist && tilePosX <= levelSizeX - minBoundaryDist;
             bool withinYBounds = tilePosY >= minBoundaryDist && tilePosY <= levelSizeY - minBoundaryDist;
-            return withinXBounds && withinYBounds && IsValidSpawnPosition(levelTile.TilePosition);
+            return withinXBounds && withinYBounds && IsValidSpawnPosition(levelTile.TilePosition, minSpawnDistance, minPlayerDist);
         });
 
         if(validSpawnTiles.Count == 0)
@@ -96,13 +98,12 @@ public class LevelGenerator : Singleton<LevelGenerator>
         Debug.Log($"Spawned: [{objectID}] at position: [{spawnPos}]");
     }
 
-    public void SpawnEntity(string entityID, string spawnTileID, int minBoundsDist = 0)
+    public void SpawnEntity(string entityID, string spawnTileID, int minBoundsDist = 0, float minDistance = 0, float minPlayerDist = 0)
     {
-        List<LevelTile> validSpawnTiles = GetValidSpawnTiles(spawnTileID, minBoundsDist);
+        List<LevelTile> validSpawnTiles = GetValidSpawnTiles(spawnTileID, minBoundsDist, minDistance, minPlayerDist);
         if(validSpawnTiles.Count == 0) { return; }
         LevelTile spawnTile = validSpawnTiles[Random.Range(0, validSpawnTiles.Count)];
 
-        // Just reposition and reparent the player entity if they already exist...
         if(entityID == "player_dude" && levelManager.GetEntity<Player>())
         {
             Player playerEntity = levelManager.GetEntity<Player>();
@@ -114,9 +115,9 @@ public class LevelGenerator : Singleton<LevelGenerator>
         SpawnEntity(entityID, spawnTile.TilePosition);
     }
 
-    public void SpawnObject(string objectID, string spawnTileID, int minBoundsDist = 0)
+    public void SpawnObject(string objectID, string spawnTileID, int minBoundsDist = 0, float minDistance = 0, float minPlayerDist = 0)
     {
-        List<LevelTile> validSpawnTiles = GetValidSpawnTiles(spawnTileID, minBoundsDist);
+        List<LevelTile> validSpawnTiles = GetValidSpawnTiles(spawnTileID, minBoundsDist, minDistance, minPlayerDist);
         if(validSpawnTiles.Count == 0) { return; }
         LevelTile spawnTile = validSpawnTiles[Random.Range(0, validSpawnTiles.Count)];
         SpawnObject(objectID, spawnTile.TilePosition);
@@ -135,11 +136,11 @@ public class LevelGenerator : Singleton<LevelGenerator>
         EntityParent.transform.SetParent(LevelParent.transform, false);
     }
 
-    private bool IsValidSpawnPosition(Vector2 spawnPos)
+    private bool IsValidSpawnPosition(Vector2 spawnPos, float minDistance, float minPlayerDist)
     {
         foreach(Entity entity in levelManager.LevelEntities)
         {
-            if(entity.EntityPosition == (Vector3)spawnPos)
+            if(Vector2.Distance(entity.EntityPosition, spawnPos) < minDistance)
             {
                 return false;
             }
@@ -147,7 +148,17 @@ public class LevelGenerator : Singleton<LevelGenerator>
 
         foreach(GameObject levelObject in levelManager.LevelObjects)
         {
-            if(levelObject.transform.position == (Vector3)spawnPos)
+            if(Vector2.Distance(levelObject.transform.position, spawnPos) < minDistance)
+            {
+                return false;
+            }
+        }
+
+        Player playerEntity = levelManager.GetEntity<Player>();
+
+        if(playerEntity != null)
+        {
+            if(Vector2.Distance(playerEntity.EntityPosition, spawnPos) < minPlayerDist)
             {
                 return false;
             }

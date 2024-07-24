@@ -29,7 +29,7 @@ public class InventoryManager : Singleton<InventoryManager>
         {
             UpdateSelection();
 
-            if(InputManager.IsButtonPressed("ItemUse"))
+            if(PlayerInput.UseItem)
             {
                 UseCurrentItem();
             }
@@ -56,40 +56,51 @@ public class InventoryManager : Singleton<InventoryManager>
 
     private void UseCurrentItem()
     {
-        if(inventoryItems.Count > 0)
+        if(inventoryItems.Count > 0 && CurrentInventoryItem != null)
         {
             Player playerEntity = levelManager.GetEntity<Player>();
-            JObject itemJsonData = CurrentInventoryItem.itemData.jsonData;
-            int healthToGive = (int)itemJsonData["health"];
 
-            if(IsItemUsable(CurrentInventoryItem.itemData))
+            if(IsItemUsable(CurrentInventoryItem.itemData, playerEntity))
             {
-                if(healthToGive > 0) { playerEntity.Heal(healthToGive); }
-                RemoveItem(CurrentInventoryItem.itemData.id);
+                int healthToGive = GetHealthValue(CurrentInventoryItem.itemData);
 
-                if(inventoryItems.Count > 0)
+                if(healthToGive > 0)
                 {
-                    playerHUD.UpdateCurrentItem(CurrentInventoryItem);
+                    playerEntity.Heal(healthToGive);
                 }
-                else
-                {
-                    playerHUD.UpdateCurrentItem(null, 0);
-                }
+
+                RemoveItem(CurrentInventoryItem.itemData.id);
+                UpdateHUD();
             }
         }
     }
 
-    private bool IsItemUsable(ItemData itemData)
+    private bool IsItemUsable(ItemData itemData, Player playerEntity)
     {
-        Player playerEntity = levelManager.GetEntity<Player>();
-        int healthToGive = (int)itemData.jsonData["health"];
+        int healthToGive = GetHealthValue(itemData);
+        return healthToGive > 0 && !playerEntity.IsMaxHealth;
+    }
 
-        if(healthToGive > 0 && !playerEntity.IsMaxHealth)
+    private int GetHealthValue(ItemData itemData)
+    {
+        if(itemData.jsonData.ContainsKey("health"))
         {
-            return true;
+            return (int)itemData.jsonData["health"];
         }
 
-        return false;
+        return 0;
+    }
+
+    private void UpdateHUD()
+    {
+        if(inventoryItems.Count > 0)
+        {
+            playerHUD.UpdateCurrentItem(CurrentInventoryItem);
+        }
+        else
+        {
+            playerHUD.UpdateCurrentItem(null, 0);
+        }
     }
 
     public InventoryItem CurrentInventoryItem

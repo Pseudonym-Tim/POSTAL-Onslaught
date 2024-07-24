@@ -65,12 +65,21 @@ public class LevelScriptParser
             else if(line.StartsWith("OBJECT ")) ParseObject(line);
             else if(line.StartsWith("OBJECT_RANDOM ")) ParseObjectRandom(line);
             else if(line.StartsWith("ENTITY_RANDOM ")) ParseEntityRandom(line);
+            else if(line.StartsWith("STRUCTURE ")) ParseStructure(line);
             else throw new Exception($"Unknown command: {line}");
         }
         catch(Exception e)
         {
             Debug.LogError($"Error parsing line {currentLineIndex + 1}: {line}\n{e.Message}");
         }
+    }
+
+    private void ParseStructure(string line)
+    {
+        var parts = line.Split(' ');
+        string structureID = parts[1];
+        int minBoundaryDist = GetValue(parts[2]);
+        StructureGenerator.GenerateStructure(structureID, minBoundaryDist);
     }
 
     private void ParseVariable(string line)
@@ -199,8 +208,10 @@ public class LevelScriptParser
         var parts = line.Split(' ');
         string entityID = parts[1];
         string spawnTileID = parts[2];
-        int minBoundsDist = GetValue(parts[3]);
-        levelGenerator.SpawnEntity(entityID, spawnTileID, minBoundsDist);
+        int minBoundsDist = parts.Length > 3 ? GetValue(parts[3]) : 0;
+        float minDistance = parts.Length > 4 ? GetValue(parts[4]) : 0;
+        float minPlayerDistance = parts.Length > 5 ? GetValue(parts[5]) : 0;
+        levelGenerator.SpawnEntity(entityID, spawnTileID, minBoundsDist, minDistance, minPlayerDistance);
     }
 
     private void ParseObject(string line)
@@ -217,8 +228,10 @@ public class LevelScriptParser
         var parts = line.Split(' ');
         string objectID = parts[1];
         string spawnTileID = parts[2];
-        int minBoundsDist = GetValue(parts[3]);
-        levelGenerator.SpawnObject(objectID, spawnTileID, minBoundsDist);
+        int minBoundsDist = parts.Length > 3 ? GetValue(parts[3]) : 0;
+        float minDistance = parts.Length > 4 ? GetValue(parts[4]) : 0;
+        float minPlayerDistance = parts.Length > 5 ? GetValue(parts[5]) : 0;
+        levelGenerator.SpawnObject(objectID, spawnTileID, minBoundsDist, minDistance, minPlayerDistance);
     }
 
     private int GetValue(string token)

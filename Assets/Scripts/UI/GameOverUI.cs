@@ -121,8 +121,7 @@ public class GameOverUI : UIComponent
                 Show(false);
                 break;
             case 1:
-                Debug.Log("QUIT TO MENU!");
-                // TODO: Quit back to menu...
+                GameManager.QuitToMainMenu();
                 break;
         }
     }

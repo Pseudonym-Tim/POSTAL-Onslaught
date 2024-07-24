@@ -95,7 +95,7 @@ public class Player : Entity
             currentHealth -= damageInfo.damageAmount;
             OnTakeDamage(damageInfo);
             ApplyKnockback(hurtKnockbackInfo, damageInfo.damageOrigin);
-            SplatManager.SpawnSplatter("blood_splat", CenterOfMass);
+            DecalManager.SpawnDecal("blood", CenterOfMass);
 
             // We died from that hit?
             if(currentHealth <= 0)

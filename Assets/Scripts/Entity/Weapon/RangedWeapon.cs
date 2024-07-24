@@ -80,6 +80,8 @@ public class RangedWeapon : Weapon
             Player.ApplyKnockback(shootKnockbackInfo, ShootOriginTransform.position);
             CameraShaker.Shake(shootCameraShakeInfo);
         }
+
+        CheckHouseDisturbance();
     }
 
     protected virtual RaycastHit2D ShootRaycast(Vector2 origin, Vector2 direction, int numberOfShots)

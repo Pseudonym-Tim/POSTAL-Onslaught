@@ -28,6 +28,7 @@ public class NPC : Entity
         SetRandomAppearance();
         EntityAnim.Play("Idle");
         currentHealth = maxHealth;
+        playerEntity = GetPlayer();
     }
 
     public void SetRandomAppearance()
@@ -38,7 +39,7 @@ public class NPC : Entity
 
     public override void OnLevelGenerated()
     {
-        playerEntity = GetPlayer();
+        if(!playerEntity) { playerEntity = GetPlayer(); }
     }
 
     protected void SetupNPCNavigation(int agentID)
@@ -54,7 +55,7 @@ public class NPC : Entity
             currentHealth -= damageInfo.damageAmount;
             OnTakeDamage(damageInfo);
             HurtFlash.ApplyHurtFlash(this, HURT_FLASH_TIME);
-            SplatManager.SpawnSplatter("blood_splat", CenterOfMass);
+            DecalManager.SpawnDecal("blood", CenterOfMass);
 
             // We died from that hit?
             if(currentHealth <= 0)

@@ -67,9 +67,12 @@ public class PauseUI : UIComponent
             case 0: // Resume...
                 Show(false);
                 break;
-            case 1: // Quit game...
-                Debug.Log("QUIT TO MENU!");
-                // TODO: Quit back to menu...
+            case 1: // Restart...
+                GameManager.RestartGame();
+                Show(false);
+                break;
+            case 2: // Quit game...
+                GameManager.QuitToMainMenu();
                 break;
         }
     }
@@ -77,21 +80,36 @@ public class PauseUI : UIComponent
     public void HoverOption(int optionIndex)
     {
         TextMeshProUGUI hoveredText = menuOptions[optionIndex];
-        hoveredText.text = GetFormattedMessage(optionIndex == 0 ? "resumeText" : "quitText", activeColor);
+        string optionMessage = GetOptionMessage(optionIndex);
+        hoveredText.text = GetFormattedMessage(optionMessage, activeColor);
         hoveredText.transform.localPosition += new Vector3(0, hoverOffset, 0);
     }
 
     public void UnhoverOption(int optionIndex)
     {
-        TextMeshProUGUI hoveredText = menuOptions[optionIndex];
-        hoveredText.text = GetFormattedMessage(optionIndex == 0 ? "resumeText" : "quitText", inactiveColor);
+        TextMeshProUGUI hoveredText = menuOptions[optionIndex]; 
+        string optionMessage = GetOptionMessage(optionIndex);
+        hoveredText.text = GetFormattedMessage(optionMessage, inactiveColor);
         hoveredText.transform.localPosition -= new Vector3(0, hoverOffset, 0);
+    }
+
+    private string GetOptionMessage(int optionIndex)
+    {
+        switch(optionIndex)
+        {
+            case 0: return "resumeText";
+            case 1: return "restartText";
+            case 2: return "quitText";
+        }
+
+        return null;
     }
 
     private void SetOptionsInactive()
     {
         menuOptions[0].text = GetFormattedMessage("resumeText", inactiveColor);
-        menuOptions[1].text = GetFormattedMessage("quitText", inactiveColor);
+        menuOptions[1].text = GetFormattedMessage("restartText", inactiveColor);
+        menuOptions[2].text = GetFormattedMessage("quitText", inactiveColor);
     }
 
     private string GetTipMessage()

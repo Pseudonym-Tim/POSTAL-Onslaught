@@ -111,7 +111,7 @@ public class LevelClearUI : UIComponent
     {
         Show(false);
         LevelManager levelManager = FindFirstObjectByType<LevelManager>();
-        levelManager.RestartLevel();
+        levelManager.NextLevel();
     }
 
     public void HoverContinueOption()
