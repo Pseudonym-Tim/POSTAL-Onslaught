@@ -203,6 +203,10 @@ public class StructureEditor : EditorWindow
                 item.Value["position"]["x"] = position.x;
                 item.Value["position"]["y"] = position.y;
 
+                float generateChance = item.Value["generateChance"] != null ? (float)item.Value["generateChance"] : 1f;
+                generateChance = EditorGUILayout.Slider("Generate Chance", generateChance, 0f, 1f);
+                item.Value["generateChance"] = generateChance;
+
                 if(GUILayout.Button($"Remove {item.Key}"))
                 {
                     entities.RemoveAt(i);
@@ -235,6 +239,10 @@ public class StructureEditor : EditorWindow
                 item.Value["position"]["x"] = position.x;
                 item.Value["position"]["y"] = position.y;
 
+                float generateChance = item.Value["generateChance"] != null ? (float)item.Value["generateChance"] : 1f;
+                generateChance = EditorGUILayout.Slider("Generate Chance", generateChance, 0f, 1f);
+                item.Value["generateChance"] = generateChance;
+
                 if(GUILayout.Button($"Remove {item.Key}"))
                 {
                     levelObjects.RemoveAt(i);
@@ -258,7 +266,8 @@ public class StructureEditor : EditorWindow
         {
             [newEntityName] = new JObject
             {
-                ["position"] = new JObject { ["x"] = 0, ["y"] = 0 }
+                ["position"] = new JObject { ["x"] = 0, ["y"] = 0 },
+                ["generateChance"] = 1f
             }
         };
         entities.Add(newEntity);
@@ -273,7 +282,8 @@ public class StructureEditor : EditorWindow
         {
             [newObjectName] = new JObject
             {
-                ["position"] = new JObject { ["x"] = 0, ["y"] = 0 }
+                ["position"] = new JObject { ["x"] = 0, ["y"] = 0 },
+                ["generateChance"] = 1f
             }
         };
         levelObjects.Add(newObject);

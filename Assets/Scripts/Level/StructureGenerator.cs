@@ -114,6 +114,11 @@ public static class StructureGenerator
         return true;
     }
 
+    private static bool ShouldGenerate(float generateChance)
+    {
+        return Random.value <= generateChance;
+    }
+
     private static void RegisterStructureBounds(Vector2 position, Vector2 bounds, Vector2 center)
     {
         Bounds newStructureBounds = new Bounds(position - center + (bounds / 2), bounds);
@@ -131,6 +136,13 @@ public static class StructureGenerator
             {
                 string id = entity.Key;
                 JObject entityData = entity.Value as JObject;
+                float generateChance = (float)entityData["generateChance"];
+
+                if(entityData["generateChance"] != null && !ShouldGenerate(generateChance))
+                {
+                    continue;
+                }
+
                 int x = (int)entityData["position"]["x"];
                 int y = (int)entityData["position"]["y"];
                 Vector2 spawnPos = new Vector2(x, y) + origin - center + (structureBounds / 2);
@@ -148,6 +160,13 @@ public static class StructureGenerator
             {
                 string id = levelObject.Key;
                 JObject objectData = levelObject.Value as JObject;
+                float generateChance = (float)objectData["generateChance"];
+
+                if(objectData["generateChance"] != null && !ShouldGenerate(generateChance))
+                {
+                    continue;
+                }
+
                 int x = (int)objectData["position"]["x"];
                 int y = (int)objectData["position"]["y"];
                 Vector2 spawnPos = new Vector2(x, y) + origin - center + (structureBounds / 2);
