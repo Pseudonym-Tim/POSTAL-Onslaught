@@ -9,17 +9,19 @@ using UnityEngine;
 /// </summary>
 public class PauseUI : UIComponent
 {
+    public CanvasGroup UICanvasGroup;
+    public Canvas UICanvas;
     [SerializeField] private TextMeshProUGUI pauseLabelText;
     [SerializeField] private TextMeshProUGUI timeText;
     [SerializeField] private TextMeshProUGUI tipText;
     [SerializeField] private List<TextMeshProUGUI> menuOptions;
     [SerializeField] private TextMeshProUGUI resumeOptionText;
-    [SerializeField] private Canvas UICanvas;
     private string inactiveColor;
     private string activeColor;
     private float hoverOffset;
     private GameOverUI gameOverUI;
     private LevelClearUI levelClearUI;
+    private int selectedOptionIndex = 0;
 
     public override void SetupUI()
     {
@@ -35,12 +37,20 @@ public class PauseUI : UIComponent
         if(levelClearUI.UICanvas.enabled) { return; }
         if(gameOverUI.UICanvas.enabled) { return; }
         UICanvas.enabled = showUI;
-        if(!showUI) { GameManager.ResumeGame(); return; }
 
+        if(!showUI)
+        {
+            GameManager.ResumeGame();
+            SetCanvasInteractivity(UICanvasGroup, false);
+            selectedOptionIndex = 0;
+            return;
+        }
+
+        GameManager.PauseGame();
         SetOptionsInactive();
         tipText.text = GetTipMessage();
         UpdateTime();
-        GameManager.PauseGame();
+        SetCanvasInteractivity(UICanvasGroup, true);
     }
 
     private void UpdateTime()
@@ -68,8 +78,33 @@ public class PauseUI : UIComponent
                 Show(false);
                 break;
             case 1: // Restart...
+                BeginFade();
+                break;
+            case 2: // Quit game...
+                BeginFade();
+                break;
+        }
+
+        selectedOptionIndex = optionIndex;
+    }
+
+    public void BeginFade()
+    {
+        SetCanvasInteractivity(UICanvasGroup, false);
+        FadeUI fadeUI = UIManager.GetUIComponent<FadeUI>();
+        FadeUI.OnFadeOutComplete += OnFadeOutComplete;
+        fadeUI.FadeOut();
+    }
+
+    private void OnFadeOutComplete()
+    {
+        FadeUI.OnFadeOutComplete -= OnFadeOutComplete;
+        Show(false);
+
+        switch(selectedOptionIndex)
+        {
+            case 1: // Restart...
                 GameManager.RestartGame();
-                Show(false);
                 break;
             case 2: // Quit game...
                 GameManager.QuitToMainMenu();

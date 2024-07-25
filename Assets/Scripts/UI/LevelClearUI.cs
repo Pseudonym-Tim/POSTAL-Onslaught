@@ -8,6 +8,7 @@ using UnityEngine;
 public class LevelClearUI : UIComponent
 {
     public Canvas UICanvas;
+    public CanvasGroup UICanvasGroup;
     [SerializeField] private TextMeshProUGUI clearTimeText;
     [SerializeField] private TextMeshProUGUI killstreakText;
     [SerializeField] private TextMeshProUGUI areaCoveredText;
@@ -39,7 +40,12 @@ public class LevelClearUI : UIComponent
     public void Show(bool showUI = true)
     {
         UICanvas.enabled = showUI;
-        if(!showUI) return;
+
+        if(!showUI) 
+        { 
+            SetCanvasInteractivity(UICanvasGroup, false);
+            return;
+        } 
 
         // Make sure pause menu is closed...
         PauseUI pauseUI = UIManager.GetUIComponent<PauseUI>();
@@ -57,7 +63,8 @@ public class LevelClearUI : UIComponent
         UpdateKillstreak();
         UpdateAreaCovered();
         UpdateCreativity();
-        StartCoroutine(AnimateScores());
+        StartCoroutine(AnimateScores()); 
+        SetCanvasInteractivity(UICanvasGroup, true);
     }
 
     private IEnumerator AnimateScores()
@@ -109,8 +116,17 @@ public class LevelClearUI : UIComponent
 
     public void ContinueGame()
     {
+        SetCanvasInteractivity(UICanvasGroup, false);
+        FadeUI fadeUI = UIManager.GetUIComponent<FadeUI>();
+        FadeUI.OnFadeOutComplete += OnFadeOutComplete;
+        fadeUI.FadeOut();
+    }
+
+    private void OnFadeOutComplete()
+    {
+        FadeUI.OnFadeOutComplete -= OnFadeOutComplete;
         Show(false);
-        LevelManager levelManager = FindFirstObjectByType<LevelManager>();
+        LevelManager levelManager = FindFirstObjectByType<LevelManager>(); 
         levelManager.NextLevel();
     }
 

@@ -12,22 +12,29 @@ public class MainMenuUI : UIComponent
     private const float BOB_FREQUENCY = 5.0f;
     private const float BOB_AMPLITUDE = 10.0f;
 
+    public CanvasGroup UICanvasGroup;
     public Image logoImage;
     public List<Image> menuOptions;
     private string inactiveColor;
     private string activeColor;
     private float hoverOffset;
     private Vector3 initialLogoPosition;
+    private FadeUI fadeUI;
+    private int selectedOptionIndex = 0;
 
     private void Awake()
     {
         initialLogoPosition = logoImage.rectTransform.localPosition;
+        fadeUI = UIManager.GetUIComponent<FadeUI>();
+        SetCanvasInteractivity(UICanvasGroup, true);
     }
 
     public override void SetupUI()
     {
         LoadJsonSettings();
         SetOptionsInactive();
+        fadeUI.FadeIn();
+        selectedOptionIndex = 0;
     }
 
     private void LateUpdate()
@@ -40,14 +47,52 @@ public class MainMenuUI : UIComponent
         switch(optionIndex)
         {
             case 0: // Play...
-                // Load game scene...
-                SceneManager.LoadScene(1);
+                BeginFade();
                 break;
             case 1: // Options...
                 Debug.Log("OPTIONS!");
                 // TODO: Pull up options menu...
                 break;
-            case 2: // Quit game...
+            case 2: // Stats...
+                BeginFade();
+                Debug.Log("STATS!");
+                break;
+            case 3: // Credits...
+                BeginFade();
+                Debug.Log("CREDITS!");
+                break;
+            case 4: // Quit game...
+                BeginFade();
+                break;
+        }
+
+        selectedOptionIndex = optionIndex;
+    }
+
+    private void BeginFade()
+    {
+        SetCanvasInteractivity(UICanvasGroup, false);
+        FadeUI fadeUI = UIManager.GetUIComponent<FadeUI>();
+        FadeUI.OnFadeOutComplete += OnFadeOutComplete;
+        fadeUI.FadeOut();
+    }
+
+    private void OnFadeOutComplete()
+    {
+        FadeUI.OnFadeOutComplete -= OnFadeOutComplete;
+
+        switch(selectedOptionIndex)
+        {
+            case 0: // Play...
+                SceneManager.LoadScene(1);
+                break;
+            case 2: // Stats...
+                // TODO: Pull up stats menu...
+                break;
+            case 3: // Credits...
+                // TODO: Pull up credits screen...
+                break;
+            case 4: // Quit game...
                 Application.Quit();
                 break;
         }

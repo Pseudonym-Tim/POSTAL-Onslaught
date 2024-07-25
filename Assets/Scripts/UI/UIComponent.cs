@@ -18,6 +18,15 @@ public class UIComponent : MonoBehaviour
 
     }
 
+    protected void SetCanvasInteractivity(CanvasGroup canvasGroup, bool interactable)
+    {
+        if(canvasGroup != null)
+        {
+            canvasGroup.interactable = interactable;
+            canvasGroup.blocksRaycasts = interactable;
+        }
+    }
+
     public JObject JsonData
     {
         get

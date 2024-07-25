@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class GameOverUI : UIComponent
 {
     public Canvas UICanvas;
+    public CanvasGroup UICanvasGroup;
     [SerializeField] private Animator killerAnimator;
     [SerializeField] private Image killerImage;
     [SerializeField] private List<TextMeshProUGUI> menuOptions;
@@ -20,6 +21,7 @@ public class GameOverUI : UIComponent
     private string inactiveColor;
     private string activeColor;
     private float hoverOffset;
+    private int selectedOptionIndex = 0;
 
     public override void SetupUI()
     {
@@ -33,7 +35,13 @@ public class GameOverUI : UIComponent
     public void Show(bool showUI = true)
     {
         UICanvas.enabled = showUI;
-        if(!showUI) return;
+
+        if(!showUI) 
+        { 
+            SetCanvasInteractivity(UICanvasGroup, false); 
+            selectedOptionIndex = 0; 
+            return; 
+        }
 
         SetOptionsInactive();
         tipText.text = GetTipMessage();
@@ -46,6 +54,7 @@ public class GameOverUI : UIComponent
         playerHUD.ShowInventory(false);
         playerHUD.ShowWeaponSelection(false);
         playerHUD.ShowScoreMultiplier(false);
+        SetCanvasInteractivity(UICanvasGroup, true);
     }
 
     private void SetTime()
@@ -114,11 +123,23 @@ public class GameOverUI : UIComponent
 
     public void SelectOption(int optionIndex)
     {
-        switch(optionIndex)
+        SetCanvasInteractivity(UICanvasGroup, false);
+        FadeUI fadeUI = UIManager.GetUIComponent<FadeUI>();
+        FadeUI.OnFadeOutComplete += OnFadeOutComplete;
+        fadeUI.FadeOut();
+
+        selectedOptionIndex = optionIndex;
+    }
+
+    private void OnFadeOutComplete()
+    {
+        FadeUI.OnFadeOutComplete -= OnFadeOutComplete;
+        Show(false);
+
+        switch(selectedOptionIndex)
         {
             case 0:
                 GameManager.RestartGame();
-                Show(false);
                 break;
             case 1:
                 GameManager.QuitToMainMenu();

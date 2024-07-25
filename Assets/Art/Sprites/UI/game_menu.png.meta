@@ -113,7 +113,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 28
-        y: 105
+        y: 130
         width: 115
         height: 49
       alignment: 0
@@ -134,7 +134,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 61
-        y: 82
+        y: 107
         width: 49
         height: 18
       alignment: 0
@@ -155,7 +155,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 42
-        y: 58
+        y: 83
         width: 80
         height: 19
       alignment: 0
@@ -175,8 +175,8 @@ TextureImporter:
       name: game_menu_quit
       rect:
         serializedVersion: 2
-        x: 59
-        y: 32
+        x: 56
+        y: 5
         width: 48
         height: 21
       alignment: 0
@@ -192,6 +192,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: game_menu_stats
+      rect:
+        serializedVersion: 2
+        x: 54
+        y: 58
+        width: 59
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8eb87134fecfd146bd88082c65ffb70
+      internalID: -569708391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: game_menu_credits
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 33
+        width: 77
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd80154a4e67b4548bd215327159b542
+      internalID: 588083783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -203,10 +245,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      game_menu_credits: 588083783
       game_menu_logo: 5855338801758335430
       game_menu_options: -3845536547739142900
       game_menu_play: 759654516135673233
       game_menu_quit: 3274019398180383633
+      game_menu_stats: -569708391
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
