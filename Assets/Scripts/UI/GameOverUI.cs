@@ -37,11 +37,10 @@ public class GameOverUI : UIComponent
     public void Show(bool showUI = true)
     {
         UICanvas.enabled = showUI;
+        SetCanvasInteractivity(UICanvasGroup, showUI);
 
         if(!showUI) 
         { 
-            SetCanvasInteractivity(UICanvasGroup, false);
-
             if(currentlyHoveredOption.HasValue)
             {
                 UnhoverOption(currentlyHoveredOption.Value);
@@ -63,7 +62,6 @@ public class GameOverUI : UIComponent
         playerHUD.ShowInventory(false);
         playerHUD.ShowWeaponSelection(false);
         playerHUD.ShowScoreMultiplier(false);
-        SetCanvasInteractivity(UICanvasGroup, true);
     }
 
     private void SetTime()
@@ -143,7 +141,6 @@ public class GameOverUI : UIComponent
     private void OnFadeOutComplete()
     {
         FadeUI.OnFadeOutComplete -= OnFadeOutComplete;
-        Show(false);
 
         switch(selectedOptionIndex)
         {
@@ -154,6 +151,8 @@ public class GameOverUI : UIComponent
                 GameManager.QuitToMainMenu();
                 break;
         }
+
+        Show(false);
     }
 
     public void HoverOption(int optionIndex)

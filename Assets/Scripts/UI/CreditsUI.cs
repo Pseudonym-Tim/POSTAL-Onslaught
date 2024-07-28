@@ -1,9 +1,11 @@
+using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
@@ -15,23 +17,40 @@ public class CreditsUI : UIComponent
     private const float SCROLL_SPEED = 50f;
 
     public Canvas UICanvas;
+    public CanvasGroup UICanvasGroup;
     [SerializeField] private TextMeshProUGUI creditsText;
+    [SerializeField] private TextMeshProUGUI pauseHelpText;
+    [SerializeField] private TextMeshProUGUI exitHelpText;
     [SerializeField] private float startYOffset = -500f;
     [SerializeField] private float endYOffset = 500f;
 
     private bool isPaused = false;
     private Coroutine scrollCoroutine;
+    private float flashInterval = 0;
+    private float staggerInterval = 0;
+    private Coroutine pauseFlashCoroutine;
+    private Coroutine exitFlashCoroutine;
 
     public override void SetupUI()
     {
+        LoadJsonSettings();
         Show(false);
     }
 
     public void Show(bool showUI = true)
     {
         UICanvas.enabled = showUI;
+        SetCanvasInteractivity(UICanvasGroup, showUI);
+
         if(!showUI) { return; }
+
+        FadeUI fadeUI = UIManager.GetUIComponent<FadeUI>();
+        fadeUI.FadeIn();
         LoadCredits();
+        if(pauseFlashCoroutine != null) { StopCoroutine(pauseFlashCoroutine); }
+        if(exitFlashCoroutine != null) { StopCoroutine(exitFlashCoroutine); }
+        pauseFlashCoroutine = StartCoroutine(PulseHelpText(pauseHelpText, 0));
+        exitFlashCoroutine = StartCoroutine(PulseHelpText(exitHelpText, staggerInterval));
     }
 
     private void LoadCredits()
@@ -53,15 +72,64 @@ public class CreditsUI : UIComponent
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(UICanvasGroup.alpha > 0 && UICanvasGroup.interactable)
         {
-            isPaused = !isPaused;
-        }
+            // Pause the scroll...
+            if(Input.GetKeyDown(KeyCode.Space))
+            {
+                isPaused = !isPaused;
+            }
 
-        if(Input.GetKeyDown(KeyCode.Escape))
+            // Quit to main menu...
+            if(Input.GetKeyDown(KeyCode.Escape))
+            {
+                StopCoroutine(scrollCoroutine);
+
+                FadeUI fadeUI = UIManager.GetUIComponent<FadeUI>();
+                fadeUI.FadeOut();
+
+                FadeUI.OnFadeOutComplete += OnFadeOutComplete;
+                SetCanvasInteractivity(UICanvasGroup, false);
+            }
+        }
+    }
+
+    private void OnFadeOutComplete()
+    {
+        FadeUI.OnFadeOutComplete -= OnFadeOutComplete;
+        BackToMainMenu();
+    }
+
+    private void LoadJsonSettings()
+    {
+        staggerInterval = (float)JsonData["staggerInterval"];
+        flashInterval = (float)JsonData["flashInterval"];
+        pauseHelpText.text = LocalizationManager.GetMessage("pauseHelpText", UIJsonIdentifier);
+        exitHelpText.text = LocalizationManager.GetMessage("exitHelpText", UIJsonIdentifier);
+    }
+
+    private IEnumerator PulseHelpText(TextMeshProUGUI helpText, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        Color originalColor = helpText.color;
+        float alpha = 0;
+
+        while(true)
         {
-            StopCoroutine(scrollCoroutine);
-            BackToMainMenu();
+            while(alpha < 1)
+            {
+                alpha += Time.deltaTime / flashInterval;
+                helpText.color = new Color(originalColor.r, originalColor.g, originalColor.b, Mathf.Clamp01(alpha));
+                yield return null;
+            }
+
+            while(alpha > 0)
+            {
+                alpha -= Time.deltaTime / flashInterval;
+                helpText.color = new Color(originalColor.r, originalColor.g, originalColor.b, Mathf.Clamp01(alpha));
+                yield return null;
+            }
         }
     }
 
@@ -89,9 +157,11 @@ public class CreditsUI : UIComponent
 
     private void BackToMainMenu()
     {
+        // Make main menu interactable again...
         MainMenuUI mainMenuUI = UIManager.GetUIComponent<MainMenuUI>();
         mainMenuUI.SetInteractable(true);
 
+        // Fade into main menu...
         FadeUI fadeUI = UIManager.GetUIComponent<FadeUI>();
         fadeUI.FadeIn();
         Show(false);
@@ -99,7 +169,7 @@ public class CreditsUI : UIComponent
 
     private void OnDrawGizmos()
     {
-        if(creditsText != null)
+        if(!Application.isPlaying && creditsText != null && UICanvasGroup.alpha > 0)
         {
             RectTransform rectTransform = creditsText.rectTransform;
             Vector2 startPosition = new Vector2(rectTransform.position.x, rectTransform.position.y + startYOffset);
@@ -114,4 +184,6 @@ public class CreditsUI : UIComponent
             Gizmos.DrawSphere(endPosition, 10f);
         }
     }
+
+    public override string UIJsonIdentifier => "credits_ui";
 }

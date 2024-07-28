@@ -14,6 +14,10 @@
             "hoverOffset": 3
         }
     },
+    "credits_ui": {
+        "flashInterval": 1,
+        "staggerInterval": 0.25
+    },
     "main_menu_ui": {
         "options": {
             "activeColor": "#ffffff",

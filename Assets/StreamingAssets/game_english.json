@@ -14,6 +14,10 @@
     "main_menu_ui": {
 
     },
+    "credits_ui": {
+        "pauseHelpText": "<color=#ffffff>PRESS [SPACE] TO PAUSE/RESUME...</color>",
+        "exitHelpText": "<color=#ffffff>PRESS [ESC] TO EXIT...</color>"
+    },
     "options_ui": {
         "optionsLabel": "<color=#ffffff>OPTIONS</color>",
         "cameraShakeLabel": "<color=%color%>CAMERA SHAKE</color>",

@@ -42,10 +42,10 @@ public class LevelClearUI : UIComponent
     public void Show(bool showUI = true)
     {
         UICanvas.enabled = showUI;
+        SetCanvasInteractivity(UICanvasGroup, showUI);
 
         if(!showUI) 
         { 
-            SetCanvasInteractivity(UICanvasGroup, false);
             continueText.transform.localPosition = originalOptionPosition;
             return;
         } 
@@ -67,7 +67,6 @@ public class LevelClearUI : UIComponent
         UpdateAreaCovered();
         UpdateCreativity();
         StartCoroutine(AnimateScores()); 
-        SetCanvasInteractivity(UICanvasGroup, true);
     }
 
     private IEnumerator AnimateScores()
