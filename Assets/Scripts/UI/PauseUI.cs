@@ -9,11 +9,10 @@ using UnityEngine;
 /// </summary>
 public class PauseUI : UIComponent
 {
-    public CanvasGroup UICanvasGroup;
     public Canvas UICanvas;
+    public CanvasGroup UICanvasGroup;
     [SerializeField] private TextMeshProUGUI pauseLabelText;
     [SerializeField] private TextMeshProUGUI timeText;
-    [SerializeField] private TextMeshProUGUI tipText;
     [SerializeField] private List<TextMeshProUGUI> menuOptions;
     [SerializeField] private TextMeshProUGUI resumeOptionText;
     private string inactiveColor;
@@ -22,14 +21,18 @@ public class PauseUI : UIComponent
     private GameOverUI gameOverUI;
     private LevelClearUI levelClearUI;
     private int selectedOptionIndex = 0;
+    private int? currentlyHoveredOption = null;
+    private OptionsUI optionsUI = null; 
 
     public override void SetupUI()
     {
         gameOverUI = UIManager.GetUIComponent<GameOverUI>();
         levelClearUI = UIManager.GetUIComponent<LevelClearUI>();
         pauseLabelText.text = LocalizationManager.GetMessage("pauseLabel", UIJsonIdentifier);
+        optionsUI = UIManager.GetUIComponent<OptionsUI>();
         LoadJsonSettings();
-        Show(false);
+        Show(false); 
+        currentlyHoveredOption = null;
     }
 
     public void Show(bool showUI = true)
@@ -42,13 +45,19 @@ public class PauseUI : UIComponent
         {
             GameManager.ResumeGame();
             SetCanvasInteractivity(UICanvasGroup, false);
+
+            if(currentlyHoveredOption.HasValue)
+            {
+                UnhoverOption(currentlyHoveredOption.Value);
+                currentlyHoveredOption = null;
+            }
+
             selectedOptionIndex = 0;
             return;
         }
 
         GameManager.PauseGame();
         SetOptionsInactive();
-        tipText.text = GetTipMessage();
         UpdateTime();
         SetCanvasInteractivity(UICanvasGroup, true);
     }
@@ -72,6 +81,8 @@ public class PauseUI : UIComponent
 
     public void SelectOption(int optionIndex)
     {
+        if(optionsUI.UICanvas.enabled) { return; }
+
         switch(optionIndex)
         {
             case 0: // Resume...
@@ -80,7 +91,10 @@ public class PauseUI : UIComponent
             case 1: // Restart...
                 BeginFade();
                 break;
-            case 2: // Quit game...
+            case 2: // Options...
+                optionsUI.Show();
+                break;
+            case 3: // Quit game...
                 BeginFade();
                 break;
         }
@@ -106,7 +120,7 @@ public class PauseUI : UIComponent
             case 1: // Restart...
                 GameManager.RestartGame();
                 break;
-            case 2: // Quit game...
+            case 3: // Quit game...
                 GameManager.QuitToMainMenu();
                 break;
         }
@@ -114,6 +128,17 @@ public class PauseUI : UIComponent
 
     public void HoverOption(int optionIndex)
     {
+        if(optionsUI.UICanvas.enabled) { return; }
+
+        if(currentlyHoveredOption == optionIndex) { return; }
+
+        if(currentlyHoveredOption.HasValue)
+        {
+            UnhoverOption(currentlyHoveredOption.Value);
+        }
+
+        currentlyHoveredOption = optionIndex;
+
         TextMeshProUGUI hoveredText = menuOptions[optionIndex];
         string optionMessage = GetOptionMessage(optionIndex);
         hoveredText.text = GetFormattedMessage(optionMessage, activeColor);
@@ -122,10 +147,14 @@ public class PauseUI : UIComponent
 
     public void UnhoverOption(int optionIndex)
     {
-        TextMeshProUGUI hoveredText = menuOptions[optionIndex]; 
+        if(currentlyHoveredOption != optionIndex) { return; }
+
+        TextMeshProUGUI hoveredText = menuOptions[optionIndex];
         string optionMessage = GetOptionMessage(optionIndex);
         hoveredText.text = GetFormattedMessage(optionMessage, inactiveColor);
         hoveredText.transform.localPosition -= new Vector3(0, hoverOffset, 0);
+
+        currentlyHoveredOption = null;
     }
 
     private string GetOptionMessage(int optionIndex)
@@ -134,7 +163,8 @@ public class PauseUI : UIComponent
         {
             case 0: return "resumeText";
             case 1: return "restartText";
-            case 2: return "quitText";
+            case 2: return "optionsText";
+            case 3: return "quitText";
         }
 
         return null;
@@ -144,14 +174,8 @@ public class PauseUI : UIComponent
     {
         menuOptions[0].text = GetFormattedMessage("resumeText", inactiveColor);
         menuOptions[1].text = GetFormattedMessage("restartText", inactiveColor);
-        menuOptions[2].text = GetFormattedMessage("quitText", inactiveColor);
-    }
-
-    private string GetTipMessage()
-    {
-        JArray tipMessages = (JArray)LocalizationManager.JsonData["tipMessages"];
-        int randomIndex = Random.Range(0, tipMessages.Count);
-        return (string)tipMessages[randomIndex];
+        menuOptions[2].text = GetFormattedMessage("optionsText", inactiveColor);
+        menuOptions[3].text = GetFormattedMessage("quitText", inactiveColor);
     }
 
     private void LoadJsonSettings()

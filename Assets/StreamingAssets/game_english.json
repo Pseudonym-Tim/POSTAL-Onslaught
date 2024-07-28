@@ -1,5 +1,5 @@
 {
-    "noItemMessage": "<color=#ffffff>NO ITEM!</color>",
+    "noItemMessage": "<color=#ffffff>NONE!</color>",
     "pickupMessage": "<color=#ffffff>%pickupName%!</color>",
     "interactButton": "<color=#ffffff>[%interactButton%]</color>",
     "pickupInteractMessage": "<color=#ffffff>PICK UP</color>\n",
@@ -12,12 +12,21 @@
         "<color=#ffffff>TIP: Explore thoroughly to find helpful items!</color>"
     ],
     "main_menu_ui": {
-        
+
+    },
+    "options_ui": {
+        "optionsLabel": "<color=#ffffff>OPTIONS</color>",
+        "cameraShakeLabel": "<color=%color%>CAMERA SHAKE</color>",
+        "windowShakeLabel": "<color=%color%>WINDOW SHAKE</color>",
+        "musicLabel": "<color=%color%>MUSIC</color>",
+        "sfxLabel": "<color=%color%>SOUNDS</color>",
+        "percentageLabel": "<color=%color%>%percentageAmount%%</color>"
     },
     "pause_ui": {
         "pauseLabel": "<color=#ffffff>GAME PAUSED!</color>",
         "resumeText": "<color=%color%>RESUME!</color>",
-        "restartText": "<color=%color%>RESTART!</color>",
+        "restartText": "<color=%color%>RESTART</color>",
+        "optionsText": "<color=%color%>OPTIONS</color>",
         "quitText": "<color=%color%>QUIT TO MENU!</color>",
         "timeText": "<color=#ffffff>TIME: %minutes%:%seconds%</color>"
     },

@@ -11,15 +11,19 @@ public class CameraShaker : Singleton<CameraShaker>
     private static float shakeEndTime;
     private static Vector3 initialPosition;
     private static Transform shakeTransform;
+    private static bool isShakeEnabled;
 
     private void Awake()
     {
         shakeTransform = transform;
         initialPosition = shakeTransform.localPosition;
+        isShakeEnabled = PlayerPrefs.GetInt(OptionsUI.CAMERA_SHAKE_PREF_KEY, 1) == 1;
     }
 
     public static void Shake(CameraShakeInfo newCameraShakeInfo)
     {
+        if(!isShakeEnabled) { return; }
+
         currentShakeInfo = newCameraShakeInfo;
         shakeEndTime = Time.time + currentShakeInfo.shakeDuration;
         initialPosition = shakeTransform.localPosition;
@@ -54,6 +58,12 @@ public class CameraShaker : Singleton<CameraShaker>
     {
         shakeTransform.localPosition = initialPosition;
         currentShakeInfo = null;
+    }
+
+    public static void ShakeEnabled(bool isEnabled)
+    {
+        isShakeEnabled = isEnabled;
+        PlayerPrefs.SetInt(OptionsUI.CAMERA_SHAKE_PREF_KEY, isEnabled ? 1 : 0);
     }
 }
 

@@ -13,6 +13,7 @@ public class RangedWeapon : Weapon
     [SerializeField] private int numberOfShots = 1;
     [SerializeField] private float bulletSpreadAmount = 0;
     [SerializeField] private CameraShakeInfo shootCameraShakeInfo;
+    [SerializeField] private WindowShakeInfo shootWindowShakeInfo;
     [SerializeField] private KnockbackInfo shootKnockbackInfo;
     [SerializeField] private ShotTrail shotTrailPrefab;
     [SerializeField] private Animator muzzleFlashAnimator;
@@ -79,6 +80,7 @@ public class RangedWeapon : Weapon
         {
             Player.ApplyKnockback(shootKnockbackInfo, ShootOriginTransform.position);
             CameraShaker.Shake(shootCameraShakeInfo);
+            WindowShaker.Shake(shootWindowShakeInfo);
         }
 
         CheckHouseDisturbance();

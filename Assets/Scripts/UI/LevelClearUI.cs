@@ -20,10 +20,12 @@ public class LevelClearUI : UIComponent
     private string inactiveColor;
     private string activeColor;
     private float hoverOffset;
+    private Vector2 originalOptionPosition;
 
     public override void SetupUI()
     {
         scoreManager = FindFirstObjectByType<ScoreManager>();
+        originalOptionPosition = continueText.transform.localPosition;
         LoadJsonSettings();
         Show(false);
     }
@@ -44,6 +46,7 @@ public class LevelClearUI : UIComponent
         if(!showUI) 
         { 
             SetCanvasInteractivity(UICanvasGroup, false);
+            continueText.transform.localPosition = originalOptionPosition;
             return;
         } 
 

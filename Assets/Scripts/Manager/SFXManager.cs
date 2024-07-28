@@ -5,20 +5,28 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 /// <summary>
-/// Handles everything related to audio...
+/// Handles everything related to sound effects...
 /// </summary>
-public class AudioManager : Singleton<AudioManager>
+public class SFXManager : Singleton<SFXManager>
 {
     [SerializeField] private List<SoundInfo> soundDatabase;
     [SerializeField] private AudioMixerGroup masterMixerGroup;
 
     private void Awake()
     {
+        float savedMasterVolume = PlayerPrefs.GetFloat(OptionsUI.SFX_VOLUME_PREF_KEY, 1f);
+        UpdateMasterVolume(savedMasterVolume);
+
         // Setup sound information...
         foreach(SoundInfo soundInfo in soundDatabase)
         {
             SetupSoundInfo(soundInfo);
         }
+    }
+
+    public void UpdateMasterVolume(float volume)
+    {
+        masterMixerGroup.audioMixer.SetFloat("SFXVolume", volume);
     }
 
     public void Play2DSound(string soundName)
@@ -52,7 +60,7 @@ public class AudioManager : Singleton<AudioManager>
     public void SetupSoundInfo(SoundInfo soundInfo)
     {
         // We add the audio components to seperate objects so we don't lag the editor...
-        GameObject newAudioObject = new GameObject($"[{ soundInfo.soundName }] 2D audio source");
+        GameObject newAudioObject = new GameObject($"[{ soundInfo.soundName }] Audio Source");
         AudioSource newAudioSource = newAudioObject.AddComponent<AudioSource>();
         newAudioSource.transform.parent = transform;
 

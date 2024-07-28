@@ -291,6 +291,10 @@ MonoBehaviour:
     shakeIntensity: 0.2
     shakeSpeed: 25
     shakeDuration: 0.15
+  shootWindowShakeInfo:
+    shakeIntensity: 0.1
+    shakeDuration: 0.25
+    shakeSpeed: 1
   shootKnockbackInfo:
     force: 2
     duration: 0.15

@@ -20,13 +20,19 @@ public class MainMenuUI : UIComponent
     private float hoverOffset;
     private Vector3 initialLogoPosition;
     private FadeUI fadeUI;
+    private OptionsUI optionsUI;
     private int selectedOptionIndex = 0;
+    private MusicManager musicManager;
+    private int? currentlyHoveredOption = null;
 
     private void Awake()
     {
         initialLogoPosition = logoImage.rectTransform.localPosition;
+        musicManager = FindFirstObjectByType<MusicManager>();
         fadeUI = UIManager.GetUIComponent<FadeUI>();
+        optionsUI = UIManager.GetUIComponent<OptionsUI>();
         SetCanvasInteractivity(UICanvasGroup, true);
+        currentlyHoveredOption = null;
     }
 
     public override void SetupUI()
@@ -35,6 +41,7 @@ public class MainMenuUI : UIComponent
         SetOptionsInactive();
         fadeUI.FadeIn();
         selectedOptionIndex = 0;
+        musicManager.PlayTrack("Corpse Club");
     }
 
     private void LateUpdate()
@@ -44,14 +51,15 @@ public class MainMenuUI : UIComponent
 
     public void SelectOption(int optionIndex)
     {
+        if(optionsUI.UICanvas.enabled) { return; }
+
         switch(optionIndex)
         {
             case 0: // Play...
                 BeginFade();
                 break;
             case 1: // Options...
-                Debug.Log("OPTIONS!");
-                // TODO: Pull up options menu...
+                optionsUI.Show();
                 break;
             case 2: // Stats...
                 BeginFade();
@@ -100,6 +108,17 @@ public class MainMenuUI : UIComponent
 
     public void HoverOption(int optionIndex)
     {
+        if(optionsUI.UICanvas.enabled) { return; }
+
+        if(currentlyHoveredOption == optionIndex) { return; }
+
+        if(currentlyHoveredOption.HasValue)
+        {
+            UnhoverOption(currentlyHoveredOption.Value);
+        }
+
+        currentlyHoveredOption = optionIndex;
+
         Image hoveredImage = menuOptions[optionIndex];
         Color hoverColor;
         ColorUtility.TryParseHtmlString(activeColor, out hoverColor);
@@ -109,11 +128,15 @@ public class MainMenuUI : UIComponent
 
     public void UnhoverOption(int optionIndex)
     {
+        if(currentlyHoveredOption != optionIndex) { return; }
+
         Image hoveredImage = menuOptions[optionIndex];
         Color unhoverColor;
         ColorUtility.TryParseHtmlString(inactiveColor, out unhoverColor);
         hoveredImage.color = unhoverColor;
         hoveredImage.rectTransform.localPosition -= new Vector3(0, hoverOffset, 0);
+
+        currentlyHoveredOption = null;
     }
 
     private void SetOptionsInactive()

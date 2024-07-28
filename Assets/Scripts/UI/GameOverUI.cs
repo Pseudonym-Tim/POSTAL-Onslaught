@@ -22,6 +22,7 @@ public class GameOverUI : UIComponent
     private string activeColor;
     private float hoverOffset;
     private int selectedOptionIndex = 0;
+    private int? currentlyHoveredOption = null;
 
     public override void SetupUI()
     {
@@ -30,6 +31,7 @@ public class GameOverUI : UIComponent
         LoadJsonSettings();
         Show(false);
         SetOptionsInactive();
+        currentlyHoveredOption = null;
     }
 
     public void Show(bool showUI = true)
@@ -38,8 +40,15 @@ public class GameOverUI : UIComponent
 
         if(!showUI) 
         { 
-            SetCanvasInteractivity(UICanvasGroup, false); 
-            selectedOptionIndex = 0; 
+            SetCanvasInteractivity(UICanvasGroup, false);
+
+            if(currentlyHoveredOption.HasValue)
+            {
+                UnhoverOption(currentlyHoveredOption.Value);
+                currentlyHoveredOption = null;
+            }
+
+            selectedOptionIndex = 0;
             return; 
         }
 
@@ -149,6 +158,15 @@ public class GameOverUI : UIComponent
 
     public void HoverOption(int optionIndex)
     {
+        if(currentlyHoveredOption == optionIndex) { return; }
+
+        if(currentlyHoveredOption.HasValue)
+        {
+            UnhoverOption(currentlyHoveredOption.Value);
+        }
+
+        currentlyHoveredOption = optionIndex;
+
         TextMeshProUGUI hoveredText = menuOptions[optionIndex];
         hoveredText.text = GetFormattedMessage(optionIndex == 0 ? "restartText" : "quitText", activeColor);
         hoveredText.transform.localPosition += new Vector3(0, hoverOffset, 0);
@@ -156,9 +174,13 @@ public class GameOverUI : UIComponent
 
     public void UnhoverOption(int optionIndex)
     {
+        if(currentlyHoveredOption != optionIndex) { return; }
+
         TextMeshProUGUI hoveredText = menuOptions[optionIndex];
         hoveredText.text = GetFormattedMessage(optionIndex == 0 ? "restartText" : "quitText", inactiveColor);
         hoveredText.transform.localPosition -= new Vector3(0, hoverOffset, 0);
+
+        currentlyHoveredOption = null;
     }
 
     private void LoadJsonSettings()

@@ -14,6 +14,7 @@ public class LevelManager : Singleton<LevelManager>
     private KillCreativityManager killCreativityManager;
     private DecalManager splatManager;
     private FadeUI fadeUI;
+    private MusicManager musicManager;
 
     public void CreateLevel()
     {
@@ -22,6 +23,7 @@ public class LevelManager : Singleton<LevelManager>
         tileManager = FindFirstObjectByType<TileManager>();
         taskManager = FindFirstObjectByType<TaskManager>();
         splatManager = FindFirstObjectByType<DecalManager>();
+        musicManager = FindFirstObjectByType<MusicManager>();
         killCreativityManager = FindFirstObjectByType<KillCreativityManager>();
         fadeUI = UIManager.GetUIComponent<FadeUI>();
 
@@ -36,8 +38,15 @@ public class LevelManager : Singleton<LevelManager>
         taskManager.Setup();
         killCreativityManager.Setup();
         splatManager.Setup();
+        FadeUI.OnFadeInComplete += OnFadeInComplete;
         fadeUI.FadeIn();
         LevelTimer = 0.0f;
+    }
+
+    private void OnFadeInComplete()
+    {
+        FadeUI.OnFadeOutComplete -= OnFadeInComplete;
+        musicManager.PlayRandom();
     }
 
     private void Update()

@@ -14,7 +14,8 @@ public class MeleeWeapon : Weapon
     [SerializeField] private float attackRate = 0.2f;
     [SerializeField] private float attackAngle = 45f;
     [SerializeField] private int damageMin = 3, damageMax = 6;
-    [SerializeField] private CameraShakeInfo hitShakeInfo;
+    [SerializeField] private CameraShakeInfo impactCameraShakeInfo;
+    [SerializeField] private WindowShakeInfo impactWindowShakeInfo;
     private float attackDelayTimer = 0;
     private bool swingRight = false;
 
@@ -116,7 +117,8 @@ public class MeleeWeapon : Weapon
 
             closestNPC.TakeDamage(damageInfo);
             closestNPC.ApplyKnockback(hurtKnockbackInfo, damageInfo.damageOrigin);
-            CameraShaker.Shake(hitShakeInfo);
+            CameraShaker.Shake(impactCameraShakeInfo);
+            WindowShaker.Shake(impactWindowShakeInfo);
         }
     }
 

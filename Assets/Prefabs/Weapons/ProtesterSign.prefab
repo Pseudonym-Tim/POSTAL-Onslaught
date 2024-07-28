@@ -173,15 +173,19 @@ MonoBehaviour:
     duration: 0.25
   weaponID: weapon_protester_sign
   weaponName: Protester Sign
-  attackRate: 0.25
   attackRange: 3
+  attackRate: 0.25
   attackAngle: 90
   damageMin: 3
   damageMax: 6
-  hitShakeInfo:
-    shakeIntensity: 0.2
+  impactCameraShakeInfo:
+    shakeIntensity: 0.7
     shakeSpeed: 25
     shakeDuration: 0.5
+  impactWindowShakeInfo:
+    shakeIntensity: 0.1
+    shakeDuration: 0.25
+    shakeSpeed: 1
 --- !u!95 &9018887504161465514
 Animator:
   serializedVersion: 7

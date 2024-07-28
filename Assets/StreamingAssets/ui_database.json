@@ -21,6 +21,12 @@
             "hoverOffset": 3
         }
     },
+    "options_ui": {
+        "options": {
+            "activeColor": "#ffffff",
+            "inactiveColor": "#c7cfdd"
+        }
+    },
     "gameover_ui": {
         "options": {
             "activeColor": "#ffffff",
