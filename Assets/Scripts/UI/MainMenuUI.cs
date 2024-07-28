@@ -49,6 +49,11 @@ public class MainMenuUI : UIComponent
         UpdateLogoBob();
     }
 
+    public void SetInteractable(bool interact)
+    {
+        SetCanvasInteractivity(UICanvasGroup, interact);
+    }
+
     public void SelectOption(int optionIndex)
     {
         if(optionsUI.UICanvas.enabled) { return; }
@@ -98,7 +103,8 @@ public class MainMenuUI : UIComponent
                 // TODO: Pull up stats menu...
                 break;
             case 3: // Credits...
-                // TODO: Pull up credits screen...
+                CreditsUI creditsUI = UIManager.GetUIComponent<CreditsUI>();
+                creditsUI.Show();
                 break;
             case 4: // Quit game...
                 Application.Quit();
