@@ -45,7 +45,7 @@ public class LevelManager : Singleton<LevelManager>
 
     private void OnFadeInComplete()
     {
-        FadeUI.OnFadeOutComplete -= OnFadeInComplete;
+        FadeUI.OnFadeInComplete -= OnFadeInComplete;
         musicManager.PlayRandom();
     }
 

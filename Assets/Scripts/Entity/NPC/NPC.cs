@@ -68,7 +68,7 @@ public class NPC : Entity
                 GameManager.GlobalStats.Kills++;
                 OnKnockbackEnd();
                 StopAllCoroutines();
-                levelManager.RemoveEntity(this, 0.1f); // TODO: Add actual death animation or effect instead...
+                levelManager.RemoveEntity(this); // TODO: Add actual death animation or effect instead...
                 return;
             }
             else
@@ -109,6 +109,7 @@ public class NPC : Entity
         // Apply knockback while the timer is within the specified duration...
         while(knockbackTimer < duration)
         {
+            if(!IsAlive) { yield break; }
             NPCNavigation.StopMoving();
             float lerpFactor = knockbackTimer / duration;
             Vector3 currentKnockbackVelocity = Vector3.Lerp(initialVelocity, Vector3.zero, lerpFactor);

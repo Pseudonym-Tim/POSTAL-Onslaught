@@ -7,10 +7,14 @@ public class StructureDebugVisualizer : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        foreach(Bounds bounds in DebugBounds)
+        if(Application.isPlaying)
         {
-            Gizmos.DrawWireCube(bounds.center, bounds.size);
+            Gizmos.color = Color.red;
+
+            foreach(Bounds bounds in DebugBounds)
+            {
+                Gizmos.DrawWireCube(bounds.center, bounds.size);
+            }
         }
     }
 

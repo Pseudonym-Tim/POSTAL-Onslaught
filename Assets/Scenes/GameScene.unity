@@ -4298,6 +4298,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FadeUI
       objectReference: {fileID: 0}
+    - target: {fileID: 8913878738953533291, guid: 732b8672e6153ef4f8d32a402ec15850, type: 3}
+      propertyPath: m_Color.a
+      value: 0.34117648
+      objectReference: {fileID: 0}
     - target: {fileID: 9118249519700542470, guid: 732b8672e6153ef4f8d32a402ec15850, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

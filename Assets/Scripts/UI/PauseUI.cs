@@ -40,11 +40,11 @@ public class PauseUI : UIComponent
         if(levelClearUI.UICanvas.enabled) { return; }
         if(gameOverUI.UICanvas.enabled) { return; }
         UICanvas.enabled = showUI;
+        SetCanvasInteractivity(UICanvasGroup, showUI);
 
         if(!showUI)
         {
             GameManager.ResumeGame();
-            SetCanvasInteractivity(UICanvasGroup, false);
 
             if(currentlyHoveredOption.HasValue)
             {
@@ -59,7 +59,6 @@ public class PauseUI : UIComponent
         GameManager.PauseGame();
         SetOptionsInactive();
         UpdateTime();
-        SetCanvasInteractivity(UICanvasGroup, true);
     }
 
     private void UpdateTime()
@@ -104,16 +103,15 @@ public class PauseUI : UIComponent
 
     public void BeginFade()
     {
-        SetCanvasInteractivity(UICanvasGroup, false);
         FadeUI fadeUI = UIManager.GetUIComponent<FadeUI>();
-        FadeUI.OnFadeOutComplete += OnFadeOutComplete;
         fadeUI.FadeOut();
+        FadeUI.OnFadeOutComplete += OnFadeOutComplete;
+        SetCanvasInteractivity(UICanvasGroup, false);
     }
 
     private void OnFadeOutComplete()
     {
         FadeUI.OnFadeOutComplete -= OnFadeOutComplete;
-        Show(false);
 
         switch(selectedOptionIndex)
         {
@@ -124,6 +122,8 @@ public class PauseUI : UIComponent
                 GameManager.QuitToMainMenu();
                 break;
         }
+
+        Show(false);
     }
 
     public void HoverOption(int optionIndex)

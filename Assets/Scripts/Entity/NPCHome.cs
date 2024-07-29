@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 /// <summary>
 /// House that spawns NPC's when disturbed...
@@ -63,11 +64,31 @@ public class NPCHome : Entity
                 break;
             }
 
-            NPC npcEntity = (NPC)levelManager.AddEntity(npcID, spawnPoint.position);
+            Vector2 spawnPosition = GetValidPosition(spawnPoint.position);
+
+            if(spawnPosition == Vector2.zero)
+            {
+                Debug.LogWarning("No valid NavMesh position found near spawn point...");
+                continue;
+            }
+
+            NPC npcEntity = (NPC)levelManager.AddEntity(npcID, spawnPosition);
             taskManager.AddPopulation(npcEntity);
             float waitTime = Random.Range(spawnDelayMin, spawnDelayMax);
             yield return new WaitForSeconds(waitTime);
         }
+    }
+
+    private Vector2 GetValidPosition(Vector2 origin)
+    {
+        NavMeshHit hit;
+
+        if(NavMesh.SamplePosition(origin, out hit, Mathf.Infinity, NavMesh.AllAreas))
+        {
+            return hit.position;
+        }
+
+        return Vector2.zero;
     }
 
     protected override void OnDrawEntityGizmos()

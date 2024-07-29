@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,19 +14,33 @@ public class FadeUI : UIComponent
     public static event Action OnFadeInComplete;
     public static event Action OnFadeOutComplete;
 
-    private void Awake()
+    private Coroutine currentCoroutine;
+
+    public override void SetupUI()
     {
         SetImageAlpha(0);
     }
 
     public void FadeIn(float fadeDuration = DEFAULT_FADE_TIME)
     {
-        StartCoroutine(Fade(fadeDuration, true));
+        StartFade(fadeDuration, true);
     }
 
     public void FadeOut(float fadeDuration = DEFAULT_FADE_TIME)
     {
-        StartCoroutine(Fade(fadeDuration, false));
+        StartFade(fadeDuration, false);
+    }
+
+    private void StartFade(float duration, bool fadeIn)
+    {
+        // Stop any ongoing fade coroutine
+        if(currentCoroutine != null)
+        {
+            StopCoroutine(currentCoroutine);
+        }
+
+        // Start the fade coroutine
+        currentCoroutine = StartCoroutine(Fade(duration, fadeIn));
     }
 
     private IEnumerator Fade(float duration, bool fadeIn)
@@ -38,21 +51,21 @@ public class FadeUI : UIComponent
         float endAlpha = fadeIn ? 0 : 1;
         float elapsed = 0;
 
-        // Set initial alpha value...
+        // Set initial alpha value
         SetImageAlpha(startAlpha);
 
-        // Gradually change the alpha value...
+        // Gradually change the alpha value
         while(elapsed < duration)
         {
-            elapsed += Time.deltaTime;
+            elapsed += Time.unscaledDeltaTime;
             float newAlpha = Mathf.Lerp(startAlpha, endAlpha, elapsed / duration);
             SetImageAlpha(newAlpha);
             yield return null;
         }
 
-        // Ensure the final alpha value is set...
-        SetImageAlpha(endAlpha); 
-        
+        // Ensure the final alpha value is set
+        SetImageAlpha(endAlpha);
+
         if(fadeIn)
         {
             OnFadeInComplete?.Invoke();
@@ -75,5 +88,5 @@ public class FadeUI : UIComponent
         }
     }
 
-    public bool IsFading { get; set; } = false;
+    public bool IsFading { get; private set; } = false;
 }
