@@ -18,7 +18,6 @@ public class LevelManager : Singleton<LevelManager>
 
     public void CreateLevel()
     {
-        CurrentLevel++;
         levelGenerator = FindFirstObjectByType<LevelGenerator>();
         tileManager = FindFirstObjectByType<TileManager>();
         taskManager = FindFirstObjectByType<TaskManager>();
@@ -26,6 +25,8 @@ public class LevelManager : Singleton<LevelManager>
         musicManager = FindFirstObjectByType<MusicManager>();
         killCreativityManager = FindFirstObjectByType<KillCreativityManager>();
         fadeUI = UIManager.GetUIComponent<FadeUI>();
+
+        CurrentLevel++;
 
         RemoveTiles();
         RemoveObjects();
@@ -38,9 +39,10 @@ public class LevelManager : Singleton<LevelManager>
         taskManager.Setup();
         killCreativityManager.Setup();
         decalManager.Setup();
-        FadeUI.OnFadeInComplete += OnFadeInComplete;
-        fadeUI.FadeIn();
         InLevelTimer = 0.0f;
+
+        FadeUI.OnFadeInComplete += OnFadeInComplete;
+        fadeUI.FadeIn(2);
     }
 
     private void OnFadeInComplete()

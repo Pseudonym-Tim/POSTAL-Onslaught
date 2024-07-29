@@ -8,6 +8,8 @@ using UnityEngine;
 /// </summary>
 public class ProtesterEnemyNPC : EnemyNPC
 {
+    private const float STOPPING_DISTANCE = 2.5f;
+
     [SerializeField] private AIState currentAIState = AIState.IDLE;
     [SerializeField] private float roamRadius = 5f;
     [SerializeField] private float roamTimeMin = 0.75f;
@@ -205,7 +207,7 @@ public class ProtesterEnemyNPC : EnemyNPC
 
     private void UpdateMeleeAttacking()
     {
-        NPCNavigation.SetDestination(playerEntity.EntityPosition, 1);
+        NPCNavigation.SetDestination(playerEntity.EntityPosition, STOPPING_DISTANCE);
         float distanceToPlayer = Vector2.Distance(playerEntity.CenterOfMass, EntityPosition);
         MeleeWeapon meleeWeapon = (MeleeWeapon)weaponManager.SelectedWeapon;
         weaponManager.IsAttackingAllowed = distanceToPlayer <= meleeWeapon.attackRange;

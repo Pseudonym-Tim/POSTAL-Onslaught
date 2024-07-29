@@ -39,6 +39,8 @@
     "pause_ui": {
         "pauseLabel": "<color=#ffffff>GAME PAUSED!</color>",
         "resumeText": "<color=%color%>RESUME!</color>",
+        "killsText": "<color=#ffffff>KILLS: %kills%</color>",
+        "itemText": "<color=#ffffff>ITEMS: %items%</color>",
         "restartText": "<color=%color%>RESTART</color>",
         "optionsText": "<color=%color%>OPTIONS</color>",
         "quitText": "<color=%color%>QUIT TO MENU!</color>",

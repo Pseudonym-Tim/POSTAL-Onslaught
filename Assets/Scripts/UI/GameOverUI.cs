@@ -51,6 +51,9 @@ public class GameOverUI : UIComponent
             return; 
         }
 
+        MusicManager musicManager = FindFirstObjectByType<MusicManager>();
+        musicManager.Pause();
+
         SetOptionsInactive();
         tipText.text = GetTipMessage();
         SetKillerAnimation();

@@ -41,7 +41,7 @@ public class MainMenuUI : UIComponent
         SetOptionsInactive();
         fadeUI.FadeIn();
         selectedOptionIndex = 0;
-        musicManager.PlayTrack("Corpse Club");
+        musicManager.PlayTrack("main_menu");
     }
 
     private void LateUpdate()

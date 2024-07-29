@@ -13,6 +13,8 @@ public class PauseUI : UIComponent
     public CanvasGroup UICanvasGroup;
     [SerializeField] private TextMeshProUGUI pauseLabelText;
     [SerializeField] private TextMeshProUGUI timeText;
+    [SerializeField] private TextMeshProUGUI killsText;
+    [SerializeField] private TextMeshProUGUI itemsText;
     [SerializeField] private List<TextMeshProUGUI> menuOptions;
     [SerializeField] private TextMeshProUGUI resumeOptionText;
     private string inactiveColor;
@@ -22,11 +24,13 @@ public class PauseUI : UIComponent
     private LevelClearUI levelClearUI;
     private int selectedOptionIndex = 0;
     private int? currentlyHoveredOption = null;
-    private OptionsUI optionsUI = null; 
+    private OptionsUI optionsUI = null;
+    private MusicManager musicManager;
 
     public override void SetupUI()
     {
         gameOverUI = UIManager.GetUIComponent<GameOverUI>();
+        musicManager = FindFirstObjectByType<MusicManager>();
         levelClearUI = UIManager.GetUIComponent<LevelClearUI>();
         pauseLabelText.text = LocalizationManager.GetMessage("pauseLabel", UIJsonIdentifier);
         optionsUI = UIManager.GetUIComponent<OptionsUI>();
@@ -44,6 +48,7 @@ public class PauseUI : UIComponent
 
         if(!showUI)
         {
+            musicManager.Resume();
             GameManager.ResumeGame();
 
             if(currentlyHoveredOption.HasValue)
@@ -56,15 +61,36 @@ public class PauseUI : UIComponent
             return;
         }
 
+        musicManager.Pause();
         GameManager.PauseGame();
         SetOptionsInactive();
         UpdateTime();
+        UpdateKills();
+        UpdateItems();
+    }
+
+    private void UpdateKills()
+    {
+        string killsMessage = LocalizationManager.GetMessage("killsText", UIJsonIdentifier);
+        string killAmount = LevelManager.LevelStats.CurrentKills.ToString();
+        killsMessage = killsMessage.Replace("%kills%", killAmount);
+        killsText.text = killsMessage;
+    }
+
+    private void UpdateItems()
+    {
+        string itemsMessage = LocalizationManager.GetMessage("itemText", UIJsonIdentifier);
+        LevelManager levelManager = FindFirstObjectByType<LevelManager>();
+        Player playerEntity = levelManager.GetEntity<Player>();
+        string itemAmount = playerEntity.InventoryManager.GetItemCount().ToString();
+        itemsMessage = itemsMessage.Replace("%items%", itemAmount);
+        itemsText.text = itemsMessage;
     }
 
     private void UpdateTime()
     {
         string timeMessage = LocalizationManager.GetMessage("timeText", UIJsonIdentifier);
-        string formattedTime = GameManager.GetFormattedTime();
+        string formattedTime = LevelManager.GetFormattedTime();
         timeMessage = timeMessage.Replace("%minutes%", formattedTime.Split(':')[0]);
         timeMessage = timeMessage.Replace("%seconds%", formattedTime.Split(':')[1]);
         timeText.text = timeMessage;

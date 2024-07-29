@@ -65,6 +65,7 @@ public class NPC : Entity
                 AddPlayerScore();
                 OnNPCKilled?.Invoke();
                 OnDeath();
+                LevelManager.LevelStats.CurrentKills++;
                 GameManager.GlobalStats.Kills++;
                 OnKnockbackEnd();
                 StopAllCoroutines();

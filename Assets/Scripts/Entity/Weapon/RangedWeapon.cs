@@ -143,6 +143,7 @@ public class RangedWeapon : Weapon
     {
         get
         {
+            // TODO: Remove this?
             Vector2 startPos = weaponManager.AimParent.position;
             Vector2 endPos = ShootOriginTransform.position;
             LayerMask layerMask = IsOwnerPlayer() ? LayerManager.Masks.SHOOTABLE_NPC : LayerManager.Masks.SHOOTABLE_PLAYER;

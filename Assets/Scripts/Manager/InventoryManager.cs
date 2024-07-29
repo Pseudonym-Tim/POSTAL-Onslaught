@@ -175,4 +175,9 @@ public class InventoryManager : Singleton<InventoryManager>
     {
         return inventoryItems.FirstOrDefault(item => item.itemData.id == itemID);
     }
+
+    public int GetItemCount()
+    {
+        return inventoryItems.Sum(item => item.itemQuantity);
+    }
 }
