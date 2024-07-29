@@ -125,6 +125,7 @@ public class Player : Entity
     private void OnDeath()
     {
         Debug.Log("Player died!");
+        GameManager.GlobalStats.Deaths++;
         GameManager.GameOver();
         PlayerInput.InputEnabled = false;
     }

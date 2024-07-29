@@ -18,6 +18,9 @@
         "flashInterval": 1,
         "staggerInterval": 0.25
     },
+    "stats_ui": {
+        "flashInterval": 1
+    },
     "main_menu_ui": {
         "options": {
             "activeColor": "#ffffff",

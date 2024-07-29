@@ -12,7 +12,7 @@ public class LevelManager : Singleton<LevelManager>
     private TileManager tileManager;
     private TaskManager taskManager;
     private KillCreativityManager killCreativityManager;
-    private DecalManager splatManager;
+    private DecalManager decalManager;
     private FadeUI fadeUI;
     private MusicManager musicManager;
 
@@ -22,7 +22,7 @@ public class LevelManager : Singleton<LevelManager>
         levelGenerator = FindFirstObjectByType<LevelGenerator>();
         tileManager = FindFirstObjectByType<TileManager>();
         taskManager = FindFirstObjectByType<TaskManager>();
-        splatManager = FindFirstObjectByType<DecalManager>();
+        decalManager = FindFirstObjectByType<DecalManager>();
         musicManager = FindFirstObjectByType<MusicManager>();
         killCreativityManager = FindFirstObjectByType<KillCreativityManager>();
         fadeUI = UIManager.GetUIComponent<FadeUI>();
@@ -37,10 +37,10 @@ public class LevelManager : Singleton<LevelManager>
         levelGenerator.GenerateLevel();
         taskManager.Setup();
         killCreativityManager.Setup();
-        splatManager.Setup();
+        decalManager.Setup();
         FadeUI.OnFadeInComplete += OnFadeInComplete;
         fadeUI.FadeIn();
-        LevelTimer = 0.0f;
+        InLevelTimer = 0.0f;
     }
 
     private void OnFadeInComplete()
@@ -51,13 +51,13 @@ public class LevelManager : Singleton<LevelManager>
 
     private void Update()
     {
-        LevelTimer += Time.deltaTime;
+        InLevelTimer += Time.deltaTime;
     }
 
     public static string GetFormattedTime()
     {
-        int minutes = Mathf.FloorToInt(LevelTimer / 60F);
-        int seconds = Mathf.FloorToInt(LevelTimer % 60F);
+        int minutes = Mathf.FloorToInt(InLevelTimer / 60F);
+        int seconds = Mathf.FloorToInt(InLevelTimer % 60F);
         return string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
@@ -225,6 +225,19 @@ public class LevelManager : Singleton<LevelManager>
         return entityList;
     }
 
+    public void OnLevelClear()
+    {
+        float bestTime = GameManager.GlobalStats.BestTime;
+
+        if(InLevelTimer < bestTime || bestTime <= 0)
+        {
+            GameManager.GlobalStats.BestTime = InLevelTimer;
+        }
+
+        LevelClearUI levelClearUI = UIManager.GetUIComponent<LevelClearUI>();
+        levelClearUI.Show();
+    }
+
     public void NextLevel()
     {
         // Unparent player entity so they will carry over to the next level, create new level...
@@ -252,7 +265,7 @@ public class LevelManager : Singleton<LevelManager>
         return entityList;
     }
 
-    public static float LevelTimer { get; private set; } = 0.0f;
+    public static float InLevelTimer { get; private set; } = 0.0f;
     public static int CurrentLevel { get; set; } = 0;
     public static LevelStatistics LevelStats { get; private set; } = null;
     public static Dictionary<string, TileData> TileDatabase { get; private set; } = null;

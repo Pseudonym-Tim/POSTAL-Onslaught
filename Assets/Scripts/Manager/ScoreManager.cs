@@ -30,10 +30,16 @@ public class ScoreManager : Singleton<ScoreManager>
             StopAllCoroutines();
             StartCoroutine(HandleScoreMultiplier(scoreToAdd * KillstreakAmount));
 
-            // Update highest killstreak...
+            // Update highest level killstreak...
             if(KillstreakAmount > LevelManager.LevelStats.HighestKillstreak)
             {
                 LevelManager.LevelStats.HighestKillstreak = KillstreakAmount;
+            }
+
+            // Update global killstreak...
+            if(KillstreakAmount > GameManager.GlobalStats.BestKillstreak)
+            {
+                GameManager.GlobalStats.BestKillstreak = KillstreakAmount;
             }
         }
         else
@@ -130,7 +136,7 @@ public class ScoreManager : Singleton<ScoreManager>
     {
         // Using GameStatistics and inGameTimer to calculate bonus score
         LevelManager.LevelStatistics levelStats = LevelManager.LevelStats;
-        float gameTime = GameManager.inGameTimer;
+        float gameTime = GameManager.InGameTimer;
 
         // Formula for bonus score calculation...
         int weaponBonus = levelStats.UniqueWeaponsUsed * 50; // 50 points per unique weapon used

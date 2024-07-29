@@ -14,6 +14,16 @@
     "main_menu_ui": {
 
     },
+    "stats_ui": {
+        "overallText": "<color=#ffffff>OVERALL STATISTICS:</color>",
+        "highscoreText": "<color=#ffffff>HIGHSCORE: %score%</color>",
+        "killsText": "<color=#ffffff>KILLS: %kills%</color>",
+        "itemText": "<color=#ffffff>ITEMS COLLECTED: %itemAmount%</color>",
+        "killstreakText": "<color=#ffffff>BEST KILLSTREAK: %amount%x</color>",
+        "deathText": "<color=#ffffff>DEATHS: %deaths%</color>",
+        "timeText": "<color=#ffffff>BEST TIME: %minutes%:%seconds%</color>",
+        "exitHelpText": "<color=#ffffff>PRESS [ESC] TO EXIT...</color>"
+    },
     "credits_ui": {
         "pauseHelpText": "<color=#ffffff>PRESS [SPACE] TO PAUSE/RESUME...</color>",
         "exitHelpText": "<color=#ffffff>PRESS [ESC] TO EXIT...</color>"
@@ -42,7 +52,7 @@
     },
     "level_clear_ui": {
         "timeText": "<color=#ffffff>CLEAR TIME: %minutes%:%seconds%</color>",
-        "killstreakText": "<color=#ffffff>BEST KILLSTREAK: x%count%</color>",
+        "killstreakText": "<color=#ffffff>BEST KILLSTREAK: %count%x</color>",
         "areaCoveredText": "<color=#ffffff>AREA COVERED: %metersWalked%M</color>",
         "creativityText": "<color=#ffffff>CREATIVITY: %rating%/%max%</color>",
         "bonusText": "<color=#ffffff>BONUS:\n+%points% POINTS</color>",

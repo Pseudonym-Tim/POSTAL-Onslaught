@@ -65,6 +65,7 @@ public class NPC : Entity
                 AddPlayerScore();
                 OnNPCKilled?.Invoke();
                 OnDeath();
+                GameManager.GlobalStats.Kills++;
                 OnKnockbackEnd();
                 StopAllCoroutines();
                 levelManager.RemoveEntity(this, 0.1f); // TODO: Add actual death animation or effect instead...

@@ -100,7 +100,8 @@ public class MainMenuUI : UIComponent
                 SceneManager.LoadScene(1);
                 break;
             case 2: // Stats...
-                // TODO: Pull up stats menu...
+                StatsUI statsUI = UIManager.GetUIComponent<StatsUI>();
+                statsUI.Show();
                 break;
             case 3: // Credits...
                 CreditsUI creditsUI = UIManager.GetUIComponent<CreditsUI>();

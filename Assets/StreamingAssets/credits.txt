@@ -19,3 +19,7 @@ AUDACITY
 VISUAL STUDIO 2022
 FL STUDIO 2021
 UNITY ENGINE
+
+Created for the 2024 POSTAL game jam
+
+Inspired by Nuclear Throne and arcade shoot-em-ups like Robotron: 2084

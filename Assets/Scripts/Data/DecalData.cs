@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Data for level tile splats...
+/// Data for level tile decals...
 /// </summary>
 [System.Serializable]
 public class DecalData
 {
-    public string decalID = "new_splat";
+    public string decalID = "new_decal";
     public List<Sprite> sprites;
     public List<string> tilesToAffect;
     public int spawnIterations = 3;

@@ -12,7 +12,6 @@ public class TaskManager : Singleton<TaskManager>
     private int currentNPCAmount = 0;
     private int totalNPCAmount = 0;
     private PlayerHUD playerHUD;
-    private LevelClearUI levelClearUI;
 
     private void Awake()
     {
@@ -23,7 +22,6 @@ public class TaskManager : Singleton<TaskManager>
     {
         LevelManager levelManager = FindFirstObjectByType<LevelManager>();
         playerHUD = UIManager.GetUIComponent<PlayerHUD>();
-        levelClearUI = UIManager.GetUIComponent<LevelClearUI>();
         currentNPCList = levelManager.GetEntities<NPC>();
         currentNPCAmount = currentNPCList.Count;
         totalNPCAmount = currentNPCList.Count;
@@ -39,7 +37,7 @@ public class TaskManager : Singleton<TaskManager>
         {
             string endLevelMessage = LocalizationManager.GetMessage("endLevelMessage");
             playerHUD.UpdateTask(endLevelMessage);
-            Invoke(nameof(ShowLevelClearUI), 1.0f);
+            Invoke(nameof(ClearLevel), 1.0f);
         }
     }
 
@@ -51,9 +49,10 @@ public class TaskManager : Singleton<TaskManager>
         playerHUD.UpdatePopulation(currentNPCAmount, totalNPCAmount);
     }
 
-    private void ShowLevelClearUI()
+    private void ClearLevel()
     {
-        levelClearUI.Show(true);
+        LevelManager levelManager = FindFirstObjectByType<LevelManager>();
+        levelManager.OnLevelClear();
     }
 
     public bool IsTaskComplete => currentNPCAmount <= 0;
