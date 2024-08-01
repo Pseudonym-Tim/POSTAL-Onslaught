@@ -13,11 +13,6 @@ public class TaskManager : Singleton<TaskManager>
     private int totalNPCAmount = 0;
     private PlayerHUD playerHUD;
 
-    private void Awake()
-    {
-        NPC.OnNPCKilled += OnUpdateCount;
-    }
-
     public void Setup()
     {
         LevelManager levelManager = FindFirstObjectByType<LevelManager>();
@@ -26,6 +21,9 @@ public class TaskManager : Singleton<TaskManager>
         currentNPCAmount = currentNPCList.Count;
         totalNPCAmount = currentNPCList.Count;
         playerHUD.UpdatePopulation(currentNPCAmount, totalNPCAmount);
+
+        NPC.OnNPCKilled -= OnUpdateCount;
+        NPC.OnNPCKilled += OnUpdateCount;
     }
 
     public void OnUpdateCount()

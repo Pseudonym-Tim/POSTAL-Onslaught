@@ -51,7 +51,7 @@ public class DecalManager : Singleton<DecalManager>
                             continue;
                         }
 
-                        float randomRotation = Random.Range(0f, 360f);
+                        int randomRotation = Random.Range(0, 4) * 90;
                         Vector2 offsetPosition = ApplyRandomOffset(worldPos, decalData.maxSpawnOffset);
 
                         BlendTextures(levelTile, decalTexture, offsetPosition, randomRotation, randomScale);
@@ -61,13 +61,12 @@ public class DecalManager : Singleton<DecalManager>
         }
     }
 
-
     private static bool IsTileInRange(LevelTile levelTile, Vector2 decalPosition, DecalData decalData)
     {
         return Vector2.Distance(decalPosition, levelTile.TilePosition) <= decalData.spawnRange;
     }
 
-    private static void BlendTextures(LevelTile levelTile, Texture2D decalTexture, Vector2 decalPosition, float rotationAngle, float scale)
+    private static void BlendTextures(LevelTile levelTile, Texture2D decalTexture, Vector2 decalPosition, int rotationAngle, float scale)
     {
         SpriteRenderer tileRenderer = levelTile.TileGFX;
         int width = (int)tileRenderer.sprite.textureRect.width;
@@ -123,44 +122,54 @@ public class DecalManager : Singleton<DecalManager>
         return position + new Vector2(offsetX, offsetY);
     }
 
-    private static Texture2D RotateTexture(Texture2D original, float angle)
+    private static Texture2D RotateTexture(Texture2D original, int angle)
     {
-        Texture2D rotated = new Texture2D(original.width, original.height);
-        Color[] pixels = original.GetPixels();
-        float radians = angle * Mathf.Deg2Rad;
-        float cos = Mathf.Cos(radians);
-        float sin = Mathf.Sin(radians);
+        // Ensure the angle is a multiple of 90 degrees
+        angle = Mathf.RoundToInt(angle / 90f) * 90;
 
-        Vector2 center = new Vector2(original.width / 2, original.height / 2);
+        int width = original.width;
+        int height = original.height;
+        Texture2D rotated = new Texture2D(width, height);
 
-        for(int y = 0; y < original.height; y++)
+        Color[] originalPixels = original.GetPixels();
+        Color[] rotatedPixels = new Color[originalPixels.Length];
+
+        for(int y = 0; y < height; y++)
         {
-            for(int x = 0; x < original.width; x++)
+            for(int x = 0; x < width; x++)
             {
-                // Calculate rotated position...
-                Vector2 uv = new Vector2(x - center.x, y - center.y);
-                float newX = uv.x * cos - uv.y * sin + center.x;
-                float newY = uv.x * sin + uv.y * cos + center.y;
-
-                // Ensure the new position is within bounds...
-                if(newX >= 0 && newX < original.width && newY >= 0 && newY < original.height)
+                int newX = x, newY = y;
+                switch(angle)
                 {
-                    // Map the rotated position to the corresponding pixel...
-                    int pixelX = Mathf.FloorToInt(newX);
-                    int pixelY = Mathf.FloorToInt(newY);
-
-                    // Set the pixel in the rotated texture...
-                    rotated.SetPixel(x, y, pixels[pixelY * original.width + pixelX]);
+                    case 90:
+                        newX = y;
+                        newY = width - 1 - x;
+                        break;
+                    case 180:
+                        newX = width - 1 - x;
+                        newY = height - 1 - y;
+                        break;
+                    case 270:
+                        newX = height - 1 - y;
+                        newY = x;
+                        break;
+                    default: // 0 degrees
+                        newX = x;
+                        newY = y;
+                        break;
                 }
-                else
+
+                // Ensure the new indices are within the bounds of the array
+                if(newX >= 0 && newX < width && newY >= 0 && newY < height)
                 {
-                    // If out of bounds, set the pixel to transparent...
-                    rotated.SetPixel(x, y, Color.clear);
+                    rotatedPixels[newY * width + newX] = originalPixels[y * width + x];
                 }
             }
         }
 
+        rotated.SetPixels(rotatedPixels);
         rotated.Apply();
+
         return rotated;
     }
 

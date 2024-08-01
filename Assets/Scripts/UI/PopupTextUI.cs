@@ -20,14 +20,19 @@ public class PopupTextUI : UIComponent
 
     public static PopupTextUI Create(Vector2 spawnPos, string message, Transform parent, float scale = 1.0f)
     {
-        PrefabDatabase prefabDatabase = FindFirstObjectByType<PrefabDatabase>();
-        PopupTextUI popupTextPrefab = prefabDatabase?.GetPrefab<PopupTextUI>(nameof(PopupTextUI));
-        spawnPos = Camera.main.WorldToScreenPoint(spawnPos);
-        PopupTextUI popupTextUI = Instantiate(popupTextPrefab, spawnPos, Quaternion.identity);
-        popupTextUI.transform.SetParent(parent, true);
-        popupTextUI.name = nameof(PopupTextUI);
-        popupTextUI.transform.localScale = Vector3.one * scale;
-        if(message != null) { popupTextUI.messageText.text = message; }
-        return popupTextUI;
+        if(Camera.main != null)
+        {
+            PrefabDatabase prefabDatabase = FindFirstObjectByType<PrefabDatabase>();
+            PopupTextUI popupTextPrefab = prefabDatabase?.GetPrefab<PopupTextUI>(nameof(PopupTextUI));
+            spawnPos = Camera.main.WorldToScreenPoint(spawnPos);
+            PopupTextUI popupTextUI = Instantiate(popupTextPrefab, spawnPos, Quaternion.identity);
+            popupTextUI.transform.SetParent(parent, true);
+            popupTextUI.name = nameof(PopupTextUI);
+            popupTextUI.transform.localScale = Vector3.one * scale;
+            if(message != null) { popupTextUI.messageText.text = message; }
+            return popupTextUI;
+        }
+
+        return null;
     }
 }

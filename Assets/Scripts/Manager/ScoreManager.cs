@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 /// <summary>
-/// Handles everything related to the scoring system.
+/// Handles everything related to the scoring system...
 /// </summary>
 public class ScoreManager : Singleton<ScoreManager>
 {
@@ -13,6 +13,7 @@ public class ScoreManager : Singleton<ScoreManager>
     public int KillstreakAmount { get; private set; } = 0;
     public int CurrentScore { get; private set; } = 0;
     public int CurrentHighscore { get; private set; } = 0;
+    private int totalKillstreakScore = 0;
 
     public void Setup()
     {
@@ -27,8 +28,9 @@ public class ScoreManager : Singleton<ScoreManager>
         if(isNPCKill)
         {
             KillstreakAmount++;
+            totalKillstreakScore += scoreToAdd;
             StopAllCoroutines();
-            StartCoroutine(HandleScoreMultiplier(scoreToAdd * KillstreakAmount));
+            StartCoroutine(HandleScoreMultiplier(totalKillstreakScore));
 
             // Update highest level killstreak...
             if(KillstreakAmount > LevelManager.LevelStats.HighestKillstreak)
@@ -76,6 +78,7 @@ public class ScoreManager : Singleton<ScoreManager>
     private void ResetKillstreak()
     {
         KillstreakAmount = 0;
+        totalKillstreakScore = 0;
         playerHUD.ShowScoreMultiplier(false);
     }
 
@@ -93,6 +96,13 @@ public class ScoreManager : Singleton<ScoreManager>
 
         while(tickTimer < KILLSTREAK_TIME)
         {
+            // Immediately award points if in gameover or level clear screen...
+            if(GameManager.IsLevelCleared || GameManager.IsGameOver)
+            {
+                ImmediateAward(scoreToAward);
+                yield break;
+            }
+
             tickTimer += Time.deltaTime;
             float progressAmount = Mathf.Clamp01(tickTimer / animDuration);
             int currentScore = Mathf.RoundToInt(Mathf.Lerp(initialScore, targetScore, progressAmount));
@@ -105,12 +115,35 @@ public class ScoreManager : Singleton<ScoreManager>
 
         while(fadeTimer < FADE_TIME)
         {
+            // Immediately award points if in gameover or level clear screen...
+            if(GameManager.IsLevelCleared || GameManager.IsGameOver)
+            {
+                ImmediateAward(scoreToAward);
+                yield break;
+            }
+
             fadeTimer += Time.deltaTime;
             float currentAlpha = Mathf.Lerp(1f, 0f, fadeTimer / FADE_TIME);
             playerHUD.UpdateScoreMultiplier(targetScore - initialScore, KillstreakAmount, currentAlpha);
             yield return null;
         }
 
+        CurrentScore += scoreToAward * KillstreakAmount;
+
+        if(CurrentScore > MAX_SCORE)
+        {
+            CurrentScore = MAX_SCORE;
+        }
+
+        playerHUD.UpdateScore(CurrentScore);
+
+        ResetKillstreak();
+
+        CheckUpdateHighscore();
+    }
+
+    private void ImmediateAward(int scoreToAward)
+    {
         CurrentScore += scoreToAward * KillstreakAmount;
 
         if(CurrentScore > MAX_SCORE)

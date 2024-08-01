@@ -49,6 +49,7 @@
     "gameover_ui": {
         "killerLabel": "<color=#ffffff>KILLED BY:</color>",
         "timeText": "<color=#ffffff>TIME: %minutes%:%seconds%</color>",
+        "scoreText": "<color=#ffffff>SCORE: %points%</color>",
         "restartText": "<color=%color%>RESTART</color>",
         "quitText": "<color=%color%>QUIT TO MENU</color>"
     },
@@ -59,7 +60,7 @@
         "creativityText": "<color=#ffffff>CREATIVITY: %rating%/%max%</color>",
         "bonusText": "<color=#ffffff>BONUS:\n+%points% POINTS</color>",
         "totalText": "<color=#ffffff>TOTAL:\n%points% POINTS!</color>",
-        "continueText": "<color=%color%>CONTINUE!</color>"
+        "continueText": "<color=%color%>NEXT LEVEL!</color>"
     },
     "endLevelMessage": "<color=#ffffff>GO BACK HOME!</color>",
     "restoreHPMessage": "<color=#ffffff>+%hpAmount% HP!</color>",

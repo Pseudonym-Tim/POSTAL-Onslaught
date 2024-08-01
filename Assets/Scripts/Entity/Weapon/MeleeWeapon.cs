@@ -190,23 +190,26 @@ public class MeleeWeapon : Weapon
 
     protected override void OnDrawEntityGizmos()
     {
-        DrawAttackRangeGizmo();
-
-        Vector2 forward = GetAttackDirection();
-        Vector3 rightBoundary = Quaternion.Euler(0, 0, attackAngle) * forward * attackRange;
-        Vector3 leftBoundary = Quaternion.Euler(0, 0, -attackAngle) * forward * attackRange;
-
-        Gizmos.color = Color.yellow;
-
-        if(IsOwnerPlayer())
+        if(Application.isPlaying)
         {
-            Gizmos.DrawLine(Player.CenterOfMass, (Vector3)Player.CenterOfMass + rightBoundary);
-            Gizmos.DrawLine(Player.CenterOfMass, (Vector3)Player.CenterOfMass + leftBoundary);
-        }
-        else if(IsOwnerNPC())
-        {
-            Gizmos.DrawLine(NPC.CenterOfMass, (Vector3)NPC.CenterOfMass + rightBoundary);
-            Gizmos.DrawLine(NPC.CenterOfMass, (Vector3)NPC.CenterOfMass + leftBoundary);
+            DrawAttackRangeGizmo();
+
+            Vector2 forward = GetAttackDirection();
+            Vector3 rightBoundary = Quaternion.Euler(0, 0, attackAngle) * forward * attackRange;
+            Vector3 leftBoundary = Quaternion.Euler(0, 0, -attackAngle) * forward * attackRange;
+
+            Gizmos.color = Color.yellow;
+
+            if(IsOwnerPlayer())
+            {
+                Gizmos.DrawLine(Player.CenterOfMass, (Vector3)Player.CenterOfMass + rightBoundary);
+                Gizmos.DrawLine(Player.CenterOfMass, (Vector3)Player.CenterOfMass + leftBoundary);
+            }
+            else if(IsOwnerNPC())
+            {
+                Gizmos.DrawLine(NPC.CenterOfMass, (Vector3)NPC.CenterOfMass + rightBoundary);
+                Gizmos.DrawLine(NPC.CenterOfMass, (Vector3)NPC.CenterOfMass + leftBoundary);
+            }
         }
     }
 

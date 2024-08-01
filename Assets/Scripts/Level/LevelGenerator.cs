@@ -54,7 +54,7 @@ public class LevelGenerator : Singleton<LevelGenerator>
         levelCollider2D.generationType = CompositeCollider2D.GenerationType.Synchronous;
     }
 
-    private List<LevelTile> GetValidSpawnTiles(string spawnTileID, int minBoundsDist, float minSpawnDistance, float minPlayerDist)
+    private List<LevelTile> GetValidSpawnTiles(string spawnTileID, int minBoundsDist, float minSpawnDistance, float minPlayerDist, bool outsideBounds)
     {
         int levelBoundsDist = levelScriptParser.LevelBoundsDist;
         int levelSizeX = levelScriptParser.LevelSizeX;
@@ -75,7 +75,13 @@ public class LevelGenerator : Singleton<LevelGenerator>
             float tilePosY = levelTile.TilePosition.y;
             bool withinXBounds = tilePosX >= minBoundaryDist && tilePosX <= levelSizeX - minBoundaryDist;
             bool withinYBounds = tilePosY >= minBoundaryDist && tilePosY <= levelSizeY - minBoundaryDist;
-            return withinXBounds && withinYBounds && IsValidSpawnPosition(levelTile.TilePosition, minSpawnDistance, minPlayerDist);
+
+            bool isWithinBounds = withinXBounds && withinYBounds;
+            bool isOutsideBounds = !isWithinBounds;
+
+            bool isValidBounds = outsideBounds ? isOutsideBounds : isWithinBounds;
+
+            return isValidBounds && IsValidSpawnPosition(levelTile.TilePosition, minSpawnDistance, minPlayerDist);
         });
 
         if(validSpawnTiles.Count == 0)
@@ -98,9 +104,9 @@ public class LevelGenerator : Singleton<LevelGenerator>
         Debug.Log($"Spawned: [{objectID}] at position: [{spawnPos}]");
     }
 
-    public void SpawnEntity(string entityID, string spawnTileID, int minBoundsDist = 0, float minDistance = 0, float minPlayerDist = 0)
+    public void SpawnEntity(string entityID, string spawnTileID, int minBoundsDist = 0, float minDistance = 0, float minPlayerDist = 0, bool outsideBounds = false)
     {
-        List<LevelTile> validSpawnTiles = GetValidSpawnTiles(spawnTileID, minBoundsDist, minDistance, minPlayerDist);
+        List<LevelTile> validSpawnTiles = GetValidSpawnTiles(spawnTileID, minBoundsDist, minDistance, minPlayerDist, outsideBounds);
         if(validSpawnTiles.Count == 0) { return; }
         LevelTile spawnTile = validSpawnTiles[Random.Range(0, validSpawnTiles.Count)];
 
@@ -115,10 +121,10 @@ public class LevelGenerator : Singleton<LevelGenerator>
         SpawnEntity(entityID, spawnTile.TilePosition);
     }
 
-    public void SpawnObject(string objectID, string spawnTileID, int minBoundsDist = 0, float minDistance = 0, float minPlayerDist = 0)
+    public void SpawnObject(string objectID, string spawnTileID, int minBoundsDist = 0, float minDistance = 0, float minPlayerDist = 0, bool outsideBounds = false)
     {
-        List<LevelTile> validSpawnTiles = GetValidSpawnTiles(spawnTileID, minBoundsDist, minDistance, minPlayerDist);
-        if(validSpawnTiles.Count == 0) { return; }
+        List<LevelTile> validSpawnTiles = GetValidSpawnTiles(spawnTileID, minBoundsDist, minDistance, minPlayerDist, outsideBounds);
+        if(validSpawnTiles == null || validSpawnTiles.Count == 0) return;
         LevelTile spawnTile = validSpawnTiles[Random.Range(0, validSpawnTiles.Count)];
         SpawnObject(objectID, spawnTile.TilePosition);
     }

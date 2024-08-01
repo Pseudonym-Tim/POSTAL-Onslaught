@@ -91,6 +91,16 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    public static bool IsLevelCleared
+    {
+        get { return CurrentGameState == GameState.LEVEL_CLEARED; }
+    }
+
+    public static bool IsGameOver
+    {
+        get { return CurrentGameState == GameState.GAME_OVER; }
+    }
+
     public static void ResumeGame()
     {
         if(previousTimeScale != 0 && Time.timeScale == 0)

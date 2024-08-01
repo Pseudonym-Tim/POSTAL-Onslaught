@@ -15,6 +15,7 @@ public class LevelScriptParser
     private readonly LevelManager levelManager;
     private readonly LevelGenerator levelGenerator;
     private readonly Dictionary<string, int> variables = new Dictionary<string, int>();
+    private readonly Dictionary<string, float> floatVariables = new Dictionary<string, float>();
     private string[] scriptLines;
     private int currentLineIndex;
 
@@ -31,7 +32,7 @@ public class LevelScriptParser
 
     public void ParseScript()
     {
-        string filePath = $"{ Application.streamingAssetsPath }/{ FILE_NAME }{ FILE_EXTENSION }";
+        string filePath = $"{Application.streamingAssetsPath}/{FILE_NAME}{FILE_EXTENSION}";
 
         try
         {
@@ -46,7 +47,7 @@ public class LevelScriptParser
         }
         catch(Exception e)
         {
-            Debug.LogError($"Error parsing script file: { e.Message }");
+            Debug.LogError($"Error parsing script file: {e.Message}");
         }
     }
 
@@ -86,13 +87,34 @@ public class LevelScriptParser
     {
         var parts = line.Split(' ');
         string varName = parts[1];
-        int value = int.Parse(parts[2]);
 
-        variables[varName] = value;
+        if(parts[2] == "RAND_INT")
+        {
+            int min = GetValue(parts[3]);
+            int max = GetValue(parts[4]);
+            int randomValue = UnityEngine.Random.Range(min, max + 1);
+            variables[varName] = randomValue;
 
-        if(varName == "LEVEL_SIZE_X") LevelSizeX = value;
-        if(varName == "LEVEL_SIZE_Y") LevelSizeY = value;
-        if(varName == "LEVEL_BOUNDS_DIST") LevelBoundsDist = value;
+            if(varName == "LEVEL_SIZE_X") LevelSizeX = randomValue;
+            if(varName == "LEVEL_SIZE_Y") LevelSizeY = randomValue;
+            if(varName == "LEVEL_BOUNDS_DIST") LevelBoundsDist = randomValue;
+        }
+        else if(parts[2] == "RAND_FLOAT")
+        {
+            float min = GetFloatValue(parts[3]);
+            float max = GetFloatValue(parts[4]);
+            float randomValue = UnityEngine.Random.Range(min, max);
+            floatVariables[varName] = randomValue;
+        }
+        else
+        {
+            int value = GetValue(parts[2]);
+            variables[varName] = value;
+
+            if(varName == "LEVEL_SIZE_X") LevelSizeX = value;
+            if(varName == "LEVEL_SIZE_Y") LevelSizeY = value;
+            if(varName == "LEVEL_BOUNDS_DIST") LevelBoundsDist = value;
+        }
     }
 
     private void ParseForLoop(string line)
@@ -209,9 +231,10 @@ public class LevelScriptParser
         string entityID = parts[1];
         string spawnTileID = parts[2];
         int minBoundsDist = parts.Length > 3 ? GetValue(parts[3]) : 0;
-        float minDistance = parts.Length > 4 ? GetValue(parts[4]) : 0;
-        float minPlayerDistance = parts.Length > 5 ? GetValue(parts[5]) : 0;
-        levelGenerator.SpawnEntity(entityID, spawnTileID, minBoundsDist, minDistance, minPlayerDistance);
+        float minDistance = parts.Length > 4 ? GetFloatValue(parts[4]) : 0;
+        float minPlayerDistance = parts.Length > 5 ? GetFloatValue(parts[5]) : 0;
+        bool outsideBounds = parts.Length > 6 && parts[6] == "OUTSIDE_BOUNDS";
+        levelGenerator.SpawnEntity(entityID, spawnTileID, minBoundsDist, minDistance, minPlayerDistance, outsideBounds);
     }
 
     private void ParseObject(string line)
@@ -229,9 +252,10 @@ public class LevelScriptParser
         string objectID = parts[1];
         string spawnTileID = parts[2];
         int minBoundsDist = parts.Length > 3 ? GetValue(parts[3]) : 0;
-        float minDistance = parts.Length > 4 ? GetValue(parts[4]) : 0;
-        float minPlayerDistance = parts.Length > 5 ? GetValue(parts[5]) : 0;
-        levelGenerator.SpawnObject(objectID, spawnTileID, minBoundsDist, minDistance, minPlayerDistance);
+        float minDistance = parts.Length > 4 ? GetFloatValue(parts[4]) : 0;
+        float minPlayerDistance = parts.Length > 5 ? GetFloatValue(parts[5]) : 0;
+        bool outsideBounds = parts.Length > 6 && parts[6] == "OUTSIDE_BOUNDS";
+        levelGenerator.SpawnObject(objectID, spawnTileID, minBoundsDist, minDistance, minPlayerDistance, outsideBounds);
     }
 
     private int GetValue(string token)
@@ -247,6 +271,25 @@ public class LevelScriptParser
         {
             int left = GetValue(match.Groups[1].Value);
             int right = GetValue(match.Groups[3].Value);
+            return match.Groups[2].Value == "+" ? left + right : left - right;
+        }
+
+        throw new FormatException($"Invalid token format: {token}");
+    }
+
+    private float GetFloatValue(string token)
+    {
+        token = token.Trim();
+
+        if(floatVariables.ContainsKey(token)) return floatVariables[token];
+        if(float.TryParse(token, out float value)) return value;
+
+        var match = Regex.Match(token, @"(\d+|\w+)\s*([\+\-])\s*(\d+|\w+)");
+
+        if(match.Success)
+        {
+            float left = GetFloatValue(match.Groups[1].Value);
+            float right = GetFloatValue(match.Groups[3].Value);
             return match.Groups[2].Value == "+" ? left + right : left - right;
         }
 

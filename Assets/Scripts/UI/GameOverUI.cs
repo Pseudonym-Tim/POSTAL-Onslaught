@@ -1,7 +1,9 @@
 using Newtonsoft.Json.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
@@ -15,6 +17,7 @@ public class GameOverUI : UIComponent
     [SerializeField] private Image killerImage;
     [SerializeField] private List<TextMeshProUGUI> menuOptions;
     public TextMeshProUGUI killerLabelText;
+    public TextMeshProUGUI scoreText;
     public TextMeshProUGUI timeText;
     public TextMeshProUGUI tipText;
     private PlayerHUD playerHUD;
@@ -51,29 +54,56 @@ public class GameOverUI : UIComponent
             return; 
         }
 
+        string scoreMessage = LocalizationManager.GetMessage("scoreText", UIJsonIdentifier);
+        scoreText.text = scoreMessage.Replace("%points%", "???");
+
         MusicManager musicManager = FindFirstObjectByType<MusicManager>();
         musicManager.Pause();
 
         SetOptionsInactive();
         tipText.text = GetTipMessage();
-        SetKillerAnimation();
+        UpdateKillerAnimation();
         ImageHelper.SetNativeSize(killerImage, 4f);
         ImageHelper.SetNativePivot(killerImage, ImageHelper.PivotAxis.X);
-        SetTime();
+        UpdateTime();
 
         playerHUD.ShowHealthIndicator(false);
         playerHUD.ShowInventory(false);
         playerHUD.ShowWeaponSelection(false);
         playerHUD.ShowScoreMultiplier(false);
+
+        ScoreManager scoreManager = FindFirstObjectByType<ScoreManager>();
+        StartCoroutine(UpdateScoreText(scoreManager));
     }
 
-    private void SetTime()
+    private void UpdateTime()
     {
         string timeMessage = LocalizationManager.GetMessage("timeText", UIJsonIdentifier);
         string formattedTime = GameManager.GetFormattedTime();
         timeMessage = timeMessage.Replace("%minutes%", formattedTime.Split(':')[0]);
         timeMessage = timeMessage.Replace("%seconds%", formattedTime.Split(':')[1]);
         timeText.text = timeMessage;
+    }
+
+    private IEnumerator UpdateScoreText(ScoreManager scoreManager)
+    {
+        // HACK: Wait a bit for the immediate killstreak award to be given...
+        yield return new WaitForSeconds(1 / 2);
+        string totalMessage = LocalizationManager.GetMessage("scoreText", UIJsonIdentifier);
+        int scoreAmount = scoreManager.CurrentScore;
+        int currentScore = 0;
+        float duration = 1.0f; // Duration of the count-up animation
+        float elapsed = 0;
+
+        while(elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            currentScore = Mathf.FloorToInt(Mathf.Lerp(0, scoreAmount, elapsed / duration));
+            scoreText.text = totalMessage.Replace("%points%", currentScore.ToString("N0"));
+            yield return null;
+        }
+
+        scoreText.text = totalMessage.Replace("%points%", scoreAmount.ToString("N0"));
     }
 
     private void LateUpdate()
@@ -91,7 +121,7 @@ public class GameOverUI : UIComponent
         return (string)tipMessages[randomIndex];
     }
 
-    public void SetKillerAnimation()
+    public void UpdateKillerAnimation()
     {
         LevelManager levelManager = FindFirstObjectByType<LevelManager>();
         Player playerEntity = levelManager.GetEntity<Player>();

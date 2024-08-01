@@ -229,6 +229,9 @@ public class LevelManager : Singleton<LevelManager>
 
     public void OnLevelClear()
     {
+        GameManager.CurrentGameState = GameManager.GameState.LEVEL_CLEARED;
+        PlayerInput.InputEnabled = false;
+
         float bestTime = GameManager.GlobalStats.BestTime;
 
         if(InLevelTimer < bestTime || bestTime <= 0)

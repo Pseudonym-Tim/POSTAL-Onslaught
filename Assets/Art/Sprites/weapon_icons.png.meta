@@ -104,7 +104,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2
-        y: 40
+        y: 76
         width: 27
         height: 18
       alignment: 0
@@ -125,7 +125,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 35
-        y: 43
+        y: 79
         width: 28
         height: 11
       alignment: 0
@@ -146,7 +146,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 31
-        y: 23
+        y: 59
         width: 26
         height: 12
       alignment: 0
@@ -167,7 +167,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 5
-        y: 22
+        y: 58
         width: 22
         height: 12
       alignment: 0
@@ -188,7 +188,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 8
-        y: 6
+        y: 42
         width: 14
         height: 12
       alignment: 0
@@ -209,7 +209,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 5
+        y: 41
         width: 19
         height: 13
       alignment: 0
@@ -225,6 +225,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: weapon_icon_axe
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 22
+        width: 24
+        height: 12
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b8711cb5dc4309244875c8b3883303da
+      internalID: -1623647026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon_icon_baseball_bat
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 24
+        width: 26
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc5345e97a02f074283023548f726ca2
+      internalID: -1919509732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -236,8 +278,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      weapon_icon_axe: -1623647026
+      weapon_icon_baseball_bat: -1919509732
       weapon_icon_boomstick: -1096243812
       weapon_icon_jk-74: -734566610
+      weapon_icon_machete: 135232995
       weapon_icon_pistol: 750061153
       weapon_icon_protester_sign: 2781533676904308770
       weapon_icon_revolver: 305230219

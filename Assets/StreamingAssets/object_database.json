@@ -5,6 +5,9 @@
     "level_rock1": {
         "prefab": "Rock1"
     },
+    "level_palm_tree": {
+        "prefab": "PalmTree"
+    },
     "level_rws_sign": {
         "prefab": "RWSSign"
     }

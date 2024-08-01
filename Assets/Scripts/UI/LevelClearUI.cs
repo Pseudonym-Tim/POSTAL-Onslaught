@@ -59,13 +59,12 @@ public class LevelClearUI : UIComponent
         bonusText.text = bonusMessage.Replace("%points%", "???");
         totalText.text = totalMessage.Replace("%points%", "???");
 
-        GameManager.CurrentGameState = GameManager.GameState.LEVEL_CLEARED;
-        PlayerInput.InputEnabled = false;
         continueText.text = GetFormattedMessage("continueText", inactiveColor);
         SetClearTime();
         UpdateKillstreak();
         UpdateAreaCovered();
         UpdateCreativity();
+
         StartCoroutine(AnimateScores()); 
     }
 
@@ -94,11 +93,11 @@ public class LevelClearUI : UIComponent
         }
 
         bonusText.text = bonusMessage.Replace("%points%", bonusAmount.ToString("N0"));
+        scoreManager.AwardBonusScore();
     }
 
     private IEnumerator AnimateTotalText()
     {
-        scoreManager.AwardBonusScore();
         string totalMessage = LocalizationManager.GetMessage("totalText", UIJsonIdentifier);
         int scoreAmount = scoreManager.CurrentScore;
         int currentScore = 0;

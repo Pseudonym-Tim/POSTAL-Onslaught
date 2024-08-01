@@ -234,6 +234,48 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: weapon_handheld_axe
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 27
+        width: 10
+        height: 23
+      alignment: 9
+      pivot: {x: 0.35, y: 0.26086956}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8d4937ee689b5740942b13003ddb144
+      internalID: -1275084481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: weapon_handheld_baseball_bat
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 27
+        width: 7
+        height: 27
+      alignment: 9
+      pivot: {x: 0.5, y: 0.14814815}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dd2742b4044dbd498c04c64fe0c3279
+      internalID: 1237140119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -248,8 +290,11 @@ TextureImporter:
       player_weapon_handheld_1: -3665993490749461982
       player_weapon_handheld_2: 6262115353604618317
       player_weapon_handheld_3: -7058153222307890182
+      weapon_handheld_axe: -1275084481
+      weapon_handheld_baseball_bat: 1237140119
       weapon_handheld_boomstick: -1777766370
       weapon_handheld_jk74: 206336019
+      weapon_handheld_machete: 77471404
       weapon_handheld_pistol: 7979053764633992946
       weapon_handheld_protester_sign: -2026353953
       weapon_handheld_revolver: -1881524122

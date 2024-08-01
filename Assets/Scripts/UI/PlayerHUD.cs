@@ -69,10 +69,13 @@ public class PlayerHUD : UIComponent
 
     public void UpdateInteractionText(Vector2 origin, string interactMessage, bool showText = true)
     {
-        Vector2 worldPos = Camera.main.WorldToScreenPoint(origin);
-        interactText.rectTransform.position = worldPos;
-        interactText.text = interactMessage;
-        interactText.enabled = showText;
+        if(Camera.main != null)
+        {
+            Vector2 worldPos = Camera.main.WorldToScreenPoint(origin);
+            interactText.rectTransform.position = worldPos;
+            interactText.text = interactMessage;
+            interactText.enabled = showText;
+        }
     }
 
     public void UpdateCurrentItem(InventoryItem inventoryItem)

@@ -11,7 +11,7 @@
     "entities": [
       {
         "npc_home": {
-          "generateChance": "1",
+          "generateChance": 1.0,
           "position": {
             "x": 0.0,
             "y": 0.0
@@ -22,11 +22,20 @@
     "level_objects": [
       {
         "level_rws_sign": {
-          "generateChance": "1",
+          "generateChance": 0.25,
+          "position": {
+            "x": 3.0,
+            "y": -3.0
+          }
+        }
+      },
+      {
+        "level_palm_tree": {
           "position": {
             "x": -3.0,
             "y": -3.0
-          }
+          },
+          "generateChance": 0.5
         }
       }
     ]
