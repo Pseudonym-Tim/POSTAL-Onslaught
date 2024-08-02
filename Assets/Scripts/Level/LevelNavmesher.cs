@@ -92,7 +92,7 @@ public class LevelNavmesher : Singleton<LevelNavmesher>
     {
         foreach(Entity entity in levelManager.LevelEntities)
         {
-            entity.OnNavmeshBuilt();
+            entity?.OnNavmeshBuilt();
         }
     }
 

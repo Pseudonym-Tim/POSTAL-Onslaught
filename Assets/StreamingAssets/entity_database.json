@@ -2,6 +2,9 @@
     "player_dude": {
         "prefab": "Player"
     },
+    "player_home": {
+        "prefab": "PlayerHome"
+    },
     "npc_home": {
         "prefab": "NPCHome",
         "npcPool": [

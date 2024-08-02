@@ -24,7 +24,8 @@ TILE dirt_cliff_bl LEVEL_BOUNDS_DIST-1 LEVEL_BOUNDS_DIST-1
 TILE dirt_cliff_br LEVEL_SIZE_X-LEVEL_BOUNDS_DIST LEVEL_BOUNDS_DIST-1
 
 // Entities...
-ENTITY_RANDOM player_dude dirt 2 3
+STRUCTURE player_housing LEVEL_BOUNDS_DIST + 5
+//ENTITY_RANDOM player_dude dirt 2 3
 ENTITY_RANDOM protester_enemy_npc dirt 3 3 8
 
 FOR INDEX 1 3

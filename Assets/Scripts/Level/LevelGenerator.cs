@@ -29,7 +29,7 @@ public class LevelGenerator : Singleton<LevelGenerator>
         // Notify all entities that the level has been generated...
         foreach(Entity entity in levelManager.LevelEntities)
         {
-            entity.OnLevelGenerated();
+            entity?.OnLevelGenerated();
         }
     }
 
@@ -109,15 +109,6 @@ public class LevelGenerator : Singleton<LevelGenerator>
         List<LevelTile> validSpawnTiles = GetValidSpawnTiles(spawnTileID, minBoundsDist, minDistance, minPlayerDist, outsideBounds);
         if(validSpawnTiles.Count == 0) { return; }
         LevelTile spawnTile = validSpawnTiles[Random.Range(0, validSpawnTiles.Count)];
-
-        if(entityID == "player_dude" && levelManager.GetEntity<Player>())
-        {
-            Player playerEntity = levelManager.GetEntity<Player>();
-            playerEntity.EntityPosition = spawnTile.TilePosition;
-            playerEntity.SetParent(EntityParent.transform);
-            return;
-        }
-
         SpawnEntity(entityID, spawnTile.TilePosition);
     }
 

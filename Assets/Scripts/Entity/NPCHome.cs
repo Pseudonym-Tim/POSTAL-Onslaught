@@ -23,18 +23,20 @@ public class NPCHome : Entity
     [SerializeField] private Transform spawnPoint;
 
     private LevelManager levelManager;
+    private TaskManager taskManager;
     private bool hasBeenDisturbed = false;
 
-    public override void OnEntityAwake()
+    public override void OnLevelGenerated()
     {
         levelManager = FindFirstObjectByType<LevelManager>();
+        taskManager = FindFirstObjectByType<TaskManager>();
         float exitTime = Random.Range(EXIT_TIME_MIN, EXIT_TIME_MAX);
         InvokeRepeating(nameof(TriggerNPCSpawn), exitTime, CHECK_EXIT_RATE);
     }
 
     public void TriggerNPCSpawn()
     {
-        if(!hasBeenDisturbed && IsSpawnPointVisible())
+        if(!hasBeenDisturbed && IsSpawnPointVisible() && !taskManager.IsTaskComplete)
         {
             hasBeenDisturbed = true;
 
@@ -61,13 +63,13 @@ public class NPCHome : Entity
 
         for(int i = 0; i < npcSpawnCount; i++)
         {
-            // Level clear or gameover screen shown? Stop spawning...
-            if(GameManager.IsLevelCleared || GameManager.IsGameOver)
+            // Level clear, task is complete, or gameover screen shown? Stop spawning...
+            if(GameManager.IsLevelCleared || GameManager.IsGameOver || taskManager.IsTaskComplete)
             {
                 yield break;
             }
 
-            Vector2 spawnPosition = GetValidPosition(spawnPoint.position);
+            Vector2 spawnPosition = GetSpawnPosition(spawnPoint.position);
 
             if(spawnPosition == Vector2.zero)
             {
@@ -76,6 +78,10 @@ public class NPCHome : Entity
             }
 
             NPC npcEntity = (NPC)levelManager.AddEntity(npcID, spawnPosition);
+
+            Vector2 exitDestination = GetExitDestination(spawnPosition);
+            npcEntity.NPCNavigation?.SetDestination(exitDestination);
+
             taskManager.AddPopulation(npcEntity);
             float waitTime = Random.Range(spawnDelayMin, spawnDelayMax);
             yield return new WaitForSeconds(waitTime);
@@ -96,7 +102,54 @@ public class NPCHome : Entity
         return false;
     }
 
-    private Vector2 GetValidPosition(Vector2 origin)
+    private Vector2 GetExitDestination(Vector2 origin)
+    {
+        const int maxAttempts = 10;
+        const float searchRadius = 5.0f;
+        const float minimumDistance = 2.5f;
+
+        for(int attempt = 0; attempt < maxAttempts; attempt++)
+        {
+            // Generate a random point within a circle of radius searchRadius...
+            Vector2 randomPoint = origin + Random.insideUnitCircle * searchRadius;
+
+            NavMeshHit hit;
+
+            if(NavMesh.SamplePosition(randomPoint, out hit, searchRadius, NavMesh.AllAreas))
+            {
+                Vector2 candidatePosition = hit.position;
+
+                // Check if the position is far enough from all NPCs...
+                if(IsValidPosition(candidatePosition, minimumDistance))
+                {
+                    return candidatePosition;
+                }
+            }
+        }
+
+        // If no valid position is found after maxAttempts, default to spawn point...
+        return spawnPoint.position;
+    }
+
+    private bool IsValidPosition(Vector2 position, float minimumDistance)
+    {
+        foreach(Entity entity in levelManager.LevelEntities)
+        {
+            if(entity is NPC npcEntity)
+            {
+                float distance = Vector2.Distance(position, npcEntity.CenterOfMass);
+
+                if(distance < minimumDistance)
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    private Vector2 GetSpawnPosition(Vector2 origin)
     {
         NavMeshHit hit;
 
@@ -113,4 +166,6 @@ public class NPCHome : Entity
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(CenterOfMass, DISTURB_RANGE);
     }
+
+    public override Vector2 CenterOfMass => EntityPosition;
 }

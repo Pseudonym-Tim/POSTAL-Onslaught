@@ -63,6 +63,7 @@ public class StructureEditor : EditorWindow
         }
 
         EditorGUILayout.BeginHorizontal();
+
         if(GUILayout.Button("Add Structure"))
         {
             AddStructure();
@@ -72,11 +73,12 @@ public class StructureEditor : EditorWindow
             SaveJson();
             Debug.Log("Saved structure!");
         }
+
         EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.Space();
 
-        // Dropdown list for structure selection
+        // Dropdown list for structure selection...
         List<string> structureNames = new List<string>();
 
         foreach(var structure in structureDatabase)
@@ -92,10 +94,12 @@ public class StructureEditor : EditorWindow
 
         EditorGUILayout.BeginHorizontal();
         scrollPos = EditorGUILayout.BeginScrollView(scrollPos, GUILayout.Width(300));
+
         if(!string.IsNullOrEmpty(selectedStructure))
         {
             DrawStructureEditor(selectedStructure);
         }
+
         EditorGUILayout.EndScrollView();
 
         GUILayout.Space(10);
@@ -118,12 +122,14 @@ public class StructureEditor : EditorWindow
             DrawVisualization((JObject)structureDatabase[selectedStructure], visualizationRect);
             GUILayout.EndVertical();
         }
+
         EditorGUILayout.EndHorizontal();
     }
 
     private void AddStructure()
     {
         string newStructureName = "NewStructure_" + structureDatabase.Count;
+
         JObject newStructure = new JObject
         {
             ["structureBounds"] = new JObject
@@ -135,6 +141,7 @@ public class StructureEditor : EditorWindow
             ["entities"] = new JArray(),
             ["level_objects"] = new JArray()
         };
+
         structureDatabase[newStructureName] = newStructure;
         selectedStructure = newStructureName;
     }
@@ -159,6 +166,24 @@ public class StructureEditor : EditorWindow
 
         EditorGUILayout.LabelField("Structure: " + structureID, EditorStyles.boldLabel);
 
+        // Editable text field for structure name...
+        string newStructureName = EditorGUILayout.TextField("Structure Name", structureID);
+
+        if(newStructureName != structureID)
+        {
+            // Update the name in the JSON structure...
+            if(!structureDatabase.ContainsKey(newStructureName))
+            {
+                structureDatabase.Remove(structureID);
+                structureDatabase[newStructureName] = structure;
+                selectedStructure = newStructureName;
+            }
+            else
+            {
+                EditorGUILayout.HelpBox("A structure with this name already exists!", MessageType.Error);
+            }
+        }
+
         if(GUILayout.Button("Remove Structure"))
         {
             RemoveStructure(structureID);
@@ -168,18 +193,12 @@ public class StructureEditor : EditorWindow
 
         EditorGUILayout.Space();
 
-        Vector2 center = new Vector2(
-            (int)structure["structureBounds"]["center"]["x"],
-            (int)structure["structureBounds"]["center"]["y"]
-        );
+        Vector2 center = new Vector2((int)structure["structureBounds"]["center"]["x"], (int)structure["structureBounds"]["center"]["y"]);
         center = EditorGUILayout.Vector2Field("Center", center);
         structure["structureBounds"]["center"]["x"] = center.x;
         structure["structureBounds"]["center"]["y"] = center.y;
 
-        Vector2 bounds = new Vector2(
-            (int)structure["structureBounds"]["boundsX"],
-            (int)structure["structureBounds"]["boundsY"]
-        );
+        Vector2 bounds = new Vector2((int)structure["structureBounds"]["boundsX"], (int)structure["structureBounds"]["boundsY"]);
         bounds = EditorGUILayout.Vector2Field("Bounds", bounds);
         structure["structureBounds"]["boundsX"] = bounds.x;
         structure["structureBounds"]["boundsY"] = bounds.y;
@@ -192,32 +211,38 @@ public class StructureEditor : EditorWindow
         for(int i = 0; i < entities.Count; i++)
         {
             JObject entity = (JObject)entities[i];
+            string entityName = entity.Properties().First().Name;
+            JObject entityData = (JObject)entity[entityName];
 
-            foreach(KeyValuePair<string, JToken> item in entity)
+            // Editable text field for entity name...
+            string newEntityName = EditorGUILayout.TextField("Entity Name", entityName);
+
+            if(newEntityName != entityName)
             {
-                Vector2 position = new Vector2(
-                    (int)item.Value["position"]["x"],
-                    (int)item.Value["position"]["y"]
-                );
-                position = EditorGUILayout.Vector2Field(item.Key, position);
-                item.Value["position"]["x"] = position.x;
-                item.Value["position"]["y"] = position.y;
+                // Update the name in the JSON structure...
+                entity.Remove(entityName);
+                entity[newEntityName] = entityData;
+            }
 
-                float generateChance = item.Value["generateChance"] != null ? (float)item.Value["generateChance"] : 1f;
-                generateChance = EditorGUILayout.Slider("Generate Chance", generateChance, 0f, 1f);
-                item.Value["generateChance"] = generateChance;
+            Vector2 position = new Vector2((float)entityData["position"]["x"], (float)entityData["position"]["y"]);
+            position = EditorGUILayout.Vector2Field("Position", position);
+            entityData["position"]["x"] = position.x;
+            entityData["position"]["y"] = position.y;
 
-                if(GUILayout.Button($"Remove {item.Key}"))
-                {
-                    entities.RemoveAt(i);
-                    break;
-                }
+            float generateChance = entityData["generateChance"] != null ? (float)entityData["generateChance"] : 1f;
+            generateChance = EditorGUILayout.Slider("Generate Chance", generateChance, 0f, 1f);
+            entityData["generateChance"] = generateChance;
+
+            if(GUILayout.Button($"Remove {newEntityName}"))
+            {
+                entities.RemoveAt(i);
+                break;
             }
         }
 
         if(GUILayout.Button("Add Entity"))
         {
-            AddEntity(structureID);
+            AddEntity(newStructureName);
         }
 
         EditorGUILayout.Space();
@@ -228,32 +253,38 @@ public class StructureEditor : EditorWindow
         for(int i = 0; i < levelObjects.Count; i++)
         {
             JObject levelObject = (JObject)levelObjects[i];
+            string levelObjectName = levelObject.Properties().First().Name;
+            JObject levelObjectData = (JObject)levelObject[levelObjectName];
 
-            foreach(KeyValuePair<string, JToken> item in levelObject)
+            // Editable text field for level object name...
+            string newLevelObjectName = EditorGUILayout.TextField("Level Object Name", levelObjectName);
+
+            if(newLevelObjectName != levelObjectName)
             {
-                Vector2 position = new Vector2(
-                    (int)item.Value["position"]["x"],
-                    (int)item.Value["position"]["y"]
-                );
-                position = EditorGUILayout.Vector2Field(item.Key, position);
-                item.Value["position"]["x"] = position.x;
-                item.Value["position"]["y"] = position.y;
+                // Update the name in the JSON structure...
+                levelObject.Remove(levelObjectName);
+                levelObject[newLevelObjectName] = levelObjectData;
+            }
 
-                float generateChance = item.Value["generateChance"] != null ? (float)item.Value["generateChance"] : 1f;
-                generateChance = EditorGUILayout.Slider("Generate Chance", generateChance, 0f, 1f);
-                item.Value["generateChance"] = generateChance;
+            Vector2 position = new Vector2((float)levelObjectData["position"]["x"], (float)levelObjectData["position"]["y"]);
+            position = EditorGUILayout.Vector2Field("Position", position);
+            levelObjectData["position"]["x"] = position.x;
+            levelObjectData["position"]["y"] = position.y;
 
-                if(GUILayout.Button($"Remove {item.Key}"))
-                {
-                    levelObjects.RemoveAt(i);
-                    break;
-                }
+            float generateChance = levelObjectData["generateChance"] != null ? (float)levelObjectData["generateChance"] : 1f;
+            generateChance = EditorGUILayout.Slider("Generate Chance", generateChance, 0f, 1f);
+            levelObjectData["generateChance"] = generateChance;
+
+            if(GUILayout.Button($"Remove {newLevelObjectName}"))
+            {
+                levelObjects.RemoveAt(i);
+                break;
             }
         }
 
         if(GUILayout.Button("Add Level Object"))
         {
-            AddLevelObject(structureID);
+            AddLevelObject(newStructureName);
         }
     }
 
@@ -270,6 +301,7 @@ public class StructureEditor : EditorWindow
                 ["generateChance"] = 1f
             }
         };
+
         entities.Add(newEntity);
     }
 
@@ -286,112 +318,102 @@ public class StructureEditor : EditorWindow
                 ["generateChance"] = 1f
             }
         };
+
         levelObjects.Add(newObject);
     }
 
     private void DrawVisualization(JObject structure, Rect visualizationRect)
     {
-        // Calculate the center of the visualization area
+        // Calculate the center of the visualization area...
         Vector2 visualizationCenter = new Vector2(
             visualizationRect.x + visualizationRect.width / 2,
             visualizationRect.y + visualizationRect.height / 2
         );
 
-        // Draw the background
+        // Draw the background...
         EditorGUI.DrawRect(visualizationRect, new Color(0.5f, 0.5f, 0.5f, 0.5f));
 
-        Vector2 structureCenter = new Vector2(
-            (float)structure["structureBounds"]["center"]["x"],
-            (float)structure["structureBounds"]["center"]["y"]
-        );
-        Vector2 bounds = new Vector2(
-            (float)structure["structureBounds"]["boundsX"],
-            (float)structure["structureBounds"]["boundsY"]
-        );
+        Vector2 structureCenter = new Vector2((float)structure["structureBounds"]["center"]["x"], (float)structure["structureBounds"]["center"]["y"]);
+        Vector2 bounds = new Vector2( (float)structure["structureBounds"]["boundsX"], (float)structure["structureBounds"]["boundsY"]);
 
-        // Adjust the structure origin to be in the center of the panel
+        // Adjust the structure origin to be in the center of the panel...
         Rect structureRect = new Rect(
             visualizationCenter.x - ((bounds.x * zoomFactor) / 2),
             visualizationCenter.y - ((bounds.y * zoomFactor) / 2),
             bounds.x * zoomFactor,
             bounds.y * zoomFactor
         );
+
         EditorGUI.DrawRect(structureRect, new Color(0, 1, 0, 0.5f));
 
         JArray entities = (JArray)structure["entities"];
+
         foreach(JObject entity in entities)
         {
             foreach(var item in entity)
             {
-                Vector2 position = new Vector2(
-                    (float)item.Value["position"]["x"],
-                    (float)item.Value["position"]["y"]
-                );
-                // Adjust position relative to the structure center
+                Vector2 position = new Vector2((float)item.Value["position"]["x"], (float)item.Value["position"]["y"]);
+
+                // Adjust position relative to the structure center...
                 position -= structureCenter;
-                // Flip the y-coordinate for correct orientation
+
+                // Flip the y-coordinate for correct orientation...
                 position.y = -position.y;
 
-                Rect entityRect = new Rect(
-                    visualizationCenter.x + (position.x * zoomFactor) - (entityScale * zoomFactor / 2),
-                    visualizationCenter.y + (position.y * zoomFactor) - (entityScale * zoomFactor / 2),
-                    entityScale * zoomFactor,
-                    entityScale * zoomFactor
-                );
+                float xCenter = visualizationCenter.x + (position.x * zoomFactor) - (entityScale * zoomFactor / 2);
+                float yCenter = visualizationCenter.y + (position.y * zoomFactor) - (entityScale * zoomFactor / 2);
+
+                Rect entityRect = new Rect(xCenter, yCenter, entityScale * zoomFactor, entityScale * zoomFactor);
+
                 EditorGUI.DrawRect(entityRect, new Color(0, 0, 1, 0.5f));
 
-                // Draw the entity ID centered
+                // Draw the entity ID centered...
                 Vector2 entityLabelPos = new Vector2(entityRect.center.x, entityRect.center.y);
-                Handles.Label(
-                    entityLabelPos,
-                    item.Key,
-                    new GUIStyle()
-                    {
-                        alignment = TextAnchor.MiddleCenter,
-                        normal = new GUIStyleState() { textColor = Color.white },
-                        fontSize = 12,
-                    }
-                );
+
+                GUIStyle guiStyle = new GUIStyle()
+                {
+                    alignment = TextAnchor.MiddleCenter,
+                    normal = new GUIStyleState() { textColor = Color.white },
+                    fontSize = 12,
+                };
+
+                Handles.Label(entityLabelPos, item.Key, guiStyle);
             }
         }
 
         JArray levelObjects = (JArray)structure["level_objects"];
+
         foreach(JObject levelObject in levelObjects)
         {
             foreach(var item in levelObject)
             {
-                Vector2 position = new Vector2(
-                    (float)item.Value["position"]["x"],
-                    (float)item.Value["position"]["y"]
-                );
-                // Adjust position relative to the structure center
+                Vector2 position = new Vector2((float)item.Value["position"]["x"], (float)item.Value["position"]["y"]);
+
+                // Adjust position relative to the structure center...
                 position -= structureCenter;
-                // Flip the y-coordinate for correct orientation
+
+                // Flip the y-coordinate for correct orientation...
                 position.y = -position.y;
 
-                Rect objectRect = new Rect(
-                    visualizationCenter.x + (position.x * zoomFactor) - (levelObjectScale * zoomFactor / 2),
-                    visualizationCenter.y + (position.y * zoomFactor) - (levelObjectScale * zoomFactor / 2),
-                    levelObjectScale * zoomFactor,
-                    levelObjectScale * zoomFactor
-                );
+                float xCenter = visualizationCenter.x + (position.x * zoomFactor) - (levelObjectScale * zoomFactor / 2);
+                float yCenter = visualizationCenter.y + (position.y * zoomFactor) - (levelObjectScale * zoomFactor / 2);
+
+                Rect objectRect = new Rect(xCenter, yCenter, levelObjectScale * zoomFactor, levelObjectScale * zoomFactor);
+
                 EditorGUI.DrawRect(objectRect, new Color(1, 0, 0, 0.5f));
 
-                // Draw the level object ID centered
+                // Draw the level object ID centered...
                 Vector2 objectLabelPos = new Vector2(objectRect.center.x, objectRect.center.y);
-                Handles.Label(
-                    objectLabelPos,
-                    item.Key,
-                    new GUIStyle()
-                    {
-                        alignment = TextAnchor.MiddleCenter,
-                        normal = new GUIStyleState() { textColor = Color.white },
-                        fontSize = 12,
-                    }
-                );
+
+                GUIStyle guiStyle = new GUIStyle()
+                {
+                    alignment = TextAnchor.MiddleCenter,
+                    normal = new GUIStyleState() { textColor = Color.white },
+                    fontSize = 12,
+                };
+
+                Handles.Label(objectLabelPos, item.Key, guiStyle);
             }
         }
     }
-
-
 }

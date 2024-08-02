@@ -1,4 +1,36 @@
 {
+  "player_housing": {
+    "structureBounds": {
+      "center": {
+        "x": 0.0,
+        "y": 0.0
+      },
+      "boundsX": 8.0,
+      "boundsY": 8.0
+    },
+    "entities": [
+      {
+        "player_home": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "generateChance": 1.0
+        }
+      }
+    ],
+    "level_objects": [
+      {
+        "level_palm_tree": {
+          "position": {
+            "x": -4.0,
+            "y": -4.0
+          },
+          "generateChance": 0.5
+        }
+      }
+    ]
+  },
   "npc_housing": {
     "structureBounds": {
       "center": {
