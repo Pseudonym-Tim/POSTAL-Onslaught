@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 7203891071531285893}
   - component: {fileID: 5585442481363398539}
   - component: {fileID: 3331815880643508851}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 7
   m_TargetDisplay: 0
 --- !u!114 &5585442481363398539
 MonoBehaviour:

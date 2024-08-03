@@ -18,7 +18,7 @@ public class Player : Entity
     private PlayerDistanceTracker distanceTracker;
     private KillCreativityManager killCreativityManager;
 
-    public override void OnEntitySpawn()
+    public override void OnEntityAwake()
     {
         playerMovement = GetComponent<PlayerMovement>();
         WeaponManager = GetComponentInChildren<WeaponManager>();
@@ -28,6 +28,10 @@ public class Player : Entity
         playerHUD = UIManager.GetUIComponent<PlayerHUD>();
         PlayerCamera = GetComponentInChildren<PlayerCamera>();
         distanceTracker = EntityObject.AddComponent<PlayerDistanceTracker>();
+    }
+
+    public override void OnEntitySpawn()
+    {
         PlayerCamera.Setup();
         WeaponManager.Setup();
         SetupEntityAnim();

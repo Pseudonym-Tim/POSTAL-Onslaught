@@ -63,8 +63,6 @@ public class GameOverUI : UIComponent
         SetOptionsInactive();
         tipText.text = GetTipMessage();
         UpdateKillerAnimation();
-        ImageHelper.SetNativeSize(killerImage, 4f);
-        ImageHelper.SetNativePivot(killerImage, ImageHelper.PivotAxis.X);
         UpdateTime();
 
         playerHUD.ShowHealthIndicator(false);
@@ -110,6 +108,7 @@ public class GameOverUI : UIComponent
     {
         if(killerImage.sprite != null && UICanvas.enabled)
         {
+            ImageHelper.SetNativeSize(killerImage, 5f);
             ImageHelper.SetNativePivot(killerImage, ImageHelper.PivotAxis.X);
         }
     }

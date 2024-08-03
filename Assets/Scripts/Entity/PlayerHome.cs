@@ -21,6 +21,12 @@ public class PlayerHome : Entity
         CheckSpawnPlayer();
     }
 
+    public override void OnLevelGenerated()
+    {
+        ExitIndicatorUI exitIndicatorUI = UIManager.GetUIComponent<ExitIndicatorUI>();
+        exitIndicatorUI?.Initialize(spawnPoint.position);
+    }
+
     private void CheckSpawnPlayer()
     {
         if(playerEntity != null)

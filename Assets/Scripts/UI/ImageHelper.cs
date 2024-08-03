@@ -51,7 +51,6 @@ public static class ImageHelper
             return;
         }
 
-        // Set size to the sprite's native size multiplied by the scaling factor
         Rect spriteRect = image.sprite.rect;
         Vector2 nativeSize = new Vector2(spriteRect.width, spriteRect.height);
         Vector2 scaledSize = nativeSize * scaleFactor;

@@ -213,6 +213,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: player_hud_arrow
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 189
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c3184488080bbd4d8c4f60f68f2decf
+      internalID: -1737061990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -228,6 +249,7 @@ TextureImporter:
       player_hud_2: 7833293776259453813
       player_hud_5: -5579731154910077454
       player_hud_6: 6976940727962327
+      player_hud_arrow: -1737061990
       player_hud_blood_decoration: -357501074
       player_hud_crosshair: 3814882604455696959
       player_hud_health_bar: 3491058351204975632

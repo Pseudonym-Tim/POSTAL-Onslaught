@@ -30,15 +30,6 @@ public class LevelClearUI : UIComponent
         Show(false);
     }
 
-    private void Update()
-    {
-        // TODO: Remove later, just for debugging...
-        if(Input.GetKeyDown(KeyCode.L))
-        {
-            Show(true);
-        }
-    }
-
     public void Show(bool showUI = true)
     {
         UICanvas.enabled = showUI;
@@ -48,7 +39,9 @@ public class LevelClearUI : UIComponent
         { 
             continueText.transform.localPosition = originalOptionPosition;
             return;
-        } 
+        }
+
+        PlayerInput.InputEnabled = false;
 
         // Make sure pause menu is closed...
         PauseUI pauseUI = UIManager.GetUIComponent<PauseUI>();

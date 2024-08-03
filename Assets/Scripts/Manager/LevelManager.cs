@@ -55,6 +55,13 @@ public class LevelManager : Singleton<LevelManager>
     private void Update()
     {
         InLevelTimer += Time.deltaTime;
+
+        // TODO: Remove later, just for debugging...
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            taskManager.ForceTaskComplete();
+            //OnLevelClear();
+        }
     }
 
     public static string GetFormattedTime()

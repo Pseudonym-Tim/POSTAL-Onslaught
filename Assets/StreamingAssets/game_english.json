@@ -13,6 +13,7 @@
     "populationText": "<color=#ffffff>POPULATION:%current%/%total%</color>",
     "healthAmountText": "<color=#ffffff>%currentHealth%/%maxHealth%</color>",
     "itemText": "<color=#ffffff>%itemMessage%</color>",
+    "indicatorText": "<color=#ffffff>HOME!</color>",
     "scoreText": "<color=#ffffff>SCORE:%currentScore%</color>",
     "highscoreText": "<color=#ffffff>HIGHSCORE:%highscore%</color>",
     "tipMessages": [
@@ -20,8 +21,9 @@
         "<color=#ffffff>TIP: Cops are smarter than most enemies, try to keep your distance!</color>",
         "<color=#ffffff>TIP: Kill innocent bystanders for a potential health item!</color>",
         "<color=#ffffff>TIP: Nearby gunshots will make NPCs leave their homes! Watch the entrance!</color>",
-        "<color=#ffffff>TIP: Kill enemies in quick succession to increase your score multiplier!</color>",
+        "<color=#ffffff>TIP: Kill people in quick succession to increase your score multiplier!</color>",
         "<color=#ffffff>TIP: Melee attacks are risky, but can do a lot of damage!</color>",
+        "<color=#ffffff>TIP: Kill with as many weapons as you can to improve your creativity rating!</color>",
         "<color=#ffffff>TIP: Explore thoroughly to find helpful items!</color>",
         "<color=#ffffff>TIP: Use [Q] and [E] keys to cycle through your inventory, press [R] to use!</color>"
     ],
@@ -30,12 +32,12 @@
     },
     "stats_ui": {
         "overallText": "<color=#ffffff>OVERALL STATISTICS:</color>",
-        "highscoreText": "<color=#ffffff>HIGHSCORE: %score%</color>",
-        "killsText": "<color=#ffffff>KILLS: %kills%</color>",
-        "itemText": "<color=#ffffff>ITEMS COLLECTED: %itemAmount%</color>",
-        "killstreakText": "<color=#ffffff>BEST KILLSTREAK: %amount%x</color>",
-        "deathText": "<color=#ffffff>DEATHS: %deaths%</color>",
-        "timeText": "<color=#ffffff>BEST TIME: %minutes%:%seconds%</color>",
+        "highscoreText": "<color=#ffffff>HIGHSCORE:%score%</color>",
+        "killsText": "<color=#ffffff>KILLS:%kills%</color>",
+        "itemText": "<color=#ffffff>ITEMS COLLECTED:%itemAmount%</color>",
+        "killstreakText": "<color=#ffffff>BEST KILLSTREAK:%amount%x</color>",
+        "deathText": "<color=#ffffff>DEATHS:%deaths%</color>",
+        "timeText": "<color=#ffffff>BEST TIME:%minutes%:%seconds%</color>",
         "exitHelpText": "<color=#ffffff>PRESS [ESC] TO EXIT...</color>"
     },
     "credits_ui": {
@@ -53,25 +55,25 @@
     "pause_ui": {
         "pauseLabel": "<color=#ffffff>GAME PAUSED!</color>",
         "resumeText": "<color=%color%>RESUME!</color>",
-        "killsText": "<color=#ffffff>KILLS: %kills%</color>",
-        "itemText": "<color=#ffffff>ITEMS: %items%</color>",
+        "timeText": "<color=#ffffff>TIME:%minutes%:%seconds%</color>",
+        "killsText": "<color=#ffffff>KILLS:%kills%</color>",
+        "itemText": "<color=#ffffff>ITEMS:%items%</color>",
         "restartText": "<color=%color%>RESTART</color>",
         "optionsText": "<color=%color%>OPTIONS</color>",
-        "quitText": "<color=%color%>QUIT TO MENU!</color>",
-        "timeText": "<color=#ffffff>TIME: %minutes%:%seconds%</color>"
+        "quitText": "<color=%color%>QUIT TO MENU!</color>"
     },
     "gameover_ui": {
         "killerLabel": "<color=#ffffff>KILLED BY:</color>",
-        "timeText": "<color=#ffffff>TIME: %minutes%:%seconds%</color>",
-        "scoreText": "<color=#ffffff>SCORE: %points%</color>",
+        "timeText": "<color=#ffffff>TIME:%minutes%:%seconds%</color>",
+        "scoreText": "<color=#ffffff>SCORE:%points%</color>",
         "restartText": "<color=%color%>RESTART</color>",
         "quitText": "<color=%color%>QUIT TO MENU</color>"
     },
     "level_clear_ui": {
-        "timeText": "<color=#ffffff>CLEAR TIME: %minutes%:%seconds%</color>",
-        "killstreakText": "<color=#ffffff>BEST KILLSTREAK: %count%x</color>",
-        "areaCoveredText": "<color=#ffffff>AREA COVERED: %metersWalked%M</color>",
-        "creativityText": "<color=#ffffff>CREATIVITY: %rating%/%max%</color>",
+        "timeText": "<color=#ffffff>CLEAR TIME:%minutes%:%seconds%</color>",
+        "killstreakText": "<color=#ffffff>BEST KILLSTREAK:%count%x</color>",
+        "areaCoveredText": "<color=#ffffff>AREA COVERED:%metersWalked%M</color>",
+        "creativityText": "<color=#ffffff>CREATIVITY:%rating%/%max%</color>",
         "bonusText": "<color=#ffffff>BONUS:\n+%points% POINTS</color>",
         "totalText": "<color=#ffffff>TOTAL:\n%points% POINTS!</color>",
         "continueText": "<color=%color%>NEXT LEVEL!</color>"

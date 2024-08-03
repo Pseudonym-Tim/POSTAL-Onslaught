@@ -59,9 +59,17 @@ public class MusicManager : Singleton<MusicManager>
 
     private AudioClip LoadStreamingAudio(string trackName)
     {
-        string audioPath = Path.Combine(Application.streamingAssetsPath, "Music", $"{trackName}.mp3");
+        string audioPath = Path.Combine(Application.streamingAssetsPath, "Music", $"{trackName}.ogg");
 
-        using(UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(audioPath, AudioType.MPEG))
+        // Debugging
+        Debug.Log($"Loading audio clip from path: {audioPath}");
+        if(!File.Exists(audioPath))
+        {
+            Debug.LogError($"File does not exist at path: {audioPath}");
+            return null;
+        }
+
+        using(UnityWebRequest www = UnityWebRequestMultimedia.GetAudioClip(audioPath, AudioType.OGGVORBIS))
         {
             www.SendWebRequest();
             while(!www.isDone) { }
@@ -77,6 +85,7 @@ public class MusicManager : Singleton<MusicManager>
             }
         }
     }
+
 
     public void UpdateMasterVolume(float volume)
     {

@@ -33,13 +33,15 @@ public class TaskManager : Singleton<TaskManager>
     public void OnUpdateCount()
     {
         currentNPCAmount--;
-        playerHUD.UpdatePopulation(currentNPCAmount, totalNPCAmount);
 
         if(currentNPCAmount <= 0)
         {
+            currentNPCAmount = 0;
             string endLevelMessage = LocalizationManager.GetMessage("endLevelMessage");
             playerHUD.UpdateTask(endLevelMessage);
         }
+
+        playerHUD.UpdatePopulation(currentNPCAmount, totalNPCAmount);
     }
 
     public void AddPopulation(NPC npcToAdd)
@@ -48,6 +50,16 @@ public class TaskManager : Singleton<TaskManager>
         currentNPCAmount++;
         totalNPCAmount = currentNPCList.Count;
         playerHUD.UpdatePopulation(currentNPCAmount, totalNPCAmount);
+    }
+
+    public void ForceTaskComplete()
+    {
+        int currentCount = currentNPCList.Count;
+
+        for(int i = 0; i < currentCount; i++)
+        {
+            OnUpdateCount();
+        }
     }
 
     public bool IsTaskComplete => currentNPCAmount <= 0;

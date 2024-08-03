@@ -7,13 +7,14 @@ using UnityEngine;
 /// </summary>
 public class UICrosshair : UIComponent
 {
-    public override void SetupUI()
+    private void Awake()
     {
-
+        
     }
 
     private void Update()
     {
-        transform.position = Input.mousePosition;
+        Vector3 mousePosition = Input.mousePosition;
+        transform.position = mousePosition;
     }
 }

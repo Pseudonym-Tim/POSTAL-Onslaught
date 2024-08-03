@@ -1,10 +1,10 @@
 [
     {
-        "trackName": "Corpse Club",
-        "trackID": "track1"
+        "trackName": "Beginning Of The End",
+        "trackID": "main_menu"
     },
     {
         "trackName": "Corpse Club",
-        "trackID": "main_menu"
+        "trackID": "track1"
     }
 ]
