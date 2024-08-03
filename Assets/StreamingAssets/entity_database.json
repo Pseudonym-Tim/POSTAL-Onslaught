@@ -22,6 +22,16 @@
             "item_donut"
         ]
     },
+    "civilian_npc": {
+        "prefab": "CivilianNPC",
+        "dropItemChance": 0.10,
+        "score": 50,
+        "itemPool": [
+            "item_pizza",
+            "item_burger",
+            "item_donut"
+        ]
+    },
     "protester_enemy_npc": {
         "prefab": "ProtesterEnemyNPC",
         "dropItemChance": 0.05,
