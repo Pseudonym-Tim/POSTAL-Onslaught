@@ -23,6 +23,9 @@ public class TaskManager : Singleton<TaskManager>
         totalNPCAmount = currentNPCList.Count;
         playerHUD.UpdatePopulation(currentNPCAmount, totalNPCAmount);
 
+        string killTaskMessage = LocalizationManager.GetMessage("killTaskMessage");
+        playerHUD.UpdateTask(killTaskMessage);
+
         NPC.OnNPCKilled -= OnUpdateCount;
         NPC.OnNPCKilled += OnUpdateCount;
     }

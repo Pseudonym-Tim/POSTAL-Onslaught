@@ -6,10 +6,24 @@
     "weaponOwnedMessage": "<color=#ffffff>ALREADY OWNED!</color>",
     "pointsMessage": "<color=#ffffff>+%pointAmount% POINTS!</color>",
     "healthLabel": "<color=#ffffff>HEALTH</color>",
+    "killTaskMessage": "<color=#ffffff>* KILL EVERYONE!</color>",
+    "endLevelMessage": "<color=#ffffff>* GO BACK HOME!</color>",
+    "restoreHPMessage": "<color=#ffffff>+%hpAmount% HP!</color>",
+    "scoreMultiplierMessage": "<color=#FFEB57>SCORE MULTIPLIER:\n+ %scorePool% x%kills%</color>",
+    "populationText": "<color=#ffffff>POPULATION:%current%/%total%</color>",
+    "healthAmountText": "<color=#ffffff>%currentHealth%/%maxHealth%</color>",
+    "itemText": "<color=#ffffff>%itemMessage%</color>",
+    "scoreText": "<color=#ffffff>SCORE:%currentScore%</color>",
+    "highscoreText": "<color=#ffffff>HIGHSCORE:%highscore%</color>",
     "tipMessages": [
         "<color=#ffffff>TIP: Use your health items wisely!</color>",
-        "<color=#ffffff>TIP: Use melee attacks to conserve ammo!</color>",
-        "<color=#ffffff>TIP: Explore thoroughly to find helpful items!</color>"
+        "<color=#ffffff>TIP: Cops are smarter than most enemies, try to keep your distance!</color>",
+        "<color=#ffffff>TIP: Kill innocent bystanders for a potential health item!</color>",
+        "<color=#ffffff>TIP: Nearby gunshots will make NPCs leave their homes! Watch the entrance!</color>",
+        "<color=#ffffff>TIP: Kill enemies in quick succession to increase your score multiplier!</color>",
+        "<color=#ffffff>TIP: Melee attacks are risky, but can do a lot of damage!</color>",
+        "<color=#ffffff>TIP: Explore thoroughly to find helpful items!</color>",
+        "<color=#ffffff>TIP: Use [Q] and [E] keys to cycle through your inventory, press [R] to use!</color>"
     ],
     "main_menu_ui": {
 
@@ -61,13 +75,5 @@
         "bonusText": "<color=#ffffff>BONUS:\n+%points% POINTS</color>",
         "totalText": "<color=#ffffff>TOTAL:\n%points% POINTS!</color>",
         "continueText": "<color=%color%>NEXT LEVEL!</color>"
-    },
-    "endLevelMessage": "<color=#ffffff>GO BACK HOME!</color>",
-    "restoreHPMessage": "<color=#ffffff>+%hpAmount% HP!</color>",
-    "scoreMultiplierMessage": "<color=#FFEB57>SCORE MULTIPLIER:\n+ %scorePool% x%kills%</color>",
-    "populationText": "<color=#ffffff>POPULATION:%current%/%total%</color>",
-    "healthAmountText": "<color=#ffffff>%currentHealth%/%maxHealth%</color>",
-    "itemText": "<color=#ffffff>%itemMessage%</color>",
-    "scoreText": "<color=#ffffff>SCORE:%currentScore%</color>",
-    "highscoreText": "<color=#ffffff>HIGHSCORE:%highscore%</color>"
+    }
 }

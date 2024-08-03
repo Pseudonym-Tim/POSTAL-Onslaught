@@ -31,6 +31,7 @@ public class PlayerHUD : UIComponent
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private TextMeshProUGUI highscoreText;
     [SerializeField] private TextMeshProUGUI scoreMultiplierText;
+    [SerializeField] private TextMeshProUGUI populationText;
     [SerializeField] private TextMeshProUGUI taskText;
     [SerializeField] private TextMeshProUGUI interactText;
 
@@ -90,7 +91,7 @@ public class PlayerHUD : UIComponent
         string populationMessage = LocalizationManager.GetMessage("populationText");
         populationMessage = populationMessage.Replace("%current%", currentAmount.ToString());
         populationMessage = populationMessage.Replace("%total%", totalAmount.ToString());
-        UpdateTask(populationMessage);
+        populationText.text = populationMessage;
     }
 
     public void UpdateTask(string taskMessage)

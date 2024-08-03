@@ -281,7 +281,7 @@ MonoBehaviour:
     duration: 0.25
   weaponID: weapon_revolver
   weaponName: Revolver
-  fireRate: 0.7
+  fireRate: 0.5
   isAutomatic: 1
   damageMin: 3
   damageMax: 7

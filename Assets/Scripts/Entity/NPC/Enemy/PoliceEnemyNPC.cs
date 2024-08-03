@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Disgruntled protester enemy NPC...
+/// Agressive police enemy NPC...
 /// </summary>
-public class ProtesterEnemyNPC : EnemyNPC
+public class PoliceEnemyNPC : EnemyNPC
 {
     private const float STOPPING_DISTANCE = 2.5f;
 

@@ -41,6 +41,7 @@ public class LevelManager : Singleton<LevelManager>
         decalManager.Setup();
         InLevelTimer = 0.0f;
 
+        FadeUI.OnFadeInComplete -= OnFadeInComplete;
         FadeUI.OnFadeInComplete += OnFadeInComplete;
         fadeUI.FadeIn(2);
     }

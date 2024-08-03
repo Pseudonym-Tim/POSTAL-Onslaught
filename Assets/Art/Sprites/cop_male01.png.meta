@@ -1,0 +1,364 @@
+fileFormatVersion: 2
+guid: 52596a0c86a43cf479e94cc8f07b915c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1161997056113186084
+    second: cop_male01_0
+  - first:
+      213: 8673702332164050679
+    second: cop_male01_1
+  - first:
+      213: 3945013643908216431
+    second: cop_male01_2
+  - first:
+      213: -4226472169657275939
+    second: cop_male01_3
+  - first:
+      213: 2873458707609661922
+    second: cop_male01_4
+  - first:
+      213: 4610548418843469337
+    second: cop_male01_5
+  - first:
+      213: 4842861544187166664
+    second: cop_male01_6
+  - first:
+      213: 6076190531077835047
+    second: cop_male01_7
+  - first:
+      213: 5081140437986989602
+    second: cop_male01_8
+  - first:
+      213: -1183338702109277777
+    second: cop_male01_9
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 256
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: cop_male01_idle_1
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 38
+        width: 19
+        height: 33
+      alignment: 9
+      pivot: {x: 0.5263158, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdae25085d1cfdfe0800000000000000
+      internalID: -1161997056113186084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cop_male01_idle_2
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 38
+        width: 19
+        height: 33
+      alignment: 9
+      pivot: {x: 0.5263158, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fe8d1cd05e2f5870800000000000000
+      internalID: 8673702332164050679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cop_male01_idle_3
+      rect:
+        serializedVersion: 2
+        x: 41
+        y: 38
+        width: 19
+        height: 33
+      alignment: 9
+      pivot: {x: 0.5263158, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f66f73fe1018fb630800000000000000
+      internalID: 3945013643908216431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cop_male01_walk_1
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 38
+        width: 19
+        height: 33
+      alignment: 9
+      pivot: {x: 0.5263158, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd9e08a54fd8855c0800000000000000
+      internalID: -4226472169657275939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cop_male01_walk_2
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 38
+        width: 19
+        height: 33
+      alignment: 9
+      pivot: {x: 0.5263158, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e1b3d7687390e720800000000000000
+      internalID: 2873458707609661922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cop_male01_walk_3
+      rect:
+        serializedVersion: 2
+        x: 98
+        y: 38
+        width: 19
+        height: 33
+      alignment: 9
+      pivot: {x: 0.5263158, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91667e4fb55fbff30800000000000000
+      internalID: 4610548418843469337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cop_male01_walk_4
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 38
+        width: 19
+        height: 33
+      alignment: 9
+      pivot: {x: 0.5263158, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cffca57aec453340800000000000000
+      internalID: 4842861544187166664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cop_male01_killer_1
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 3
+        width: 17
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5263158, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7298c705817f25450800000000000000
+      internalID: 6076190531077835047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cop_male01_killer_2
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 3
+        width: 17
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5263158, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 226561cae46d38640800000000000000
+      internalID: 5081140437986989602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cop_male01_killer_3
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 3
+        width: 17
+        height: 31
+      alignment: 9
+      pivot: {x: 0.5263158, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa10ec358bfe39fe0800000000000000
+      internalID: -1183338702109277777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: f18715668575fb04299a184dac2eccda
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      cop_male01_idle_1: -1161997056113186084
+      cop_male01_idle_2: 8673702332164050679
+      cop_male01_idle_3: 3945013643908216431
+      cop_male01_killer_1: 6076190531077835047
+      cop_male01_killer_2: 5081140437986989602
+      cop_male01_killer_3: -1183338702109277777
+      cop_male01_walk_1: -4226472169657275939
+      cop_male01_walk_2: 2873458707609661922
+      cop_male01_walk_3: 4610548418843469337
+      cop_male01_walk_4: 4842861544187166664
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

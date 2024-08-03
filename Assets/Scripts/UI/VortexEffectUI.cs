@@ -12,8 +12,9 @@ public class VortexEffectUI : MonoBehaviour
     {
         if(material != null)
         {
-            float timeParam = Time.time * speed;
+            float timeParam = Time.unscaledTime;
             material.SetFloat("_TimeParam", timeParam);
+            material.SetFloat("_SpeedParam", speed);
         }
     }
 }

@@ -38,7 +38,7 @@ public class PlayerHome : Entity
     {
         if(taskManager.IsTaskComplete && !inLevelTransition && (playerEntity && playerEntity.IsAlive))
         {
-            if(Vector2.Distance(playerEntity.EntityPosition, spawnPoint.position) < 0.5f)
+            if(Vector2.Distance(playerEntity.EntityPosition, spawnPoint.position) < 0.75f)
             {
                 inLevelTransition = true;
                 PlayerInput.InputEnabled = false;

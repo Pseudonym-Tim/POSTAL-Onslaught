@@ -170,7 +170,7 @@ MonoBehaviour:
     npcInfo:
     - npcID: male01
       animatorController: {fileID: 9100000, guid: 74ee55b27f402fe4ea73c7842a702f83, type: 2}
-      killerAnimation: {fileID: 7400000, guid: 9d54e9a3f60a8a8448b4f282dcc09ed0, type: 2}
+      killerAnimation: {fileID: 0}
   maxHealth: 10
   moveSpeed: 10
   npcGFX: {fileID: 1219177491098801172}

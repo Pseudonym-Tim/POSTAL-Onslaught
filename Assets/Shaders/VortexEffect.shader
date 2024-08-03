@@ -4,6 +4,7 @@ Shader "POSTAL: Onslaught/VortexEffect"
     {
         _MainTex ("Texture", 2D) = "white" {}
         _TimeParam ("Time Parameter", Float) = 1.0
+        _SpeedParam ("Speed Parameter", Float) = 1.0
         _Pixel ("Pixel", Float) = 50.0
     }
     SubShader
@@ -21,6 +22,7 @@ Shader "POSTAL: Onslaught/VortexEffect"
 
             sampler2D _MainTex;
             float _TimeParam;
+            float _SpeedParam;
             float _Pixel;
 
             struct appdata
@@ -37,9 +39,9 @@ Shader "POSTAL: Onslaught/VortexEffect"
 
             float3 path(float3 p)
             {
-                float speed = 2.25;
-                p.x = sin(p.z * speed);
-                p.y = cos(p.z * speed);
+                //float speed = 2.25;
+                p.x = sin(p.z * _SpeedParam);
+                p.y = cos(p.z * _SpeedParam);
                 return p.xyz;
             }
 

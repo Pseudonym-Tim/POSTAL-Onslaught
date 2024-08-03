@@ -55,7 +55,7 @@ MonoBehaviour:
     duration: 0.25
   weaponID: weapon_boomstick
   weaponName: Boomstick
-  fireRate: 0.55
+  fireRate: 0.6
   isAutomatic: 1
   damageMin: 7
   damageMax: 10

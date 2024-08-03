@@ -14,7 +14,7 @@
     },
     "protester_npc": {
         "prefab": "ProtesterNPC",
-        "dropItemChance": 0.05,
+        "dropItemChance": 0.10,
         "score": 100,
         "itemPool": [
             "item_pizza",
@@ -24,7 +24,7 @@
     },
     "protester_enemy_npc": {
         "prefab": "ProtesterEnemyNPC",
-        "dropItemChance": 0.10,
+        "dropItemChance": 0.05,
         "score": 250,
         "weaponPool": [
             "weapon_boomstick",
@@ -35,6 +35,19 @@
         "itemPool": [
             "item_pizza",
             "item_burger",
+            "item_donut"
+        ]
+    },
+    "police_enemy_npc": {
+        "prefab": "PoliceEnemyNPC",
+        "dropItemChance": 0.05,
+        "score": 450,
+        "weaponPool": [
+            "weapon_boomstick",
+            "weapon_pistol",
+            "weapon_revolver"
+        ],
+        "itemPool": [
             "item_donut"
         ]
     },
