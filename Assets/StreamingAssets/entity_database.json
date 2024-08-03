@@ -9,13 +9,15 @@
         "prefab": "NPCHome",
         "npcPool": [
             "protester_enemy_npc",
-            "protester_npc"
+            "protester_npc",
+            "civilian_npc",
+            "civilian_enemy_npc"
         ]
     },
     "protester_npc": {
         "prefab": "ProtesterNPC",
         "dropItemChance": 0.10,
-        "score": 100,
+        "score": 50,
         "itemPool": [
             "item_pizza",
             "item_burger",
@@ -26,6 +28,24 @@
         "prefab": "CivilianNPC",
         "dropItemChance": 0.10,
         "score": 50,
+        "itemPool": [
+            "item_pizza",
+            "item_burger",
+            "item_donut"
+        ]
+    },
+    "civilian_enemy_npc": {
+        "prefab": "CivilianEnemyNPC",
+        "dropItemChance": 0.05,
+        "score": 100,
+        "weaponPool": [
+            "weapon_pistol",
+            "weapon_boomstick",
+            "weapon_shovel",
+            "weapon_jk74",
+            "weapon_baseball_bat",
+            "weapon_axe"
+        ],
         "itemPool": [
             "item_pizza",
             "item_burger",

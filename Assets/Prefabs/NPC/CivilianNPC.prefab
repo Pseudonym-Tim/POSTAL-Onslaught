@@ -145,7 +145,7 @@ GameObject:
   - component: {fileID: 383734491455344055}
   - component: {fileID: 3706985117539149584}
   m_Layer: 0
-  m_Name: CivilianNPC
+  m_Name: CivilianGFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

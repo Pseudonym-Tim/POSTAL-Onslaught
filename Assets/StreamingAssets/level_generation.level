@@ -37,6 +37,7 @@ ENDFOR
 
 FOR INDEX 1 CIVILIAN_COUNT
     ENTITY_RANDOM civilian_npc dirt 3 3 8
+    ENTITY_RANDOM civilian_enemy_npc dirt 3 3 8
 ENDFOR
 
 FOR INDEX 1 3
