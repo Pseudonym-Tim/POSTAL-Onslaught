@@ -122,8 +122,8 @@ public class MusicManager : Singleton<MusicManager>
             return;
         }
 
-        // Filter out the track with the "main_menu" id...
-        List<MusicTrackInfo> filteredTracks = musicDatabase.Where(track => track.trackID != "main_menu").ToList();
+        // Filter out tracks with the "main_menu" and credits id...
+        List<MusicTrackInfo> filteredTracks = musicDatabase.Where(track => track.trackID != "main_menu" && track.trackID != "credits").ToList();
 
         // Check if there are any tracks left after filtering...
         if(filteredTracks.Count == 0)

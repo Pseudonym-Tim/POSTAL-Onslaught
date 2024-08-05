@@ -4,7 +4,15 @@
         "trackID": "main_menu"
     },
     {
-        "trackName": "Corpse Club",
+        "trackName": "Arsenal Parade",
         "trackID": "track1"
+    },
+    {
+        "trackName": "Blood Cocktail with Lime on Top",
+        "trackID": "track1"
+    },
+    {
+        "trackName": "Corpse Club",
+        "trackID": "credits"
     }
 ]

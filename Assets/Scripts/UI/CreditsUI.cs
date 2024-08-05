@@ -30,6 +30,7 @@ public class CreditsUI : UIComponent
     private float staggerInterval = 0;
     private Coroutine pauseFlashCoroutine;
     private Coroutine exitFlashCoroutine;
+    private MusicManager musicManager;
 
     public override void SetupUI()
     {
@@ -44,6 +45,7 @@ public class CreditsUI : UIComponent
 
         if(!showUI) { return; }
 
+        musicManager.PlayTrack("credits");
         FadeUI fadeUI = UIManager.GetUIComponent<FadeUI>();
         fadeUI.FadeIn();
         LoadCredits();
@@ -165,6 +167,8 @@ public class CreditsUI : UIComponent
         FadeUI fadeUI = UIManager.GetUIComponent<FadeUI>();
         fadeUI.FadeIn();
         Show(false);
+
+        musicManager.PlayTrack("main_menu");
     }
 
     private void OnDrawGizmos()
