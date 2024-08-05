@@ -18,10 +18,12 @@ public class Weapon : Entity
     protected WeaponManager weaponManager;
     protected LevelManager levelManager;
     protected Entity ownerEntity;
+    protected SFXManager sfxManager;
 
     public override void OnEntityAwake()
     {
         levelManager = FindFirstObjectByType<LevelManager>();
+        sfxManager = FindFirstObjectByType<SFXManager>();
         weaponManager = GetComponentInParent<WeaponManager>();
         weaponGFX.sprite = weaponHeldSprite;
         ownerEntity = weaponManager.GetOwnerEntity();

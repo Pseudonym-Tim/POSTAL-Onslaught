@@ -17,6 +17,7 @@ public class RangedWeapon : Weapon
     [SerializeField] private KnockbackInfo shootKnockbackInfo;
     [SerializeField] private ShotTrail shotTrailPrefab;
     [SerializeField] private Animator muzzleFlashAnimator;
+    [SerializeField] private string shootSound;
     private float shotDelayTimer = 0;
 
     protected override void OnEntityUpdate()
@@ -75,6 +76,7 @@ public class RangedWeapon : Weapon
 
         EntityAnim.Play("Shoot");
         muzzleFlashAnimator.Play("Blast");
+        sfxManager.Play2DSound(shootSound);
 
         if(IsOwnerPlayer())
         {

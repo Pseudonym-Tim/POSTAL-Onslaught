@@ -74,6 +74,7 @@ MonoBehaviour:
     duration: 0.15
   shotTrailPrefab: {fileID: 6913609094344146661, guid: 4dea6e0740ffada409ccb07e1a87a760, type: 3}
   muzzleFlashAnimator: {fileID: 2159552217994873618}
+  shootSound: Shotgun Fire
 --- !u!95 &7555258040802848968
 Animator:
   serializedVersion: 7

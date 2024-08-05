@@ -153,6 +153,10 @@ public class Player : Entity
         GameManager.GlobalStats.Deaths++;
         rootTransform.gameObject.SetActive(false);
         GoreManager.SpawnGibs(EntityPosition, gibList);
+
+        MusicManager musicManager = FindFirstObjectByType<MusicManager>();
+        musicManager.Pause();
+
         Invoke(nameof(OnGameOver), 1.0f);
     }
 

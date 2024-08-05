@@ -35,8 +35,7 @@
         "score": 50,
         "itemPool": [
             "item_pizza",
-            "item_burger",
-            "item_fries"
+            "item_burger"
         ]
     },
     "civilian_npc": {
@@ -45,8 +44,7 @@
         "score": 50,
         "itemPool": [
             "item_pizza",
-            "item_burger",
-            "item_fries"
+            "item_burger"
         ]
     },
     "civilian_enemy_npc": {
@@ -63,8 +61,7 @@
         ],
         "itemPool": [
             "item_pizza",
-            "item_burger",
-            "item_fries"
+            "item_burger"
         ]
     },
     "protester_enemy_npc": {
@@ -79,8 +76,7 @@
         ],
         "itemPool": [
             "item_pizza",
-            "item_burger",
-            "item_fries"
+            "item_burger"
         ]
     },
     "police_enemy_npc": {
@@ -109,8 +105,7 @@
         "prefab": "ItemPickup",
         "itemPool": [
             "item_pizza",
-            "item_burger",
-            "item_fries"
+            "item_burger"
         ]
     },
     "weapon_boomstick": {

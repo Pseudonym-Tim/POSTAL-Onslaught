@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -43,6 +45,11 @@ public class GameManager : Singleton<GameManager>
         if(CurrentGameState == GameState.PLAYING)
         {
             InGameTimer += Time.deltaTime;
+        }
+
+        if(Input.GetKeyDown(KeyCode.F2))
+        {
+            TakeScreenshot();
         }
     }
 
@@ -109,6 +116,49 @@ public class GameManager : Singleton<GameManager>
             previousTimeScale = 0;
             CurrentGameState = GameState.PLAYING;
             PlayerInput.InputEnabled = true;
+        }
+    }
+
+    private void TakeScreenshot()
+    {
+        // Get the current time...
+        DateTime currentTime = DateTime.Now;
+
+        // Create an array to format the filename...
+        object[] timeArgs = new object[]
+        {
+            currentTime.Year,
+            currentTime.Month,
+            currentTime.Day,
+            currentTime.Hour,
+            currentTime.Minute,
+            currentTime.Second
+        };
+
+        // Format the filename...
+        string fileName = string.Format("{0}-{1:00}-{2:00}_{3:00}-{4:00}-{5:00}.png", timeArgs);
+
+        // Create the full file path...
+        string filePath = ScreenshotDir + fileName;
+
+        // Create the directory if it doesn't exist...
+        if(!Directory.Exists(ScreenshotDir))
+        {
+            Directory.CreateDirectory(ScreenshotDir);
+        }
+
+        // Capture the screenshot and save it to the directory...
+        ScreenCapture.CaptureScreenshot(filePath);
+
+        // Log the filename of the saved screenshot...
+        Debug.Log($"Saved screenshot as: [<u>{fileName}</u>]");
+    }
+
+    public static string ScreenshotDir
+    {
+        get
+        {
+            return Application.persistentDataPath + "/screenshots/";
         }
     }
 

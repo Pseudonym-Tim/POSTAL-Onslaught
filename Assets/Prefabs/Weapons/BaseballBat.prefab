@@ -176,6 +176,8 @@ MonoBehaviour:
   attackRange: 3
   attackRate: 0.35
   attackAngle: 90
+  swingSound: Melee Swing
+  impactSound: Melee Impact
   damageMin: 3
   damageMax: 6
   impactCameraShakeInfo:

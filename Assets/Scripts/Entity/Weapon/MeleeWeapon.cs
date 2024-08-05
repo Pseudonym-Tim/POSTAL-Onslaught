@@ -13,6 +13,8 @@ public class MeleeWeapon : Weapon
     public float attackRange = 1f;
     [SerializeField] private float attackRate = 0.2f;
     [SerializeField] private float attackAngle = 45f;
+    [SerializeField] private string swingSound;
+    [SerializeField] private string impactSound;
     [SerializeField] private int damageMin = 3, damageMax = 6;
     [SerializeField] private CameraShakeInfo impactCameraShakeInfo;
     [SerializeField] private WindowShakeInfo impactWindowShakeInfo;
@@ -72,6 +74,7 @@ public class MeleeWeapon : Weapon
         swingRight = !swingRight;
         PlaySwingAnimation();
         SpawnSlashFX();
+        sfxManager.Play2DSound(swingSound);
     }
 
     private void SpawnSlashFX()
@@ -119,6 +122,7 @@ public class MeleeWeapon : Weapon
             closestNPC.ApplyKnockback(hurtKnockbackInfo, damageInfo.damageOrigin);
             CameraShaker.Shake(impactCameraShakeInfo);
             WindowShaker.Shake(impactWindowShakeInfo);
+            sfxManager.Play2DSound(impactSound);
         }
     }
 
@@ -137,6 +141,7 @@ public class MeleeWeapon : Weapon
 
             playerEntity.TakeDamage(damageInfo);
             playerEntity.ApplyKnockback(hurtKnockbackInfo, damageInfo.damageOrigin);
+            sfxManager.Play2DSound(impactSound);
         }
     }
 

@@ -21,9 +21,11 @@ public class LevelClearUI : UIComponent
     private string activeColor;
     private float hoverOffset;
     private Vector2 originalOptionPosition;
+    private SFXManager sfxManager; 
 
     public override void SetupUI()
     {
+        sfxManager = FindFirstObjectByType<SFXManager>();
         scoreManager = FindFirstObjectByType<ScoreManager>();
         originalOptionPosition = continueText.transform.localPosition;
         LoadJsonSettings();
@@ -42,6 +44,11 @@ public class LevelClearUI : UIComponent
         }
 
         PlayerInput.InputEnabled = false;
+
+        MusicManager musicManager = FindFirstObjectByType<MusicManager>();
+        musicManager?.StopMusic();
+
+        sfxManager?.Play2DSound("Game End");
 
         FadeUI fadeUI = UIManager.GetUIComponent<FadeUI>();
         fadeUI?.FadeIn();

@@ -6604,6 +6604,149 @@ MonoBehaviour:
       minAudibleDistance: 5
       maxAudibleDistance: 10
     soundAudioSource: {fileID: 0}
+  - soundName: Weapon Pickup
+    audioClip: {fileID: 8300000, guid: 19e76420e4e227f4da28d153197ed2ba, type: 3}
+    volume: 1
+    pitch: 1
+    pitchRandomMin: 1
+    pitchRandomMax: 1.2
+    useRandomPitch: 1
+    loopAudio: 0
+    spatial3DSoundInfo:
+      rolloffMode: 1
+      minAudibleDistance: 5
+      maxAudibleDistance: 10
+    soundAudioSource: {fileID: 0}
+  - soundName: Item Pickup
+    audioClip: {fileID: 8300000, guid: 3b278a4dbc7188a418915f7f62e1cb19, type: 3}
+    volume: 1
+    pitch: 1
+    pitchRandomMin: 1
+    pitchRandomMax: 1.2
+    useRandomPitch: 1
+    loopAudio: 0
+    spatial3DSoundInfo:
+      rolloffMode: 1
+      minAudibleDistance: 5
+      maxAudibleDistance: 10
+    soundAudioSource: {fileID: 0}
+  - soundName: Melee Swing
+    audioClip: {fileID: 8300000, guid: bec8ce6311135854bb17626d0a500174, type: 3}
+    volume: 0.5
+    pitch: 1
+    pitchRandomMin: 1
+    pitchRandomMax: 1.2
+    useRandomPitch: 1
+    loopAudio: 0
+    spatial3DSoundInfo:
+      rolloffMode: 1
+      minAudibleDistance: 5
+      maxAudibleDistance: 10
+    soundAudioSource: {fileID: 0}
+  - soundName: Melee Impact
+    audioClip: {fileID: 8300000, guid: 8b48849a08eb4d24285d455f577a7386, type: 3}
+    volume: 1
+    pitch: 1
+    pitchRandomMin: 1
+    pitchRandomMax: 1.2
+    useRandomPitch: 1
+    loopAudio: 0
+    spatial3DSoundInfo:
+      rolloffMode: 1
+      minAudibleDistance: 5
+      maxAudibleDistance: 10
+    soundAudioSource: {fileID: 0}
+  - soundName: Game End
+    audioClip: {fileID: 8300000, guid: 46a6f41051e6458498e171f819846dd3, type: 3}
+    volume: 0.1
+    pitch: 0.8
+    pitchRandomMin: 0.8
+    pitchRandomMax: 0.8
+    useRandomPitch: 1
+    loopAudio: 0
+    spatial3DSoundInfo:
+      rolloffMode: 1
+      minAudibleDistance: 5
+      maxAudibleDistance: 10
+    soundAudioSource: {fileID: 0}
+  - soundName: Use Item
+    audioClip: {fileID: 8300000, guid: eea067a5063544649958162178c833c5, type: 3}
+    volume: 0.25
+    pitch: 1
+    pitchRandomMin: 1
+    pitchRandomMax: 1
+    useRandomPitch: 0
+    loopAudio: 0
+    spatial3DSoundInfo:
+      rolloffMode: 1
+      minAudibleDistance: 5
+      maxAudibleDistance: 10
+    soundAudioSource: {fileID: 0}
+  - soundName: Blood Splat
+    audioClip: {fileID: 8300000, guid: 301eccc1020600e4abb745aa8df781a5, type: 3}
+    volume: 0.25
+    pitch: 1
+    pitchRandomMin: 1
+    pitchRandomMax: 1.2
+    useRandomPitch: 1
+    loopAudio: 0
+    spatial3DSoundInfo:
+      rolloffMode: 1
+      minAudibleDistance: 5
+      maxAudibleDistance: 10
+    soundAudioSource: {fileID: 0}
+  - soundName: JK-74 Fire
+    audioClip: {fileID: 8300000, guid: da7016feb3856ea46a92b1f0d8392a4f, type: 3}
+    volume: 1
+    pitch: 1
+    pitchRandomMin: 1
+    pitchRandomMax: 1.2
+    useRandomPitch: 1
+    loopAudio: 0
+    spatial3DSoundInfo:
+      rolloffMode: 1
+      minAudibleDistance: 5
+      maxAudibleDistance: 10
+    soundAudioSource: {fileID: 0}
+  - soundName: Revolver Fire
+    audioClip: {fileID: 8300000, guid: 9b3ca2d8420bb51498698ee04b284b60, type: 3}
+    volume: 1
+    pitch: 1
+    pitchRandomMin: 1
+    pitchRandomMax: 1.2
+    useRandomPitch: 1
+    loopAudio: 0
+    spatial3DSoundInfo:
+      rolloffMode: 1
+      minAudibleDistance: 5
+      maxAudibleDistance: 10
+    soundAudioSource: {fileID: 0}
+  - soundName: Shotgun Fire
+    audioClip: {fileID: 8300000, guid: 7b3cdba80fc3c45478cd2b09a7ebcf90, type: 3}
+    volume: 1
+    pitch: 1
+    pitchRandomMin: 1
+    pitchRandomMax: 1.2
+    useRandomPitch: 1
+    loopAudio: 0
+    spatial3DSoundInfo:
+      rolloffMode: 1
+      minAudibleDistance: 5
+      maxAudibleDistance: 10
+    soundAudioSource: {fileID: 0}
+  - soundName: Pistol Fire
+    audioClip: {fileID: 8300000, guid: 9b3ca2d8420bb51498698ee04b284b60, type: 3}
+    volume: 1
+    pitch: 1
+    pitchRandomMin: 1.2
+    pitchRandomMax: 1.4
+    useRandomPitch: 1
+    loopAudio: 0
+    spatial3DSoundInfo:
+      rolloffMode: 1
+      minAudibleDistance: 5
+      maxAudibleDistance: 10
+    soundAudioSource: {fileID: 0}
   masterMixerGroup: {fileID: 24300002, guid: c9117fc1f8f94cd47b446634323b19fd, type: 2}
 --- !u!1 &1607317273
 GameObject:

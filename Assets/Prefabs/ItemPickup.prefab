@@ -169,6 +169,7 @@ MonoBehaviour:
   pickupRange: 2
   pickupGFX: {fileID: 2521010216820916398}
   outlineColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+  pickupSound: Item Pickup
   itemDatabase: {fileID: 11400000, guid: e9150814dd1f50249a537514c73954c7, type: 2}
 --- !u!95 &3972423213271151762
 Animator:

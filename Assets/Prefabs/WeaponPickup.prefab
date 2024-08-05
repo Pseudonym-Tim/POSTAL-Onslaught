@@ -222,6 +222,7 @@ MonoBehaviour:
   pickupRange: 2
   pickupGFX: {fileID: 564785548740640316}
   outlineColor: {r: 1, g: 0.78431374, b: 0.14509805, a: 1}
+  pickupSound: Weapon Pickup
 --- !u!95 &4559616127122070052
 Animator:
   serializedVersion: 7

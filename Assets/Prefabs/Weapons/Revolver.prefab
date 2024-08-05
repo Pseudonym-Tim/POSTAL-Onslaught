@@ -300,6 +300,7 @@ MonoBehaviour:
     duration: 0.15
   shotTrailPrefab: {fileID: 6913609094344146661, guid: 4dea6e0740ffada409ccb07e1a87a760, type: 3}
   muzzleFlashAnimator: {fileID: 951235425940790608}
+  shootSound: Revolver Fire
 --- !u!95 &4024321032797560209
 Animator:
   serializedVersion: 7

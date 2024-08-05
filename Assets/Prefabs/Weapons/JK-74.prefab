@@ -300,6 +300,7 @@ MonoBehaviour:
     duration: 0.15
   shotTrailPrefab: {fileID: 6913609094344146661, guid: 4dea6e0740ffada409ccb07e1a87a760, type: 3}
   muzzleFlashAnimator: {fileID: 7694308941453331147}
+  shootSound: JK-74 Fire
 --- !u!95 &5092470355938374896
 Animator:
   serializedVersion: 7

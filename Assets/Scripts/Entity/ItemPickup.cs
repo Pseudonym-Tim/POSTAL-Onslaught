@@ -45,6 +45,7 @@ public class ItemPickup : PickupEntity
         inventoryManager.AddItem(itemToGive.id, 1, true);
         SpawnPickupText(itemToGive.name);
         GameManager.GlobalStats.ItemsCollected++;
+        sfxManager.Play2DSound(pickupSound);
         levelManager.RemoveEntity(this);
     }
 

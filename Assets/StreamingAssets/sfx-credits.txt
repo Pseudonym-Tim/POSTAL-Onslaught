@@ -1,0 +1,14 @@
+shotgun fire: https://freesound.org/people/AbuNijmeh/sounds/318973/
+pistol/revolver fire: https://freesound.org/people/elliotlp/sounds/330634/
+jk-74 fire: https://freesound.org/people/LeMudCrab/sounds/163457/
+melee impact: https://freesound.org/people/newagesoup/sounds/348243/
+melee swing: https://freesound.org/people/Nightflame/sounds/422504/
+pickup sound: https://freesound.org/people/slamaxu/sounds/509879/
+item pickup sound: https://freesound.org/people/slamaxu/sounds/509879/
+weapon pickup sound: https://freesound.org/people/pcmac/sounds/464529/
+blood splat: https://freesound.org/people/editor_adp/sounds/269482/
+end game guitar sound: https://freesound.org/people/deleted_user_5959249/sounds/336256/
+item use sound: https://freesound.org/people/Davidsraba/sounds/347175/
+
+A good bit of the sounds have their pitch tweaked or have been modified either in Audacity, or FL studio!
+All sounds utilize the Creative Commons 0 license!

@@ -8,6 +8,12 @@ public class GoreManager : Singleton<GoreManager>
 {
     private const float GRAVITY_MULTIPLIER = 1f;
     private static List<GibInstance> spawnedGibs = new List<GibInstance>();
+    private static SFXManager sfxManager;
+
+    private void Awake()
+    {
+        sfxManager = FindFirstObjectByType<SFXManager>();
+    }
 
     public static void Cleanup()
     {
@@ -74,6 +80,7 @@ public class GoreManager : Singleton<GoreManager>
                     rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
                     gibInstance.GFX.color = new Color(0.75f, 0.75f, 0.75f, 1);
                     DecalManager.SpawnDecal("blood", gibInstance.GameObject.transform.position);
+                    sfxManager.Play2DSound("Blood Splat");
                 }
             }
             else

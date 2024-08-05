@@ -10,13 +10,16 @@ public class PickupEntity : InteractableEntity
     public float pickupRange = 1f;
     public SpriteRenderer pickupGFX;
     [SerializeField] private Color outlineColor = Color.yellow;
+    public string pickupSound;
     protected PlayerHUD playerHUD;
+    protected SFXManager sfxManager;
 
     public override void OnEntityAwake()
     {
         SetupEntityAnim();
         EntityAnim.Play("Idle");
         pickupGFX.material.SetColor("_Color", outlineColor);
+        sfxManager = FindFirstObjectByType<SFXManager>();
         playerHUD = UIManager.GetUIComponent<PlayerHUD>();
     }
 

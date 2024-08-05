@@ -1,0 +1,2 @@
+Hello! Welcome to my special folder... Feel free to poke around! 
+I haven't exposed much to the json files, but you can definitely have some fun tweaking values and stuff if you'd like! - Pseudonym_Tim

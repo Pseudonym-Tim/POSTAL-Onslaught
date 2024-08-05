@@ -57,8 +57,8 @@ public class GameOverUI : UIComponent
         string scoreMessage = LocalizationManager.GetMessage("scoreText", UIJsonIdentifier);
         scoreText.text = scoreMessage.Replace("%points%", "???");
 
-        MusicManager musicManager = FindFirstObjectByType<MusicManager>();
-        musicManager.Pause();
+        SFXManager sfxManager = FindFirstObjectByType<SFXManager>();
+        sfxManager?.Play2DSound("Game End");
 
         SetOptionsInactive();
         tipText.text = GetTipMessage();

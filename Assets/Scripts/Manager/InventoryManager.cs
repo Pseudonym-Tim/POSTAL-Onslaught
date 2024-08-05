@@ -13,12 +13,14 @@ public class InventoryManager : Singleton<InventoryManager>
     private int currentIndex = 0;
     private PlayerHUD playerHUD;
     private LevelManager levelManager;
+    private SFXManager sfxManager;
 
     private void Awake()
     {
         inventoryItems = new List<InventoryItem>();
         playerHUD = UIManager.GetUIComponent<PlayerHUD>();
         levelManager = FindFirstObjectByType<LevelManager>();
+        sfxManager = FindFirstObjectByType<SFXManager>();
         UpdateSelection();
         playerHUD.UpdateCurrentItem(null, 0);
     }
@@ -71,6 +73,7 @@ public class InventoryManager : Singleton<InventoryManager>
 
                 RemoveItem(CurrentInventoryItem.itemData.id);
                 UpdateHUD();
+                sfxManager.Play2DSound("Use Item");
             }
         }
     }

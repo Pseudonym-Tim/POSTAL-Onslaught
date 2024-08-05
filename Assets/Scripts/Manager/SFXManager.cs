@@ -50,6 +50,14 @@ public class SFXManager : Singleton<SFXManager>
         soundToStop.soundAudioSource.Stop();
     }
 
+    public void StopAllSounds()
+    {
+        foreach(SoundInfo soundInfo in soundDatabase)
+        {
+            soundInfo.soundAudioSource.Stop();
+        }
+    }
+
     public bool IsPlayingSound(string soundName)
     {
         SoundInfo soundInfo = GetSoundInfo(soundName);

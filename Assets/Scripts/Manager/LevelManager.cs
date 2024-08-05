@@ -15,6 +15,7 @@ public class LevelManager : Singleton<LevelManager>
     private DecalManager decalManager;
     private FadeUI fadeUI;
     private MusicManager musicManager;
+    private SFXManager sfxManager;
 
     public void CreateLevel()
     {
@@ -23,10 +24,13 @@ public class LevelManager : Singleton<LevelManager>
         taskManager = FindFirstObjectByType<TaskManager>();
         decalManager = FindFirstObjectByType<DecalManager>();
         musicManager = FindFirstObjectByType<MusicManager>();
+        sfxManager = FindFirstObjectByType<SFXManager>();
         killCreativityManager = FindFirstObjectByType<KillCreativityManager>();
         fadeUI = UIManager.GetUIComponent<FadeUI>();
 
         CurrentLevel++;
+
+        sfxManager.StopAllSounds();
 
         RemoveTiles();
         RemoveObjects();

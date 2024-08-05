@@ -91,6 +91,7 @@ public class WeaponPickup : PickupEntity
             return;
         }
 
+        sfxManager.Play2DSound(pickupSound);
         levelManager.RemoveEntity(this);
     }
 
