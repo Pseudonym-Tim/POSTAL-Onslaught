@@ -57,13 +57,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 656529966225077102}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6201339481367557227}
-  m_Father: {fileID: 6539596393208568142}
+  m_Father: {fileID: 8456424168501558156}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8808617967183322132
 MonoBehaviour:
@@ -77,6 +77,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cfb9db16de9561409a8eb7cb1e4ef13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1435792767167108304
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7015601460596655554}
+  m_Layer: 0
+  m_Name: GIbRightLeg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7015601460596655554
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1435792767167108304}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.113, y: 0.316, z: -8.349168}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6539596393208568142}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3697470792862159542
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,7 +179,11 @@ Transform:
   m_Children:
   - {fileID: 8456424168501558156}
   - {fileID: 4035649340416549021}
-  - {fileID: 8563963596586609007}
+  - {fileID: 4578621145937433996}
+  - {fileID: 1045032467714524162}
+  - {fileID: 7015601460596655554}
+  - {fileID: 5711137575601249832}
+  - {fileID: 8338141059368217728}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8454564321094883175
@@ -164,6 +199,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
+  hurtCameraShakeInfo:
+    shakeIntensity: 0.1
+    shakeSpeed: 0.25
+    shakeDuration: 1
+  hurtWindowShakeInfo:
+    shakeIntensity: 0.1
+    shakeDuration: 0.25
+    shakeSpeed: 1
+  gibList:
+  - gibName: head
+    gibSprite: {fileID: 1132139746, guid: dc4edf6b226129f4ea679921378c2f10, type: 3}
+    spawnPoint: {fileID: 4578621145937433996}
+    gibType: 0
+  - gibName: left_leg
+    gibSprite: {fileID: -780494942, guid: dc4edf6b226129f4ea679921378c2f10, type: 3}
+    spawnPoint: {fileID: 1045032467714524162}
+    gibType: 1
+  - gibName: right_leg
+    gibSprite: {fileID: -1408275057, guid: dc4edf6b226129f4ea679921378c2f10, type: 3}
+    spawnPoint: {fileID: 7015601460596655554}
+    gibType: 2
+  - gibName: left_hand
+    gibSprite: {fileID: -989965149, guid: dc4edf6b226129f4ea679921378c2f10, type: 3}
+    spawnPoint: {fileID: 5711137575601249832}
+    gibType: 3
+  - gibName: right_hand
+    gibSprite: {fileID: -854588703, guid: dc4edf6b226129f4ea679921378c2f10, type: 3}
+    spawnPoint: {fileID: 8338141059368217728}
+    gibType: 4
   hurtKnockbackInfo:
     force: 2
     duration: 0.15
@@ -318,6 +382,7 @@ Transform:
   m_Children:
   - {fileID: 3984424996921381970}
   - {fileID: 1668439083298953516}
+  - {fileID: 8563963596586609007}
   m_Father: {fileID: 6539596393208568142}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4732056490996974274
@@ -425,7 +490,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 9091130053849659667, guid: c29479904a7ce564d8fd43fce341ff99, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -482,6 +547,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e4588f5ca20a64c862915d22e1f5b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4954504416339745418
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5711137575601249832}
+  m_Layer: 0
+  m_Name: GIbLeftHand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5711137575601249832
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4954504416339745418}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.249, y: 0.926, z: -8.349168}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6539596393208568142}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6737589818660418067
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4578621145937433996}
+  m_Layer: 0
+  m_Name: GibHead
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4578621145937433996
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6737589818660418067}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.103, y: 1.288, z: -8.349168}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6539596393208568142}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6836715084475554321
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,7 +683,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -2611919490825289116, guid: dc4edf6b226129f4ea679921378c2f10, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -614,6 +741,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   smoothTime: 0.1
+  punchFOVChange: 0.5
+  punchDuration: 0.15
   followOffset: {x: 0, y: 0.5}
 --- !u!1 &8924017559954735153
 GameObject:
@@ -719,3 +848,65 @@ MonoBehaviour:
   m_CropFrameX: 0
   m_CropFrameY: 0
   m_StretchFill: 0
+--- !u!1 &8947403830700904515
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1045032467714524162}
+  m_Layer: 0
+  m_Name: GibLeftLeg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1045032467714524162
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8947403830700904515}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.202, y: 0.402, z: -8.349168}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6539596393208568142}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8990875296702742356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8338141059368217728}
+  m_Layer: 0
+  m_Name: GIbRightHand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8338141059368217728
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8990875296702742356}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.285, y: 0.745, z: -8.349168}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6539596393208568142}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

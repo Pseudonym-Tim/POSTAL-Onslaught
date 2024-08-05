@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -1161997056113186084, guid: 52596a0c86a43cf479e94cc8f07b915c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -111,13 +111,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2041440059904303645}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2560469671586914277}
-  m_Father: {fileID: 3551092471489029563}
+  m_Father: {fileID: 7223691524567919459}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1661130068290536904
 MonoBehaviour:
@@ -227,7 +227,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7223691524567919459}
-  - {fileID: 7497118932840942641}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7566493544170057305
@@ -247,7 +246,7 @@ MonoBehaviour:
     - npcID: male_01
       animatorController: {fileID: 9100000, guid: 9b81a0c975d01af438072c676e6ecde6, type: 2}
       killerAnimation: {fileID: 7400000, guid: e5e6af52388c1fe4090f1ce79f4f48f3, type: 2}
-  maxHealth: 25
+  maxHealth: 20
   moveSpeed: 8
   npcGFX: {fileID: 932200846605236485}
   currentAIState: 1
@@ -332,6 +331,7 @@ Transform:
   m_Children:
   - {fileID: 6995718469956117072}
   - {fileID: 5736072641450829386}
+  - {fileID: 7497118932840942641}
   m_Father: {fileID: 3551092471489029563}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7936669760223892910
@@ -408,7 +408,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 9091130053849659667, guid: c29479904a7ce564d8fd43fce341ff99, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

@@ -5,11 +5,26 @@
     "player_home": {
         "prefab": "PlayerHome"
     },
-    "npc_home": {
-        "prefab": "NPCHome",
+    "npc_home_01": {
+        "prefab": "NPCHome01",
         "npcPool": [
             "protester_enemy_npc",
-            "protester_npc",
+            "civilian_npc",
+            "civilian_enemy_npc"
+        ]
+    },
+    "npc_home_02": {
+        "prefab": "NPCHome02",
+        "npcPool": [
+            "protester_enemy_npc",
+            "civilian_npc",
+            "civilian_enemy_npc"
+        ]
+    },
+    "npc_home_03": {
+        "prefab": "NPCHome03",
+        "npcPool": [
+            "protester_enemy_npc",
             "civilian_npc",
             "civilian_enemy_npc"
         ]
@@ -21,7 +36,7 @@
         "itemPool": [
             "item_pizza",
             "item_burger",
-            "item_donut"
+            "item_fries"
         ]
     },
     "civilian_npc": {
@@ -31,7 +46,7 @@
         "itemPool": [
             "item_pizza",
             "item_burger",
-            "item_donut"
+            "item_fries"
         ]
     },
     "civilian_enemy_npc": {
@@ -49,7 +64,7 @@
         "itemPool": [
             "item_pizza",
             "item_burger",
-            "item_donut"
+            "item_fries"
         ]
     },
     "protester_enemy_npc": {
@@ -65,7 +80,7 @@
         "itemPool": [
             "item_pizza",
             "item_burger",
-            "item_donut"
+            "item_fries"
         ]
     },
     "police_enemy_npc": {
@@ -76,9 +91,6 @@
             "weapon_boomstick",
             "weapon_pistol",
             "weapon_revolver"
-        ],
-        "itemPool": [
-            "item_donut"
         ]
     },
     "weapon_pickup": {
@@ -98,7 +110,7 @@
         "itemPool": [
             "item_pizza",
             "item_burger",
-            "item_donut"
+            "item_fries"
         ]
     },
     "weapon_boomstick": {

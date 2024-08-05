@@ -103,7 +103,7 @@ TextureImporter:
       name: tile_grass_tl
       rect:
         serializedVersion: 2
-        x: 0
+        x: 64
         y: 112
         width: 16
         height: 16
@@ -124,7 +124,7 @@ TextureImporter:
       name: tile_grass_tr
       rect:
         serializedVersion: 2
-        x: 16
+        x: 80
         y: 112
         width: 16
         height: 16
@@ -145,7 +145,7 @@ TextureImporter:
       name: tile_grass_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 96
         y: 112
         width: 16
         height: 16
@@ -166,7 +166,7 @@ TextureImporter:
       name: tile_dirt_cliff_tl
       rect:
         serializedVersion: 2
-        x: 48
+        x: 112
         y: 112
         width: 16
         height: 16
@@ -187,7 +187,7 @@ TextureImporter:
       name: tile_dirt_cliff_t
       rect:
         serializedVersion: 2
-        x: 64
+        x: 128
         y: 112
         width: 16
         height: 16
@@ -208,7 +208,7 @@ TextureImporter:
       name: tile_dirt_cliff_tr
       rect:
         serializedVersion: 2
-        x: 80
+        x: 144
         y: 112
         width: 16
         height: 16
@@ -229,7 +229,7 @@ TextureImporter:
       name: tile_dirt_1
       rect:
         serializedVersion: 2
-        x: 96
+        x: 160
         y: 112
         width: 16
         height: 16
@@ -250,7 +250,7 @@ TextureImporter:
       name: tile_dirt_2
       rect:
         serializedVersion: 2
-        x: 112
+        x: 176
         y: 112
         width: 16
         height: 16
@@ -271,7 +271,7 @@ TextureImporter:
       name: tile_grass_bl
       rect:
         serializedVersion: 2
-        x: 0
+        x: 64
         y: 96
         width: 16
         height: 16
@@ -292,7 +292,7 @@ TextureImporter:
       name: tile_grass_br
       rect:
         serializedVersion: 2
-        x: 16
+        x: 80
         y: 96
         width: 16
         height: 16
@@ -313,7 +313,7 @@ TextureImporter:
       name: tile_dirt_cliff_l
       rect:
         serializedVersion: 2
-        x: 48
+        x: 112
         y: 96
         width: 16
         height: 16
@@ -334,7 +334,7 @@ TextureImporter:
       name: tile_dirt_cliff_r
       rect:
         serializedVersion: 2
-        x: 80
+        x: 144
         y: 96
         width: 16
         height: 16
@@ -355,7 +355,7 @@ TextureImporter:
       name: tile_dirt_3
       rect:
         serializedVersion: 2
-        x: 96
+        x: 160
         y: 96
         width: 16
         height: 16
@@ -376,7 +376,7 @@ TextureImporter:
       name: tile_dirt_cliff_bl
       rect:
         serializedVersion: 2
-        x: 48
+        x: 112
         y: 80
         width: 16
         height: 16
@@ -397,7 +397,7 @@ TextureImporter:
       name: tile_dirt_cliff_b
       rect:
         serializedVersion: 2
-        x: 64
+        x: 128
         y: 80
         width: 16
         height: 16
@@ -418,7 +418,7 @@ TextureImporter:
       name: tile_dirt_cliff_br
       rect:
         serializedVersion: 2
-        x: 80
+        x: 144
         y: 80
         width: 16
         height: 16
@@ -446,6 +446,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      level_tilesheet_12: -1329232269
       tile_dirt_1: 524984663
       tile_dirt_2: 186762194
       tile_dirt_3: -519841532
@@ -457,6 +458,19 @@ TextureImporter:
       tile_dirt_cliff_t: 734986048
       tile_dirt_cliff_tl: 2107846475
       tile_dirt_cliff_tr: -117643338
+      tile_dirt_road: 1814014194
+      tile_dirt_road_b: 1382480610
+      tile_dirt_road_bl: -1459388338
+      tile_dirt_road_bl_2: -915039292
+      tile_dirt_road_br: -367442876
+      tile_dirt_road_br_2: -800610269
+      tile_dirt_road_l: 2053987479
+      tile_dirt_road_r: -927582452
+      tile_dirt_road_t: -733059871
+      tile_dirt_road_tl: 152692363
+      tile_dirt_road_tl_2: -454915917
+      tile_dirt_road_tr: -2005875537
+      tile_dirt_road_tr_2: 2043446127
       tile_grass_1: 1418256371
       tile_grass_bl: 594569462
       tile_grass_br: -1191152145

@@ -65,7 +65,7 @@ public class WeaponManager : MonoBehaviour
 
     private void Update()
     {
-        if(WeaponCount > 0 && IsOwnerAlive())
+        if(WeaponCount > 0 && IsOwnerAlive() && PlayerInput.InputEnabled)
         {
             UpdateWeaponSelection();
             UpdateWeaponAim();
@@ -165,12 +165,12 @@ public class WeaponManager : MonoBehaviour
         if(zRot >= 0)
         {
             float absZRot = Mathf.Abs(zRot);
-            int orderInLayer = absZRot > MAX_AIM_ANGLE - 10f && absZRot < 180f - (MAX_AIM_ANGLE - 10f) ? 1 : 2;
+            int orderInLayer = absZRot > MAX_AIM_ANGLE - 10f && absZRot < 180f - (MAX_AIM_ANGLE - 10f) ? 2 : 3;
             if(!SelectedWeapon.IsMeleeWeapon) { SelectedWeapon.weaponGFX.sortingOrder = orderInLayer; }
         }
         else
         {
-            if(!SelectedWeapon.IsMeleeWeapon) { SelectedWeapon.weaponGFX.sortingOrder = 2; }
+            if(!SelectedWeapon.IsMeleeWeapon) { SelectedWeapon.weaponGFX.sortingOrder = 3; }
         }
 
         RotateAimParent(zRot);

@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public class CivilianEnemyNPC : EnemyNPC
 {
-    private const float STOPPING_DISTANCE = 2.5f;
+    private const float STOPPING_DISTANCE = 2.0f;
 
     [SerializeField] private AIState currentAIState = AIState.IDLE;
     [SerializeField] private float roamRadius = 5f;

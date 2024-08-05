@@ -4,9 +4,9 @@
         "gfxPath": "Art/Sprites/Items/item_pizza.png",
         "health": 4
     },
-    "item_donut": {
-        "name": "Donut",
-        "gfxPath": "Art/Sprites/Items/item_donut.png",
+    "item_fries": {
+        "name": "Fries",
+        "gfxPath": "Art/Sprites/Items/item_fries.png",
         "health": 2
     },
     "item_burger": {

@@ -21,7 +21,7 @@ public class DecalManager : Singleton<DecalManager>
     private void Update()
     {
         // TODO: Remove, debugging only!
-        /*if(Input.GetKeyDown(KeyCode.H))
+        /*if(Input.GetKeyDown(KeyCode.H) && Application.isEditor)
         {
             //int randomIndex = Random.Range(0, levelManager.LevelTiles.Count);
             //Vector2 spawnPos = levelManager.LevelTiles.Values.ElementAt(randomIndex).TilePosition;

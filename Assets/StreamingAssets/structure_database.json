@@ -5,8 +5,8 @@
         "x": 0.0,
         "y": 0.0
       },
-      "boundsX": 8.0,
-      "boundsY": 8.0
+      "boundsX": 10.0,
+      "boundsY": 10.0
     },
     "entities": [
       {
@@ -21,28 +21,55 @@
     ],
     "level_objects": [
       {
-        "level_palm_tree": {
+        "level_pine_tree": {
           "position": {
             "x": -4.0,
             "y": -4.0
           },
           "generateChance": 0.5
         }
+      },
+      {
+        "level_cactus": {
+          "position": {
+            "x": 5.0,
+            "y": -5.0
+          },
+          "generateChance": 0.75
+        }
+      },
+      {
+        "level_grass": {
+          "position": {
+            "x": 5.0,
+            "y": 0.0
+          },
+          "generateChance": 0.5
+        }
+      },
+      {
+        "level_grass": {
+          "position": {
+            "x": -4.0,
+            "y": 4.0
+          },
+          "generateChance": 0.5
+        }
       }
     ]
   },
-  "npc_housing": {
+  "npc_housing_01": {
     "structureBounds": {
       "center": {
         "x": 1.0,
         "y": 1.0
       },
-      "boundsX": 8.0,
-      "boundsY": 8.0
+      "boundsX": 10.0,
+      "boundsY": 10.0
     },
     "entities": [
       {
-        "npc_home": {
+        "npc_home_01": {
           "generateChance": 1.0,
           "position": {
             "x": 0.0,
@@ -53,19 +80,146 @@
     ],
     "level_objects": [
       {
-        "level_rws_sign": {
+        "level_cactus": {
           "generateChance": 0.25,
           "position": {
-            "x": 3.0,
+            "x": 5.0,
             "y": -3.0
           }
         }
       },
       {
-        "level_palm_tree": {
+        "level_pine_tree": {
           "position": {
-            "x": -3.0,
+            "x": -4.0,
             "y": -3.0
+          },
+          "generateChance": 0.5
+        }
+      },
+      {
+        "level_grass": {
+          "position": {
+            "x": 4.0,
+            "y": 1.0
+          },
+          "generateChance": 0.5
+        }
+      },
+      {
+        "level_grass": {
+          "position": {
+            "x": -4.0,
+            "y": 0.0
+          },
+          "generateChance": 0.5
+        }
+      }
+    ]
+  },
+  "npc_housing_02": {
+    "structureBounds": {
+      "center": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "boundsX": 10.0,
+      "boundsY": 10.0
+    },
+    "entities": [
+      {
+        "npc_home_02": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "generateChance": 1.0
+        }
+      }
+    ],
+    "level_objects": [
+      {
+        "level_cactus": {
+          "position": {
+            "x": 5.0,
+            "y": -3.0
+          },
+          "generateChance": 0.25
+        }
+      },
+      {
+        "level_pine_tree": {
+          "position": {
+            "x": -4.0,
+            "y": -3.0
+          },
+          "generateChance": 0.5
+        }
+      },
+      {
+        "level_grass": {
+          "position": {
+            "x": 4.0,
+            "y": 1.0
+          },
+          "generateChance": 0.5
+        }
+      },
+      {
+        "level_grass": {
+          "position": {
+            "x": -4.0,
+            "y": 0.0
+          },
+          "generateChance": 0.5
+        }
+      }
+    ]
+  },
+  "npc_housing_03": {
+    "structureBounds": {
+      "center": {
+        "x": 1.0,
+        "y": 1.0
+      },
+      "boundsX": 13.0,
+      "boundsY": 10.0
+    },
+    "entities": [
+      {
+        "npc_home_03": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0
+          },
+          "generateChance": 1.0
+        }
+      }
+    ],
+    "level_objects": [
+      {
+        "level_cactus": {
+          "position": {
+            "x": -5.0,
+            "y": -3.0
+          },
+          "generateChance": 0.25
+        }
+      },
+      {
+        "level_pine_tree": {
+          "position": {
+            "x": 4.0,
+            "y": -3.0
+          },
+          "generateChance": 0.5
+        }
+      },
+      {
+        "level_grass": {
+          "position": {
+            "x": 5.0,
+            "y": 1.0
           },
           "generateChance": 0.5
         }

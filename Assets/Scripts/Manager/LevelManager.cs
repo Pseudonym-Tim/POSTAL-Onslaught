@@ -31,6 +31,7 @@ public class LevelManager : Singleton<LevelManager>
         RemoveTiles();
         RemoveObjects();
         RemoveEntities();
+        GoreManager.Cleanup();
 
         LevelStats = new LevelStatistics();
         ObjectManager.LoadDatabase();
@@ -57,7 +58,7 @@ public class LevelManager : Singleton<LevelManager>
         InLevelTimer += Time.deltaTime;
 
         // TODO: Remove later, just for debugging...
-        if(Input.GetKeyDown(KeyCode.L))
+        if(Input.GetKeyDown(KeyCode.L) && Application.isEditor)
         {
             taskManager.ForceTaskComplete();
             //OnLevelClear();
@@ -168,6 +169,15 @@ public class LevelManager : Singleton<LevelManager>
         }
     }
 
+    public void RemoveObject(GameObject objectToRemove, float removeTime = 0)
+    {
+        if(LevelObjects.Contains(objectToRemove))
+        {
+            Destroy(objectToRemove, removeTime);
+            LevelObjects.Remove(objectToRemove);
+        }
+    }
+
     public void RemoveTiles()
     {
         if(LevelTiles.Count > 0)
@@ -248,7 +258,7 @@ public class LevelManager : Singleton<LevelManager>
         }
 
         LevelClearUI levelClearUI = UIManager.GetUIComponent<LevelClearUI>();
-        levelClearUI.Show();
+        levelClearUI?.Show();
     }
 
     public void NextLevel()

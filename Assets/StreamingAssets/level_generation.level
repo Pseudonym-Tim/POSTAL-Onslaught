@@ -53,8 +53,20 @@ FOR INDEX 1 3
 ENDFOR
 
 // Level objects...
-FOR INDEX 1 10
+FOR INDEX 1 5
     OBJECT_RANDOM level_palm_tree dirt 2 3 3
+ENDFOR
+
+FOR INDEX 1 10
+    OBJECT_RANDOM level_pine_tree dirt 2 3 3
+ENDFOR
+
+FOR INDEX 1 15
+    OBJECT_RANDOM level_grass dirt 2 3 3
+ENDFOR
+
+FOR INDEX 1 6
+    OBJECT_RANDOM level_tree_stump dirt 2 3 3
 ENDFOR
 
 FOR INDEX 1 6
@@ -77,6 +89,8 @@ FOR INDEX 1 20
 ENDFOR
 
 // Structures...
-FOR INDEX 1 5
-    STRUCTURE npc_housing LEVEL_BOUNDS_DIST + 3
+FOR INDEX 1 2
+    STRUCTURE npc_housing_01 LEVEL_BOUNDS_DIST + 3
+    STRUCTURE npc_housing_02 LEVEL_BOUNDS_DIST + 3
+    STRUCTURE npc_housing_03 LEVEL_BOUNDS_DIST + 3
 ENDFOR

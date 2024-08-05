@@ -1,6 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.U2D;
 
@@ -13,6 +11,8 @@ public class PlayerCamera : Entity
     private const float MAX_AIM_DIST = 3.0f;
 
     [SerializeField] private float smoothTime = 0.3f;
+    [SerializeField] private float punchFOVChange = 5.0f;
+    [SerializeField] private float punchDuration = 0.1f;
     [SerializeField] private Vector2 followOffset;
     private PixelPerfectCamera pixelPerfectCamera;
     private Vector3 currentVelocity = Vector3.zero;
@@ -25,7 +25,12 @@ public class PlayerCamera : Entity
         SetParent(null);
         Vector2 targetPos = (Vector2)PlayerEntity.EntityPosition + followOffset;
         EntityPosition = GetFollowPos(targetPos);
+
+        NPC.OnNPCKilled -= TriggerPunchFOV;
+        NPC.OnNPCKilled += TriggerPunchFOV;
     }
+
+    private void OnDestroy() => NPC.OnNPCKilled -= TriggerPunchFOV;
 
     private void SetZoomLevel(int zoomLevel)
     {
@@ -59,6 +64,43 @@ public class PlayerCamera : Entity
     public Vector3 GetFollowPos(Vector3 targetPos)
     {
         return new Vector3(targetPos.x, targetPos.y, -10);
+    }
+
+    private IEnumerator PunchFOV()
+    {
+        float originalFOV = Camera.orthographicSize;
+        float targetFOV = originalFOV - punchFOVChange;
+
+        // Disable the PixelPerfectCamera to allow FOV changes
+        pixelPerfectCamera.enabled = false;
+
+        // Punch in
+        float elapsedTime = 0f;
+        while(elapsedTime < punchDuration / 2f)
+        {
+            elapsedTime += Time.deltaTime;
+            Camera.orthographicSize = Mathf.Lerp(originalFOV, targetFOV, elapsedTime / (punchDuration / 2f));
+            yield return null;
+        }
+
+        // Punch out
+        elapsedTime = 0f;
+        while(elapsedTime < punchDuration / 2f)
+        {
+            elapsedTime += Time.deltaTime;
+            Camera.orthographicSize = Mathf.Lerp(targetFOV, originalFOV, elapsedTime / (punchDuration / 2f));
+            yield return null;
+        }
+
+        // Reset to original FOV and re-enable PixelPerfectCamera
+        Camera.orthographicSize = originalFOV;
+        pixelPerfectCamera.enabled = true;
+    }
+
+    // Public method to trigger the FOV punch effect
+    public void TriggerPunchFOV()
+    {
+        StartCoroutine(PunchFOV());
     }
 
     public Player PlayerEntity { get; set; } = null;

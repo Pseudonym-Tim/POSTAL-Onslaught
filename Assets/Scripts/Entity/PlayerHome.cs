@@ -24,7 +24,7 @@ public class PlayerHome : Entity
     public override void OnLevelGenerated()
     {
         ExitIndicatorUI exitIndicatorUI = UIManager.GetUIComponent<ExitIndicatorUI>();
-        exitIndicatorUI?.Initialize(spawnPoint.position);
+        exitIndicatorUI?.Initialize(CenterOfMass);
     }
 
     private void CheckSpawnPlayer()
@@ -48,7 +48,12 @@ public class PlayerHome : Entity
             {
                 inLevelTransition = true;
                 PlayerInput.InputEnabled = false;
-                Invoke(nameof(ClearLevel), 1.0f);
+
+                FadeUI fadeUI = UIManager.GetUIComponent<FadeUI>();
+                fadeUI?.FadeOut();
+
+                FadeUI.OnFadeOutComplete -= ClearLevel;
+                FadeUI.OnFadeOutComplete += ClearLevel;
             }
         }
     }

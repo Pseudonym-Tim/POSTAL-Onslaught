@@ -122,7 +122,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 6
-        y: 3
+        y: 45
         width: 12
         height: 28
       alignment: 7
@@ -143,7 +143,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 24
-        y: 3
+        y: 45
         width: 12
         height: 28
       alignment: 7
@@ -164,7 +164,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 42
-        y: 3
+        y: 45
         width: 12
         height: 28
       alignment: 7
@@ -185,7 +185,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 57
-        y: 3
+        y: 45
         width: 18
         height: 28
       alignment: 7
@@ -206,7 +206,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 78
-        y: 3
+        y: 45
         width: 12
         height: 28
       alignment: 7
@@ -227,7 +227,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 93
-        y: 3
+        y: 45
         width: 18
         height: 28
       alignment: 7
@@ -248,7 +248,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 114
-        y: 3
+        y: 45
         width: 12
         height: 28
       alignment: 7
@@ -260,6 +260,132 @@ TextureImporter:
       bones: []
       spriteID: 190a4f14ac0df6548b6aff304d9634d2
       internalID: 510969763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_dude_gib_head
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 28
+        width: 10
+        height: 14
+      alignment: 9
+      pivot: {x: 0.3, y: 0.14285715}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 113869792d271994ba6bcdf7aafee9a2
+      internalID: 1132139746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_dude_gib_left_hand
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 19
+        width: 7
+        height: 7
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6e71772b59b4bf4ab5863af07feb2b1
+      internalID: -989965149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_dude_gib_right_hand
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 22
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8f7844e5890cde4ebd3764ab788a5bb
+      internalID: -854588703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_dude_gib_torso
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 14
+        width: 10
+        height: 13
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e80629e2d3c571b408ab48cb906cdafd
+      internalID: -1885639990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_dude_gib_left_leg
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 3
+        width: 8
+        height: 10
+      alignment: 9
+      pivot: {x: 0.375, y: 0.90000004}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5de0a752c239d5b4a9cc8a4054cde861
+      internalID: -780494942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: player_dude_gib_right_leg
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 3
+        width: 6
+        height: 10
+      alignment: 9
+      pivot: {x: 0.5, y: 0.90000004}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 574d2810480530b4881e2faca2512270
+      internalID: -1408275057
       vertices: []
       indices: 
       edges: []
@@ -278,6 +404,12 @@ TextureImporter:
       player_dude_4: 3306811980159851478
       player_dude_5: -654498268233689794
       player_dude_6: 8602691189884447335
+      player_dude_gib_head: 1132139746
+      player_dude_gib_left_hand: -989965149
+      player_dude_gib_left_leg: -780494942
+      player_dude_gib_right_hand: -854588703
+      player_dude_gib_right_leg: -1408275057
+      player_dude_gib_torso: -1885639990
       player_dude_idle_1: -2611919490825289116
       player_dude_idle_2: 5791083271633424021
       player_dude_idle_3: -7838006753660157819

@@ -140,9 +140,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 36
-        y: 225
+        y: 224
         width: 14
-        height: 13
+        height: 14
       alignment: 9
       pivot: {x: 0.5, y: 0.30769232}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -282,6 +282,69 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: level_object_pine_tree_1
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 160
+        width: 26
+        height: 47
+      alignment: 9
+      pivot: {x: 0.5192308, y: 0.08510638}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5fc1c3e818f43034ebfff0750e135fd3
+      internalID: -365074858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: level_object_pine_tree_2
+      rect:
+        serializedVersion: 2
+        x: 137
+        y: 160
+        width: 26
+        height: 41
+      alignment: 9
+      pivot: {x: 0.48076922, y: 0.09756097}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94fc9be1dbad93e4a86fa09df4abcd9f
+      internalID: 446556085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: level_object_grass_1
+      rect:
+        serializedVersion: 2
+        x: 123
+        y: 226
+        width: 16
+        height: 15
+      alignment: 9
+      pivot: {x: 0.5, y: 0.20000002}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd59937a3f73e294480b87fa17adcee5
+      internalID: -1867854182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -294,8 +357,11 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       level_object_cactus1: 7011327773872683583
+      level_object_grass_1: -1867854182
       level_object_palm_tree_1: 301575269
       level_object_palm_tree_2: 751618610
+      level_object_pine_tree_1: -365074858
+      level_object_pine_tree_2: 446556085
       level_object_rock1: -9100082468451921389
       level_object_rock2: -1624132630401849976
       level_object_rock3: -478789963149133780

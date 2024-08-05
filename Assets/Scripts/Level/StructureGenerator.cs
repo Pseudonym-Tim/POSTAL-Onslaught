@@ -90,17 +90,8 @@ public static class StructureGenerator
             }
         }
 
-        foreach(GameObject levelObject in LevelManager.LevelObjects)
-        {
-            Vector2 objectPos = levelObject.transform.position;
-
-            if(objectPos.x >= min.x && objectPos.x <= max.x &&
-                objectPos.y >= min.y && objectPos.y <= max.y)
-            {
-                Debug.Log($"Invalid position due to level object at: {objectPos}");
-                return false;
-            }
-        }
+        // Remove overlapping level objects
+        RemoveOverlappingLevelObjects(min, max);
 
         foreach(Bounds structureBounds in existingStructureBounds)
         {
@@ -112,6 +103,27 @@ public static class StructureGenerator
         }
 
         return true;
+    }
+
+    private static void RemoveOverlappingLevelObjects(Vector2 min, Vector2 max)
+    {
+        List<GameObject> objectsToRemove = new List<GameObject>();
+
+        foreach(GameObject levelObject in LevelManager.LevelObjects)
+        {
+            Vector2 objectPos = levelObject.transform.position;
+
+            if(objectPos.x >= min.x && objectPos.x <= max.x && objectPos.y >= min.y && objectPos.y <= max.y)
+            {
+                Debug.Log($"Removing overlapping level object at: {objectPos}");
+                objectsToRemove.Add(levelObject);
+            }
+        }
+
+        foreach(GameObject obj in objectsToRemove)
+        {
+            LevelManager.RemoveObject(obj);
+        }
     }
 
     private static bool ShouldGenerate(float generateChance)

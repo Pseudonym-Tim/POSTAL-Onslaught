@@ -43,6 +43,9 @@ public class LevelClearUI : UIComponent
 
         PlayerInput.InputEnabled = false;
 
+        FadeUI fadeUI = UIManager.GetUIComponent<FadeUI>();
+        fadeUI?.FadeIn();
+
         // Make sure pause menu is closed...
         PauseUI pauseUI = UIManager.GetUIComponent<PauseUI>();
         pauseUI.Show(false);

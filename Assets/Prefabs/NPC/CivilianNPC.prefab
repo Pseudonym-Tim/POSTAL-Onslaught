@@ -85,6 +85,9 @@ MonoBehaviour:
     - npcID: male_01
       animatorController: {fileID: 9100000, guid: 5185bbee8c982e348ac0e143b57f50f3, type: 2}
       killerAnimation: {fileID: 0}
+    - npcID: female_02
+      animatorController: {fileID: 9100000, guid: 5a7c89632e65d9c4291db09ab5e6adbf, type: 2}
+      killerAnimation: {fileID: 0}
   maxHealth: 8
   moveSpeed: 10
   npcGFX: {fileID: 3706985117539149584}
@@ -122,7 +125,7 @@ Animator:
   m_GameObject: {fileID: 1609374380823729204}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5185bbee8c982e348ac0e143b57f50f3, type: 2}
+  m_Controller: {fileID: 9100000, guid: 5a7c89632e65d9c4291db09ab5e6adbf, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -208,7 +211,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -3136823086700892331, guid: 9e575649715a2a948b0e58f78ba16a36, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -294,7 +297,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 9091130053849659667, guid: c29479904a7ce564d8fd43fce341ff99, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

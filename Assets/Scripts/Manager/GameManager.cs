@@ -115,6 +115,7 @@ public class GameManager : Singleton<GameManager>
     public static void GameOver()
     {
         CurrentGameState = GameState.GAME_OVER;
+        PlayerInput.InputEnabled = false;
         GameOverUI gameOverUI = UIManager.GetUIComponent<GameOverUI>();
         gameOverUI.Show();
         GlobalStats.Save();

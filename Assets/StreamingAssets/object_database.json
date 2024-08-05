@@ -8,6 +8,15 @@
     "level_palm_tree": {
         "prefab": "PalmTree"
     },
+    "level_pine_tree": {
+        "prefab": "PineTree"
+    },
+    "level_tree_stump": {
+        "prefab": "TreeStump"
+    },
+    "level_grass": {
+        "prefab": "Grass"
+    },
     "level_rws_sign": {
         "prefab": "RWSSign"
     }
