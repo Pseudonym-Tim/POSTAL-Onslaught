@@ -122,7 +122,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3
-        y: 3
+        y: 48
         width: 19
         height: 31
       alignment: 9
@@ -143,7 +143,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 22
-        y: 3
+        y: 48
         width: 19
         height: 31
       alignment: 9
@@ -164,7 +164,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 41
-        y: 3
+        y: 48
         width: 19
         height: 31
       alignment: 9
@@ -185,7 +185,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 60
-        y: 3
+        y: 48
         width: 19
         height: 31
       alignment: 9
@@ -206,7 +206,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 79
-        y: 3
+        y: 48
         width: 19
         height: 31
       alignment: 9
@@ -227,7 +227,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 98
-        y: 3
+        y: 48
         width: 19
         height: 31
       alignment: 9
@@ -248,7 +248,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 117
-        y: 3
+        y: 48
         width: 19
         height: 31
       alignment: 9
@@ -264,6 +264,132 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: civilian_male01_gib_head
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 30
+        width: 15
+        height: 15
+      alignment: 9
+      pivot: {x: 0.40000004, y: 0.13333334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba067098187e2be4385122553c34275d
+      internalID: -2071715310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: civilian_male01_gib_left_hand
+      rect:
+        serializedVersion: 2
+        x: 30
+        y: 22
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9b51053bf4190b48b0d7b70227c3f1d
+      internalID: -1021329579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: civilian_male01_gib_right_hand
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 20
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8efbf3052d841f44a019b16fc1b8c03
+      internalID: 2010941176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: civilian_male01_gib_torso
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 18
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 928427fc23a97b2429562236a12ec273
+      internalID: -1894405425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: civilian_male01_gib_left_leg
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 5
+        width: 8
+        height: 10
+      alignment: 9
+      pivot: {x: 0.375, y: 0.90000004}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c279830109d8274fad196caff589772
+      internalID: -1196088334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: civilian_male01_gib_right_leg
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 5
+        width: 6
+        height: 10
+      alignment: 9
+      pivot: {x: 0.5, y: 0.90000004}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 174c9922ba4e8e44b963b9bfaf5e9950
+      internalID: -1288643269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -275,6 +401,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      civilian_male01_gib_head: -2071715310
+      civilian_male01_gib_left_hand: -1021329579
+      civilian_male01_gib_left_leg: -1196088334
+      civilian_male01_gib_right_hand: 2010941176
+      civilian_male01_gib_right_leg: -1288643269
+      civilian_male01_gib_torso: -1894405425
       civilian_male01_idle_1: -3136823086700892331
       civilian_male01_idle_2: -5681226310068791297
       civilian_male01_idle_3: 5920094189505449370

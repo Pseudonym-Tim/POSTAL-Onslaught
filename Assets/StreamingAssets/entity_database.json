@@ -85,7 +85,7 @@
     },
     "police_enemy_npc": {
         "prefab": "PoliceEnemyNPC",
-        "dropItemChance": 0.05,
+        "dropItemChance": 0.0,
         "score": 450,
         "weaponPool": [
             "weapon_boomstick",

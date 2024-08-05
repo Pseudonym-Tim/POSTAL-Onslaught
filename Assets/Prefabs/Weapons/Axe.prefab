@@ -93,7 +93,7 @@ MonoBehaviour:
   damageMin: 3
   damageMax: 6
   impactCameraShakeInfo:
-    shakeIntensity: 0.1
+    shakeIntensity: 0.5
     shakeSpeed: 0.25
     shakeDuration: 1
   impactWindowShakeInfo:

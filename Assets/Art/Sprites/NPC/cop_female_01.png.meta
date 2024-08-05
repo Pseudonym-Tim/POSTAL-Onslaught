@@ -1,37 +1,37 @@
 fileFormatVersion: 2
-guid: 90a84dce49b491b4899a03392ef6725b
+guid: fe7df5310a607544ab74fb0fb0fd6639
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5089648832048136032
-    second: civilian_female01_0
+      213: -1605329601193244839
+    second: cop_female_01_0
   - first:
-      213: 2813314808695341484
-    second: civilian_female01_1
+      213: 3933086562932976340
+    second: cop_female_01_1
   - first:
-      213: 625274608336915476
-    second: civilian_female01_2
+      213: -5725797733944117723
+    second: cop_female_01_2
   - first:
-      213: -1017108945108091983
-    second: civilian_female01_3
+      213: 6180605378421595986
+    second: cop_female_01_3
   - first:
-      213: 1792274141975495920
-    second: civilian_female01_4
+      213: 6959690867072568556
+    second: cop_female_01_4
   - first:
-      213: 4128884697737032112
-    second: civilian_female01_5
+      213: 1211746772282139087
+    second: cop_female_01_5
   - first:
-      213: -8653344610957538727
-    second: civilian_female01_6
+      213: -5617978605446189356
+    second: cop_female_01_6
   - first:
-      213: -6961938653403023173
-    second: civilian_female01_7
+      213: -5309425068963865302
+    second: cop_female_01_7
   - first:
-      213: 6664748066374405146
-    second: civilian_female01_8
+      213: -4647807178055149654
+    second: cop_female_01_8
   - first:
-      213: -7538064133122157021
-    second: civilian_female01_9
+      213: 4532281197369602804
+    second: cop_female_01_9
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -127,241 +127,241 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: civilian_female01_idle_1
+      name: cop_female_01_idle_1
       rect:
         serializedVersion: 2
         x: 3
-        y: 83
-        width: 20
-        height: 31
+        y: 48
+        width: 21
+        height: 34
       alignment: 9
-      pivot: {x: 0.55, y: 0}
+      pivot: {x: 0.47619048, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0a00a467a5fed59b0800000000000000
-      internalID: -5089648832048136032
+      spriteID: 957057dab39b8b9e0800000000000000
+      internalID: -1605329601193244839
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: civilian_female01_idle_2
-      rect:
-        serializedVersion: 2
-        x: 23
-        y: 83
-        width: 20
-        height: 31
-      alignment: 9
-      pivot: {x: 0.55, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ca1c1a5b9e6ea0720800000000000000
-      internalID: 2813314808695341484
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: civilian_female01_idle_3
-      rect:
-        serializedVersion: 2
-        x: 43
-        y: 83
-        width: 20
-        height: 31
-      alignment: 9
-      pivot: {x: 0.55, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 41c4ef481fb6da800800000000000000
-      internalID: 625274608336915476
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: civilian_female01_walk_1
-      rect:
-        serializedVersion: 2
-        x: 63
-        y: 83
-        width: 20
-        height: 31
-      alignment: 9
-      pivot: {x: 0.55, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1bbb5f4adc082e1f0800000000000000
-      internalID: -1017108945108091983
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: civilian_female01_walk_2
-      rect:
-        serializedVersion: 2
-        x: 83
-        y: 83
-        width: 20
-        height: 31
-      alignment: 9
-      pivot: {x: 0.55, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0f4419416df6fd810800000000000000
-      internalID: 1792274141975495920
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: civilian_female01_walk_3
-      rect:
-        serializedVersion: 2
-        x: 103
-        y: 83
-        width: 20
-        height: 31
-      alignment: 9
-      pivot: {x: 0.55, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0b1792fb1cebc4930800000000000000
-      internalID: 4128884697737032112
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: civilian_female01_walk_4
-      rect:
-        serializedVersion: 2
-        x: 123
-        y: 83
-        width: 20
-        height: 31
-      alignment: 9
-      pivot: {x: 0.55, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 95ac5d87ce429e780800000000000000
-      internalID: -8653344610957538727
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: civilian_female01_killer_1
-      rect:
-        serializedVersion: 2
-        x: 4
-        y: 50
-        width: 18
-        height: 30
-      alignment: 9
-      pivot: {x: 0.6111111, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bb8f9df3ea9326f90800000000000000
-      internalID: -6961938653403023173
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: civilian_female01_killer_2
+      name: cop_female_01_idle_2
       rect:
         serializedVersion: 2
         x: 24
-        y: 50
-        width: 18
-        height: 30
+        y: 48
+        width: 21
+        height: 34
       alignment: 9
-      pivot: {x: 0.6111111, y: 0}
+      pivot: {x: 0.47619048, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a1cc7b51e01fd7c50800000000000000
-      internalID: 6664748066374405146
+      spriteID: 4da6b7ef361259630800000000000000
+      internalID: 3933086562932976340
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: civilian_female01_killer_3
+      name: cop_female_01_idle_3
       rect:
         serializedVersion: 2
-        x: 44
-        y: 50
-        width: 18
-        height: 30
+        x: 45
+        y: 48
+        width: 21
+        height: 34
       alignment: 9
-      pivot: {x: 0.6111111, y: 0}
+      pivot: {x: 0.47619048, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 326142bfb9a636790800000000000000
-      internalID: -7538064133122157021
+      spriteID: 526368c2c41e980b0800000000000000
+      internalID: -5725797733944117723
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: civilian_female01_gib_head
+      name: cop_female_01_walk_1
       rect:
         serializedVersion: 2
-        x: 9
-        y: 28
-        width: 18
-        height: 19
+        x: 66
+        y: 48
+        width: 21
+        height: 34
       alignment: 9
-      pivot: {x: 0.5555556, y: 0.2631579}
+      pivot: {x: 0.47619048, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25f10bd68dbe5c550800000000000000
+      internalID: 6180605378421595986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cop_female_01_walk_2
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 48
+        width: 21
+        height: 34
+      alignment: 9
+      pivot: {x: 0.47619048, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cec046638f9c59060800000000000000
+      internalID: 6959690867072568556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cop_female_01_walk_3
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 48
+        width: 21
+        height: 34
+      alignment: 9
+      pivot: {x: 0.47619048, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc16a9fe44df0d010800000000000000
+      internalID: 1211746772282139087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cop_female_01_walk_4
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 48
+        width: 21
+        height: 34
+      alignment: 9
+      pivot: {x: 0.47619048, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4dea2a2493ee802b0800000000000000
+      internalID: -5617978605446189356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cop_female_01_killer_1
+      rect:
+        serializedVersion: 2
+        x: 151
+        y: 48
+        width: 19
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5263158, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2ddad2c7022156b0800000000000000
+      internalID: -5309425068963865302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cop_female_01_killer_2
+      rect:
+        serializedVersion: 2
+        x: 172
+        y: 48
+        width: 19
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5263158, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa713872ffbaf7fb0800000000000000
+      internalID: -4647807178055149654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cop_female_01_killer_3
+      rect:
+        serializedVersion: 2
+        x: 193
+        y: 48
+        width: 19
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5263158, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f2b5676cb5e5ee30800000000000000
+      internalID: 4532281197369602804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cop_female01_gib_head
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 26
+        width: 18
+        height: 21
+      alignment: 9
+      pivot: {x: 0.5555556, y: 0.23809524}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b82932d90521f734398d8bca8a88a120
-      internalID: 2059338728
+      spriteID: c4f579cf393561b4990aa9bc5c846d14
+      internalID: 836994455
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: civilian_female01_gib_left_hand
+      name: cop_female01_gib_left_hand
       rect:
         serializedVersion: 2
-        x: 28
+        x: 27
         y: 19
         width: 7
         height: 7
@@ -372,17 +372,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a912d3925724144caa785eff8ae93b0
-      internalID: 1175201051
+      spriteID: f41d0d1912df98f4c9a2e810b1f8da96
+      internalID: -278658187
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: civilian_female01_gib_right_hand
+      name: cop_female01_gib_right_hand
       rect:
         serializedVersion: 2
-        x: 5
+        x: 4
         y: 17
         width: 7
         height: 7
@@ -393,17 +393,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e5d397f9e963ed34d8a17a4a9aabea08
-      internalID: 854207320
+      spriteID: 082d7ebcd421e4047b1918d7500eac2c
+      internalID: 1160781763
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: civilian_female01_gib_torso
+      name: cop_female01_gib_torso
       rect:
         serializedVersion: 2
-        x: 14
+        x: 13
         y: 14
         width: 11
         height: 10
@@ -414,50 +414,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb9bab3f64570d64382f93ebc458b3eb
-      internalID: 1662496518
+      spriteID: 788490f8cfea9a8449489a00dc20fd08
+      internalID: 550372334
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: civilian_female01_gib_left_leg
+      name: cop_female01_gib_left_leg
       rect:
         serializedVersion: 2
-        x: 21
+        x: 20
         y: 2
         width: 8
         height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.375, y: 0.90000004}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55580b44e6c2e3344ad630120231e6d9
-      internalID: 1275949067
+      spriteID: 33564608a7d6f4b41a3d258afcae8126
+      internalID: -1782633657
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: civilian_female01_gib_right_leg
+      name: cop_female01_gib_right_leg
       rect:
         serializedVersion: 2
-        x: 11
+        x: 10
         y: 2
         width: 6
         height: 10
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.90000004}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 47f245c266b86474e8c8424e7a6349a6
-      internalID: 618996643
+      spriteID: 44c04b146972f7146987c4af1cefd4e0
+      internalID: -1957842115
       vertices: []
       indices: 
       edges: []
@@ -465,7 +465,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 70eabd0cefce8c2428d84dc8472c3e4f
+    spriteID: de98be2f3c50c164388430bcfc79c06a
     internalID: 0
     vertices: []
     indices: 
@@ -473,22 +473,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      civilian_female01_gib_head: 2059338728
-      civilian_female01_gib_left_hand: 1175201051
-      civilian_female01_gib_left_leg: 1275949067
-      civilian_female01_gib_right_hand: 854207320
-      civilian_female01_gib_right_leg: 618996643
-      civilian_female01_gib_torso: 1662496518
-      civilian_female01_idle_1: -5089648832048136032
-      civilian_female01_idle_2: 2813314808695341484
-      civilian_female01_idle_3: 625274608336915476
-      civilian_female01_killer_1: -6961938653403023173
-      civilian_female01_killer_2: 6664748066374405146
-      civilian_female01_killer_3: -7538064133122157021
-      civilian_female01_walk_1: -1017108945108091983
-      civilian_female01_walk_2: 1792274141975495920
-      civilian_female01_walk_3: 4128884697737032112
-      civilian_female01_walk_4: -8653344610957538727
+      cop_female01_gib_head: 836994455
+      cop_female01_gib_left_hand: -278658187
+      cop_female01_gib_left_leg: -1782633657
+      cop_female01_gib_right_hand: 1160781763
+      cop_female01_gib_right_leg: -1957842115
+      cop_female01_gib_torso: 550372334
+      cop_female_01_idle_1: -1605329601193244839
+      cop_female_01_idle_2: 3933086562932976340
+      cop_female_01_idle_3: -5725797733944117723
+      cop_female_01_killer_1: -5309425068963865302
+      cop_female_01_killer_2: -4647807178055149654
+      cop_female_01_killer_3: 4532281197369602804
+      cop_female_01_walk_1: 6180605378421595986
+      cop_female_01_walk_2: 6959690867072568556
+      cop_female_01_walk_3: 1211746772282139087
+      cop_female_01_walk_4: -5617978605446189356
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

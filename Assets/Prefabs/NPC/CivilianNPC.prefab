@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &365698144103476793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1581342900237626516}
+  m_Layer: 0
+  m_Name: GibLeftHand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1581342900237626516
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 365698144103476793}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.436, y: 0.622, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 666839578031791815}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &562512087742267618
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7847508994529050902}
+  m_Layer: 0
+  m_Name: GibLeftLeg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7847508994529050902
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 562512087742267618}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.217, y: 0.23, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 666839578031791815}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &715137130157985855
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,6 +93,12 @@ Transform:
   m_Children:
   - {fileID: 383734491455344055}
   - {fileID: 8734602261898993259}
+  - {fileID: 6742639372462716649}
+  - {fileID: 1581342900237626516}
+  - {fileID: 2971434105822292479}
+  - {fileID: 969366312735727613}
+  - {fileID: 7847508994529050902}
+  - {fileID: 8342310214084864118}
   m_Father: {fileID: 8377531020569650653}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1609374380823729204
@@ -85,9 +153,59 @@ MonoBehaviour:
     - npcID: male_01
       animatorController: {fileID: 9100000, guid: 5185bbee8c982e348ac0e143b57f50f3, type: 2}
       killerAnimation: {fileID: 0}
+      gibList:
+      - gibName: head
+        gibSprite: {fileID: -2071715310, guid: 9e575649715a2a948b0e58f78ba16a36, type: 3}
+        spawnPoint: {fileID: 6742639372462716649}
+        gibType: 0
+      - gibName: left_hand
+        gibSprite: {fileID: -1021329579, guid: 9e575649715a2a948b0e58f78ba16a36, type: 3}
+        spawnPoint: {fileID: 1581342900237626516}
+        gibType: 4
+      - gibName: right_hand
+        gibSprite: {fileID: 2010941176, guid: 9e575649715a2a948b0e58f78ba16a36, type: 3}
+        spawnPoint: {fileID: 2971434105822292479}
+        gibType: 5
+      - gibName: left_leg
+        gibSprite: {fileID: -1196088334, guid: 9e575649715a2a948b0e58f78ba16a36, type: 3}
+        spawnPoint: {fileID: 7847508994529050902}
+        gibType: 2
+      - gibName: right_leg
+        gibSprite: {fileID: -1288643269, guid: 9e575649715a2a948b0e58f78ba16a36, type: 3}
+        spawnPoint: {fileID: 8342310214084864118}
+        gibType: 3
+      - gibName: torso
+        gibSprite: {fileID: -1894405425, guid: 9e575649715a2a948b0e58f78ba16a36, type: 3}
+        spawnPoint: {fileID: 969366312735727613}
+        gibType: 1
     - npcID: female_02
       animatorController: {fileID: 9100000, guid: 5a7c89632e65d9c4291db09ab5e6adbf, type: 2}
       killerAnimation: {fileID: 0}
+      gibList:
+      - gibName: head
+        gibSprite: {fileID: 23777906, guid: d4295a8a655a4b84e8b20b45884f3574, type: 3}
+        spawnPoint: {fileID: 6742639372462716649}
+        gibType: 0
+      - gibName: left_hand
+        gibSprite: {fileID: -861972576, guid: d4295a8a655a4b84e8b20b45884f3574, type: 3}
+        spawnPoint: {fileID: 1581342900237626516}
+        gibType: 4
+      - gibName: right_hand
+        gibSprite: {fileID: -861972576, guid: d4295a8a655a4b84e8b20b45884f3574, type: 3}
+        spawnPoint: {fileID: 2971434105822292479}
+        gibType: 5
+      - gibName: left_leg
+        gibSprite: {fileID: -1230144936, guid: d4295a8a655a4b84e8b20b45884f3574, type: 3}
+        spawnPoint: {fileID: 7847508994529050902}
+        gibType: 2
+      - gibName: right_leg
+        gibSprite: {fileID: -1100450618, guid: d4295a8a655a4b84e8b20b45884f3574, type: 3}
+        spawnPoint: {fileID: 8342310214084864118}
+        gibType: 3
+      - gibName: torso
+        gibSprite: {fileID: 12587474, guid: d4295a8a655a4b84e8b20b45884f3574, type: 3}
+        spawnPoint: {fileID: 969366312735727613}
+        gibType: 1
   maxHealth: 8
   moveSpeed: 10
   npcGFX: {fileID: 3706985117539149584}
@@ -137,6 +255,99 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1791506836543332051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2971434105822292479}
+  m_Layer: 0
+  m_Name: GibRightHand
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2971434105822292479
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1791506836543332051}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.441, y: 0.645, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 666839578031791815}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1945907966253529042
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8342310214084864118}
+  m_Layer: 0
+  m_Name: GibRightLeg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8342310214084864118
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945907966253529042}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.245, y: 0.27, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 666839578031791815}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2319183960724326713
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6742639372462716649}
+  m_Layer: 0
+  m_Name: GibHead
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6742639372462716649
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2319183960724326713}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.003, y: 1.234, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 666839578031791815}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5092094725644300910
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,6 +434,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
+--- !u!1 &5304908545962565128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 969366312735727613}
+  m_Layer: 0
+  m_Name: GibTorso
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &969366312735727613
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5304908545962565128}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.009, y: 0.674, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 666839578031791815}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8195185806825054951
 GameObject:
   m_ObjectHideFlags: 0

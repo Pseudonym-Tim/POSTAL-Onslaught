@@ -69,7 +69,8 @@ public class NPC : Entity
                 GameManager.GlobalStats.Kills++;
                 OnKnockbackEnd();
                 StopAllCoroutines();
-                levelManager.RemoveEntity(this); // TODO: Add actual death animation or effect instead...
+                GoreManager.SpawnGibs(EntityPosition, NPCInfo.gibList);
+                levelManager.RemoveEntity(this);
                 return;
             }
             else
@@ -192,6 +193,7 @@ public class NPC : Entity
             public string npcID = "new_npc_id";
             public RuntimeAnimatorController animatorController;
             public AnimationClip killerAnimation;
+            public List<GoreManager.GibInfo> gibList;
         }
 
         public NPCInfo GetRandom()

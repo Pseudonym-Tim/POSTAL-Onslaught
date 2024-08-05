@@ -109,6 +109,7 @@ public class GoreManager : Singleton<GoreManager>
         public enum GibType
         {
             HEAD,
+            TORSO,
             LEFT_LEG,
             RIGHT_LEG,
             LEFT_HAND,

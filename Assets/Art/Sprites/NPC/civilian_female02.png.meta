@@ -122,7 +122,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3
-        y: 3
+        y: 48
         width: 21
         height: 32
       alignment: 9
@@ -143,7 +143,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 24
-        y: 3
+        y: 48
         width: 21
         height: 32
       alignment: 9
@@ -164,7 +164,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 45
-        y: 3
+        y: 48
         width: 21
         height: 32
       alignment: 9
@@ -185,7 +185,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 66
-        y: 3
+        y: 48
         width: 21
         height: 32
       alignment: 9
@@ -206,7 +206,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 87
-        y: 3
+        y: 48
         width: 21
         height: 32
       alignment: 9
@@ -227,7 +227,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 108
-        y: 3
+        y: 48
         width: 21
         height: 32
       alignment: 9
@@ -248,7 +248,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 129
-        y: 3
+        y: 48
         width: 21
         height: 32
       alignment: 9
@@ -264,6 +264,132 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: civilian_female02_gib_head
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 29
+        width: 18
+        height: 15
+      alignment: 9
+      pivot: {x: 0.5, y: 0.13333334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a3dae45dcf76ab4bb352dc9d63d10e1
+      internalID: 23777906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: civilian_female02_gib_left_hand
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 23
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e3fe37644ef5de49b300cc749022d9b
+      internalID: 920093778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: civilian_female02_gib_right_hand
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 21
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ba4850bca6324d46941273c5f24f03f
+      internalID: -861972576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: civilian_female02_gib_torso
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 18
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ea482f2103e09249b36efcee4570988
+      internalID: 12587474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: civilian_female02_gib_right_leg
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 6
+        width: 6
+        height: 10
+      alignment: 9
+      pivot: {x: 0.6666667, y: 0.90000004}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc5bc9961bb16f544aad0b7bc15b717b
+      internalID: -1100450618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: civilian_female02_gib_left_leg
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 6
+        width: 8
+        height: 10
+      alignment: 9
+      pivot: {x: 0.25, y: 0.90000004}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04154355a9caac04a92a7fc90b4fffba
+      internalID: -1230144936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -275,6 +401,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      civilian_female02_gib_head: 23777906
+      civilian_female02_gib_left_hand: 920093778
+      civilian_female02_gib_left_leg: -1230144936
+      civilian_female02_gib_right_hand: -861972576
+      civilian_female02_gib_right_leg: -1100450618
+      civilian_female02_gib_torso: 12587474
       civilian_female02_idle_1: -4671606727477644610
       civilian_female02_idle_2: 1279003921236522502
       civilian_female02_idle_3: 2081818389095510195

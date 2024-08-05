@@ -106,7 +106,38 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6539596393208568142}
+  m_Father: {fileID: 8456424168501558156}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1545578139503220878
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2267487678539953181}
+  m_Layer: 0
+  m_Name: GibTorso
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2267487678539953181
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1545578139503220878}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.02, y: 0.716, z: -8.349168}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8456424168501558156}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3697470792862159542
 GameObject:
@@ -179,11 +210,6 @@ Transform:
   m_Children:
   - {fileID: 8456424168501558156}
   - {fileID: 4035649340416549021}
-  - {fileID: 4578621145937433996}
-  - {fileID: 1045032467714524162}
-  - {fileID: 7015601460596655554}
-  - {fileID: 5711137575601249832}
-  - {fileID: 8338141059368217728}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8454564321094883175
@@ -215,19 +241,23 @@ MonoBehaviour:
   - gibName: left_leg
     gibSprite: {fileID: -780494942, guid: dc4edf6b226129f4ea679921378c2f10, type: 3}
     spawnPoint: {fileID: 1045032467714524162}
-    gibType: 1
+    gibType: 2
   - gibName: right_leg
     gibSprite: {fileID: -1408275057, guid: dc4edf6b226129f4ea679921378c2f10, type: 3}
     spawnPoint: {fileID: 7015601460596655554}
-    gibType: 2
+    gibType: 3
   - gibName: left_hand
     gibSprite: {fileID: -989965149, guid: dc4edf6b226129f4ea679921378c2f10, type: 3}
     spawnPoint: {fileID: 5711137575601249832}
-    gibType: 3
+    gibType: 4
   - gibName: right_hand
     gibSprite: {fileID: -854588703, guid: dc4edf6b226129f4ea679921378c2f10, type: 3}
     spawnPoint: {fileID: 8338141059368217728}
-    gibType: 4
+    gibType: 5
+  - gibName: torso
+    gibSprite: {fileID: -1885639990, guid: dc4edf6b226129f4ea679921378c2f10, type: 3}
+    spawnPoint: {fileID: 2267487678539953181}
+    gibType: 1
   hurtKnockbackInfo:
     force: 2
     duration: 0.15
@@ -383,6 +413,12 @@ Transform:
   - {fileID: 3984424996921381970}
   - {fileID: 1668439083298953516}
   - {fileID: 8563963596586609007}
+  - {fileID: 4578621145937433996}
+  - {fileID: 1045032467714524162}
+  - {fileID: 7015601460596655554}
+  - {fileID: 2267487678539953181}
+  - {fileID: 5711137575601249832}
+  - {fileID: 8338141059368217728}
   m_Father: {fileID: 6539596393208568142}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4732056490996974274
@@ -576,7 +612,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6539596393208568142}
+  m_Father: {fileID: 8456424168501558156}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6737589818660418067
 GameObject:
@@ -607,7 +643,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6539596393208568142}
+  m_Father: {fileID: 8456424168501558156}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6836715084475554321
 GameObject:
@@ -877,7 +913,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6539596393208568142}
+  m_Father: {fileID: 8456424168501558156}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8990875296702742356
 GameObject:
@@ -908,5 +944,5 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6539596393208568142}
+  m_Father: {fileID: 8456424168501558156}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

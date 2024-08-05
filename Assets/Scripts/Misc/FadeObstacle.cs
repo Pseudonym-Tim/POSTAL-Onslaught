@@ -39,10 +39,12 @@ public class FadeObstacle : MonoBehaviour
         if(playerHit != null || npcHit != null)
         {
             isFadingOut = true;
+            spriteRenderer.sortingOrder = 3;
         }
         else
         {
             isFadingOut = false;
+            spriteRenderer.sortingOrder = 2;
         }
     }
 

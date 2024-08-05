@@ -131,7 +131,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3
-        y: 37
+        y: 82
         width: 18
         height: 30
       alignment: 9
@@ -152,7 +152,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 28
-        y: 37
+        y: 82
         width: 18
         height: 30
       alignment: 9
@@ -173,7 +173,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 53
-        y: 37
+        y: 82
         width: 18
         height: 30
       alignment: 9
@@ -194,7 +194,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 78
-        y: 37
+        y: 82
         width: 22
         height: 30
       alignment: 9
@@ -215,7 +215,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 103
-        y: 37
+        y: 82
         width: 19
         height: 30
       alignment: 9
@@ -236,7 +236,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 128
-        y: 37
+        y: 82
         width: 21
         height: 30
       alignment: 9
@@ -257,7 +257,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 153
-        y: 37
+        y: 82
         width: 19
         height: 30
       alignment: 9
@@ -278,7 +278,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3
-        y: 3
+        y: 48
         width: 19
         height: 29
       alignment: 9
@@ -299,7 +299,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 28
-        y: 3
+        y: 48
         width: 19
         height: 29
       alignment: 9
@@ -320,7 +320,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 53
-        y: 3
+        y: 48
         width: 19
         height: 29
       alignment: 9
@@ -336,6 +336,132 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: protester_female02_gib_head
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 29
+        width: 18
+        height: 15
+      alignment: 9
+      pivot: {x: 0.5, y: 0.13333334}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f338223626cf06b4eb6436fb4a210b97
+      internalID: 1340899427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protester_female02_gib_left_hand
+      rect:
+        serializedVersion: 2
+        x: 27
+        y: 23
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4213a8751a164c74d828e856b87c265c
+      internalID: -1676837561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protester_female02_gib_right_hand
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 21
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f68b7679b3ff78748bc43c76b542f9c4
+      internalID: -1212552485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protester_female02_gib_torso
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 18
+        width: 11
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fd23cac77cde614591bbc5c322f9885
+      internalID: 2081403814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protester_female02_gib_left_leg
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 6
+        width: 8
+        height: 10
+      alignment: 9
+      pivot: {x: 0.375, y: 0.90000004}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7559ca392efc79041868520f2ac85931
+      internalID: 1064293958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: protester_female02_gib_right_leg
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 6
+        width: 6
+        height: 10
+      alignment: 9
+      pivot: {x: 0.5, y: 0.90000004}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24da2aa2e6504394eb7bbd37507f8cb6
+      internalID: -651829673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -347,6 +473,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      protester_female02_gib_head: 1340899427
+      protester_female02_gib_left_hand: -1676837561
+      protester_female02_gib_left_leg: 1064293958
+      protester_female02_gib_right_hand: -1212552485
+      protester_female02_gib_right_leg: -651829673
+      protester_female02_gib_torso: 2081403814
       protester_female02_idle_1: 6958516259406157281
       protester_female02_idle_2: 3516188961033960483
       protester_female02_idle_3: 5108412471518866554

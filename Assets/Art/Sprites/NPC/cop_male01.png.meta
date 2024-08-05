@@ -131,7 +131,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3
-        y: 38
+        y: 83
         width: 19
         height: 33
       alignment: 9
@@ -152,7 +152,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 22
-        y: 38
+        y: 83
         width: 19
         height: 33
       alignment: 9
@@ -173,7 +173,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 41
-        y: 38
+        y: 83
         width: 19
         height: 33
       alignment: 9
@@ -194,7 +194,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 60
-        y: 38
+        y: 83
         width: 19
         height: 33
       alignment: 9
@@ -215,7 +215,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 79
-        y: 38
+        y: 83
         width: 19
         height: 33
       alignment: 9
@@ -236,7 +236,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 98
-        y: 38
+        y: 83
         width: 19
         height: 33
       alignment: 9
@@ -257,7 +257,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 117
-        y: 38
+        y: 83
         width: 19
         height: 33
       alignment: 9
@@ -278,7 +278,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 4
-        y: 3
+        y: 48
         width: 17
         height: 31
       alignment: 9
@@ -299,7 +299,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 23
-        y: 3
+        y: 48
         width: 17
         height: 31
       alignment: 9
@@ -320,7 +320,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 42
-        y: 3
+        y: 48
         width: 17
         height: 31
       alignment: 9
@@ -336,6 +336,132 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: cop_male01_gib_head
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 28
+        width: 15
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a24f66eeaf94e504cac5042aed3c210a
+      internalID: 1434018714
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cop_male01_gib_left_hand
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 20
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8074f6722c2d266468907f411f938365
+      internalID: -2131636955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cop_male01_gib_right_hand
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 18
+        width: 7
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03cb430d3e34f714886c30fe489a948d
+      internalID: -1575753865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cop_male01_gib_torso
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 10
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e39cb5a040ddde8438eed6be8e43c988
+      internalID: 1946769037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cop_male01_gib_left_leg
+      rect:
+        serializedVersion: 2
+        x: 23
+        y: 3
+        width: 8
+        height: 10
+      alignment: 9
+      pivot: {x: 0.375, y: 0.90000004}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7aa8f002acf9d0349beea46fe92124a4
+      internalID: 532991978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: cop_male01_gib_right_leg
+      rect:
+        serializedVersion: 2
+        x: 13
+        y: 3
+        width: 6
+        height: 10
+      alignment: 9
+      pivot: {x: 0.5, y: 0.90000004}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db081a325635fd24a8d88f5eb14904c5
+      internalID: -1800970731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -347,6 +473,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
+      cop_male01_gib_head: 1434018714
+      cop_male01_gib_left_hand: -2131636955
+      cop_male01_gib_left_leg: 532991978
+      cop_male01_gib_right_hand: -1575753865
+      cop_male01_gib_right_leg: -1800970731
+      cop_male01_gib_torso: 1946769037
       cop_male01_idle_1: -1161997056113186084
       cop_male01_idle_2: 8673702332164050679
       cop_male01_idle_3: 3945013643908216431
