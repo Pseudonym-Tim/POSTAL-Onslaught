@@ -1,7 +1,7 @@
 [
     {
         "trackName": "Beginning Of The End",
-        "trackID": "main_menu"
+        "trackID": "credits"
     },
     {
         "trackName": "Arsenal Parade",
@@ -13,6 +13,6 @@
     },
     {
         "trackName": "Corpse Club",
-        "trackID": "credits"
+        "trackID": "main_menu"
     }
 ]

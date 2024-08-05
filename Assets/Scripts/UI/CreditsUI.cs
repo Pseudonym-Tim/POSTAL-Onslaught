@@ -34,6 +34,7 @@ public class CreditsUI : UIComponent
 
     public override void SetupUI()
     {
+        musicManager = FindFirstObjectByType<MusicManager>();
         LoadJsonSettings();
         Show(false);
     }
