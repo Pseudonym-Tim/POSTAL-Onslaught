@@ -58,7 +58,7 @@ public class GameOverUI : UIComponent
         scoreText.text = scoreMessage.Replace("%points%", "???");
 
         SFXManager sfxManager = FindFirstObjectByType<SFXManager>();
-        sfxManager?.Play2DSound("Game End");
+        sfxManager?.Play2DSound("Onslaught Fail");
 
         SetOptionsInactive();
         tipText.text = GetTipMessage();

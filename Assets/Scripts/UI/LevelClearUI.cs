@@ -48,7 +48,7 @@ public class LevelClearUI : UIComponent
         MusicManager musicManager = FindFirstObjectByType<MusicManager>();
         musicManager?.StopMusic();
 
-        sfxManager?.Play2DSound("Game End");
+        sfxManager?.Play2DSound("Onslaught Complete");
 
         FadeUI fadeUI = UIManager.GetUIComponent<FadeUI>();
         fadeUI?.FadeIn();

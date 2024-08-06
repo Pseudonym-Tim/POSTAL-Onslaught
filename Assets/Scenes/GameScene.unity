@@ -6656,8 +6656,21 @@ MonoBehaviour:
       minAudibleDistance: 5
       maxAudibleDistance: 10
     soundAudioSource: {fileID: 0}
-  - soundName: Game End
-    audioClip: {fileID: 8300000, guid: 46a6f41051e6458498e171f819846dd3, type: 3}
+  - soundName: Onslaught Complete
+    audioClip: {fileID: 8300000, guid: 105efc967646a5e4787fc9288b4a2310, type: 3}
+    volume: 0.1
+    pitch: 0.8
+    pitchRandomMin: 0.8
+    pitchRandomMax: 0.8
+    useRandomPitch: 1
+    loopAudio: 0
+    spatial3DSoundInfo:
+      rolloffMode: 1
+      minAudibleDistance: 5
+      maxAudibleDistance: 10
+    soundAudioSource: {fileID: 0}
+  - soundName: Onslaught Fail
+    audioClip: {fileID: 8300000, guid: a38444cde66c424449d43fa67d1e911f, type: 3}
     volume: 0.1
     pitch: 0.8
     pitchRandomMin: 0.8
